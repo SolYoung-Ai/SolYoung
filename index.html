@@ -265,6 +265,11 @@ section{position:relative}
 .qr-card .qr-s{font-size:13px;color:var(--ink-soft)}
 .qr-close{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-soft);font-size:18px;line-height:1;background:var(--bg);transition:all .3s;z-index:2}
 .qr-close:hover{color:var(--accent);border-color:var(--accent)}
+.qr-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.qr-tab{border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:none;color:var(--ink-soft);font-family:var(--font-display);font-size:12px;letter-spacing:.05em;cursor:pointer;transition:all .3s}
+.qr-tab.active,.qr-tab:hover{border-color:var(--accent);color:var(--accent)}
+.qr-pane{display:none}
+.qr-pane.active{display:block}
 
 /* ============ Footer ============ */
 footer{border-top:1px solid var(--line);padding:44px 0 56px}
@@ -520,9 +525,20 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <div class="qr-overlay" id="qrOverlay">
   <div class="qr-card">
     <button class="qr-close" id="qrClose" aria-label="关闭">×</button>
-    <img src="assets/wechat-qr.png" alt="SolYoung 微信二维码">
-    <div class="qr-t">添加我的微信</div>
-    <div class="qr-s">扫一扫，添加我为朋友</div>
+    <div class="qr-tabs">
+      <button type="button" class="qr-tab active" data-tab="learn">兴趣学习</button>
+      <button type="button" class="qr-tab" data-tab="biz">商务合作</button>
+    </div>
+    <div class="qr-pane active" id="qrLearn">
+      <img src="assets/wechat-learn.png" alt="SolYoung 微信二维码">
+      <div class="qr-t">添加 SolYoung</div>
+      <div class="qr-s">聊兴趣、学拍摄、一起探索创作</div>
+    </div>
+    <div class="qr-pane" id="qrBiz">
+      <img src="assets/wechat-biz.png" alt="楊十八 微信二维码">
+      <div class="qr-t">商务合作</div>
+      <div class="qr-s">项目合作、品牌沟通</div>
+    </div>
   </div>
 </div>
 
@@ -594,6 +610,17 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   qrClose.addEventListener('click', function(){ openQr(false); });
   qrOverlay.addEventListener('click', function(e){
     if(e.target === qrOverlay) openQr(false);
+  });
+  // qr tab switch
+  var qrTabs = document.querySelectorAll('.qr-tab');
+  qrTabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      qrTabs.forEach(function(x){ x.classList.remove('active'); });
+      t.classList.add('active');
+      var panes = document.querySelectorAll('.qr-pane');
+      panes.forEach(function(p){ p.classList.remove('active'); });
+      document.getElementById(t.dataset.tab === 'learn' ? 'qrLearn' : 'qrBiz').classList.add('active');
+    });
   });
 
   // reveal on scroll
