@@ -10,14 +10,6 @@
     ]
   },
   {
-    "id": "2026-10-04-update-domains",
-    "date": "2026-10-04T03:13",
-    "type": "BUILD",
-    "content": "独立产品快测与相机参数模拟器更新为 solyoung.top 新域名。",
-    "published": true,
-    "images": []
-  },
-  {
     "id": "2026-10-04-update-mobile-comfort",
     "date": "2026-10-04T02:53",
     "type": "BUILD",
