@@ -507,26 +507,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <h2 class="display sec-title">思考 <span class="serif accent">Thoughts</span></h2>
       <span class="sec-num">03</span>
     </div>
-    <div class="notes">
-      <a href="thoughts/why-i-record.html" class="note rv">
-        <span class="date">2026 / 09</span>
-        <h3>为什么我开始记录</h3>
-        <p>不是为了证明给谁看。是发现我做完一件东西就忘了——忘掉当时的困惑，忘掉绕过的坑，忘掉为什么这么选。记录，是为了不再重复遗忘。</p>
-        <span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a href="thoughts/ai-does-not-decide.html" class="note rv rv-d1">
-        <span class="date">2026 / 08</span>
-        <h3>AI 不会替我做决定</h3>
-        <p>我一度以为 AI 会替我完成创作。用了一阵之后发现不是——它只是把「试错」的成本降得极低，让我在同一个晚上能试出十个方向。选哪个，还是我。</p>
-        <span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a href="thoughts/idea-to-work.html" class="note rv rv-d2">
-        <span class="date">2026 / 07</span>
-        <h3>一个想法，变成一件作品</h3>
-        <p>最大的距离不在「想」和「做」之间，而在「做完一半」和「收尾」。我给自己定了条规矩：想法不落地就不算数，跑通的、粗糙的作品，好过完美的草稿。</p>
-        <span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-    </div>
+    <div class="notes" id="notesList"></div>
   </div>
 </section>
 
@@ -850,6 +831,29 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   if(heroPortrait){
     heroPortrait.style.cursor = 'pointer';
     heroPortrait.addEventListener('click', function(){ window.location.href = 'now/'; });
+  }
+
+  // Thoughts feed — cards from thoughts.json
+  var notesList = document.getElementById('notesList');
+  function renderNotes(list){
+    if(!notesList) return;
+    notesList.innerHTML = '';
+    var nIO = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); nIO.unobserve(e.target); } });
+    }, {threshold:.15});
+    list.slice().sort(function(a,b){ return b.date.localeCompare(a.date); }).forEach(function(n,i){
+      var el = document.createElement('a');
+      el.href = n.page; el.className = 'note rv'; el.style.transitionDelay = (i*90) + 'ms';
+      el.innerHTML = '<span class="date">' + n.date + '</span><h3>' + n.title + '</h3><p>' + n.summary + '</p>' +
+        '<span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
+      notesList.appendChild(el); nIO.observe(el);
+    });
+  }
+  if(notesList){
+    fetch('thoughts.json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){ renderNotes(d.filter(function(x){ return x.published; })); })
+      .catch(function(){ notesList.innerHTML = '<p class="muted">文章需要在线访问加载。</p>'; });
   }
 })();
 </script>
