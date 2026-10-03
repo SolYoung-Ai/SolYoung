@@ -1,5 +1,14 @@
 [
   {
+    "id": "2026-10-04T02:14-think-eyz30",
+    "date": "2026-10-04T02:14",
+    "type": "THINK",
+    "content": "测试",
+    "published": true,
+    "images": [],
+    "_pending": false
+  },
+  {
     "id": "2026-10-04T02:05-think-lct37",
     "date": "2026-10-04T02:05",
     "type": "THINK",
