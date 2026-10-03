@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-04-update-thoughts",
+    "date": "2026-10-04T02:47",
+    "type": "BUILD",
+    "content": "网站更新：思考板块改为左右滑动，标题可一键进入全部思考页，并新增 VIEW ALL THOUGHTS 引导。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-04T02:43-life-4o59p",
     "date": "2026-10-04T02:43",
     "type": "LIFE",
