@@ -226,7 +226,7 @@ section{position:relative}
 
 /* ============ Notes ============ */
 .notes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,32px)}
-.note{display:block;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3vw,34px);background:var(--card);transition:border-color .4s,transform .4s var(--ease)}
+.note{display:block;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3vw,34px);background:var(--card);transition:border-color .3s ease-out,transform .3s ease-out}
 .note:hover{border-color:var(--accent);transform:translateY(-3px)}
 .note .date{font-family:var(--font-display);font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
 .note h3{font-family:var(--font-serif);font-size:20px;line-height:1.4;margin-top:14px}
@@ -455,19 +455,19 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <span class="sec-num">03</span>
     </div>
     <div class="notes">
-      <a href="#contact" class="note rv">
+      <a href="thoughts/why-i-record.html" class="note rv">
         <span class="date">2026 / 09</span>
         <h3>为什么我开始记录</h3>
         <p>不是为了证明给谁看。是发现我做完一件东西就忘了——忘掉当时的困惑，忘掉绕过的坑，忘掉为什么这么选。记录，是为了不再重复遗忘。</p>
         <span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="#contact" class="note rv rv-d1">
+      <a href="thoughts/ai-does-not-decide.html" class="note rv rv-d1">
         <span class="date">2026 / 08</span>
         <h3>AI 不会替我做决定</h3>
         <p>我一度以为 AI 会替我完成创作。用了一阵之后发现不是——它只是把「试错」的成本降得极低，让我在同一个晚上能试出十个方向。选哪个，还是我。</p>
         <span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="#contact" class="note rv rv-d2">
+      <a href="thoughts/idea-to-work.html" class="note rv rv-d2">
         <span class="date">2026 / 07</span>
         <h3>一个想法，变成一件作品</h3>
         <p>最大的距离不在「想」和「做」之间，而在「做完一半」和「收尾」。我给自己定了条规矩：想法不落地就不算数，跑通的、粗糙的作品，好过完美的草稿。</p>
