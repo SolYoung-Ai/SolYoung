@@ -9,12 +9,38 @@
     "_pending": false
   },
   {
+    "id": "2026-10-04T02:05-think-lct37",
+    "date": "2026-10-04T02:05",
+    "type": "THINK",
+    "content": "如果你不愿意和一个人交换人生，就不要轻易接受他的建议\n",
+    "published": true,
+    "images": [],
+    "_pending": false
+  },
+  {
     "id": "2026-10-04-think-nxuex",
     "date": "2026-10-04",
     "type": "THINK",
     "content": "创造让人乐此不疲",
     "published": true,
     "images": []
+  },
+  {
+    "id": "2026-10-04-think-now",
+    "date": "2026-10-04",
+    "type": "THINK",
+    "content": "把进行时改成了 NOW。\n\n不是所有事情都值得成为一个作品，但值得被记录。\n从今天起，这里记录我正在做、正在想、正在尝试的东西。",
+    "images": [],
+    "published": true
+  },
+  {
+    "id": "2026-10-04-think-5euxb",
+    "date": "2026-10-04",
+    "type": "THINK",
+    "content": "找到对你来说像是玩耍，\n对别人来说像是在工作的事情\n对你来说这是艺术、美丽、快乐、流动、充实\n你做的事情对你来说越自然，竞争就越少",
+    "published": true,
+    "images": [],
+    "_pending": false
   },
   {
     "id": "2026-10-03-build-camsim",
