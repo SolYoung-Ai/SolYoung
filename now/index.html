@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOW — SolYoung</title>
+<meta name="description" content="SolYoung 的创作动态、实验记录与正在进行的事情。">
+<meta property="og:title" content="NOW — SolYoung">
+<meta property="og:description" content="SolYoung 的创作动态、实验记录与正在进行的事情。">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23E87028'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@500;600;700&family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@300;400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F0E7;--bg-soft:#EFEADF;--ink:#1D1A15;--ink-soft:#6B6455;--ink-faint:#9A927F;
+  --line:rgba(29,26,21,.14);--accent:#E87028;--card:#FAF7F0;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font-display:'Archivo','Noto Sans SC',system-ui,sans-serif;
+  --font-serif:'Noto Serif SC',Georgia,serif;
+  --font-body:'Noto Sans SC','PingFang SC',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:760px;margin:0 auto;padding:0 24px}
+.hd{position:sticky;top:0;z-index:50;background:rgba(244,240,231,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.brand .dot{color:var(--accent)}
+.back{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);transition:color .3s}
+.back:hover{color:var(--accent)}
+.hero{padding:88px 0 0}
+.kicker{font-family:var(--font-display);font-size:11px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase}
+h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(46px,9vw,82px);margin:14px 0 18px;letter-spacing:-.02em;line-height:.95}
+h1 .accent{color:var(--accent)}
+.sub{color:var(--ink-soft);font-size:15px;line-height:1.9;max-width:640px;margin:0}
+.tl{margin-top:54px}
+.tl-year{display:flex;align-items:center;gap:14px;margin:6px 0 4px}
+.tl-year-num{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.1em;color:var(--ink)}
+.tl-year-line{flex:1;height:1px;background:var(--line)}
+.now-item{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease),transform .4s var(--ease);padding:30px 4px 34px;border-bottom:1px solid var(--line)}
+.now-item.in{opacity:1;transform:none}
+.now-head{display:flex;align-items:center;gap:10px}
+.now-av{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none}
+.now-name{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink)}
+.now-handle{font-size:12px;color:var(--ink-faint)}
+.now-meta{display:flex;align-items:center;gap:10px;margin-top:12px;font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft)}
+.now-type{color:var(--accent);transition:color .3s}
+.now-date{color:var(--ink-faint);transition:color .3s}
+.now-item:hover .now-type{color:var(--ink)}
+.now-item:hover .now-date{color:var(--ink-soft)}
+.now-body{margin-top:10px;font-size:16px;line-height:1.9;white-space:pre-line;color:var(--ink)}
+.now-body.clamp{-webkit-line-clamp:4;line-clamp:4;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+.now-media{margin-top:16px;overflow:hidden;border-radius:4px}
+.now-media img{display:block;width:100%;max-width:560px;height:auto;transition:transform .45s var(--ease)}
+.now-media:hover img{transform:scale(1.015)}
+.rlink{display:inline-block;margin-top:12px;font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--accent);cursor:pointer;background:none;border:none;padding:0;transition:color .3s}
+.rlink:hover{color:var(--ink)}
+.ft{padding:76px 0 48px;text-align:center}
+.ft .slogan{font-family:var(--font-serif);font-size:15px;color:var(--ink-soft);margin-bottom:10px}
+.ft .muted{font-size:12px;color:var(--ink-faint)}
+.fail{color:var(--ink-faint);font-size:13px;padding:24px 4px}
+@media(max-width:720px){.hero{padding:56px 0 0}.now-body{font-size:15px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.now-item{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="container hd-in">
+    <a class="brand" href="../index.html" aria-label="返回首页">Sol<span class="dot">.</span>Young</a>
+    <a class="back" href="../index.html#experiments">← 返回首页</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">Ongoing · Archive</div>
+    <h1>NOW <span class="accent">·</span> 正在发生</h1>
+    <p class="sub">记录我正在做的事情、正在尝试的东西，以及还没有成为作品的想法。<br>不是所有事情都值得成为一个作品，但值得被记录。</p>
+  </section>
+
+  <section class="tl" id="timeline" aria-live="polite"></section>
+</main>
+
+<footer class="ft">
+  <div class="slogan">记录，是为了忘记。</div>
+  <div class="muted">© 2026 SolYoung · 持续更新</div>
+</footer>
+
+<script>
+(function(){
+  var TL = document.getElementById('timeline');
+  function fmtDate(d){ var p=d.split('-'); return p[0]+' / '+p[1]+' / '+p[2]; }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function render(items){
+    if(!TL) return;
+    var pub = items.filter(function(p){ return p.published; })
+      .slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
+    var byYear = {};
+    pub.forEach(function(p){ var y=p.date.slice(0,4); (byYear[y]=byYear[y]||[]).push(p); });
+    TL.innerHTML='';
+    var hashTarget = (location.hash||'').slice(1);
+    Object.keys(byYear).sort().reverse().forEach(function(year){
+      var yh=document.createElement('div');
+      yh.className='tl-year';
+      yh.innerHTML='<span class="tl-year-num">'+year+'</span><span class="tl-year-line"></span>';
+      TL.appendChild(yh);
+      byYear[year].forEach(function(post,i){
+        var long = post.content.length > 90;
+        var el=document.createElement('article');
+        el.className='now-item';
+        el.id=post.id;
+        el.style.transitionDelay=(i*70)+'ms';
+        var media='';
+        if(post.images && post.images.length){
+          media='<div class="now-media"><img src="../'+post.images[0]+'" alt="" loading="lazy"></div>';
+        }
+        el.innerHTML=
+          '<div class="now-head"><img class="now-av" src="../assets/avatar.jpg" alt="SolYoung"><span class="now-name">SolYoung</span><span class="now-handle">@solyoung</span></div>'+
+          '<div class="now-meta"><span class="now-type">'+post.type+'</span><span class="now-date">'+fmtDate(post.date)+'</span></div>'+
+          '<div class="now-body'+(long?' clamp':'')+'">'+esc(post.content).replace(/\n/g,'<br>')+'</div>'+
+          (long?'<button class="rlink" type="button">READ MORE →</button>':'')+
+          media;
+        TL.appendChild(el);
+        var io=new IntersectionObserver(function(es){
+          es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+        },{threshold:.12});
+        io.observe(el);
+        var rl=el.querySelector('.rlink');
+        if(rl) rl.addEventListener('click',function(){
+          el.querySelector('.now-body').classList.remove('clamp');
+          rl.style.display='none';
+        });
+        if(hashTarget===post.id){
+          el.classList.add('in');
+          if(rl){ rl.style.display='none'; el.querySelector('.now-body').classList.remove('clamp'); }
+        }
+      });
+    });
+    if(hashTarget){
+      var t=document.getElementById(hashTarget);
+      if(t && !t.classList.contains('in')){ t.classList.add('in'); }
+      if(t) setTimeout(function(){ t.scrollIntoView(); },50);
+    }
+  }
+  if(TL){
+    fetch('../now.json')
+      .then(function(r){ return r.json(); })
+      .then(render)
+      .catch(function(){ TL.innerHTML='<p class="fail">动态需要在线访问加载。</p>'; });
+  }
+})();
+</script>
+</body>
+</html>

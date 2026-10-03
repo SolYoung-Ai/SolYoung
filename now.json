@@ -1,0 +1,50 @@
+[
+  {
+    "id": "2026-10-04-think-now",
+    "date": "2026-10-04",
+    "type": "THINK",
+    "content": "把进行时改成了 NOW。\n\n不是所有事情都值得成为一个作品，但值得被记录。\n从今天起，这里记录我正在做、正在想、正在尝试的东西。",
+    "images": [],
+    "published": true
+  },
+  {
+    "id": "2026-10-03-build-camsim",
+    "date": "2026-10-03",
+    "type": "BUILD",
+    "content": "最近把相机参数模拟器又改了一版。\n\n发现真正麻烦的不是参数本身，而是怎么把摄影师的经验翻译成规则。现在这个交互终于顺手了。",
+    "images": ["assets/camera-simulator.jpg"],
+    "published": true
+  },
+  {
+    "id": "2026-10-01-test-ai-editing",
+    "date": "2026-10-01",
+    "type": "TEST",
+    "content": "开始重新测试 AI 辅助剪辑。\n暂时不追求效率，先看看它到底能不能改变我的剪辑思路。",
+    "images": [],
+    "published": true
+  },
+  {
+    "id": "2026-09-27-shoot-nature",
+    "date": "2026-09-27",
+    "type": "SHOOT",
+    "content": "周末出去拍了一组东西。\n走进大自然，慢慢记录身边的风景。",
+    "images": [],
+    "published": true
+  },
+  {
+    "id": "2026-09-22-build-typeall",
+    "date": "2026-09-22",
+    "type": "BUILD",
+    "content": "把各种性格测试收拢到了一个站里。\n快测，随时测一个。",
+    "images": ["assets/personality-hub.jpg"],
+    "published": true
+  },
+  {
+    "id": "2026-09-15-think-what-remains",
+    "date": "2026-09-15",
+    "type": "THINK",
+    "content": "在一个 AI 可以越来越快帮我们完成事情的时代，一个人真正应该负责的，到底还剩下什么。\n这个问题我还没有答案，所以我继续试。",
+    "images": [],
+    "published": true
+  }
+]

@@ -339,6 +339,28 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .brand:hover{animation:shift .3s steps(2) 1}
 @keyframes shift{0%,100%{transform:translateX(0)}33%{transform:translateX(-2px)}66%{transform:translateX(2px)}}
 
+/* now feed (home + /now shared look) */
+.now-feed{border-top:1px solid var(--line)}
+.now-item{opacity:0;transform:translateY(20px);transition:opacity .55s var(--ease),transform .4s var(--ease);padding:30px 4px 32px;border-bottom:1px solid var(--line)}
+.now-item.in{opacity:1;transform:none}
+.now-item:hover{transform:translateX(4px);transition-delay:0}
+.now-head{display:flex;align-items:center;gap:10px}
+.now-av{width:36px;height:36px;border-radius:50%;object-fit:cover;flex:none}
+.now-name{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink)}
+.now-handle{font-size:12px;color:var(--ink-faint)}
+.now-meta{display:flex;align-items:center;gap:10px;margin-top:12px;font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft)}
+.now-type{color:var(--accent)}
+.now-date{color:var(--ink-faint)}
+.now-body{margin-top:10px;color:var(--ink);font-size:15px;line-height:1.8;white-space:pre-line}
+.now-media{margin-top:16px;overflow:hidden;border-radius:4px}
+.now-media img{display:block;width:100%;max-width:520px;height:auto;transition:transform .45s var(--ease)}
+.now-media:hover img{transform:scale(1.015)}
+.now-more{display:inline-flex;align-items:center;gap:8px;margin-top:36px;font-family:var(--font-display);font-size:11px;letter-spacing:.16em;color:var(--ink);padding:14px 0;transition:color .3s}
+.now-more:hover{color:var(--accent)}
+.now-more-arr{transition:transform .3s var(--ease)}
+.now-more:hover .now-more-arr{transform:translateX(5px)}
+.now-fail{color:var(--ink-faint);font-size:13px;padding:28px 4px}
+
 /* ============ Responsive ============ */
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr;gap:50px}
@@ -462,28 +484,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="section" id="experiments" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="container">
     <div class="sec-head rv">
-      <h2 class="display sec-title">进行时 <span class="serif accent">Ongoing</span></h2>
+      <h2 class="display sec-title">进行时 <span class="serif accent">NOW</span></h2>
       <span class="sec-num">02</span>
     </div>
-    <p class="sec-sub rv">正在测试一些想法，也在测试自己。</p>
+    <p class="sec-sub rv">正在发生 · 记录我正在做、正在想、正在尝试的事情。</p>
 
-    <div class="exp-list">
-      <a href="#contact" class="exp-item rv">
-        <span class="idx">E—01</span>
-        <span class="label"><h4>用 AI 重做剪辑工作流</h4><span>把转写、脚本、粗剪交给 AI，我只在关键环节做决定。</span></span>
-        <span class="state">实验中</span><span class="arr">→</span>
-      </a>
-      <a href="#contact" class="exp-item rv">
-        <span class="idx">E—02</span>
-        <span class="label"><h4>周末小项目：每周一个</h4><span>每周花一点时间，把一个想法真正做出来。</span></span>
-        <span class="state">持续中</span><span class="arr">→</span>
-      </a>
-      <a href="#contact" class="exp-item rv">
-        <span class="idx">E—03</span>
-        <span class="label"><h4>测试新的创作工具</h4><span>每次只带一个问题去试，看看它到底改变了什么。</span></span>
-        <span class="state">待开始</span><span class="arr">→</span>
-      </a>
-    </div>
+    <div class="now-feed" id="nowFeedHome"></div>
+
+    <a class="now-more rv" href="now/" aria-label="查看全部动态">VIEW ALL NOW <span class="now-more-arr">→</span></a>
   </div>
 </section>
 
@@ -778,6 +786,42 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       link.addEventListener('mouseleave', function(){ tag(link,'VISIT',false); });
     });
     requestAnimationFrame(follow);
+  }
+
+  // NOW feed — home shows latest 3 from now.json
+  var nowFeed = document.getElementById('nowFeedHome');
+  function fmtNowDate(d){
+    var p = d.split('-');
+    return p[0] + ' / ' + p[1] + ' / ' + p[2];
+  }
+  function renderNow(items){
+    if(!nowFeed) return;
+    nowFeed.innerHTML = '';
+    var nowIO = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); nowIO.unobserve(e.target); }
+      });
+    }, {threshold:.15});
+    items.slice(0,3).forEach(function(post, i){
+      var el = document.createElement('article');
+      el.className = 'now-item';
+      el.style.transitionDelay = (i*90) + 'ms';
+      var media = (post.images && post.images.length)
+        ? '<div class="now-media"><img src="' + post.images[0] + '" alt="" loading="lazy"></div>' : '';
+      el.innerHTML =
+        '<div class="now-head"><img class="now-av" src="assets/avatar.jpg" alt="SolYoung"><span class="now-name">SolYoung</span><span class="now-handle">@solyoung</span></div>' +
+        '<div class="now-meta"><span class="now-type">' + post.type + '</span><span class="now-date">' + fmtNowDate(post.date) + '</span></div>' +
+        '<div class="now-body">' + post.content.replace(/\n/g,'<br>') + '</div>' +
+        media;
+      nowFeed.appendChild(el);
+      nowIO.observe(el);
+    });
+  }
+  if(nowFeed){
+    fetch('now.json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){ renderNow(d); })
+      .catch(function(){ nowFeed.innerHTML = '<p class="now-fail">动态需要在线访问加载。</p>'; });
   }
 })();
 </script>
