@@ -121,30 +121,30 @@ button:hover{opacity:.82}
   <div class="pane" id="pane-thought">
     <div class="card">
       <label>现有思考（点击可编辑）</label>
-      <div class="list" id="thList"></div>
       <div class="tools">
         <button class="btn-primary" id="thNewBtn" type="button">＋ 新增思考</button>
         <button class="btn-ghost" id="thRefreshBtn" type="button">刷新</button>
       </div>
-    </div>
-    <div class="card hide" id="thFormCard">
-      <label id="thFormTitle">新增思考</label>
-      <div class="row">
-        <div><label>日期（显示用）</label><input type="text" id="thDate" placeholder="如 2026 / 10"></div>
-        <div><label>链接名（URL 用，可选）</label><input type="text" id="thSlug" placeholder="自动生成，如 2026-10-05-x3k2"></div>
+      <div class="card hide" id="thFormCard">
+        <label id="thFormTitle">新增思考</label>
+        <div class="row">
+          <div><label>日期（显示用）</label><input type="text" id="thDate" placeholder="如 2026 / 10"></div>
+          <div><label>链接名（URL 用，可选）</label><input type="text" id="thSlug" placeholder="自动生成，如 2026-10-05-x3k2"></div>
+        </div>
+        <label>标题</label>
+        <input type="text" id="thTitle" placeholder="思考标题">
+        <label>摘要（首页卡片显示）</label>
+        <textarea id="thSummary" placeholder="一两句话概括，首页思考板块会显示"></textarea>
+        <label>正文全文（支持换行，段落间空一行）</label>
+        <textarea id="thContent" placeholder="（编辑已有思考时：留空=保留原文；填写=重新生成页面）"></textarea>
+        <div class="check"><input type="checkbox" id="thPub" checked><span class="muted">发布（勾选=首页可见）</span></div>
+        <div class="tools">
+          <button class="btn-primary" id="thSaveBtn" type="button">保存</button>
+          <button class="btn-ghost" id="thCancelBtn" type="button">取消</button>
+          <button class="btn-danger hide" id="thDelBtn" type="button">删除</button>
+        </div>
       </div>
-      <label>标题</label>
-      <input type="text" id="thTitle" placeholder="思考标题">
-      <label>摘要（首页卡片显示）</label>
-      <textarea id="thSummary" placeholder="一两句话概括，首页思考板块会显示"></textarea>
-      <label>正文全文（支持换行，段落间空一行）</label>
-      <textarea id="thContent" placeholder="（编辑已有思考时：留空=保留原文；填写=重新生成页面）"></textarea>
-      <div class="check"><input type="checkbox" id="thPub" checked><span class="muted">发布（勾选=首页可见）</span></div>
-      <div class="tools">
-        <button class="btn-primary" id="thSaveBtn" type="button">保存</button>
-        <button class="btn-ghost" id="thCancelBtn" type="button">取消</button>
-        <button class="btn-danger hide" id="thDelBtn" type="button">删除</button>
-      </div>
+      <div class="list" id="thList"></div>
     </div>
   </div>
 
