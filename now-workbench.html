@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>此刻工作台 — SolYoung</title>
+<style>
+:root{
+  --bg:#F4F0E7;--ink:#1D1A15;--ink-soft:#6B6455;--ink-faint:#9A927F;
+  --line:rgba(29,26,21,.14);--accent:#E87028;--card:#FAF7F0;
+  --font-display:'Archivo','Noto Sans SC',system-ui,sans-serif;
+  --font-body:'Noto Sans SC','PingFang SC',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+.container{max-width:840px;margin:0 auto;padding:40px 24px 80px}
+h1{font-family:var(--font-display);font-weight:700;font-size:26px;margin:0 0 6px}
+h1 .accent{color:var(--accent)}
+p{margin:0 0 6px}
+.muted{color:var(--ink-faint);font-size:12px;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px;margin-top:18px}
+label{display:block;font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);margin:14px 0 6px;text-transform:uppercase}
+input[type=text],input[type=date],input[type=password],select,textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px;font-family:var(--font-body);font-size:14px;color:var(--ink)}
+textarea{min-height:110px;line-height:1.6}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+.row{display:flex;gap:14px}
+.row>*{flex:1}
+.check{display:flex;align-items:center;gap:8px;margin-top:14px}
+.check input{width:auto}
+button{cursor:pointer;border:none;border-radius:4px;font-family:var(--font-display);font-size:12px;letter-spacing:.1em;padding:11px 18px;transition:opacity .25s}
+button:hover{opacity:.82}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
+.btn-danger{background:transparent;color:#b23a2a;border:1px solid var(--line)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.status{margin-top:14px;font-size:13px;line-height:1.6;padding:10px 14px;border-radius:4px}
+.status.ok{background:rgba(232,112,40,.08);color:var(--accent)}
+.status.err{background:rgba(178,58,42,.08);color:#b23a2a}
+.tabs{display:flex;gap:8px;margin-top:22px;border-bottom:1px solid var(--line);padding-bottom:0}
+.tab{cursor:pointer;border:none;background:none;font-family:var(--font-display);font-size:13px;letter-spacing:.08em;color:var(--ink-faint);padding:12px 4px;margin-right:22px;border-bottom:2px solid transparent;transition:color .3s}
+.tab.active{color:var(--ink);border-bottom-color:var(--accent)}
+.pane{display:none}
+.pane.active{display:block}
+.list{margin-top:6px}
+.item{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-top:12px;display:flex;gap:12px;align-items:flex-start;background:var(--card)}
+.item .thumb{width:56px;height:56px;border-radius:4px;object-fit:cover;flex:none;background:#fff;border:1px solid var(--line)}
+.item .thumb.empty{display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:10px}
+.item .body{flex:1}
+.item .meta{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--ink-soft);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.item .meta .ty{color:var(--accent)}
+.item .meta .off{color:var(--ink-faint);font-size:10px;border:1px solid var(--line);padding:1px 6px;border-radius:3px}
+.item .txt{font-size:13px;line-height:1.6;color:var(--ink);margin-top:6px;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.item .acts{display:flex;flex-direction:column;gap:6px}
+.item .acts button{font-size:11px;padding:6px 10px}
+.hint{background:var(--card);border:1px dashed var(--line);border-radius:6px;padding:14px 16px;margin-top:16px;font-size:12px;color:var(--ink-soft);line-height:1.8}
+.hint code{background:#EFEADF;padding:1px 5px;border-radius:3px;font-size:11px}
+.hide{display:none}
+@media(max-width:640px){.row{flex-direction:column}.item{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>SolYoung 工作台 <span class="accent">·</span> 发布内容</h1>
+  <p class="muted">在此刻发布此刻动态或思考文章，点「发布到线上」后 GitHub Pages 约 1 分钟更新。令牌仅保存在本机浏览器。</p>
+
+  <div class="card">
+    <label>GitHub 访问令牌</label>
+    <div class="row">
+      <input type="password" id="token" placeholder="github_pat_... 仅需本站仓库写权限" autocomplete="off">
+      <button class="btn-primary" id="loadBtn" type="button">连接并载入</button>
+    </div>
+    <p class="muted" style="margin-top:8px">GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token；仓库选 SolYoung-Ai/SolYoung-Ai.github.io，权限勾选 <code>Contents: Read and write</code>。</p>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="now" type="button">此刻</button>
+    <button class="tab" data-tab="thought" type="button">思考</button>
+  </div>
+
+  <div class="card" id="pubCard">
+    <label>发布</label>
+    <button class="btn-primary" id="pubBtn" type="button">发布到线上（约 1 分钟生效）</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <!-- ===== 此刻 ===== -->
+  <div class="pane active" id="pane-now">
+    <div class="card">
+      <label>现有此刻（点击可编辑）</label>
+      <div class="tools">
+        <button class="btn-primary" id="nowNewBtn" type="button">＋ 新增此刻</button>
+        <button class="btn-ghost" id="nowRefreshBtn" type="button">刷新</button>
+      </div>
+      <div class="card hide" id="nowFormCard">
+        <label id="nowFormTitle">新增此刻</label>
+        <div class="row">
+          <div><label>日期（精确到分钟）</label><input type="datetime-local" id="fDate"></div>
+          <div><label>类型</label>
+            <select id="fType"><option>BUILD</option><option>TEST</option><option>SHOOT</option><option>THINK</option><option>LIFE</option><option>NOTE</option></select>
+          </div>
+        </div>
+        <label>正文（支持换行）</label>
+        <textarea id="fContent" placeholder="正在做什么 / 想什么 / 尝试什么…"></textarea>
+        <label>配图（可选）</label>
+        <div class="row">
+          <div><input type="file" id="fImgFile" accept="image/*"></div>
+          <div><input type="text" id="fImgUrl" placeholder="或粘贴图片路径/URL，如 assets/xxx.jpg"></div>
+        </div>
+        <div class="check"><input type="checkbox" id="fPub" checked><span class="muted">发布（勾选=可见）</span></div>
+        <div class="tools">
+          <button class="btn-primary" id="nowSaveBtn" type="button">保存</button>
+          <button class="btn-ghost" id="nowCancelBtn" type="button">取消</button>
+          <button class="btn-danger hide" id="nowDelBtn" type="button">删除</button>
+        </div>
+      </div>
+      <div class="list" id="nowList"></div>
+    </div>
+  </div>
+
+  <!-- ===== 思考 ===== -->
+  <div class="pane" id="pane-thought">
+    <div class="card">
+      <label>现有思考（点击可编辑）</label>
+      <div class="list" id="thList"></div>
+      <div class="tools">
+        <button class="btn-primary" id="thNewBtn" type="button">＋ 新增思考</button>
+        <button class="btn-ghost" id="thRefreshBtn" type="button">刷新</button>
+      </div>
+    </div>
+    <div class="card hide" id="thFormCard">
+      <label id="thFormTitle">新增思考</label>
+      <div class="row">
+        <div><label>日期（显示用）</label><input type="text" id="thDate" placeholder="如 2026 / 10"></div>
+        <div><label>链接名（URL 用，可选）</label><input type="text" id="thSlug" placeholder="自动生成，如 2026-10-05-x3k2"></div>
+      </div>
+      <label>标题</label>
+      <input type="text" id="thTitle" placeholder="思考标题">
+      <label>摘要（首页卡片显示）</label>
+      <textarea id="thSummary" placeholder="一两句话概括，首页思考板块会显示"></textarea>
+      <label>正文全文（支持换行，段落间空一行）</label>
+      <textarea id="thContent" placeholder="（编辑已有思考时：留空=保留原文；填写=重新生成页面）"></textarea>
+      <div class="check"><input type="checkbox" id="thPub" checked><span class="muted">发布（勾选=首页可见）</span></div>
+      <div class="tools">
+        <button class="btn-primary" id="thSaveBtn" type="button">保存</button>
+        <button class="btn-ghost" id="thCancelBtn" type="button">取消</button>
+        <button class="btn-danger hide" id="thDelBtn" type="button">删除</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint">
+    使用说明：<br>
+    ① 填令牌 → 点「连接并载入」，会同时读入此刻与思考；<br>
+    ② 顶部切换「此刻 / 思考」，各自新增或点列表条目编辑；<br>
+    ③ 此刻可上传配图（自动部署到 assets/）；思考文章发布时会自动生成独立文章页 + 更新首页思考卡片；<br>
+    ④ 全部改好后点「发布到线上」，约 1 分钟后线上生效。<br>
+    删除 / 隐藏内容记得发布才会生效。
+  </div>
+</div>
+
+<script>
+(function(){
+  var OWNER='SolYoung-Ai', REPO='SolYoung';
+  var nowItems=[], thItems=[], loaded=false;
+  var nowSha=null, thSha=null;
+  var editingNow=null, editingTh=null;
+  var pendingImg={}; // id -> {path,b64,type}
+
+  var tokenInput=document.getElementById('token');
+  var statusEl=document.getElementById('status');
+  var st=localStorage.getItem('sg-gh-token');
+  if(st) tokenInput.value=st;
+
+  function b64toUtf8(b){ try{return decodeURIComponent(escape(atob(b)));}catch(e){return atob(b);} }
+  function utf8toB64(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function setStatus(msg,ok){ statusEl.className='status '+(ok===false?'err':'ok'); statusEl.textContent=msg; }
+
+  function api(path,method,body){
+    var h={'Authorization':'Bearer '+tokenInput.value.trim(),'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+    var opt={method:method||'GET',headers:h};
+    if(body){ h['Content-Type']='application/json'; opt.body=JSON.stringify(body); }
+    return fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path,opt);
+  }
+  function getJson(path){
+    return api(path).then(function(r){
+      if(r.status===200) return r.json().then(function(j){ return {sha:j.sha, data:JSON.parse(b64toUtf8(j.content))}; });
+      if(r.status===404) return {sha:null, data:null};
+      return r.json().then(function(j){ throw new Error(j.message||('读取失败 '+r.status)); });
+    });
+  }
+  function putJson(path, data, sha){
+    var body={message:'workbench: update '+path, content:utf8toB64(JSON.stringify(data,null,2)), encoding:'base64'};
+    if(sha) body.sha=sha;
+    return api(path,'PUT',body).then(function(r){
+      if(!r.ok) return r.json().then(function(j){ throw new Error(j.message||('发布失败 '+r.status)); });
+      return r.json();
+    });
+  }
+  function getSha(path){
+    return api(path).then(function(r){
+      if(r.status===200) return r.json().then(function(j){ return j.sha; });
+      if(r.status===404) return null;
+      return r.json().then(function(j){ throw new Error(j.message||('读取失败 '+r.status)); });
+    });
+  }
+
+  /* ---- tabs ---- */
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(t){ t.onclick=function(){
+    tabs.forEach(function(x){x.classList.remove('active');});
+    t.classList.add('active');
+    document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('active');});
+    document.getElementById('pane-'+t.dataset.tab).classList.add('active');
+  };});
+
+  /* ---- load ---- */
+  function loadAll(){
+    setStatus('连接中…');
+    Promise.all([
+      getJson('now.json'),
+      getJson('thoughts.json')
+    ]).then(function(res){
+      nowSha=res[0].sha; nowItems=res[0].data||[];
+      thSha=res[1].sha; thItems=res[1].data||[];
+      loaded=true;
+      renderNow(); renderTh();
+      setStatus('已连接：'+nowItems.length+' 条此刻 / '+thItems.length+' 篇思考');
+    }).catch(function(e){ setStatus(e.message||'连接失败',false); });
+  }
+  document.getElementById('loadBtn').onclick=function(){
+    var tk=tokenInput.value.trim();
+    if(!tk){ setStatus('请先填写令牌',false); return; }
+    localStorage.setItem('sg-gh-token',tk);
+    loadAll();
+  };
+  document.getElementById('nowRefreshBtn').onclick=loadAll;
+  document.getElementById('thRefreshBtn').onclick=loadAll;
+
+  /* ---- NOW list/form ---- */
+  function renderNow(){
+    var el=document.getElementById('nowList'); el.innerHTML='';
+    if(!nowItems.length){ el.innerHTML='<p class="muted">还没有此刻。</p>'; return; }
+    nowItems.slice().sort(function(a,b){return b.date.localeCompare(a.date);}).forEach(function(it){
+      var d=document.createElement('div'); d.className='item';
+      var img=it.images&&it.images.length?'<img class="thumb" src="../'+it.images[0]+'" alt="">':'<div class="thumb empty">NO IMG</div>';
+      var off=it.published?'':'<span class="off">未发布</span>';
+      d.innerHTML='<div class="body"><div class="meta"><span class="ty">'+esc(it.type||'')+'</span><span>'+esc(it.date)+'</span>'+off+'</div><div class="txt">'+esc(it.content)+'</div></div>'+img+
+        '<div class="acts"><button class="btn-ghost e">编辑</button><button class="btn-danger d">删除</button></div>';
+      d.querySelector('.e').onclick=function(){ editNow(it.id); };
+      d.querySelector('.d').onclick=function(){ nowItems=nowItems.filter(function(x){return x.id!==it.id;}); delete pendingImg[it.id]; renderNow(); setStatus('已删除，发布后生效'); };
+      el.appendChild(d);
+    });
+  }
+  function editNow(id){
+    var it=nowItems.filter(function(x){return x.id===id;})[0]; if(!it) return;
+    editingNow=id; document.getElementById('nowFormTitle').textContent='编辑此刻 — '+id;
+    var dv=it.date||''; if(dv && dv.indexOf('T')<0 && dv.length<=10) dv=dv+'T00:00';
+    document.getElementById('fDate').value=dv;
+    document.getElementById('fType').value=it.type||'BUILD';
+    document.getElementById('fContent').value=it.content;
+    document.getElementById('fImgUrl').value=(it.images&&it.images.length)?it.images[0]:'';
+    document.getElementById('fImgFile').value='';
+    document.getElementById('fPub').checked=it.published!==false;
+    document.getElementById('nowDelBtn').classList.remove('hide');
+    document.getElementById('nowFormCard').classList.remove('hide');
+  }
+  function newNow(){ editingNow=null; document.getElementById('nowFormTitle').textContent='新增此刻';
+    var t=new Date();
+    var v=t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2)+'T'+('0'+t.getHours()).slice(-2)+':'+('0'+t.getMinutes()).slice(-2);
+    document.getElementById('fDate').value=v;
+    document.getElementById('fType').value='THINK';
+    document.getElementById('fContent').value=''; document.getElementById('fImgUrl').value=''; document.getElementById('fImgFile').value='';
+    document.getElementById('fPub').checked=true;
+    document.getElementById('nowDelBtn').classList.add('hide');
+    document.getElementById('nowFormCard').classList.remove('hide');
+  }
+  document.getElementById('nowNewBtn').onclick=newNow;
+  document.getElementById('nowCancelBtn').onclick=function(){ document.getElementById('nowFormCard').classList.add('hide'); };
+  document.getElementById('nowDelBtn').onclick=function(){ if(editingNow){ nowItems=nowItems.filter(function(x){return x.id!==editingNow;}); delete pendingImg[editingNow]; renderNow(); } document.getElementById('nowFormCard').classList.add('hide'); setStatus('已删除，发布后生效'); };
+  document.getElementById('nowSaveBtn').onclick=function(){
+    var date=document.getElementById('fDate').value, type=document.getElementById('fType').value, content=document.getElementById('fContent').value;
+    if(!date){ setStatus('请填写日期',false); return; }
+    if(!content.trim()){ setStatus('正文不能为空',false); return; }
+    var published=document.getElementById('fPub').checked;
+    var id=editingNow||(date+'-'+type.toLowerCase()+'-'+(Math.random().toString(36).slice(2,7)));
+    var it=nowItems.filter(function(x){return x.id===id;})[0]; if(!it){ it={id:id}; nowItems.push(it); }
+    it.date=date; it.type=type; it.content=content; it.published=published;
+    var img=document.getElementById('fImgFile').files[0];
+    var url=document.getElementById('fImgUrl').value.trim();
+    if(img){
+      var reader=new FileReader();
+      reader.onload=function(){
+        var b64=reader.result.split(',')[1];
+        var ext=img.name.split('.').pop().toLowerCase()||'jpg';
+        var path='assets/now-'+Date.now()+'.'+ext;
+        pendingImg[id]={path:path,b64:b64,type:img.type||('image/'+ext)};
+        it.images=[path]; it._pending=true;
+        document.getElementById('nowFormCard').classList.add('hide'); renderNow(); setStatus('已保存（含新配图，发布时自动上传）');
+      };
+      reader.readAsDataURL(img);
+    } else {
+      it.images=url?[url]:[]; it._pending=false;
+      document.getElementById('nowFormCard').classList.add('hide'); renderNow(); setStatus('已保存到本地列表');
+    }
+  };
+
+  /* ---- THOUGHTS list/form ---- */
+  function renderTh(){
+    var el=document.getElementById('thList'); el.innerHTML='';
+    if(!thItems.length){ el.innerHTML='<p class="muted">还没有思考。</p>'; return; }
+    thItems.slice().sort(function(a,b){return b.date.localeCompare(a.date);}).forEach(function(it){
+      var d=document.createElement('div'); d.className='item';
+      var off=it.published?'':'<span class="off">未发布</span>';
+      d.innerHTML='<div class="body"><div class="meta"><span class="ty">'+esc(it.date)+'</span><span>'+esc(it.title)+'</span>'+off+'</div><div class="txt">'+esc(it.summary||'')+'</div></div>'+
+        '<div class="acts"><button class="btn-ghost e">编辑</button><button class="btn-danger d">删除</button></div>';
+      d.querySelector('.e').onclick=function(){ editTh(it.id); };
+      d.querySelector('.d').onclick=function(){ thItems=thItems.filter(function(x){return x.id!==it.id;}); renderTh(); setStatus('已删除，发布后生效'); };
+      el.appendChild(d);
+    });
+  }
+  function editTh(id){
+    var it=thItems.filter(function(x){return x.id===id;})[0]; if(!it) return;
+    editingTh=id; document.getElementById('thFormTitle').textContent='编辑思考 — '+id;
+    document.getElementById('thDate').value=it.date;
+    document.getElementById('thSlug').value=it.id;
+    document.getElementById('thTitle').value=it.title;
+    document.getElementById('thSummary').value=it.summary||'';
+    document.getElementById('thContent').value='';
+    document.getElementById('thPub').checked=it.published!==false;
+    document.getElementById('thDelBtn').classList.remove('hide');
+    document.getElementById('thFormCard').classList.remove('hide');
+  }
+  function newTh(){ editingTh=null; document.getElementById('thFormTitle').textContent='新增思考';
+    document.getElementById('thDate').value='';
+    document.getElementById('thSlug').value='';
+    document.getElementById('thTitle').value='';
+    document.getElementById('thSummary').value='';
+    document.getElementById('thContent').value='';
+    document.getElementById('thPub').checked=true;
+    document.getElementById('thDelBtn').classList.add('hide');
+    document.getElementById('thFormCard').classList.remove('hide');
+  }
+  document.getElementById('thNewBtn').onclick=newTh;
+  document.getElementById('thCancelBtn').onclick=function(){ document.getElementById('thFormCard').classList.add('hide'); };
+  document.getElementById('thDelBtn').onclick=function(){ if(editingTh){ thItems=thItems.filter(function(x){return x.id!==editingTh;}); renderTh(); } document.getElementById('thFormCard').classList.add('hide'); setStatus('已删除，发布后生效'); };
+  document.getElementById('thSaveBtn').onclick=function(){
+    var date=document.getElementById('thDate').value.trim();
+    var title=document.getElementById('thTitle').value.trim();
+    var summary=document.getElementById('thSummary').value.trim();
+    var content=document.getElementById('thContent').value;
+    if(!date){ setStatus('请填写日期（如 2026 / 10）',false); return; }
+    if(!title){ setStatus('请填写标题',false); return; }
+    var slug=document.getElementById('thSlug').value.trim();
+    var published=document.getElementById('thPub').checked;
+    if(editingTh){
+      var it=thItems.filter(function(x){return x.id===editingTh;})[0]; if(!it) return;
+      var wasId=it.id;
+      it.date=date; it.title=title; it.summary=summary; it.published=published;
+      if(slug && slug!==wasId){ it.id=slug; it.page='thoughts/'+slug+'.html'; }
+      if(content.trim()) it._content=content;      // will regenerate page on publish
+      document.getElementById('thFormCard').classList.add('hide'); renderTh(); setStatus('思考已保存（若改了正文，发布时会重建页面）');
+      return;
+    }
+    if(!slug){ var m=date.replace(/\s*\/\s*/g,'-').replace(/[^\w-]/g,''); slug=m+'-'+(Math.random().toString(36).slice(2,6)); }
+    thItems.push({id:slug,date:date,title:title,summary:summary,page:'thoughts/'+slug+'.html',published:published,_content:content});
+    document.getElementById('thFormCard').classList.add('hide'); renderTh(); setStatus('思考已保存（发布时会生成页面）');
+  };
+
+  /* ---- article page builder ---- */
+  function buildArticle(slug, date, title, summary, content){
+    var paras=content.replace(/\n{3,}/g,'\n\n').split(/\n\s*\n/).map(function(p){return p.trim();}).filter(function(p){return p;});
+    var html='<!DOCTYPE html>\n<html lang="zh-CN" data-theme="light">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'+
+      '<title>'+esc(title)+' — SolYoung</title>\n<meta name="description" content="'+esc(summary)+'">\n<meta property="og:title" content="'+esc(title)+' — SolYoung">\n<meta property="og:description" content="'+esc(summary)+'">\n<meta property="og:type" content="article">\n'+
+      '<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 64 64\'%3E%3Crect width=\'64\' height=\'64\' fill=\'%2314120F\'/%3E%3Ctext x=\'32\' y=\'44\' font-family=\'Georgia,serif\' font-size=\'34\' fill=\'%23E87028\' text-anchor=\'middle\'%3ES%3C/text%3E%3C/svg%3E">\n'+
+      '<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap">\n<style>\n'+
+      ':root{--accent:#E87028;--ease:cubic-bezier(.22,1,.36,1);--radius:2px;--font-display:\'Archivo\',\'Noto Sans SC\',system-ui,sans-serif;--font-serif:\'Noto Serif SC\',Georgia,serif;--font-body:\'Noto Sans SC\',system-ui,sans-serif;--bg:#F4F0E7;--ink:#1D1A15;--ink-soft:#6B6455;--ink-faint:#9A927F;--line:rgba(29,26,21,.14);}\n'+
+      '*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;animation:riseIn .55s var(--ease) both;}@keyframes riseIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}::selection{background:var(--accent);color:#fff}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}\n'+
+      '.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'.9\' numOctaves=\'2\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E");}\n'+
+      '.wrap{max-width:820px;margin:0 auto;padding:0 clamp(24px,6vw,40px)}.top{display:flex;align-items:center;justify-content:space-between;padding:34px 0 10px}.back{font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.06em;color:var(--ink-soft);display:inline-flex;align-items:center;gap:8px;transition:color .3s;min-height:44px}.back:hover{color:var(--accent)}.mark{font-family:var(--font-display);font-weight:700;color:var(--ink-faint);letter-spacing:.02em}.mark em{color:var(--accent);font-style:normal}\n'+
+      'h1{font-family:var(--font-serif);font-weight:600;font-size:clamp(28px,5vw,42px);line-height:1.25;letter-spacing:-.01em;margin:34px 0 16px}.pmeta{font-family:var(--font-display);font-weight:500;font-size:12px;letter-spacing:.14em;color:var(--ink-faint);margin-top:14px}.rule{height:1px;background:var(--line);margin:26px 0 34px}\n'+
+      '.article{color:var(--ink);font-size:17px;line-height:2;max-width:72ch}.article p{color:var(--ink);margin:0 0 1.5em}.foot{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;padding-bottom:40px}\n'+
+      '@media(max-width:720px){.article{font-size:16px}.wrap{padding:0 24px}}\n@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}\n</style>\n</head>\n<body>\n<div class="grain"></div>\n<div class="wrap">\n'+
+      '<div class="top"><a class="back" href="../index.html#notes">← 返回思考</a><span class="mark">Sol<em>.</em>Young</span></div>\n'+
+      '<div class="pmeta">'+esc(date)+'</div>\n<h1>'+esc(title)+'</h1>\n<div class="rule"></div>\n<div class="article">\n'+
+      paras.map(function(p){return '<p>'+esc(p).replace(/\n/g,'<br>')+'</p>';}).join('\n')+
+      '\n</div>\n<div class="foot"><a class="back" href="../index.html#notes">← 返回思考</a></div>\n</div>\n</body>\n</html>';
+    return html;
+  }
+
+  /* ---- publish ---- */
+  document.getElementById('pubBtn').onclick=function(){
+    if(!tokenInput.value.trim()){ setStatus('请先填写令牌',false); return; }
+    if(!loaded){ setStatus('请先点「连接并载入」再发布，避免覆盖线上数据',false); return; }
+    setStatus('发布中…');
+    // 1) upload pending images
+    var order=Object.keys(pendingImg);
+    var chain=Promise.resolve();
+    order.forEach(function(id){
+      var p=pendingImg[id];
+      chain=chain.then(function(){
+        return getSha(p.path).then(function(sha){
+          var body={message:'now: upload image',content:p.b64,encoding:'base64'};
+          if(sha) body.sha=sha;
+          return api(p.path,'PUT',body).then(function(r){ if(!r.ok) return r.json().then(function(j){throw new Error(j.message||('图片上传失败 '+r.status));}); });
+        });
+      });
+    });
+    // 2) regenerate/upload changed articles
+    chain=chain.then(function(){
+      var artOrder=thItems.filter(function(x){return x._content && x._content.trim();});
+      var c=Promise.resolve();
+      artOrder.forEach(function(it){
+        var html=buildArticle(it.id, it.date, it.title, it.summary||'', it._content);
+        var page='thoughts/'+it.id+'.html';
+        c=c.then(function(){ return getJson(page).then(function(res){
+          var body={message:'workbench: update article '+it.id, content:utf8toB64(html), encoding:'base64'};
+          if(res.sha) body.sha=res.sha;
+          return api(page,'PUT',body).then(function(r){ if(!r.ok) return r.json().then(function(j){throw new Error(j.message||('思考上传失败 '+r.status));}); });
+        }); });
+        it._content='';
+      });
+      return c;
+    });
+    // 3) write now.json + thoughts.json
+    chain=chain.then(function(){ return getJson('now.json').then(function(res){ return putJson('now.json', nowItems, res.sha).then(function(j){ nowSha=j.content.sha; }); }); });
+    chain=chain.then(function(){
+      var clean=thItems.map(function(x){ var o={id:x.id,date:x.date,title:x.title,summary:x.summary,page:x.page,published:x.published}; return o; });
+      return getJson('thoughts.json').then(function(res){ return putJson('thoughts.json', clean, res.sha).then(function(j){ thSha=j.content.sha; }); });
+    });
+    chain.then(function(){ pendingImg={}; setStatus('已发布到仓库，GitHub Pages 约 1 分钟更新。'); })
+      .catch(function(e){ setStatus(e.message||'发布失败',false); });
+  };
+})();
+</script>
+</body>
+</html>

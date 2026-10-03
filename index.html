@@ -780,8 +780,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   // NOW feed — home shows latest 3 from now.json
   var nowFeed = document.getElementById('nowFeedHome');
   function fmtNowDate(d){
-    var p = d.split('-');
-    return p[0] + ' / ' + p[1] + ' / ' + p[2];
+    var p = d.split('T');
+    var date = p[0].split('-');
+    var out = date[0] + ' / ' + date[1] + ' / ' + date[2];
+    if(p[1]) out += ' · ' + p[1];
+    return out;
   }
   function renderNow(items){
     if(!nowFeed) return;

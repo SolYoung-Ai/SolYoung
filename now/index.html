@@ -101,7 +101,7 @@ h1 .accent{color:var(--accent)}
 <script>
 (function(){
   var TL = document.getElementById('timeline');
-  function fmtDate(d){ var p=d.split('-'); return p[0]+' / '+p[1]+' / '+p[2]; }
+  function fmtDate(d){ var p=d.split('T'); var dt=p[0].split('-'); var out=dt[0]+' / '+dt[1]+' / '+dt[2]; if(p[1]) out+=' · '+p[1]; return out; }
   function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function render(items){
     if(!TL) return;
