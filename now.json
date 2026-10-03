@@ -16,6 +16,15 @@
     "images": []
   },
   {
+    "id": "2026-10-04-think-5euxb",
+    "date": "2026-10-04",
+    "type": "THINK",
+    "content": "找到对你来说像是玩耍，\n对别人来说像是在工作的事情\n对你来说这是艺术、美丽、快乐、流动、充实\n你做的事情对你来说越自然，竞争就越少",
+    "published": true,
+    "images": [],
+    "_pending": false
+  },
+  {
     "id": "2026-10-03-build-camsim",
     "date": "2026-10-03",
     "type": "BUILD",
@@ -58,23 +67,5 @@
     "content": "在一个 AI 可以越来越快帮我们完成事情的时代，一个人真正应该负责的，到底还剩下什么。\n这个问题我还没有答案，所以我继续试。",
     "images": [],
     "published": true
-  },
-  {
-    "id": "2026-10-04-think-5euxb",
-    "date": "2026-10-04",
-    "type": "THINK",
-    "content": "找到对你来说像是玩耍，\n对别人来说像是在工作的事情\n对你来说这是艺术、美丽、快乐、流动、充实\n你做的事情对你来说越自然，竞争就越少",
-    "published": true,
-    "images": [],
-    "_pending": false
-  },
-  {
-    "id": "2026-10-04T02:05-think-lct37",
-    "date": "2026-10-04T02:05",
-    "type": "THINK",
-    "content": "如果你不愿意和一个人交换人生，就不要轻易接受他的建议\n",
-    "published": true,
-    "images": [],
-    "_pending": false
   }
 ]

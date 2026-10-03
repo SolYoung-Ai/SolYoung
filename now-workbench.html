@@ -423,7 +423,7 @@ button:hover{opacity:.82}
       return c;
     });
     // 3) write now.json + thoughts.json
-    chain=chain.then(function(){ return getJson('now.json').then(function(res){ return putJson('now.json', nowItems, res.sha).then(function(j){ nowSha=j.content.sha; }); }); });
+    chain=chain.then(function(){ return getJson('now.json').then(function(res){ return putJson('now.json', nowItems.slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');}), res.sha).then(function(j){ nowSha=j.content.sha; }); }); });
     chain=chain.then(function(){
       var clean=thItems.map(function(x){ var o={id:x.id,date:x.date,title:x.title,summary:x.summary,page:x.page,published:x.published}; return o; });
       return getJson('thoughts.json').then(function(res){ return putJson('thoughts.json', clean, res.sha).then(function(j){ thSha=j.content.sha; }); });
