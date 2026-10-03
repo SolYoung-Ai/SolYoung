@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>快测</title>
+<script>
+(function () {
+  var p = location.pathname;
+  if (p.indexOf('/TypeAll') === 0) {
+    // 快测子路径：加载其入口，React Router 以 basename=/TypeAll/ 接管当前 URL
+    fetch('/TypeAll/index.html')
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        document.open(); document.write(html); document.close();
+      })
+      .catch(function () { location.replace('/TypeAll/'); });
+  } else {
+    location.replace('/');
+  }
+})();
+</script>
+</head>
+<body></body>
+</html>
