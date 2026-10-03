@@ -298,6 +298,47 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .backtop:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-3px)}
 .backtop svg{width:16px;height:16px}
 
+/* ============ Motion System ============ */
+/* section navigator (desktop) */
+.secnav{position:fixed;right:clamp(14px,2vw,26px);top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.secnav a{font-family:var(--font-display);font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--ink-faint);display:flex;align-items:center;gap:10px;padding:3px 0;transition:color .3s;line-height:1}
+.secnav a .num{color:var(--ink-faint);transition:color .3s}
+.secnav a .bar{width:18px;height:1px;background:var(--line);transition:background .3s}
+.secnav a:hover{color:var(--ink-soft)}
+.secnav a.active,.secnav a.active .num{color:var(--ink)}
+.secnav a.active .bar{background:var(--accent)}
+
+/* cursor label — tiny, follows on hover of interactive elements */
+.cursel{position:fixed;z-index:210;pointer-events:none;font-family:var(--font-display);font-weight:600;font-size:10px;letter-spacing:.18em;color:#fff;background:var(--accent);padding:6px 12px;border-radius:999px;opacity:0;will-change:transform}
+.cursel.on{opacity:1}
+
+/* hover preview for works — floats near cursor */
+.hprev{position:fixed;z-index:205;width:clamp(190px,17vw,260px);aspect-ratio:4/3;pointer-events:none;overflow:hidden;background:var(--bg);border:1px solid var(--line);opacity:0;will-change:transform}
+.hprev.on{opacity:1}
+.hprev img{width:100%;height:100%;object-fit:cover}
+
+/* ongoing status dot — soft breathing */
+.exp-item .state::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:middle;animation:breathe 2.2s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* hero scroll hint — text + arrow */
+.scroll-hint .arrow{font-size:11px;color:var(--ink-faint);animation:floaty 2s ease-in-out infinite;line-height:1}
+@keyframes floaty{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(4px);opacity:.85}}
+
+/* works project hover — title shifts right, "VIEW" appears */
+.project .proj-main .proj-name{transition:transform .35s var(--ease)}
+.project:hover .proj-main .proj-name{transform:translateX(8px)}
+.project:hover .proj-arr::before{content:"VIEW · ";color:var(--accent);font-size:10px;letter-spacing:.14em}
+
+/* notes hover — title drifts */
+.note h3{transition:transform .35s var(--ease)}
+.note:hover h3{transform:translateX(6px)}
+
+/* brand easter egg — one light shift on hover */
+.brand{display:inline-block}
+.brand:hover{animation:shift .3s steps(2) 1}
+@keyframes shift{0%,100%{transform:translateX(0)}33%{transform:translateX(-2px)}66%{transform:translateX(2px)}}
+
 /* ============ Responsive ============ */
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr;gap:50px}
@@ -305,9 +346,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   .exp-feature{grid-template-columns:1fr}
   .notes{gap:16px}
   .about-grid{grid-template-columns:1fr;gap:40px}
+  .cursel,.hprev{display:none}
 }
 @media(max-width:720px){
   .nav-links{display:none}
+  .secnav{display:none}
   .burger{display:flex}
   .works{grid-template-columns:1fr}
   .notes{grid-template-columns:1fr}
@@ -383,7 +426,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       </div>
     </div>
   </div>
-  <div class="scroll-hint"><span>下滑</span><span class="line"></span></div>
+  <div class="scroll-hint"><span>SCROLL TO EXPLORE</span><span class="line"></span><span class="arrow">↓</span></div>
 </header>
 
 <main>
@@ -399,12 +442,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <div class="proj-group rv">
       <div class="proj-group-title">独立产品 <span class="en">PRODUCTS</span></div>
       <div class="projects">
-        <a class="project rv" href="https://solyoung-ai.github.io/TypeAll" target="_blank" rel="noopener">
+        <a class="project rv" href="https://solyoung-ai.github.io/TypeAll" target="_blank" rel="noopener" data-preview="assets/personality-hub.jpg">
           <span class="proj-icon"><img loading="lazy" src="assets/personality-hub.jpg" alt="快测-性格测试合集"></span>
           <span class="proj-main"><span class="proj-name">快测-性格测试合集</span><span class="proj-desc">把各种性格测试收拢到一处，随时测一个。</span></span>
           <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
         </a>
-        <a class="project rv" href="https://solyoung-ai.github.io/CamSim/" target="_blank" rel="noopener">
+        <a class="project rv" href="https://solyoung-ai.github.io/CamSim/" target="_blank" rel="noopener" data-preview="assets/camera-simulator.jpg">
           <span class="proj-icon"><img loading="lazy" src="assets/camera-simulator.jpg" alt="相机参数模拟器"></span>
           <span class="proj-main"><span class="proj-name">相机参数模拟器</span><span class="proj-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数</span></span>
           <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
@@ -498,17 +541,17 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <div class="proj-group rv" style="margin-top:clamp(56px,7vw,96px)">
       <div class="proj-group-title">社交媒体 <span class="en">Social Media</span></div>
       <div class="projects">
-        <a class="project rv" href="https://v.douyin.com/JHN2VxhUJPA/" target="_blank" rel="noopener">
+        <a class="project rv" href="https://v.douyin.com/JHN2VxhUJPA/" target="_blank" rel="noopener" data-preview="assets/avatar-yangshibaya.jpg">
           <span class="proj-icon"><img src="assets/avatar-yangshibaya.jpg" alt="楊十八呀"></span>
           <span class="proj-main"><span class="proj-name">楊十八呀 <span class="proj-fans">粉丝指数 37K</span></span><span class="proj-desc">个人随拍 · 记录影像。</span></span>
           <span class="proj-meta">抖音</span><span class="proj-arr">→</span>
         </a>
-        <a class="project rv" href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener">
+        <a class="project rv" href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" data-preview="assets/avatar-solyoung.jpg">
           <span class="proj-icon"><img src="assets/avatar-solyoung.jpg" alt="SolYoung"></span>
           <span class="proj-main"><span class="proj-name">SolYoung <span class="proj-fans">粉丝指数 1.1K</span></span><span class="proj-desc">记录我的创作、实践，以及正在发生的可能。</span></span>
           <span class="proj-meta">抖音</span><span class="proj-arr">→</span>
         </a>
-        <a class="project rv" href="https://v.douyin.com/1qeGOojqjSE/" target="_blank" rel="noopener">
+        <a class="project rv" href="https://v.douyin.com/1qeGOojqjSE/" target="_blank" rel="noopener" data-preview="assets/avatar-ambition.jpg">
           <span class="proj-icon"><img src="assets/avatar-ambition.jpg" alt="野心互联工作室"></span>
           <span class="proj-main"><span class="proj-name">野心互联工作室 <span class="proj-fans">粉丝指数 87K</span></span><span class="proj-desc">成为自己的人生 CEO，分享个人成长及健康类内容。</span></span>
           <span class="proj-meta">抖音</span><span class="proj-arr">→</span>
@@ -544,6 +587,19 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 </footer>
 
 <button class="backtop" id="backtop" aria-label="回到顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
+<!-- section navigator -->
+<nav class="secnav" id="secnav" aria-label="章节导航">
+  <a href="#works"><span class="num">01</span>作品<span class="bar"></span></a>
+  <a href="#experiments"><span class="num">02</span>进行时<span class="bar"></span></a>
+  <a href="#notes"><span class="num">03</span>思考<span class="bar"></span></a>
+  <a href="#about"><span class="num">04</span>关于我<span class="bar"></span></a>
+  <a href="#contact"><span class="num">05</span>联系<span class="bar"></span></a>
+</nav>
+
+<!-- cursor label + hover preview -->
+<div class="cursel" id="cursel"><span id="curselTxt">VIEW</span></div>
+<div class="hprev" id="hprev"><img id="hprevImg" alt=""></div>
 
 <!-- wechat qr modal -->
 <div class="qr-overlay" id="qrOverlay">
@@ -658,6 +714,70 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     els.forEach(function(el){ io.observe(el); });
   } else {
     els.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // section navigator — active follows scroll
+  var secnav = document.getElementById('secnav');
+  var secEls = [document.getElementById('works'),document.getElementById('experiments'),document.getElementById('notes'),document.getElementById('about'),document.getElementById('contact')];
+  var secLinks = secnav ? secnav.querySelectorAll('a') : [];
+  function updateSecnav(){
+    if(!secnav) return;
+    var y = window.scrollY + window.innerHeight * .4;
+    var cur = -1;
+    for(var i=0;i<secEls.length;i++){
+      if(secEls[i] && secEls[i].offsetTop <= y) cur = i;
+    }
+    for(var j=0;j<secLinks.length;j++) secLinks[j].classList.toggle('active', j===cur);
+  }
+  window.addEventListener('scroll', updateSecnav, {passive:true});
+  updateSecnav();
+
+  // cursor label + hover preview — desktop, reduced-motion aware
+  var rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var cursel = document.getElementById('cursel');
+  var curselTxt = document.getElementById('curselTxt');
+  var hprev = document.getElementById('hprev');
+  var hprevImg = document.getElementById('hprevImg');
+  if(cursel && !rmq.matches){
+    var cx=0, cy=0, px=0, py=0, curOn=false, prevLink=null;
+    var follow = function(){
+      px += (cx-px)*.12; py += (cy-py)*.12;
+      cursel.style.transform = 'translate('+px+'px,'+py+'px) translate(-50%,-50%)';
+      if(hprev && prevLink){
+        hprev.style.transform = 'translate('+(px+20)+'px,'+(py-36)+'px) translate(-50%,-50%)';
+      }
+      requestAnimationFrame(follow);
+    };
+    document.addEventListener('mousemove', function(e){
+      cx = e.clientX; cy = e.clientY;
+    }, {passive:true});
+    function tag(el, txt, on){
+      if(!el) return;
+      curOn = on;
+      cursel.classList.toggle('on', on);
+      if(on && txt) curselTxt.textContent = txt;
+    }
+    // works preview
+    document.querySelectorAll('[data-preview]').forEach(function(link){
+      link.addEventListener('mouseenter', function(){
+        if(hprevImg) hprevImg.src = link.getAttribute('data-preview');
+        if(hprev) hprev.classList.add('on');
+        prevLink = link;
+        tag(link, 'VIEW', true);
+      });
+      link.addEventListener('mouseleave', function(){
+        if(hprev) hprev.classList.remove('on');
+        prevLink = null;
+        tag(link, 'VIEW', false);
+      });
+    });
+    // external links -> VISIT
+    document.querySelectorAll('a[target="_blank"]').forEach(function(link){
+      if(link.hasAttribute('data-preview')) return;
+      link.addEventListener('mouseenter', function(){ tag(link,'VISIT',true); });
+      link.addEventListener('mouseleave', function(){ tag(link,'VISIT',false); });
+    });
+    requestAnimationFrame(follow);
   }
 })();
 </script>
