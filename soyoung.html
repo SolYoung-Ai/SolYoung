@@ -361,6 +361,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .lb img{max-width:92vw;max-height:88vh;border-radius:4px}
 .lb-close{position:absolute;top:18px;right:22px;color:#fff;font-size:24px;background:none;border:none;cursor:pointer;opacity:.75;line-height:1;transition:opacity .3s}
 .lb-close:hover{opacity:1}
+.now-title-link{color:inherit;text-decoration:none}
+.now-title-link:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--accent)}
 .now-more{display:inline-flex;align-items:center;gap:8px;margin-top:36px;font-family:var(--font-display);font-size:11px;letter-spacing:.16em;color:var(--ink);padding:14px 0;transition:color .3s}
 .now-more:hover{color:var(--accent)}
 .now-more-arr{transition:transform .3s var(--ease)}
@@ -489,7 +491,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="section" id="experiments" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="container">
     <div class="sec-head rv">
-      <h2 class="display sec-title">此刻 <span class="serif accent">NOW</span></h2>
+      <h2 class="display sec-title"><a class="now-title-link" href="now/" aria-label="查看全部此刻">此刻 <span class="serif accent">NOW</span></a></h2>
       <span class="sec-num">02</span>
     </div>
     <p class="sec-sub rv">正在发生 · 记录我正在做、正在想、正在尝试的事情。</p>
