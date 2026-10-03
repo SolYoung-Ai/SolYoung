@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-04-update-mobile-comfort",
+    "date": "2026-10-04T02:53",
+    "type": "BUILD",
+    "content": "网站新增手机排版适配微标：手机端可一键切换更宽松自然的排版，点击右上角图标即可。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-04-update-thoughts",
     "date": "2026-10-04T02:47",
     "type": "BUILD",
