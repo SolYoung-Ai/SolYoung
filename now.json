@@ -1,5 +1,15 @@
 [
   {
+    "id": "2026-10-04-promo-camsim",
+    "date": "2026-10-04T03:30",
+    "type": "BUILD",
+    "content": "把相机参数模拟器做到了自己满意的状态：根据你的使用场景，自动生成一套可以直接执行的摄影参数。\n\n来试试：solyoung.top/CamSim/",
+    "published": true,
+    "images": [
+      "assets/camera-simulator.jpg"
+    ]
+  },
+  {
     "id": "2026-10-04-update-domains",
     "date": "2026-10-04T03:13",
     "type": "BUILD",
