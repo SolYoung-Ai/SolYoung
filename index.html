@@ -219,16 +219,17 @@ section{position:relative}
 .exp-side .go:hover{color:var(--accent)}
 .exp-visual{position:relative;min-height:320px;overflow:hidden;background:var(--bg-soft)}
 .exp-visual .mono{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;font-family:var(--font-display);font-size:12px;letter-spacing:.14em;color:var(--ink-soft)}
-.exp-list{margin-top:clamp(26px,4vw,44px);border-top:1px solid var(--line)}
-.exp-item{display:flex;align-items:center;gap:clamp(16px,3vw,36px);padding:24px 4px;border-bottom:1px solid var(--line);transition:padding-left .35s var(--ease)}
-.exp-item:hover{padding-left:14px}
+.exp-list{margin-top:clamp(20px,3vw,32px);border-top:1px solid var(--line)}
+.exp-item{display:flex;align-items:center;gap:clamp(16px,3vw,36px);padding:26px 4px;border-bottom:1px solid var(--line);transition:padding-left .3s var(--ease),background .3s}
+.exp-item:hover{padding-left:10px;background:rgba(232,112,40,.05)}
 .exp-item .idx{font-family:var(--font-display);font-weight:600;font-size:12px;color:var(--accent);min-width:34px}
 .exp-item .label{flex:1}
-.exp-item .label h4{font-size:17px;font-weight:600}
-.exp-item .label span{font-size:13px;color:var(--ink-soft)}
+.exp-item .label h4{font-size:clamp(17px,1.6vw,19px);font-weight:650}
+.exp-item .label span{font-size:13px;color:var(--ink-soft);margin-top:5px;display:block}
 .exp-item .state{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;white-space:nowrap}
 .exp-item .arr{font-family:var(--font-display);color:var(--ink-faint);transition:color .3s,transform .3s var(--ease)}
-.exp-item:hover .arr{color:var(--accent);transform:translateX(4px)}
+.exp-item:hover .arr{color:var(--accent);transform:translateX(5px)}
+.sec-sub{font-size:13px;color:var(--ink-soft);letter-spacing:.04em;margin:-clamp(8px,1.5vw,14px) 0 0}
 
 /* ============ Now / timeline ============ */
 .now{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,3vw,40px)}
@@ -312,6 +313,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   .notes{grid-template-columns:1fr}
   .now{grid-template-columns:1fr}
   .sec-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .exp-item{display:block;padding:24px 4px}
+  .exp-item .idx{display:block;margin-bottom:8px}
+  .exp-item .label h4{margin-bottom:4px}
+  .exp-item .state{margin-top:12px;display:inline-block}
+  .exp-item .arr{display:inline-block;margin-top:12px;margin-left:2px}
   .hero{min-height:auto;padding-top:120px}
   .scroll-hint{display:none}
   .portrait-tag{top:-10px;right:-10px}
@@ -416,27 +422,23 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <h2 class="display sec-title">进行时 <span class="serif accent">Ongoing</span></h2>
       <span class="sec-num">02</span>
     </div>
+    <p class="sec-sub rv">正在测试一些想法，也在测试自己。</p>
 
     <div class="exp-list">
       <a href="#contact" class="exp-item rv">
         <span class="idx">E—01</span>
-        <span class="label"><h4>用 AI 重做剪辑工作流</h4><span>把转写、脚本、粗剪交给 AI，我在关键帧做决定</span></span>
-        <span class="state">测试中</span><span class="arr">→</span>
+        <span class="label"><h4>用 AI 重做剪辑工作流</h4><span>把转写、脚本、粗剪交给 AI，我只在关键环节做决定。</span></span>
+        <span class="state">实验中</span><span class="arr">→</span>
       </a>
       <a href="#contact" class="exp-item rv">
         <span class="idx">E—02</span>
-        <span class="label"><h4>周末小项目：每周一个</h4><span>快速做一个能用的小东西，不计后果，只求跑通</span></span>
+        <span class="label"><h4>周末小项目：每周一个</h4><span>每周花一点时间，把一个想法真正做出来。</span></span>
         <span class="state">持续中</span><span class="arr">→</span>
       </a>
       <a href="#contact" class="exp-item rv">
         <span class="idx">E—03</span>
-        <span class="label"><h4>测试新创作工具</h4><span>每次只带一个问题去试，记录它到底改变了什么</span></span>
+        <span class="label"><h4>测试新的创作工具</h4><span>每次只带一个问题去试，看看它到底改变了什么。</span></span>
         <span class="state">待开始</span><span class="arr">→</span>
-      </a>
-      <a href="#contact" class="exp-item rv">
-        <span class="idx">E—04</span>
-        <span class="label"><h4>长期自然摄影项目</h4><span>走进大自然，记录身边的自然与风景</span></span>
-        <span class="state">进行中</span><span class="arr">→</span>
       </a>
     </div>
   </div>
