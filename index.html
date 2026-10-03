@@ -406,7 +406,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <a href="#top" class="brand">Sol<span class="dot">.</span>Young</a>
     <div class="nav-links">
       <a href="#works">作品</a>
-      <a href="#experiments">进行时</a>
+      <a href="#experiments">此刻</a>
       <a href="#notes">思考</a>
       <a href="#about">关于我</a>
       <a href="#contact">联系</a>
@@ -424,7 +424,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <!-- mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#works"><span class="num">01</span>作品</a>
-  <a href="#experiments"><span class="num">02</span>进行时</a>
+  <a href="#experiments"><span class="num">02</span>此刻</a>
   <a href="#notes"><span class="num">03</span>思考</a>
   <a href="#about"><span class="num">04</span>关于我</a>
   <a href="#contact"><span class="num">05</span>联系</a>
@@ -489,7 +489,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="section" id="experiments" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="container">
     <div class="sec-head rv">
-      <h2 class="display sec-title">进行时 <span class="serif accent">NOW</span></h2>
+      <h2 class="display sec-title">此刻 <span class="serif accent">NOW</span></h2>
       <span class="sec-num">02</span>
     </div>
     <p class="sec-sub rv">正在发生 · 记录我正在做、正在想、正在尝试的事情。</p>
@@ -604,7 +604,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <!-- section navigator -->
 <nav class="secnav" id="secnav" aria-label="章节导航">
   <a href="#works"><span class="num">01</span>作品<span class="bar"></span></a>
-  <a href="#experiments"><span class="num">02</span>进行时<span class="bar"></span></a>
+  <a href="#experiments"><span class="num">02</span>此刻<span class="bar"></span></a>
   <a href="#notes"><span class="num">03</span>思考<span class="bar"></span></a>
   <a href="#about"><span class="num">04</span>关于我<span class="bar"></span></a>
   <a href="#contact"><span class="num">05</span>联系<span class="bar"></span></a>
@@ -843,6 +843,13 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       else if(lb.classList.contains('open') && (e.target === lb || e.target === lbClose)){ lb.classList.remove('open'); }
     });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') lb.classList.remove('open'); });
+  }
+
+  // hero portrait -> NOW page
+  var heroPortrait = document.querySelector('.hero .portrait');
+  if(heroPortrait){
+    heroPortrait.style.cursor = 'pointer';
+    heroPortrait.addEventListener('click', function(){ window.location.href = 'now/'; });
   }
 })();
 </script>
