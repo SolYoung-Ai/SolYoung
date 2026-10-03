@@ -8,11 +8,21 @@
     "published": true
   },
   {
+    "id": "2026-10-04-think-nxuex",
+    "date": "2026-10-04",
+    "type": "THINK",
+    "content": "创造让人乐此不疲",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-03-build-camsim",
     "date": "2026-10-03",
     "type": "BUILD",
     "content": "最近把相机参数模拟器又改了一版。\n\n发现真正麻烦的不是参数本身，而是怎么把摄影师的经验翻译成规则。现在这个交互终于顺手了。",
-    "images": ["assets/camera-simulator.jpg"],
+    "images": [
+      "assets/camera-simulator.jpg"
+    ],
     "published": true
   },
   {
@@ -36,7 +46,9 @@
     "date": "2026-09-22",
     "type": "BUILD",
     "content": "把各种性格测试收拢到了一个站里。\n快测，随时测一个。",
-    "images": ["assets/personality-hub.jpg"],
+    "images": [
+      "assets/personality-hub.jpg"
+    ],
     "published": true
   },
   {
