@@ -865,7 +865,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     });
   }
   if(nowFeed){
-    fetch('now.json')
+    fetch('now.json',{cache:'no-store'})
       .then(function(r){ return r.json(); })
       .then(function(d){ renderNow(d); })
       .catch(function(){ nowFeed.innerHTML = '<p class="now-fail">动态需要在线访问加载。</p>'; });
@@ -908,7 +908,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     });
   }
   if(notesList){
-    fetch('thoughts.json')
+    fetch('thoughts.json',{cache:'no-store'})
       .then(function(r){ return r.json(); })
       .then(function(d){ renderNotes(d.filter(function(x){ return x.published; })); })
       .catch(function(){ notesList.innerHTML = '<p class="muted">文章需要在线访问加载。</p>'; });

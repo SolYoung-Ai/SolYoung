@@ -153,7 +153,7 @@ h1 .accent{color:var(--accent)}
     }
   }
   if(TL){
-    fetch('../now.json')
+    fetch('../now.json',{cache:'no-store'})
       .then(function(r){ return r.json(); })
       .then(render)
       .catch(function(){ TL.innerHTML='<p class="fail">动态需要在线访问加载。</p>'; });
