@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-04-update-camsim-logo",
+    "date": "2026-10-04T12:45",
+    "type": "BUILD",
+    "content": "相机参数模拟器换上新的产品 logo。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-04-wrapup",
     "date": "2026-10-04T03:40",
     "type": "BUILD",
@@ -22,7 +30,7 @@
     "content": "把相机参数模拟器做到了自己满意的状态：根据你的使用场景，自动生成一套可以直接执行的摄影参数。\n\n来试试：solyoung.top/CamSim/",
     "published": true,
     "images": [
-      "assets/camera-simulator.jpg"
+      "assets/camera-simulator-logo.png"
     ]
   },
   {
@@ -64,7 +72,7 @@
     "type": "BUILD",
     "content": "最近把相机参数模拟器又改了一版。\n\n发现真正麻烦的不是参数本身，而是怎么把摄影师的经验翻译成规则。现在这个交互终于顺手了。",
     "images": [
-      "assets/camera-simulator.jpg"
+      "assets/camera-simulator-logo.png"
     ],
     "published": true
   },
