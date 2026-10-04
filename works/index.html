@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品 Works — SolYoung</title>
+<meta name="description" content="SolYoung 的作品——把想法真正落地、变成可以使用的独立产品。">
+<meta property="og:title" content="作品 Works — SolYoung">
+<meta property="og:description" content="SolYoung 的作品——把想法真正落地、变成可以使用的独立产品。">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23E87028'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F0E7;--bg-soft:#EFEADF;--ink:#1D1A15;--ink-soft:#6B6455;--ink-faint:#9A927F;
+  --line:rgba(29,26,21,.14);--accent:#E87028;--card:#FAF7F0;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font-display:'Archivo','Noto Sans SC',system-ui,sans-serif;
+  --font-serif:'Noto Serif SC',Georgia,serif;
+  --font-body:'Noto Sans SC','PingFang SC',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+.hd{position:sticky;top:0;z-index:50;background:rgba(244,240,231,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.brand .dot{color:var(--accent)}
+.back{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);transition:color .3s}
+.back:hover{color:var(--accent)}
+.hero{padding:88px 0 0}
+h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(46px,9vw,82px);margin:14px 0 18px;letter-spacing:-.02em;line-height:.95}
+h1 .accent{color:var(--accent)}
+.sub{color:var(--ink-soft);font-size:15px;line-height:1.9;max-width:640px;margin:0}
+.group{margin-top:54px;padding-bottom:88px}
+.gtitle{font-family:var(--font-display);font-size:11px;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:20px}
+.projects{border-top:1px solid var(--line)}
+.project{display:flex;align-items:center;gap:clamp(16px,3vw,28px);padding:24px 4px;border-bottom:1px solid var(--line);transition:padding-left .35s var(--ease)}
+.project:hover{padding-left:10px}
+.p-icon{width:56px;height:56px;border-radius:8px;object-fit:cover;flex:none;background:var(--line)}
+.p-main{flex:1;min-width:0}
+.p-name{font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--ink)}
+.p-desc{font-size:13.5px;color:var(--ink-soft);margin-top:4px}
+.p-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--ink-faint)}
+.p-arr{color:var(--accent);font-size:18px;transition:transform .3s}
+.project:hover .p-arr{transform:translateX(4px)}
+.ft{padding:76px 0 48px;text-align:center}
+.ft .muted{font-size:12px;color:var(--ink-faint)}
+@media(max-width:640px){.hero{padding:56px 0 0}.p-icon{width:46px;height:46px}.p-meta{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="container hd-in">
+    <a class="brand" href="../index.html" aria-label="返回首页">Sol<span class="dot">.</span>Young</a>
+    <a class="back" href="../index.html#works">← 返回首页</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>WORKS <span class="accent">·</span> 作品</h1>
+    <p class="sub">我做出来的东西——把想法真正落地、变成可以使用的独立产品。</p>
+  </section>
+
+  <section class="group">
+    <div class="gtitle">独立产品 PRODUCTS</div>
+    <div class="projects">
+      <a class="project" href="https://solyoung.top/TypeAll/" target="_blank" rel="noopener">
+        <img class="p-icon" loading="lazy" src="../assets/personality-hub.jpg" alt="快测-性格测试合集">
+        <span class="p-main"><span class="p-name">快测-性格测试合集</span><span class="p-desc">把各种性格测试收拢到一处，随时测一个。</span></span>
+        <span class="p-meta">已上线</span><span class="p-arr">→</span>
+      </a>
+      <a class="project" href="https://solyoung.top/CamSim/" target="_blank" rel="noopener">
+        <img class="p-icon" loading="lazy" src="../assets/camera-simulator-logo.png" alt="相机参数模拟器">
+        <span class="p-main"><span class="p-name">相机参数模拟器</span><span class="p-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数。</span></span>
+        <span class="p-meta">已上线</span><span class="p-arr">→</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="ft"><div class="muted">© 2026 SolYoung · 持续更新</div></footer>
+
+</body>
+</html>

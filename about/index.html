@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于我 About — SolYoung</title>
+<meta name="description" content="关于 SolYoung——一个正在努力把想法变成作品的人。">
+<meta property="og:title" content="关于我 About — SolYoung">
+<meta property="og:description" content="关于 SolYoung——一个正在努力把想法变成作品的人。">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23E87028'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F0E7;--bg-soft:#EFEADF;--ink:#1D1A15;--ink-soft:#6B6455;--ink-faint:#9A927F;
+  --line:rgba(29,26,21,.14);--accent:#E87028;--card:#FAF7F0;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font-display:'Archivo','Noto Sans SC',system-ui,sans-serif;
+  --font-serif:'Noto Serif SC',Georgia,serif;
+  --font-body:'Noto Sans SC','PingFang SC',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+.hd{position:sticky;top:0;z-index:50;background:rgba(244,240,231,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.brand .dot{color:var(--accent)}
+.back{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);transition:color .3s}
+.back:hover{color:var(--accent)}
+.hero{padding:88px 0 0}
+h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(46px,9vw,82px);margin:14px 0 18px;letter-spacing:-.02em;line-height:.95}
+h1 .accent{color:var(--accent)}
+.about-grid{margin-top:54px;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start}
+.quote{font-family:var(--font-serif);font-weight:700;font-size:clamp(24px,3.5vw,32px);line-height:1.5;letter-spacing:-.01em;margin:0}
+.quote .hl{color:var(--accent)}
+.body{color:var(--ink-soft);font-size:15px;line-height:1.9}
+.body p{margin:0 0 16px}
+.roles{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.roles span{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);border:1px solid var(--line);border-radius:20px;padding:5px 14px}
+.social{padding-bottom:88px}
+.gtitle{font-family:var(--font-display);font-size:11px;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:20px}
+.projects{border-top:1px solid var(--line)}
+.project{display:flex;align-items:center;gap:clamp(16px,3vw,28px);padding:22px 4px;border-bottom:1px solid var(--line);transition:padding-left .35s var(--ease)}
+.project:hover{padding-left:10px}
+.p-icon{width:52px;height:52px;border-radius:8px;object-fit:cover;flex:none;background:var(--line)}
+.p-main{flex:1;min-width:0}
+.p-name{font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--ink)}
+.p-name .fans{color:var(--ink-faint);font-size:11px;letter-spacing:.08em;margin-left:10px}
+.p-desc{font-size:13px;color:var(--ink-soft);margin-top:4px}
+.p-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--ink-faint)}
+.p-arr{color:var(--accent);font-size:18px;transition:transform .3s}
+.project:hover .p-arr{transform:translateX(4px)}
+.ft{padding:76px 0 48px;text-align:center}
+.ft .muted{font-size:12px;color:var(--ink-faint)}
+@media(max-width:700px){.hero{padding:56px 0 0}.about-grid{grid-template-columns:1fr}.p-icon{width:44px;height:44px}.p-meta{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="container hd-in">
+    <a class="brand" href="../index.html" aria-label="返回首页">Sol<span class="dot">.</span>Young</a>
+    <a class="back" href="../index.html#about">← 返回首页</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>ABOUT <span class="accent">·</span> 关于我</h1>
+  </section>
+
+  <section class="about-grid">
+    <div class="quote">我是 <span class="hl">SolYoung</span>。<br>一个正在努力把想法变成作品的人。</div>
+    <div class="body">
+      <p>我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。</p>
+      <p>这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。</p>
+      <div class="roles"><span>创作者</span><span>记录者</span><span>探索者</span></div>
+    </div>
+  </section>
+
+  <section class="social" style="margin-top:clamp(56px,7vw,96px)">
+    <div class="gtitle">社交媒体 Social Media</div>
+    <div class="projects">
+      <a class="project" href="https://v.douyin.com/JHN2VxhUJPA/" target="_blank" rel="noopener">
+        <img class="p-icon" loading="lazy" src="../assets/avatar-yangshibaya.jpg" alt="楊十八呀">
+        <span class="p-main"><span class="p-name">楊十八呀 <span class="fans">粉丝指数 37K</span></span><span class="p-desc">个人随拍 · 记录影像。</span></span>
+        <span class="p-meta">抖音</span><span class="p-arr">→</span>
+      </a>
+      <a class="project" href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener">
+        <img class="p-icon" loading="lazy" src="../assets/avatar-solyoung.jpg" alt="SolYoung">
+        <span class="p-main"><span class="p-name">SolYoung <span class="fans">粉丝指数 1.1K</span></span><span class="p-desc">记录我的创作、实践，以及正在发生的可能。</span></span>
+        <span class="p-meta">抖音</span><span class="p-arr">→</span>
+      </a>
+      <a class="project" href="https://v.douyin.com/1qeGOojqjSE/" target="_blank" rel="noopener">
+        <img class="p-icon" loading="lazy" src="../assets/avatar-ambition.jpg" alt="野心互联工作室">
+        <span class="p-main"><span class="p-name">野心互联工作室 <span class="fans">粉丝指数 87K</span></span><span class="p-desc">成为自己的人生 CEO，分享个人成长及健康类内容。</span></span>
+        <span class="p-meta">抖音</span><span class="p-arr">→</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="ft"><div class="muted">© 2026 SolYoung · 持续更新</div></footer>
+
+</body>
+</html>
