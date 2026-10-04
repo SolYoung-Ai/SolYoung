@@ -8,23 +8,6 @@
     "images": []
   },
   {
-    "id": "2026-10-04-discuss-waline",
-    "date": "2026-10-04T14:44",
-    "type": "BUILD",
-    "content": "网站新增「讨论」板块：所有访客都可以免登录留言交流。用 Waline + Neon 搭建，后端已部署，评论功能测试通过。",
-    "published": true,
-    "images": []
-  },
-  {
-    "id": "2026-10-04T13:35-think-63ldm",
-    "date": "2026-10-04T13:35",
-    "type": "THINK",
-    "content": "像经营农场一样经营自己的网站",
-    "published": true,
-    "images": [],
-    "_pending": false
-  },
-  {
     "id": "2026-10-04-update-camsim-logo",
     "date": "2026-10-04T12:45",
     "type": "BUILD",
