@@ -35,8 +35,10 @@ a{color:inherit;text-decoration:none}
 h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(46px,9vw,82px);margin:14px 0 18px;letter-spacing:-.02em;line-height:.95}
 h1 .accent{color:var(--accent)}
 .about-grid{margin-top:54px;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start}
-.quote{font-family:var(--font-serif);font-weight:700;font-size:clamp(24px,3.5vw,32px);line-height:1.5;letter-spacing:-.01em;margin:0}
+.quote-col{display:flex;flex-direction:column;align-items:flex-start}
+.quote{font-family:var(--font-serif);font-weight:700;font-size:clamp(28px,4.2vw,38px);line-height:1.25;letter-spacing:-.01em;margin:0}
 .quote .hl{color:var(--accent)}
+.quote-sub{margin-top:16px;font-family:var(--font-body);font-weight:400;font-size:clamp(13px,1.6vw,14.5px);color:var(--ink-soft);line-height:1.8;letter-spacing:.02em;max-width:380px}
 .body{color:var(--ink-soft);font-size:15px;line-height:1.9}
 .body p{margin:0 0 16px}
 .roles{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
@@ -75,7 +77,10 @@ h1 .accent{color:var(--accent)}
   </section>
 
   <section class="about-grid">
-    <div class="quote">我是 <span class="hl">SolYoung</span>。<br>一个正在努力把想法变成作品的人。</div>
+    <div class="quote-col">
+      <div class="quote">我是 <span class="hl">SolYoung</span>。</div>
+      <div class="quote-sub">一个正在努力把想法变成作品的人。</div>
+    </div>
     <div class="body">
       <p>我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。</p>
       <p>这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。</p>
