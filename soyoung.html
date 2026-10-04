@@ -302,15 +302,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .backtop svg{width:16px;height:16px}
 
 /* ============ Motion System ============ */
-/* section navigator (desktop) */
-.secnav{position:fixed;right:clamp(14px,2vw,26px);top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
-.secnav a{font-family:var(--font-display);font-weight:500;font-size:11px;letter-spacing:.16em;color:var(--ink-faint);display:flex;align-items:center;gap:10px;padding:3px 0;transition:color .3s;line-height:1}
-.secnav a .num{color:var(--ink-faint);transition:color .3s}
-.secnav a .bar{width:18px;height:1px;background:var(--line);transition:background .3s}
-.secnav a:hover{color:var(--ink-soft)}
-.secnav a.active,.secnav a.active .num{color:var(--ink)}
-.secnav a.active .bar{background:var(--accent)}
-
 /* cursor label — tiny, follows on hover of interactive elements */
 .cursel{position:fixed;z-index:210;pointer-events:none;font-family:var(--font-display);font-weight:600;font-size:10px;letter-spacing:.18em;color:#fff;background:var(--accent);padding:6px 12px;border-radius:999px;opacity:0;will-change:transform}
 .cursel.on{opacity:1}
@@ -383,7 +374,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 }
 @media(max-width:720px){
   .nav-links{display:none}
-  .secnav{display:none}
   .burger{display:flex}
   .works{grid-template-columns:1fr}
   .note{flex:0 0 82%}
@@ -657,15 +647,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
 <button class="backtop" id="backtop" aria-label="回到顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
-<!-- section navigator -->
-<nav class="secnav" id="secnav" aria-label="章节导航">
-  <a href="#works"><span class="num">01</span>作品<span class="bar"></span></a>
-  <a href="#experiments"><span class="num">02</span>此刻<span class="bar"></span></a>
-  <a href="#notes"><span class="num">03</span>思考<span class="bar"></span></a>
-  <a href="#about"><span class="num">04</span>关于我<span class="bar"></span></a>
-  <a href="#contact"><span class="num">05</span>联系<span class="bar"></span></a>
-</nav>
-
 <!-- cursor label + hover preview -->
 <div class="cursel" id="cursel"><span id="curselTxt">VIEW</span></div>
 <div class="hprev" id="hprev"><img id="hprevImg" alt=""></div>
@@ -802,22 +783,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   } else {
     els.forEach(function(el){ el.classList.add('in'); });
   }
-
-  // section navigator — active follows scroll
-  var secnav = document.getElementById('secnav');
-  var secEls = [document.getElementById('works'),document.getElementById('experiments'),document.getElementById('notes'),document.getElementById('about'),document.getElementById('contact')];
-  var secLinks = secnav ? secnav.querySelectorAll('a') : [];
-  function updateSecnav(){
-    if(!secnav) return;
-    var y = window.scrollY + window.innerHeight * .4;
-    var cur = -1;
-    for(var i=0;i<secEls.length;i++){
-      if(secEls[i] && secEls[i].offsetTop <= y) cur = i;
-    }
-    for(var j=0;j<secLinks.length;j++) secLinks[j].classList.toggle('active', j===cur);
-  }
-  window.addEventListener('scroll', updateSecnav, {passive:true});
-  updateSecnav();
 
   // cursor label + hover preview — desktop, reduced-motion aware
   var rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
