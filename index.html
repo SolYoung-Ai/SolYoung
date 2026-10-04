@@ -7,6 +7,7 @@
 <meta name="description" content="SolYoung，影像创作者。拍摄与剪辑，持续探索摄影、视频、AI 与新的创作方式。记录，是为了忘记。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314120F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23E87028' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.css">
 <style>
 /* ============ Design Tokens ============ */
 :root{
@@ -426,6 +427,15 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   body.mobile-comfort .about p{font-size:15px;line-height:1.95}
   body.mobile-comfort .contact .sub{font-size:14px;line-height:1.85}
 }
+
+/* ===== Discussion ===== */
+.discuss-intro{color:var(--ink-soft);font-size:15px;line-height:1.9;max-width:680px;margin:0 0 clamp(28px,4vw,48px)}
+#waline{max-width:820px;margin:0 auto}
+#waline{--waline-theme-color:#E87028;--waline-active-color:#E87028}
+#waline .wl-comment-system,#waline .wl-recent-title{display:none}
+@media (max-width:640px){
+  #waline{padding:0 2px}
+}
 </style>
 </head>
 <body>
@@ -442,6 +452,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <a href="#notes">思考</a>
       <a href="#about">关于我</a>
       <a href="#contact">联系</a>
+      <a href="#discuss">讨论</a>
     </div>
     <div class="nav-right">
       <button class="theme-btn" id="themeBtn" aria-label="切换主题">
@@ -463,6 +474,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   <a href="#notes"><span class="num">03</span>思考</a>
   <a href="#about"><span class="num">04</span>关于我</a>
   <a href="#contact"><span class="num">05</span>联系</a>
+  <a href="#discuss"><span class="num">06</span>讨论</a>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -605,6 +617,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   </div>
 </section>
 
+<!-- ===== DISCUSSION ===== -->
+<section class="section" id="discuss" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="container">
+    <div class="sec-head rv">
+      <h2 class="display sec-title">讨论<span class="serif accent">Discussion</span></h2>
+      <span class="sec-num">06</span>
+    </div>
+    <p class="discuss-intro rv">所有访客都可以在这里留言交流——对我、对这个网站，或是对你在做的事。无需登录，直接发言。</p>
+    <div id="waline" class="rv"></div>
+  </div>
+</section>
+
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -624,6 +648,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   <a href="#notes"><span class="num">03</span>思考<span class="bar"></span></a>
   <a href="#about"><span class="num">04</span>关于我<span class="bar"></span></a>
   <a href="#contact"><span class="num">05</span>联系<span class="bar"></span></a>
+  <a href="#discuss"><span class="num">06</span>讨论<span class="bar"></span></a>
 </nav>
 
 <!-- cursor label + hover preview -->
@@ -765,7 +790,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
   // section navigator — active follows scroll
   var secnav = document.getElementById('secnav');
-  var secEls = [document.getElementById('works'),document.getElementById('experiments'),document.getElementById('notes'),document.getElementById('about'),document.getElementById('contact')];
+  var secEls = [document.getElementById('works'),document.getElementById('experiments'),document.getElementById('notes'),document.getElementById('about'),document.getElementById('contact'),document.getElementById('discuss')];
   var secLinks = secnav ? secnav.querySelectorAll('a') : [];
   function updateSecnav(){
     if(!secnav) return;
@@ -909,6 +934,21 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       .catch(function(){ notesList.innerHTML = '<p class="muted">文章需要在线访问加载。</p>'; });
   }
 })();
+</script>
+<script type="module">
+import { init as walineInit } from 'https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.js';
+walineInit({
+  el: '#waline',
+  serverURL: 'https://solyoung-waline.vercel.app',
+  lang: 'zh-CN',
+  login: 'disable',
+  pageSize: 10,
+  avatar: 'mp',
+  requiredFields: ['nick'],
+  reaction: false,
+  search: false,
+  imageUploader: false
+});
 </script>
 </body>
 </html>
