@@ -47,6 +47,9 @@ h1 .accent{color:var(--accent)}
 .p-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--ink-faint)}
 .p-arr{color:var(--accent);font-size:18px;transition:transform .3s}
 .project:hover .p-arr{transform:translateX(4px)}
+.project.project-soon{cursor:default}
+.project.project-soon:hover{padding-left:4px}
+.project.project-soon:hover .p-arr{transform:none}
 .ft{padding:76px 0 48px;text-align:center}
 .ft .muted{font-size:12px;color:var(--ink-faint)}
 @media(max-width:640px){.hero{padding:56px 0 0}.p-icon{width:46px;height:46px}.p-meta{display:none}}
@@ -81,6 +84,11 @@ h1 .accent{color:var(--accent)}
         <span class="p-main"><span class="p-name">相机参数模拟器</span><span class="p-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数。</span></span>
         <span class="p-meta">已上线</span><span class="p-arr">→</span>
       </a>
+      <div class="project project-soon" aria-disabled="true">
+        <img class="p-icon" loading="lazy" src="../assets/myos-logo.png" alt="MyOS创作系统">
+        <span class="p-main"><span class="p-name">MyOS创作系统</span><span class="p-desc">面向独立创作者的本地优先创作工作台。</span></span>
+        <span class="p-meta">开发中</span><span class="p-arr">→</span>
+      </div>
     </div>
   </section>
 </main>

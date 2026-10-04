@@ -187,6 +187,10 @@ section{position:relative}
 .proj-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;white-space:nowrap}
 .proj-arr{font-family:var(--font-display);color:var(--ink-faint);transition:color .3s,transform .3s var(--ease)}
 .project:hover .proj-arr{color:var(--accent);transform:translateX(4px)}
+.project.project-soon{cursor:default}
+.project.project-soon:hover{padding-left:4px}
+.project.project-soon:hover .proj-arr{color:var(--ink-faint);transform:none}
+.project.project-soon:hover .proj-main .proj-name{transform:none}
 
 /* project groups */
 .proj-group{margin-bottom:48px}
@@ -544,6 +548,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
           <span class="proj-main"><span class="proj-name">相机参数模拟器</span><span class="proj-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数</span></span>
           <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
         </a>
+        <div class="project rv project-soon" aria-disabled="true">
+          <span class="proj-icon"><img loading="lazy" src="assets/myos-logo.png" alt="MyOS创作系统"></span>
+          <span class="proj-main"><span class="proj-name">MyOS创作系统</span><span class="proj-desc">面向独立创作者的本地优先创作工作台</span></span>
+          <span class="proj-meta">开发中</span><span class="proj-arr">→</span>
+        </div>
       </div>
     </div>
 
