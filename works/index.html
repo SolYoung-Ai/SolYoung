@@ -47,6 +47,9 @@ h1 .accent{color:var(--accent)}
 .p-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--ink-faint)}
 .p-arr{color:var(--accent);font-size:18px;transition:transform .3s}
 .project:hover .p-arr{transform:translateX(4px)}
+.g-tags{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 18px}
+.tag{font-family:var(--font-display);font-size:10px;letter-spacing:.06em;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:3px 10px;line-height:1}
+.p-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
 .project.project-soon{cursor:default}
 .project.project-soon:hover{padding-left:4px}
 .project.project-soon:hover .p-arr{transform:none}
@@ -73,20 +76,21 @@ h1 .accent{color:var(--accent)}
 
   <section class="group">
     <div class="gtitle">独立产品 PRODUCTS</div>
+    <div class="g-tags"><span class="tag">性格测试</span><span class="tag">摄影工具</span><span class="tag">创作系统</span></div>
     <div class="projects">
       <a class="project" href="https://solyoung.top/TypeAll/" target="_blank" rel="noopener">
         <img class="p-icon" loading="lazy" src="../assets/personality-hub.jpg" alt="快测-性格测试合集">
-        <span class="p-main"><span class="p-name">快测-性格测试合集</span><span class="p-desc">把各种性格测试收拢到一处，随时测一个。</span></span>
+        <span class="p-main"><span class="p-name">快测-性格测试合集</span><span class="p-desc">把各种性格测试收拢到一处，随时测一个。</span><span class="p-tags"><span class="tag">性格测试</span></span></span>
         <span class="p-meta">已上线</span><span class="p-arr">→</span>
       </a>
       <a class="project" href="https://solyoung.top/CamSim/" target="_blank" rel="noopener">
         <img class="p-icon" loading="lazy" src="../assets/camera-simulator-logo.png" alt="相机参数模拟器">
-        <span class="p-main"><span class="p-name">相机参数模拟器</span><span class="p-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数。</span></span>
+        <span class="p-main"><span class="p-name">相机参数模拟器</span><span class="p-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数。</span><span class="p-tags"><span class="tag">摄影工具</span></span></span>
         <span class="p-meta">已上线</span><span class="p-arr">→</span>
       </a>
       <a class="project" href="https://solyoung.top/OS/" target="_blank" rel="noopener">
         <img class="p-icon" loading="lazy" src="../assets/myos-logo.png" alt="MyOS创作系统">
-        <span class="p-main"><span class="p-name">MyOS创作系统</span><span class="p-desc">这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档。</span></span>
+        <span class="p-main"><span class="p-name">MyOS创作系统</span><span class="p-desc">这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档。</span><span class="p-tags"><span class="tag">创作系统</span></span></span>
         <span class="p-meta">已上线</span><span class="p-arr">→</span>
       </a>
     </div>

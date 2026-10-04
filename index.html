@@ -197,6 +197,9 @@ section{position:relative}
 .proj-group:last-child{margin-bottom:0}
 .proj-group-title{font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--ink-soft);margin-bottom:16px;display:flex;align-items:baseline;gap:10px}
 .proj-group-title .en{color:var(--accent);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.g-tags{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 16px}
+.tag{font-family:var(--font-display);font-size:10px;letter-spacing:.06em;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:3px 10px;line-height:1}
+.p-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
 
 /* video reel - horizontal scroll */
 .vid-scroll{display:flex;gap:clamp(16px,2.4vw,22px);overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -537,20 +540,21 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
     <div class="proj-group rv">
       <div class="proj-group-title">独立产品 <span class="en">PRODUCTS</span></div>
+      <div class="g-tags"><span class="tag">性格测试</span><span class="tag">摄影工具</span><span class="tag">创作系统</span></div>
       <div class="projects">
         <a class="project rv" href="https://solyoung.top/TypeAll/" target="_blank" rel="noopener" data-preview="assets/personality-hub.jpg">
           <span class="proj-icon"><img loading="lazy" src="assets/personality-hub.jpg" alt="快测-性格测试合集"></span>
-          <span class="proj-main"><span class="proj-name">快测-性格测试合集</span><span class="proj-desc">把各种性格测试收拢到一处，随时测一个。</span></span>
+          <span class="proj-main"><span class="proj-name">快测-性格测试合集</span><span class="proj-desc">把各种性格测试收拢到一处，随时测一个。</span><span class="p-tags"><span class="tag">性格测试</span></span></span>
           <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://solyoung.top/CamSim/" target="_blank" rel="noopener" data-preview="assets/camera-simulator-logo.png">
           <span class="proj-icon"><img loading="lazy" src="assets/camera-simulator-logo.png" alt="相机参数模拟器"></span>
-          <span class="proj-main"><span class="proj-name">相机参数模拟器</span><span class="proj-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数</span></span>
+          <span class="proj-main"><span class="proj-name">相机参数模拟器</span><span class="proj-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数</span><span class="p-tags"><span class="tag">摄影工具</span></span></span>
           <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://solyoung.top/OS/" target="_blank" rel="noopener" data-preview="assets/myos-logo.png">
           <span class="proj-icon"><img loading="lazy" src="assets/myos-logo.png" alt="MyOS创作系统"></span>
-          <span class="proj-main"><span class="proj-name">MyOS创作系统</span><span class="proj-desc">这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档</span></span>
+          <span class="proj-main"><span class="proj-name">MyOS创作系统</span><span class="proj-desc">这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档</span><span class="p-tags"><span class="tag">创作系统</span></span></span>
           <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
         </a>
       </div>
