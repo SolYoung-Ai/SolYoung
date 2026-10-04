@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-04-myos-launch",
+    "date": "2026-10-04T20:05",
+    "type": "BUILD",
+    "content": "MyOS创作系统上线：独立产品新增第三个作品——面向独立创作者的本地优先创作工作台，已可点击访问 solyoung.top/OS/。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-04-update-log",
     "date": "2026-10-04T17:02",
     "type": "BUILD",
