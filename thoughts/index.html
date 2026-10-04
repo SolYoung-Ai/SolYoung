@@ -94,7 +94,7 @@ h1 .accent{color:var(--accent)}
     });
   }
   if(list){
-    fetch('../thoughts.json',{cache:'no-store'})
+    fetch('../thoughts.json?v='+Date.now(),{cache:'no-store'})
       .then(function(r){ return r.json(); })
       .then(render)
       .catch(function(){ list.innerHTML='<p class="fail">思考需要在线访问加载。</p>'; });
