@@ -427,6 +427,17 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   body.mobile-comfort .contact .sub{font-size:14px;line-height:1.85}
 }
 
+/* ===== QUICK NAV ===== */
+.quicknav-section{padding:clamp(44px,6vw,80px) 0 0}
+.quicknav{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,20px)}
+.qn{display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);border-radius:10px;padding:clamp(18px,2.4vw,26px);background:transparent;transition:border-color .3s var(--ease),transform .3s var(--ease),background .3s var(--ease)}
+.qn:hover{border-color:var(--accent);transform:translateY(-3px)}
+.qn-num{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint)}
+.qn-name{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,2vw,22px);color:var(--ink)}
+.qn-name .qn-en{color:var(--accent);margin-left:7px;font-weight:500;font-size:.78em;letter-spacing:.04em}
+.qn-arr{color:var(--ink-soft);font-size:16px;transition:color .3s,transform .3s}
+.qn:hover .qn-arr{color:var(--accent);transform:translateX(4px)}
+@media(max-width:700px){.quicknav{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -493,6 +504,34 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 </header>
 
 <main>
+
+<!-- ===== QUICK NAV ===== -->
+<section class="quicknav-section">
+  <div class="container">
+    <nav class="quicknav" aria-label="快捷导航">
+      <a class="qn" href="works/">
+        <span class="qn-num">01</span>
+        <span class="qn-name">作品<span class="qn-en">Works</span></span>
+        <span class="qn-arr">→</span>
+      </a>
+      <a class="qn" href="now/">
+        <span class="qn-num">02</span>
+        <span class="qn-name">此刻<span class="qn-en">Now</span></span>
+        <span class="qn-arr">→</span>
+      </a>
+      <a class="qn" href="thoughts/">
+        <span class="qn-num">03</span>
+        <span class="qn-name">思考<span class="qn-en">Thoughts</span></span>
+        <span class="qn-arr">→</span>
+      </a>
+      <a class="qn" href="about/">
+        <span class="qn-num">04</span>
+        <span class="qn-name">关于我<span class="qn-en">About</span></span>
+        <span class="qn-arr">→</span>
+      </a>
+    </nav>
+  </div>
+</section>
 
 <!-- ===== WORKS ===== -->
 <section class="section" id="works">
