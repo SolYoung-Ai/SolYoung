@@ -857,17 +857,19 @@ function computePlan(ctx,mode){
   let t=shutterFor(ctx,mode);
   const isoCap = mode==="effect"? maxIso : (mode==="quality"? base*4 : 3200);
   const still=isStillScene(ctx);
+  /* 静物/三脚架场景不允许为快门把 ISO 拉到极限，过暗就慢门 */
+  const effCap = (still && !hasLook(ctx,"freeze")) ? Math.min(isoCap,800) : isoCap;
   const maxShutter=parseShutter(cam.shutter);
   let iso=isoFor(ap,t,ctx.ev);
-  if(iso>isoCap){
+  if(iso>effCap){
     // 太暗：优先压慢快门（主体静止），否则开大光圈
     if(still){
-      const needT=ap*ap/Math.pow(2, ctx.ev+Math.log2(isoCap/100));
+      const needT=ap*ap/Math.pow(2, ctx.ev+Math.log2(effCap/100));
       if(needT<=60) t=Math.max(needT, maxShutter);
     } else if(ap>maxAp/1.15){ ap=round2(Math.max(ap/Math.SQRT2,maxAp)); }
     iso=isoFor(ap,t,ctx.ev);
-    if(iso>isoCap && ap>maxAp/1.15){ ap=round2(Math.max(ap/Math.SQRT2,maxAp)); iso=isoFor(ap,t,ctx.ev); }
-    iso=Math.min(iso,isoCap);
+    if(iso>effCap && ap>maxAp/1.15){ ap=round2(Math.max(ap/Math.SQRT2,maxAp)); iso=isoFor(ap,t,ctx.ev); }
+    iso=Math.min(iso,effCap);
   } else if(iso<base){
     // 太亮：提高快门直到基准 ISO
     const needT=ap*ap/Math.pow(2, ctx.ev+Math.log2(base/100));
@@ -878,6 +880,12 @@ function computePlan(ctx,mode){
   iso=Math.round(iso);
   const lo=Math.max(base, Math.round(iso/2));
   const hi=Math.min(maxIso, Math.round(iso*2));
+  /* 闪灯曝光：快门锁同步速度，曝光由灯功率/光圈/ISO 决定，不走环境光慢门 */
+  if(ctx.flash && ctx.flash.id!=="none" && ctx.cat!=="视频"){
+    const syncT=camSync(cam)||(1/160);
+    t=syncT;
+    iso=Math.max(base, Math.min(base*4, iso));
+  }
   return {ap,t,iso,range:[lo,hi]};
 }
 
@@ -1037,7 +1045,7 @@ function buildAllPlans(store, expert){
       why:{aperture:wa, shutter:ws, iso:wi},
       checklist: checklist(ctx)
     };
-    if(vid){ plan.aperture=vid.ap; plan.shutter=vid.t; plan.iso=vid.iso; plan.isoRange=[Math.max(cam.iso[0],Math.round(vid.iso/2)),Math.min(cam.iso[1]||25600,Math.round(vid.iso*2))]; }
+    if(vid){ const vMaxAp=lensMaxAp(ctx.lens)||1.8; plan.aperture=Math.max(vid.ap, vMaxAp); plan.shutter=vid.t; plan.iso=vid.iso; plan.isoRange=[Math.max(cam.iso[0],Math.round(vid.iso/2)),Math.min(cam.iso[1]||25600,Math.round(vid.iso*2))]; }
     plans.push(plan);
   }
   return {plans, cam, lens, camName, lensName, cat, sub:store.sub, ev, wb, focus, meter, dist, coc, flashRequired, baseCtx, envT:tmpl, conditions:condText(store.env,tmpl)};
