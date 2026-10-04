@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>讨论 Discussion — SolYoung</title>
+<meta name="description" content="在 SolYoung 的网站留言交流——对我、对这个网站，或是对你在做的事。无需登录，直接发言。">
+<meta property="og:title" content="讨论 Discussion — SolYoung">
+<meta property="og:description" content="在 SolYoung 的网站留言交流——对我、对这个网站，或是对你在做的事。无需登录，直接发言。">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23E87028'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@500;600;700&family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.css">
+<style>
+:root{
+  --bg:#F4F0E7;--bg-soft:#EFEADF;--ink:#1D1A15;--ink-soft:#6B6455;--ink-faint:#9A927F;
+  --line:rgba(29,26,21,.14);--accent:#E87028;--card:#FAF7F0;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font-display:'Archivo','Noto Sans SC',system-ui,sans-serif;
+  --font-serif:'Noto Serif SC',Georgia,serif;
+  --font-body:'Noto Sans SC','PingFang SC',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:760px;margin:0 auto;padding:0 24px}
+.hd{position:sticky;top:0;z-index:50;background:rgba(244,240,231,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.brand .dot{color:var(--accent)}
+.back{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);transition:color .3s}
+.back:hover{color:var(--accent)}
+.hero{padding:76px 0 0}
+.kicker{font-family:var(--font-display);font-size:11px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase}
+h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(44px,8.5vw,78px);margin:14px 0 16px;letter-spacing:-.02em;line-height:.95}
+h1 .accent{color:var(--accent)}
+.sub{color:var(--ink-soft);font-size:15px;line-height:1.9;max-width:640px;margin:0}
+.discuss-zone{margin-top:44px;padding-bottom:88px}
+
+/* ---- Waline 简洁化 + 站点风格 ---- */
+#waline{--waline-theme-color:#E87028;--waline-active-color:#E87028;--waline-white:transparent;--waline-bgcolor:transparent;--waline-border-color:var(--line);--waline-disable-bgcolor:var(--bg-soft);--waline-info-bgcolor:transparent;--waline-card-bgcolor:transparent}
+/* 只保留「昵称 + 评论 + 提交」，隐藏邮箱/网址等 */
+#waline .wl-header-item:nth-child(n+2){display:none}
+#waline .wl-emoji,#waline .wl-image,#waline .wl-gif,#waline .wl-preview,#waline .wl-expand,#waline .wl-count,#waline .wl-sort{display:none}
+/* 输入区 */
+#waline .wl-panel{border:none;background:transparent}
+#waline .wl-header{display:flex;gap:0}
+#waline .wl-header .wl-header-item{flex:1;max-width:220px}
+#waline .wl-input{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:9px 12px;font-size:14px;color:var(--ink);transition:border-color .3s}
+#waline .wl-input:focus{border-color:var(--accent);outline:none}
+#waline .wl-header label{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase}
+#waline .wl-comment{min-height:120px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:15px;line-height:1.8;color:var(--ink)}
+#waline .wl-comment:focus{border-color:var(--accent);outline:none}
+#waline .wl-btn{background:var(--accent);color:#fff;border:none;border-radius:4px;padding:9px 18px;font-family:var(--font-display);font-size:13px;letter-spacing:.04em;cursor:pointer;transition:opacity .3s}
+#waline .wl-btn:hover{opacity:.85}
+#waline .wl-btn:disabled{opacity:.4;cursor:not-allowed}
+/* 评论列表 */
+#waline .wl-item{background:transparent}
+#waline .wl-card{border:1px solid var(--line);border-radius:8px;padding:18px 20px;background:var(--card)}
+#waline .wl-avatar{width:36px;height:36px;border-radius:4px;object-fit:cover;flex:none}
+#waline .wl-nick{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink)}
+#waline .wl-time{font-size:12px;color:var(--ink-faint)}
+#waline .wl-content{font-size:15px;line-height:1.9;color:var(--ink-soft)}
+#waline .wl-quote,#waline .wl-meta,#waline .wl-delete,#waline .wl-like{display:none}
+#waline .wl-footer{display:none}
+#waline .wl-pagination .wl-next{background:none;border:1px solid var(--line);color:var(--ink-soft);border-radius:4px;font-family:var(--font-display);font-size:12px;padding:8px 16px;cursor:pointer;transition:color .3s,border-color .3s}
+#waline .wl-pagination .wl-next:hover{color:var(--accent);border-color:var(--accent)}
+#waline .wl-loading,#waline .wl-empty{color:var(--ink-faint);font-size:14px}
+#waline a{color:var(--accent)}
+#waline .wl-login-info{font-size:12px;color:var(--ink-faint)}
+@media(max-width:560px){
+  #waline .wl-header .wl-header-item{max-width:none}
+  #waline .wl-card{padding:14px 16px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="container hd-in">
+    <a class="brand" href="../index.html" aria-label="返回首页">Sol<span class="dot">.</span>Young</a>
+    <a class="back" href="../index.html#discuss">← 返回首页</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>讨论 <span class="accent">·</span> Discussion</h1>
+    <p class="sub">所有访客都可以在这里留言交流——对我、对这个网站，或是对你在做的事。无需登录，直接发言。留下你的名字，说点什么吧。</p>
+  </section>
+
+  <section class="discuss-zone" aria-live="polite">
+    <div id="waline"></div>
+  </section>
+</main>
+
+<script type="module">
+import { init as walineInit } from 'https://cdn.jsdelivr.net/npm/@waline/client@3/dist/waline.js';
+walineInit({
+  el: '#waline',
+  serverURL: 'https://solyoung-waline.vercel.app',
+  path: '/',
+  lang: 'zh-CN',
+  login: 'disable',
+  pageSize: 10,
+  avatar: 'retro',
+  requiredFields: ['nick'],
+  reaction: false,
+  search: false,
+  imageUploader: false
+});
+</script>
+</body>
+</html>
