@@ -438,7 +438,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .discuss-post .d-nick{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink)}
 .discuss-post .d-time{font-size:11px;color:var(--ink-faint)}
 .discuss-post .d-body{margin:6px 0 0;font-size:15px;line-height:1.8;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.discuss-empty{color:var(--ink-faint);font-size:14px;padding:30px 4px}
+.discuss-empty{color:var(--ink-faint);font-size:14px;padding:30px 4px;display:inline-block;cursor:pointer;transition:color .3s}
+.discuss-empty:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -947,7 +948,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   function fmt(dt){ var t=new Date(dt); if(isNaN(t)) return ''; var m=function(n){return (n<10?'0':'')+n}; return t.getFullYear()+' / '+m(t.getMonth()+1)+' / '+m(t.getDate()); }
   function render(list){
     box.innerHTML='';
-    if(!list||!list.length){ box.innerHTML='<p class="discuss-empty">还没有留言，来做第一个吧。</p>'; return; }
+    if(!list||!list.length){ box.innerHTML='<a class="discuss-empty" href="discuss/">还没有留言，来做第一个吧 →</a>'; return; }
     list.slice(0,5).forEach(function(c){
       var el=document.createElement('a');
       el.className='discuss-post'; el.href='discuss/'; el.setAttribute('aria-label','进入讨论区');

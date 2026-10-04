@@ -42,18 +42,19 @@ h1 .accent{color:var(--accent)}
 /* ---- Waline 简洁化 + 站点风格 ---- */
 #waline{--waline-theme-color:#E87028;--waline-active-color:#E87028;--waline-white:transparent;--waline-bgcolor:transparent;--waline-border-color:var(--line);--waline-disable-bgcolor:var(--bg-soft);--waline-info-bgcolor:transparent;--waline-card-bgcolor:transparent}
 /* 只保留「昵称 + 评论 + 提交」，隐藏邮箱/网址等 */
-#waline .wl-header-item:nth-child(n+2){display:none}
+#waline .wl-header-item:nth-child(3){display:none}
 #waline .wl-emoji,#waline .wl-image,#waline .wl-gif,#waline .wl-preview,#waline .wl-expand,#waline .wl-count,#waline .wl-sort{display:none}
 /* 输入区 */
 #waline .wl-panel{border:none;background:transparent}
 #waline .wl-header{display:flex;gap:0}
-#waline .wl-header .wl-header-item{flex:1;max-width:220px}
-#waline .wl-input{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:9px 12px;font-size:14px;color:var(--ink);transition:border-color .3s}
-#waline .wl-input:focus{border-color:var(--accent);outline:none}
-#waline .wl-header label{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase}
-#waline .wl-comment{min-height:120px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:15px;line-height:1.8;color:var(--ink)}
-#waline .wl-comment:focus{border-color:var(--accent);outline:none}
-#waline .wl-btn{background:var(--accent);color:#fff;border:none;border-radius:4px;padding:9px 18px;font-family:var(--font-display);font-size:13px;letter-spacing:.04em;cursor:pointer;transition:opacity .3s}
+#waline .wl-header .wl-header-item{flex:1;max-width:none}
+#waline .wl-input{background:transparent;border:none;border-bottom:1px solid var(--line);border-radius:0;padding:9px 2px;font-size:15px;color:var(--ink);transition:border-color .3s}
+#waline .wl-input:focus{border-bottom-color:var(--accent);outline:none}
+#waline .wl-header label{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;display:block}
+#waline .wl-comment{min-height:130px;background:transparent;border:none;border-top:1px solid var(--line);border-radius:0;padding:14px 2px;font-size:15px;line-height:1.8;color:var(--ink)}
+#waline .wl-comment:focus{outline:none}
+#waline .wl-action{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:10px}
+#waline .wl-btn{background:var(--accent)!important;color:#fff!important;border:none;border-radius:4px;padding:9px 22px;font-family:var(--font-display);font-size:13px;letter-spacing:.04em;cursor:pointer;transition:opacity .3s;min-width:88px;text-align:center}
 #waline .wl-btn:hover{opacity:.85}
 #waline .wl-btn:disabled{opacity:.4;cursor:not-allowed}
 /* 评论列表 */
