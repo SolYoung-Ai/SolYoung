@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-portrait-fix",
+    "date": "2026-10-08T01:15",
+    "type": "BUILD",
+    "content": "修复：\n\n· 移除头像框跳转此刻页的旧逻辑，点击首页头像框现在只直达页面底部邮箱与倒计时。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08-portrait-direct-jump",
     "date": "2026-10-08T01:10",
     "type": "BUILD",
