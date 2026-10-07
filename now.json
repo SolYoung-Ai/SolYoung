@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-archive-entry-polish",
+    "date": "2026-10-08T00:05",
+    "type": "BUILD",
+    "content": "微调档案开场：\n\n· 归档后的文字移到档案框下方，不再遮挡照片；\n· 手机端提示改为「长按并拖入档案」，触屏可长按拖拽。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-07-archive-entry",
     "date": "2026-10-07T23:50",
     "type": "BUILD",
