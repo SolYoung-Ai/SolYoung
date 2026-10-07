@@ -879,19 +879,20 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     });
   }
 
-  // 100-hour looping countdown (footer) — resets to 100:00:00 when it hits zero
+  // 100-hour looping countdown (footer) — anchored to a fixed real-world epoch
   var COUNTDOWN_TOTAL = 100 * 3600;
+  var COUNTDOWN_EPOCH = Date.parse('2026-10-08T01:35:00+08:00') / 1000;
   var countEl = document.getElementById('countdownTime');
   if(countEl){
-    var remain = COUNTDOWN_TOTAL;
     function pad2(n){ return n < 10 ? '0' + n : '' + n; }
     function countTick(){
-      if(remain <= 0) remain = COUNTDOWN_TOTAL;
+      var elapsed = (Date.now() / 1000 - COUNTDOWN_EPOCH) % COUNTDOWN_TOTAL;
+      var remain = Math.floor(COUNTDOWN_TOTAL - elapsed);
+      if(remain < 0) remain = 0;
       var h = remain / 3600 | 0;
       var m = (remain % 3600) / 60 | 0;
       var s = remain % 60;
       countEl.textContent = h + ':' + pad2(m) + ':' + pad2(s);
-      remain--;
     }
     countTick();
     setInterval(countTick, 1000);
