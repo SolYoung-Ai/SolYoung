@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-typeall-2",
+    "date": "2026-10-08T00:10",
+    "type": "BUILD",
+    "content": "「快测 TypeAll」2.0 重构完成：上线 Big Five 大五人格多维测评，连续维度 + 16 型叙事 + 作答质量检测 + 人格签名，认识自己，不止一个标签。solyoung.top/TypeAll/",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08-archive-entry-polish",
     "date": "2026-10-08T00:05",
     "type": "BUILD",
