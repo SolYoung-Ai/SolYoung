@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-countdown-real",
+    "date": "2026-10-08T02:30",
+    "type": "BUILD",
+    "content": "更新：\n\n· 页面底部 100 小时倒计时改为真实世界倒计时——锚定固定起点持续递减，刷新页面不再重置。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08-verity-logo-2",
     "date": "2026-10-08T01:33",
     "type": "BUILD",
