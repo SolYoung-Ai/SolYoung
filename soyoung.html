@@ -478,6 +478,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 @media (prefers-reduced-motion: reduce){
   .archive-intro{transition:opacity .3s ease}
 }
+.portrait-wrap{cursor:pointer}
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 </head>
@@ -1211,6 +1212,23 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   if(replay) replay.addEventListener('click',function(){ localStorage.removeItem(KEY); init(); });
 
   init();
+})();
+
+// ---- portrait click -> scroll to contact email ----
+(function(){
+  var portrait=document.querySelector('.portrait-wrap');
+  if(!portrait) return;
+  portrait.addEventListener('click',function(){
+    var mail=document.querySelector('.contact a[href^="mailto"]');
+    if(mail){
+      mail.scrollIntoView({behavior:'smooth',block:'center'});
+      mail.style.color='var(--accent)';
+      setTimeout(function(){ mail.style.color=''; },1300);
+    } else {
+      var c=document.getElementById('contact');
+      if(c) c.scrollIntoView({behavior:'smooth'});
+    }
+  });
 })();
 </script>
 </body>
