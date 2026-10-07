@@ -1068,12 +1068,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') lb.classList.remove('open'); });
   }
 
-  // hero portrait -> NOW page
-  var heroPortrait = document.querySelector('.hero .portrait');
-  if(heroPortrait){
-    heroPortrait.style.cursor = 'pointer';
-    heroPortrait.addEventListener('click', function(){ window.location.href = 'now/'; });
-  }
+  // hero portrait click is handled below (scroll to footer countdown)
 
   // Thoughts feed — cards from thoughts.json
   var notesList = document.getElementById('notesList');
