@@ -304,6 +304,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .foot-slogan{font-family:var(--font-serif);font-size:clamp(20px,3vw,30px);font-weight:600}
 .foot-slogan .q{color:var(--accent)}
 .foot-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+.foot-countdown{text-align:center;padding-top:10px}
+.countdown-time{font-family:var(--font-serif);font-size:clamp(20px,3vw,28px);font-weight:600;letter-spacing:.04em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.countdown-note{margin-top:12px;font-family:var(--font-sans);font-size:12px;color:var(--ink-soft);line-height:1.8;letter-spacing:.02em;max-width:460px;margin-left:auto;margin-right:auto}
 .backtop{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(8px);display:grid;place-items:center;color:var(--ink-soft);opacity:0;pointer-events:none;transition:all .4s var(--ease)}
 .backtop.show{opacity:1;pointer-events:auto}
 .backtop:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-3px)}
@@ -658,6 +661,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <div class="foot-slogan" data-i18n="foot-slogan">记录，是为了<span class="q">忘记。</span></div>
     <div class="foot-meta" data-i18n="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
   </div>
+  <div class="container foot-countdown">
+    <div class="countdown-time" id="countdownTime" aria-label="100小时倒计时">100:00:00</div>
+    <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
+  </div>
 </footer>
 
 <button class="backtop" id="backtop" aria-label="回到顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
@@ -776,6 +783,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'social-x': {zh:'X', en:'X'},
     'foot-slogan': {zh:'记录，是为了<span class="q">忘记。</span>', en:'To record is to <span class="q">forget.</span>'},
     'foot-meta': {zh:'© 2026 SolYoung · 以探索的方式搭建 · v1.0', en:'© 2026 SolYoung · Built by exploring · v1.0'},
+    'foot-countdown-note': {zh:'每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。', en:'Every 100 hours, this site and everything I create change — added or trimmed, always moving toward something better.'},
     'nav-theme': {zh:'切换主题', en:'Toggle theme'},
     'nav-lang': {zh:'切换语言', en:'Toggle language'},
     'nav-comfort': {zh:'切换移动排版', en:'Toggle mobile layout'}
@@ -805,6 +813,24 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       localStorage.setItem('soyoung-lang', currentLang);
       applyLang(currentLang);
     });
+  }
+
+  // 100-hour looping countdown (footer) — resets to 100:00:00 when it hits zero
+  var COUNTDOWN_TOTAL = 100 * 3600;
+  var countEl = document.getElementById('countdownTime');
+  if(countEl){
+    var remain = COUNTDOWN_TOTAL;
+    function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+    function countTick(){
+      if(remain <= 0) remain = COUNTDOWN_TOTAL;
+      var h = remain / 3600 | 0;
+      var m = (remain % 3600) / 60 | 0;
+      var s = remain % 60;
+      countEl.textContent = h + ':' + pad2(m) + ':' + pad2(s);
+      remain--;
+    }
+    countTick();
+    setInterval(countTick, 1000);
   }
 
   // nav scrolled + progress + backtop
