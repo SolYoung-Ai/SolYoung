@@ -99,6 +99,7 @@ section{position:relative}
 .nav-links a:hover::after{width:100%}
 .nav-right{display:flex;align-items:center;gap:14px}
 .theme-btn{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--ink-soft);transition:all .3s}
+.lang-btn{font-family:var(--font-display);font-size:11px;letter-spacing:.05em;color:var(--ink-soft)}
 .theme-btn:hover{color:var(--accent);border-color:var(--accent)}
 .theme-btn svg{width:15px;height:15px}
 .comfort-btn{display:none}
@@ -446,17 +447,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   <div class="container nav-inner">
     <a href="#top" class="brand">Sol<span class="dot">.</span>Young</a>
     <div class="nav-links">
-      <a href="#works">作品</a>
-      <a href="#experiments">此刻</a>
-      <a href="#notes">思考</a>
-      <a href="#about">关于我</a>
-      <a href="#contact">联系</a>
+      <a href="#works" data-i18n="nav-works">作品</a>
+      <a href="#experiments" data-i18n="nav-now">此刻</a>
+      <a href="#notes" data-i18n="nav-thoughts">思考</a>
+      <a href="#about" data-i18n="nav-about">关于我</a>
+      <a href="#contact" data-i18n="nav-contact">联系</a>
     </div>
     <div class="nav-right">
       <button class="theme-btn" id="themeBtn" aria-label="切换主题">
         <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
+      <button class="theme-btn lang-btn" id="langBtn" aria-label="切换语言"><span id="langTxt">EN</span></button>
       <button class="theme-btn comfort-btn" id="comfortBtn" aria-label="切换移动排版">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>
       </button>
@@ -467,25 +469,25 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
 <!-- mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#works"><span class="num">01</span>作品</a>
-  <a href="#experiments"><span class="num">02</span>此刻</a>
-  <a href="#notes"><span class="num">03</span>思考</a>
-  <a href="#about"><span class="num">04</span>关于我</a>
-  <a href="#contact"><span class="num">05</span>联系</a>
+  <a href="#works"><span class="num">01</span><span data-i18n="nav-works">作品</span></a>
+  <a href="#experiments"><span class="num">02</span><span data-i18n="nav-now">此刻</span></a>
+  <a href="#notes"><span class="num">03</span><span data-i18n="nav-thoughts">思考</span></a>
+  <a href="#about"><span class="num">04</span><span data-i18n="nav-about">关于我</span></a>
+  <a href="#contact"><span class="num">05</span><span data-i18n="nav-contact">联系</span></a>
 </div>
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <div class="hero-index rv in"><b>SOLYOUNG</b>&nbsp;&nbsp;·&nbsp;&nbsp;内容生产 / 影像创作 / AI实践</div>
+      <div class="hero-index rv in" data-i18n="hero-index"><b>SOLYOUNG</b>&nbsp;&nbsp;·&nbsp;&nbsp;内容生产 / 影像创作 / AI实践</div>
       <h1 class="display hero-title">
         <span class="row"><span>Sol</span></span>
         <span class="row"><span class="accent">Young</span></span>
       </h1>
-      <p class="hero-sub rv in rv-d2">一个把想法变成作品的人。</p>
+      <p class="hero-sub rv in rv-d2" data-i18n="hero-sub">一个把想法变成作品的人。</p>
       <div class="hero-tags rv in rv-d3">
-        <span>影像</span><span>AI</span><span>创作</span><span>实验</span>
+        <span data-i18n="hero-tag1">影像</span><span data-i18n="hero-tag2">AI</span><span data-i18n="hero-tag3">创作</span><span data-i18n="hero-tag4">实验</span>
       </div>
     </div>
     <div class="hero-visual">
@@ -508,22 +510,22 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <nav class="quicknav" aria-label="快捷导航">
       <a class="qn" href="works/">
         <span class="qn-num">01</span>
-        <span class="qn-name">作品<span class="qn-en">Works</span></span>
+        <span class="qn-name" data-i18n="qn-works">作品<span class="qn-en">Works</span></span>
         <span class="qn-arr">→</span>
       </a>
       <a class="qn" href="now/">
         <span class="qn-num">02</span>
-        <span class="qn-name">此刻<span class="qn-en">Now</span></span>
+        <span class="qn-name" data-i18n="qn-now">此刻<span class="qn-en">Now</span></span>
         <span class="qn-arr">→</span>
       </a>
       <a class="qn" href="thoughts/">
         <span class="qn-num">03</span>
-        <span class="qn-name">思考<span class="qn-en">Thoughts</span></span>
+        <span class="qn-name" data-i18n="qn-thoughts">思考<span class="qn-en">Thoughts</span></span>
         <span class="qn-arr">→</span>
       </a>
       <a class="qn" href="about/">
         <span class="qn-num">04</span>
-        <span class="qn-name">关于我<span class="qn-en">About</span></span>
+        <span class="qn-name" data-i18n="qn-about">关于我<span class="qn-en">About</span></span>
         <span class="qn-arr">→</span>
       </a>
     </nav>
@@ -534,28 +536,28 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="section" id="works">
   <div class="container">
     <div class="sec-head rv">
-      <h2 class="display sec-title"><a class="now-title-link" href="works/" aria-label="查看全部作品">作品<span class="serif accent">Works</span></a></h2>
+      <h2 class="display sec-title"><a class="now-title-link" href="works/" aria-label="查看全部作品" data-i18n="sec-works">作品<span class="serif accent">Works</span></a></h2>
       <span class="sec-num">01</span>
     </div>
 
     <div class="proj-group rv">
-      <div class="proj-group-title">独立产品 <span class="en">PRODUCTS</span></div>
-      <div class="g-tags"><span class="tag">性格测试</span><span class="tag">摄影工具</span><span class="tag">创作系统</span></div>
+      <div class="proj-group-title" data-i18n="proj-products">独立产品 <span class="en">PRODUCTS</span></div>
+      <div class="g-tags"><span class="tag" data-i18n="tag-test">性格测试</span><span class="tag" data-i18n="tag-cam">摄影工具</span><span class="tag" data-i18n="tag-os">创作系统</span></div>
       <div class="projects">
         <a class="project rv" href="https://solyoung.top/TypeAll/" target="_blank" rel="noopener" data-preview="assets/personality-hub.jpg">
           <span class="proj-icon"><img loading="lazy" src="assets/personality-hub.jpg" alt="快测-性格测试合集"></span>
-          <span class="proj-main"><span class="proj-name">快测-性格测试合集</span><span class="proj-desc">把各种性格测试收拢到一处，随时测一个。</span><span class="p-tags"><span class="tag">性格测试</span></span></span>
-          <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
+          <span class="proj-main"><span class="proj-name">快测-性格测试合集</span><span class="proj-desc" data-i18n="pdesc-typeall">把各种性格测试收拢到一处，随时测一个。</span><span class="p-tags"><span class="tag" data-i18n="tag-test">性格测试</span></span></span>
+          <span class="proj-meta" data-i18n="proj-meta-live">已上线</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://solyoung.top/CamSim/" target="_blank" rel="noopener" data-preview="assets/camera-simulator-logo.png">
           <span class="proj-icon"><img loading="lazy" src="assets/camera-simulator-logo.png" alt="相机参数模拟器"></span>
-          <span class="proj-main"><span class="proj-name">相机参数模拟器</span><span class="proj-desc">根据你的使用场景自动生成一套可以直接执行的摄影参数</span><span class="p-tags"><span class="tag">摄影工具</span></span></span>
-          <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
+          <span class="proj-main"><span class="proj-name">相机参数模拟器</span><span class="proj-desc" data-i18n="pdesc-camsim">根据你的使用场景自动生成一套可以直接执行的摄影参数</span><span class="p-tags"><span class="tag" data-i18n="tag-cam">摄影工具</span></span></span>
+          <span class="proj-meta" data-i18n="proj-meta-live">已上线</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://solyoung.top/OS/" target="_blank" rel="noopener" data-preview="assets/myos-logo.png">
           <span class="proj-icon"><img loading="lazy" src="assets/myos-logo.png" alt="MyOS创作系统"></span>
-          <span class="proj-main"><span class="proj-name">MyOS创作系统</span><span class="proj-desc">这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档</span><span class="p-tags"><span class="tag">创作系统</span></span></span>
-          <span class="proj-meta">已上线</span><span class="proj-arr">→</span>
+          <span class="proj-main"><span class="proj-name">MyOS创作系统</span><span class="proj-desc" data-i18n="pdesc-myos">这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档</span><span class="p-tags"><span class="tag" data-i18n="tag-os">创作系统</span></span></span>
+          <span class="proj-meta" data-i18n="proj-meta-live">已上线</span><span class="proj-arr">→</span>
         </a>
       </div>
     </div>
@@ -567,7 +569,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="section" id="experiments" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="container">
     <div class="sec-head rv">
-      <h2 class="display sec-title"><a class="now-title-link" href="now/" aria-label="查看全部此刻">此刻 <span class="serif accent">NOW</span></a></h2>
+      <h2 class="display sec-title"><a class="now-title-link" href="now/" aria-label="查看全部此刻" data-i18n="sec-now">此刻 <span class="serif accent">NOW</span></a></h2>
       <span class="sec-num">02</span>
     </div>
 
@@ -581,7 +583,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="section" id="notes">
   <div class="container">
     <div class="sec-head rv">
-      <h2 class="display sec-title"><a class="now-title-link" href="thoughts/" aria-label="查看全部思考">思考 <span class="serif accent">Thoughts</span></a></h2>
+      <h2 class="display sec-title"><a class="now-title-link" href="thoughts/" aria-label="查看全部思考" data-i18n="sec-thoughts">思考 <span class="serif accent">Thoughts</span></a></h2>
       <span class="sec-num">04</span>
     </div>
     <div class="notes" id="notesList"></div>
@@ -593,40 +595,40 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="section" id="about" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="container">
     <div class="sec-head rv">
-      <h2 class="display sec-title"><a class="now-title-link" href="about/" aria-label="查看全部关于我">关于<span class="serif accent">我</span></a></h2>
+      <h2 class="display sec-title"><a class="now-title-link" href="about/" aria-label="查看全部关于我" data-i18n="sec-about">关于<span class="serif accent">我</span></a></h2>
       <span class="sec-num">05</span>
     </div>
     <div class="about-grid">
-      <div class="about-quote rv">
+      <div class="about-quote rv" data-i18n="about-quote">
         我是 <span class="hl">SolYoung</span>。<br>
         一个正在努力把想法变成作品的人。
       </div>
       <div class="about-body rv rv-d1">
-        <p>我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。</p>
-        <p>这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。</p>
+        <p data-i18n="about-p1">我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。</p>
+        <p data-i18n="about-p2">这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。</p>
         <div class="about-roles">
-          <span>创作者</span><span>记录者</span><span>探索者</span>
+          <span data-i18n="role1">创作者</span><span data-i18n="role2">记录者</span><span data-i18n="role3">探索者</span>
         </div>
       </div>
     </div>
 
     <div class="proj-group rv" style="margin-top:clamp(56px,7vw,96px)">
-      <div class="proj-group-title">社交媒体 <span class="en">Social Media</span></div>
+      <div class="proj-group-title" data-i18n="proj-social">社交媒体 <span class="en">Social Media</span></div>
       <div class="projects">
         <a class="project rv" href="https://v.douyin.com/JHN2VxhUJPA/" target="_blank" rel="noopener" data-preview="assets/avatar-yangshibaya.jpg">
           <span class="proj-icon"><img src="assets/avatar-yangshibaya.jpg" alt="楊十八呀"></span>
-          <span class="proj-main"><span class="proj-name">楊十八呀 <span class="proj-fans">粉丝指数 37K</span></span><span class="proj-desc">个人随拍 · 记录影像。</span></span>
-          <span class="proj-meta">抖音</span><span class="proj-arr">→</span>
+          <span class="proj-main"><span class="proj-name">楊十八呀 <span class="proj-fans">粉丝指数 37K</span></span><span class="proj-desc" data-i18n="sdesc-yang">个人随拍 · 记录影像。</span></span>
+          <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" data-preview="assets/avatar-solyoung.jpg">
           <span class="proj-icon"><img src="assets/avatar-solyoung.jpg" alt="SolYoung"></span>
-          <span class="proj-main"><span class="proj-name">SolYoung <span class="proj-fans">粉丝指数 1.1K</span></span><span class="proj-desc">记录我的创作、实践，以及正在发生的可能。</span></span>
-          <span class="proj-meta">抖音</span><span class="proj-arr">→</span>
+          <span class="proj-main"><span class="proj-name">SolYoung <span class="proj-fans">粉丝指数 1.1K</span></span><span class="proj-desc" data-i18n="sdesc-sol">记录我的创作、实践，以及正在发生的可能。</span></span>
+          <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://v.douyin.com/1qeGOojqjSE/" target="_blank" rel="noopener" data-preview="assets/avatar-ambition.jpg">
           <span class="proj-icon"><img src="assets/avatar-ambition.jpg" alt="野心互联工作室"></span>
-          <span class="proj-main"><span class="proj-name">野心互联工作室 <span class="proj-fans">粉丝指数 87K</span></span><span class="proj-desc">成为自己的人生 CEO，分享个人成长及健康类内容。</span></span>
-          <span class="proj-meta">抖音</span><span class="proj-arr">→</span>
+          <span class="proj-main"><span class="proj-name">野心互联工作室 <span class="proj-fans">粉丝指数 87K</span></span><span class="proj-desc" data-i18n="sdesc-ambition">成为自己的人生 CEO，分享个人成长及健康类内容。</span></span>
+          <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
         </a>
       </div>
     </div>
@@ -636,14 +638,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <!-- ===== CONTACT ===== -->
 <section class="section contact" id="contact">
   <div class="container">
-    <div class="eyebrow rv">一起做点什么</div>
+    <div class="eyebrow rv" data-i18n="contact-eyebrow">一起做点什么</div>
     <h2 class="big rv" style="margin-top:26px"><a href="mailto:soyoang@outlook.com">soyoang@outlook.com</a></h2>
-    <p class="sub rv rv-d1">有一个想法？想合作一个项目？或者只是打个招呼——都可以。</p>
+    <p class="sub rv rv-d1" data-i18n="contact-sub">有一个想法？想合作一个项目？或者只是打个招呼——都可以。</p>
     <div class="socials rv rv-d2">
-      <a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" aria-label="抖音"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>抖音</a>
-      <a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener" aria-label="小红书"><svg viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6" fill="#FF2442"/><text x="12" y="16.3" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="8.7" letter-spacing="-1.1" fill="#FFFFFF">小红书</text></svg>小红书</a>
-      <button type="button" id="wxBtn" aria-label="微信"><img src="assets/wechat-icon.jpg" alt="微信">微信</button>
-      <a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+      <a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" aria-label="抖音"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg><span data-i18n="social-douyin">抖音</span></a>
+      <a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener" aria-label="小红书"><svg viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6" fill="#FF2442"/><text x="12" y="16.3" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="8.7" letter-spacing="-1.1" fill="#FFFFFF">小红书</text></svg><span data-i18n="social-xhs">小红书</span></a>
+      <button type="button" id="wxBtn" aria-label="微信"><img src="assets/wechat-icon.jpg" alt="微信"><span data-i18n="social-wx">微信</span></button>
+      <a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span data-i18n="social-x">X</span></a>
     </div>
   </div>
 </section>
@@ -653,8 +655,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="container foot-inner">
-    <div class="foot-slogan">记录，是为了<span class="q">忘记。</span></div>
-    <div class="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
+    <div class="foot-slogan" data-i18n="foot-slogan">记录，是为了<span class="q">忘记。</span></div>
+    <div class="foot-meta" data-i18n="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
   </div>
 </footer>
 
@@ -723,6 +725,85 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       var on = !document.body.classList.contains('mobile-comfort');
       applyComfort(on);
       localStorage.setItem('soyoung-comfort', on ? '1' : '0');
+    });
+  }
+
+  // ---- language toggle (zh / en) ----
+  var I18N = {
+    'nav-works': {zh:'作品', en:'Works'},
+    'nav-now': {zh:'此刻', en:'Now'},
+    'nav-thoughts': {zh:'思考', en:'Thoughts'},
+    'nav-about': {zh:'关于我', en:'About'},
+    'nav-contact': {zh:'联系', en:'Contact'},
+    'hero-index': {zh:'<b>SOLYOUNG</b>&nbsp;&nbsp;·&nbsp;&nbsp;内容生产 / 影像创作 / AI实践', en:'<b>SOLYOUNG</b>&nbsp;&nbsp;·&nbsp;&nbsp;Content / Imaging / AI'},
+    'hero-sub': {zh:'一个把想法变成作品的人。', en:'Someone turning ideas into works.'},
+    'hero-tag1': {zh:'影像', en:'Imaging'},
+    'hero-tag2': {zh:'AI', en:'AI'},
+    'hero-tag3': {zh:'创作', en:'Creating'},
+    'hero-tag4': {zh:'实验', en:'Experimenting'},
+    'qn-works': {zh:'作品<span class="qn-en">Works</span>', en:'Works'},
+    'qn-now': {zh:'此刻<span class="qn-en">Now</span>', en:'Now'},
+    'qn-thoughts': {zh:'思考<span class="qn-en">Thoughts</span>', en:'Thoughts'},
+    'qn-about': {zh:'关于我<span class="qn-en">About</span>', en:'About'},
+    'sec-works': {zh:'作品<span class="serif accent">Works</span>', en:'Works'},
+    'sec-now': {zh:'此刻 <span class="serif accent">NOW</span>', en:'Now'},
+    'sec-thoughts': {zh:'思考 <span class="serif accent">Thoughts</span>', en:'Thoughts'},
+    'sec-about': {zh:'关于<span class="serif accent">我</span>', en:'About'},
+    'proj-products': {zh:'独立产品 <span class="en">PRODUCTS</span>', en:'Products <span class="en">PRODUCTS</span>'},
+    'proj-social': {zh:'社交媒体 <span class="en">Social Media</span>', en:'Social Media'},
+    'tag-test': {zh:'性格测试', en:'Personality Tests'},
+    'tag-cam': {zh:'摄影工具', en:'Camera Tools'},
+    'tag-os': {zh:'创作系统', en:'Creation System'},
+    'proj-meta-live': {zh:'已上线', en:'Live'},
+    'pdesc-typeall': {zh:'把各种性格测试收拢到一处，随时测一个。', en:'All personality tests in one place — try one anytime.'},
+    'pdesc-camsim': {zh:'根据你的使用场景自动生成一套可以直接执行的摄影参数', en:'Generate ready-to-use camera settings for your scenario.'},
+    'pdesc-myos': {zh:'这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档', en:'A local-first workspace for independent creators — record, think, create, deliver, archive.'},
+    'about-quote': {zh:'我是 <span class="hl">SolYoung</span>。<br>一个正在努力把想法变成作品的人。', en:'I\'m <span class="hl">SolYoung</span>.<br>Someone working to turn ideas into works.'},
+    'about-p1': {zh:'我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。', en:'I\'m a content creator working in film and editing. Over the years I\'ve explored content, photography, video, AI and new ways of creating — not to become an expert, but because I enjoy making something with my own hands.'},
+    'about-p2': {zh:'这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。', en:'This site is not a résumé or a showcase. It\'s more like a digital archive — what I\'ve made, what I\'m trying, and what it taught me. For me it\'s memory; for you, an invitation to see how someone keeps turning ideas into works.'},
+    'role1': {zh:'创作者', en:'Creator'},
+    'role2': {zh:'记录者', en:'Recorder'},
+    'role3': {zh:'探索者', en:'Explorer'},
+    'sdesc-yang': {zh:'个人随拍 · 记录影像。', en:'Personal clips · Recording images.'},
+    'sdesc-sol': {zh:'记录我的创作、实践，以及正在发生的可能。', en:'Recording my work, practice, and what\'s happening now.'},
+    'sdesc-ambition': {zh:'成为自己的人生 CEO，分享个人成长及健康类内容。', en:'Be the CEO of your own life — growth and wellness content.'},
+    'proj-meta-douyin': {zh:'抖音', en:'Douyin'},
+    'contact-eyebrow': {zh:'一起做点什么', en:'Let\'s make something'},
+    'contact-sub': {zh:'有一个想法？想合作一个项目？或者只是打个招呼——都可以。', en:'Have an idea? Want to collaborate? Or just say hi — all welcome.'},
+    'social-douyin': {zh:'抖音', en:'Douyin'},
+    'social-xhs': {zh:'小红书', en:'Xiaohongshu'},
+    'social-wx': {zh:'微信', en:'WeChat'},
+    'social-x': {zh:'X', en:'X'},
+    'foot-slogan': {zh:'记录，是为了<span class="q">忘记。</span>', en:'To record is to <span class="q">forget.</span>'},
+    'foot-meta': {zh:'© 2026 SolYoung · 以探索的方式搭建 · v1.0', en:'© 2026 SolYoung · Built by exploring · v1.0'},
+    'nav-theme': {zh:'切换主题', en:'Toggle theme'},
+    'nav-lang': {zh:'切换语言', en:'Toggle language'},
+    'nav-comfort': {zh:'切换移动排版', en:'Toggle mobile layout'}
+  };
+  var currentLang = localStorage.getItem('soyoung-lang') === 'en' ? 'en' : 'zh';
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(I18N[key]) el.innerHTML = I18N[key][lang];
+    });
+    var lt = document.getElementById('langTxt');
+    if(lt) lt.textContent = (lang==='zh') ? 'EN' : '中';
+    var langBtnEl = document.getElementById('langBtn');
+    if(langBtnEl) langBtnEl.setAttribute('aria-label', I18N['nav-lang'][lang]);
+    var themeBtnEl = document.getElementById('themeBtn');
+    if(themeBtnEl) themeBtnEl.setAttribute('aria-label', I18N['nav-theme'][lang]);
+    var comfortBtnEl = document.getElementById('comfortBtn');
+    if(comfortBtnEl) comfortBtnEl.setAttribute('aria-label', I18N['nav-comfort'][lang]);
+    document.documentElement.setAttribute('lang', lang==='zh' ? 'zh-CN' : 'en');
+    document.documentElement.setAttribute('data-lang', lang);
+  }
+  applyLang(currentLang);
+  var langBtn = document.getElementById('langBtn');
+  if(langBtn){
+    langBtn.addEventListener('click', function(){
+      currentLang = currentLang==='zh' ? 'en' : 'zh';
+      localStorage.setItem('soyoung-lang', currentLang);
+      applyLang(currentLang);
     });
   }
 
