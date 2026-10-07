@@ -3,12 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快测</title>
+<title>Verity人格测试</title>
 <script>
 (function () {
   var p = location.pathname;
-  if (p.indexOf('/TypeAll') === 0) {
-    // 快测子路径：加载其入口，React Router 以 basename=/TypeAll/ 接管当前 URL
+  if (p.indexOf('/Verity') === 0) {
+    // Verity 人格测试：加载其入口，React Router 以 basename=/Verity/ 接管当前 URL
+    fetch('/Verity/index.html')
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        document.open(); document.write(html); document.close();
+      })
+      .catch(function () { location.replace('/Verity/'); });
+  } else if (p.indexOf('/TypeAll') === 0) {
+    // 旧域名兼容：加载旧入口
     fetch('/TypeAll/index.html')
       .then(function (r) { return r.text(); })
       .then(function (html) {
