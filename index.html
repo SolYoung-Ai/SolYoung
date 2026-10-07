@@ -300,12 +300,12 @@ section{position:relative}
 
 /* ============ Footer ============ */
 footer{border-top:1px solid var(--line);padding:44px 0 56px}
-.foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.foot-inner{display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center}
 .foot-slogan{font-family:var(--font-serif);font-size:clamp(20px,3vw,30px);font-weight:600}
 .foot-slogan .q{color:var(--accent)}
 .foot-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
-.foot-countdown{text-align:center;padding-top:10px}
-.countdown-time{font-family:var(--font-serif);font-size:clamp(20px,3vw,28px);font-weight:600;letter-spacing:.04em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.foot-countdown{text-align:center}
+.countdown-time{font-family:var(--font-display);font-size:clamp(20px,3vw,28px);font-weight:600;letter-spacing:.04em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
 .countdown-note{margin-top:12px;font-family:var(--font-sans);font-size:12px;color:var(--ink-soft);line-height:1.8;letter-spacing:.02em;max-width:460px;margin-left:auto;margin-right:auto}
 .backtop{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(8px);display:grid;place-items:center;color:var(--ink-soft);opacity:0;pointer-events:none;transition:all .4s var(--ease)}
 .backtop.show{opacity:1;pointer-events:auto}
@@ -659,11 +659,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <footer>
   <div class="container foot-inner">
     <div class="foot-slogan" data-i18n="foot-slogan">记录，是为了<span class="q">忘记。</span></div>
+    <div class="foot-countdown">
+      <div class="countdown-time" id="countdownTime" aria-label="100小时倒计时">100:00:00</div>
+      <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
+    </div>
     <div class="foot-meta" data-i18n="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
-  </div>
-  <div class="container foot-countdown">
-    <div class="countdown-time" id="countdownTime" aria-label="100小时倒计时">100:00:00</div>
-    <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
   </div>
 </footer>
 
