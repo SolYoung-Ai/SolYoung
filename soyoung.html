@@ -300,12 +300,12 @@ section{position:relative}
 
 /* ============ Footer ============ */
 footer{border-top:1px solid var(--line);padding:44px 0 56px}
-.foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.foot-inner{display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center}
 .foot-slogan{font-family:var(--font-serif);font-size:clamp(20px,3vw,30px);font-weight:600}
 .foot-slogan .q{color:var(--accent)}
 .foot-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
-.foot-countdown{text-align:center;padding-top:10px}
-.countdown-time{font-family:var(--font-serif);font-size:clamp(20px,3vw,28px);font-weight:600;letter-spacing:.04em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.foot-countdown{text-align:center}
+.countdown-time{font-family:var(--font-display);font-size:clamp(20px,3vw,28px);font-weight:600;letter-spacing:.04em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
 .countdown-note{margin-top:12px;font-family:var(--font-sans);font-size:12px;color:var(--ink-soft);line-height:1.8;letter-spacing:.02em;max-width:460px;margin-left:auto;margin-right:auto}
 .backtop{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(8px);display:grid;place-items:center;color:var(--ink-soft);opacity:0;pointer-events:none;transition:all .4s var(--ease)}
 .backtop.show{opacity:1;pointer-events:auto}
@@ -497,7 +497,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="portrait-wrap">
         <div class="portrait-frame"></div>
         <div class="portrait">
-          <img src="assets/avatar.jpg" alt="SolYoung 肖像" width="1080" height="1080" fetchpriority="high">
+          <img src="assets/avatar.webp" alt="SolYoung 肖像" width="1080" height="1080" fetchpriority="high">
         </div>
       </div>
     </div>
@@ -548,17 +548,17 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="g-tags"><span class="tag" data-i18n="tag-test">性格测试</span><span class="tag" data-i18n="tag-cam">摄影工具</span><span class="tag" data-i18n="tag-os">创作系统</span></div>
       <div class="projects">
         <a class="project rv" href="https://solyoung.top/TypeAll/" target="_blank" rel="noopener" data-preview="assets/personality-hub.jpg">
-          <span class="proj-icon"><img loading="lazy" src="assets/personality-hub.jpg" alt="快测-性格测试合集"></span>
+          <span class="proj-icon"><img loading="lazy" src="assets/personality-hub.webp" alt="快测-性格测试合集"></span>
           <span class="proj-main"><span class="proj-name">快测-性格测试合集</span><span class="proj-desc" data-i18n="pdesc-typeall">把各种性格测试收拢到一处，随时测一个。</span><span class="p-tags"><span class="tag" data-i18n="tag-test">性格测试</span></span></span>
           <span class="proj-meta" data-i18n="proj-meta-live">已上线</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://solyoung.top/CamSim/" target="_blank" rel="noopener" data-preview="assets/camera-simulator-logo.png">
-          <span class="proj-icon"><img loading="lazy" src="assets/camera-simulator-logo.png" alt="相机参数模拟器"></span>
+          <span class="proj-icon"><img loading="lazy" src="assets/camera-simulator-logo.webp" alt="相机参数模拟器"></span>
           <span class="proj-main"><span class="proj-name">相机参数模拟器</span><span class="proj-desc" data-i18n="pdesc-camsim">根据你的使用场景自动生成一套可以直接执行的摄影参数</span><span class="p-tags"><span class="tag" data-i18n="tag-cam">摄影工具</span></span></span>
           <span class="proj-meta" data-i18n="proj-meta-live">已上线</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://solyoung.top/OS/" target="_blank" rel="noopener" data-preview="assets/myos-logo.png">
-          <span class="proj-icon"><img loading="lazy" src="assets/myos-logo.png" alt="MyOS创作系统"></span>
+          <span class="proj-icon"><img loading="lazy" src="assets/myos-logo.webp" alt="MyOS创作系统"></span>
           <span class="proj-main"><span class="proj-name">MyOS创作系统</span><span class="proj-desc" data-i18n="pdesc-myos">这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档</span><span class="p-tags"><span class="tag" data-i18n="tag-os">创作系统</span></span></span>
           <span class="proj-meta" data-i18n="proj-meta-live">已上线</span><span class="proj-arr">→</span>
         </a>
@@ -619,17 +619,17 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="proj-group-title" data-i18n="proj-social">社交媒体 <span class="en">Social Media</span></div>
       <div class="projects">
         <a class="project rv" href="https://v.douyin.com/JHN2VxhUJPA/" target="_blank" rel="noopener" data-preview="assets/avatar-yangshibaya.jpg">
-          <span class="proj-icon"><img src="assets/avatar-yangshibaya.jpg" alt="楊十八呀"></span>
+          <span class="proj-icon"><img loading="lazy" src="assets/avatar-yangshibaya.webp" alt="楊十八呀"></span>
           <span class="proj-main"><span class="proj-name">楊十八呀 <span class="proj-fans">粉丝指数 37K</span></span><span class="proj-desc" data-i18n="sdesc-yang">个人随拍 · 记录影像。</span></span>
           <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" data-preview="assets/avatar-solyoung.jpg">
-          <span class="proj-icon"><img src="assets/avatar-solyoung.jpg" alt="SolYoung"></span>
+          <span class="proj-icon"><img loading="lazy" src="assets/avatar-solyoung.webp" alt="SolYoung"></span>
           <span class="proj-main"><span class="proj-name">SolYoung <span class="proj-fans">粉丝指数 1.1K</span></span><span class="proj-desc" data-i18n="sdesc-sol">记录我的创作、实践，以及正在发生的可能。</span></span>
           <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
         </a>
         <a class="project rv" href="https://v.douyin.com/1qeGOojqjSE/" target="_blank" rel="noopener" data-preview="assets/avatar-ambition.jpg">
-          <span class="proj-icon"><img src="assets/avatar-ambition.jpg" alt="野心互联工作室"></span>
+          <span class="proj-icon"><img loading="lazy" src="assets/avatar-ambition.webp" alt="野心互联工作室"></span>
           <span class="proj-main"><span class="proj-name">野心互联工作室 <span class="proj-fans">粉丝指数 87K</span></span><span class="proj-desc" data-i18n="sdesc-ambition">成为自己的人生 CEO，分享个人成长及健康类内容。</span></span>
           <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
         </a>
@@ -647,7 +647,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <div class="socials rv rv-d2">
       <a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" aria-label="抖音"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg><span data-i18n="social-douyin">抖音</span></a>
       <a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener" aria-label="小红书"><svg viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6" fill="#FF2442"/><text x="12" y="16.3" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="8.7" letter-spacing="-1.1" fill="#FFFFFF">小红书</text></svg><span data-i18n="social-xhs">小红书</span></a>
-      <button type="button" id="wxBtn" aria-label="微信"><img src="assets/wechat-icon.jpg" alt="微信"><span data-i18n="social-wx">微信</span></button>
+      <button type="button" id="wxBtn" aria-label="微信"><img loading="lazy" src="assets/wechat-icon.webp" alt="微信"><span data-i18n="social-wx">微信</span></button>
       <a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span data-i18n="social-x">X</span></a>
     </div>
   </div>
@@ -659,11 +659,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <footer>
   <div class="container foot-inner">
     <div class="foot-slogan" data-i18n="foot-slogan">记录，是为了<span class="q">忘记。</span></div>
+    <div class="foot-countdown">
+      <div class="countdown-time" id="countdownTime" aria-label="100小时倒计时">100:00:00</div>
+      <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
+    </div>
     <div class="foot-meta" data-i18n="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
-  </div>
-  <div class="container foot-countdown">
-    <div class="countdown-time" id="countdownTime" aria-label="100小时倒计时">100:00:00</div>
-    <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
   </div>
 </footer>
 
@@ -685,12 +685,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <button type="button" class="qr-tab" data-tab="biz">商务合作</button>
     </div>
     <div class="qr-pane active" id="qrLearn">
-      <img loading="lazy" src="assets/wechat-learn.jpg" alt="SolYoung 微信二维码">
+      <img loading="lazy" src="assets/wechat-learn.webp" alt="SolYoung 微信二维码">
       <div class="qr-t">兴趣交流</div>
       <div class="qr-s">技术分享，探索创作</div>
     </div>
     <div class="qr-pane" id="qrBiz">
-      <img loading="lazy" src="assets/wechat-biz.jpg" alt="楊十八 微信二维码">
+      <img loading="lazy" src="assets/wechat-biz.webp" alt="楊十八 微信二维码">
       <div class="qr-t">商务合作</div>
       <div class="qr-s">项目合作、品牌沟通</div>
     </div>
@@ -976,7 +976,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       var media = (post.images && post.images.length)
         ? '<div class="now-media"><img src="' + post.images[0] + '" alt="" loading="lazy"></div>' : '';
       el.innerHTML =
-        '<div class="now-head"><img class="now-av" src="assets/avatar.jpg" alt="SolYoung"><span class="now-name">SolYoung</span><span class="now-handle">@solyoung</span></div>' +
+        '<div class="now-head"><img class="now-av" src="assets/avatar.webp" alt="SolYoung"><span class="now-name">SolYoung</span><span class="now-handle">@solyoung</span></div>' +
         '<div class="now-meta"><span class="now-type">' + post.type + '</span><span class="now-date">' + fmtNowDate(post.date) + '</span></div>' +
         '<div class="now-body">' + post.content.replace(/\n/g,'<br>') + '</div>' +
         media;
