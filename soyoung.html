@@ -439,9 +439,65 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .qn-arr{color:var(--ink-soft);font-size:16px;transition:color .3s,transform .3s}
 .qn:hover .qn-arr{color:var(--accent);transform:translateX(4px)}
 @media(max-width:700px){.quicknav{grid-template-columns:repeat(2,1fr)}}
+/* ===== ARCHIVE ENTRY INTRO ===== */
+.archive-intro{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.archive-intro.out{opacity:0;transform:scale(1.04);pointer-events:none}
+.archive-intro.done{display:none}
+.ai-center{display:flex;flex-direction:column;align-items:center;gap:34px;text-align:center}
+.ai-frame{width:min(26vw,250px);aspect-ratio:3/4;border:1px solid var(--ink-faint);position:relative;transition:border-color .35s var(--ease),transform .35s var(--ease)}
+.ai-frame.near{border-color:var(--accent);transform:scale(1.02)}
+.ai-frame-inner{position:absolute;inset:12px;border:1px solid color-mix(in srgb,var(--ink-faint) 45%,transparent)}
+.ai-caption{transition:opacity .4s var(--ease)}
+.ai-caption.hide{opacity:0}
+.ai-kicker{font-size:10px;letter-spacing:.35em;color:var(--ink-faint);text-transform:uppercase}
+.ai-action{margin-top:18px;font-family:var(--font-serif);font-size:clamp(15px,2.2vw,18px);color:var(--ink);letter-spacing:.12em}
+.ai-hint{margin-top:10px;font-size:9px;letter-spacing:.32em;color:var(--ink-faint);text-transform:uppercase}
+.ai-photo{position:absolute;left:65%;top:56%;width:112px;padding:6px;background:color-mix(in srgb,var(--bg) 90%,#fff);border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.09);transform:translate(-50%,-50%) rotate(-3deg);cursor:grab;touch-action:none;transition:box-shadow .25s var(--ease);user-select:none;-webkit-user-select:none}
+.ai-photo img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.ai-photo.dragging{cursor:grabbing;box-shadow:0 16px 38px rgba(0,0,0,.16);transition:none}
+.ai-photo.snap{transition:transform .45s var(--ease);box-shadow:0 10px 26px rgba(0,0,0,.09);cursor:default}
+.ai-archived{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.ai-archived.show{opacity:1}
+.ai-archived-top{font-size:13px;letter-spacing:.42em;color:var(--accent);text-transform:uppercase;opacity:0;transform:translateY(6px);transition:all .5s var(--ease)}
+.ai-archived.show .ai-archived-top{opacity:1;transform:none}
+.ai-archived-name{margin-top:18px;font-family:var(--font-serif);font-size:clamp(18px,3.2vw,26px);color:var(--ink);letter-spacing:.14em;opacity:0;transform:translateY(6px);transition:all .5s var(--ease) .2s}
+.ai-archived.show .ai-archived-name{opacity:1;transform:none}
+.ai-archived-welcome{margin-top:16px;font-size:9px;letter-spacing:.32em;color:var(--ink-faint);text-transform:uppercase;opacity:0;transition:all .5s var(--ease) .4s}
+.ai-archived.show .ai-archived-welcome{opacity:1}
+.ai-skip{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);background:none;border:none;color:var(--ink-faint);font-family:var(--font-display);font-size:9px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;padding:8px 14px;opacity:.75;transition:opacity .3s var(--ease)}
+.ai-skip:hover{opacity:1}
+.foot-replay{background:none;border:none;color:var(--ink-faint);font-family:var(--font-display);font-size:9px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;opacity:.72;padding:6px 8px;transition:opacity .3s var(--ease)}
+.foot-replay:hover{opacity:1}
+@media (max-width:600px){
+  .ai-frame{width:min(62vw,240px)}
+  .ai-photo{left:66%;top:54%;width:100px}
+  .ai-action{margin-top:16px}
+}
+@media (prefers-reduced-motion: reduce){
+  .archive-intro{transition:opacity .3s ease}
+}
 </style>
 </head>
 <body>
+<!-- ===== ARCHIVE ENTRY INTRO ===== -->
+<div class="archive-intro" id="archiveIntro" aria-hidden="true">
+  <div class="ai-center">
+    <div class="ai-frame" id="aiFrame"><div class="ai-frame-inner"></div></div>
+    <div class="ai-caption" id="aiCaption">
+      <div class="ai-kicker">ARCHIVE ENTRY</div>
+      <div class="ai-action" id="aiAction">把我放进这里</div>
+      <div class="ai-hint" id="aiHint">DRAG TO ENTER</div>
+    </div>
+  </div>
+  <div class="ai-photo" id="aiPhoto" role="button" tabindex="0" aria-label="拖拽头像放入档案"><img src="assets/avatar.webp" alt="SolYoung"></div>
+  <div class="ai-archived" id="aiArchived">
+    <div class="ai-archived-top">ARCHIVED</div>
+    <div class="ai-archived-name">SOLYOUNG / 2026</div>
+    <div class="ai-archived-welcome">WELCOME TO MY ARCHIVE</div>
+  </div>
+  <button class="ai-skip" id="aiSkip" type="button">跳过 · SKIP</button>
+</div>
+
 <div class="grain"></div>
 <div class="progress" id="progress"></div>
 
@@ -664,6 +720,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
     </div>
     <div class="foot-meta" data-i18n="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
+    <button type="button" class="foot-replay" id="replayIntro">REPLAY INTRO</button>
   </div>
 </footer>
 
@@ -1033,6 +1090,119 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       .then(function(d){ renderNotes(d.filter(function(x){ return x.published; })); })
       .catch(function(){ notesList.innerHTML = '<p class="muted">文章需要在线访问加载。</p>'; });
   }
+})();
+// ---- ARCHIVE ENTRY intro (brand entry interaction) ----
+(function(){
+  var intro=document.getElementById('archiveIntro');
+  if(!intro) return;
+  var frame=document.getElementById('aiFrame');
+  var photo=document.getElementById('aiPhoto');
+  var caption=document.getElementById('aiCaption');
+  var archived=document.getElementById('aiArchived');
+  var skip=document.getElementById('aiSkip');
+  var replay=document.getElementById('replayIntro');
+  var KEY='solyoung_archive_intro_completed';
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var state='idle', offX=0, offY=0, baseX=0, baseY=0, sx=0, sy=0, pid=null, initC=null, moved=false;
+
+  function rc(el){var r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2};}
+  function setT(x,y,rot){photo.style.transform='translate(calc(-50% + '+x+'px), calc(-50% + '+y+'px)) rotate('+(rot===undefined?-3:rot)+'deg)';}
+  function cacheInit(){setT(0,0,-3);initC=rc(photo);}
+
+  function showFull(){
+    intro.setAttribute('aria-hidden','false');
+    intro.classList.remove('out','done');
+    intro.style.display='flex';
+    state='idle'; offX=0; offY=0; moved=false;
+    caption.classList.remove('hide');
+    archived.classList.remove('show');
+    photo.classList.remove('snap','dragging');
+    frame.classList.remove('near');
+    setT(0,0,-3);
+    document.body.style.overflow='hidden';
+    cacheInit();
+  }
+  function finish(){
+    localStorage.setItem(KEY,'true');
+    intro.classList.add('out');
+    intro.setAttribute('aria-hidden','true');
+    setTimeout(function(){ intro.classList.add('done'); intro.style.display=''; document.body.style.overflow=''; },720);
+  }
+  function snapTo(){
+    if(state!=='dragging') return;
+    state='snapping';
+    photo.classList.remove('dragging');
+    photo.classList.add('snap');
+    frame.classList.remove('near');
+    var fc=rc(frame);
+    offX=fc.x-initC.x; offY=fc.y-initC.y;
+    setT(offX,offY,0);
+    setTimeout(showArchived,470);
+  }
+  function showArchived(){
+    caption.classList.add('hide');
+    archived.classList.add('show');
+    setTimeout(finish,1500);
+  }
+
+  function down(e){
+    if(state!=='idle') return;
+    e.preventDefault();
+    pid=e.pointerId; moved=false;
+    try{photo.setPointerCapture(pid);}catch(err){}
+    sx=e.clientX; sy=e.clientY; baseX=offX; baseY=offY;
+    photo.classList.add('dragging');
+    state='dragging';
+  }
+  function move(e){
+    if(state!=='dragging'||e.pointerId!==pid) return;
+    var dx=e.clientX-sx, dy=e.clientY-sy;
+    if(Math.abs(dx)+Math.abs(dy)>4) moved=true;
+    offX=baseX+dx; offY=baseY+dy;
+    setT(offX,offY,-3);
+    var c={x:initC.x+offX,y:initC.y+offY};
+    var fr=frame.getBoundingClientRect();
+    var dist=Math.hypot(c.x-(fr.left+fr.width/2),c.y-(fr.top+fr.height/2));
+    frame.classList.toggle('near', dist < Math.max(fr.width,220)*1.15);
+  }
+  function up(e){
+    if(state!=='dragging'||e.pointerId!==pid) return;
+    pid=null;
+    photo.classList.remove('dragging');
+    var c={x:initC.x+offX,y:initC.y+offY};
+    var fr=frame.getBoundingClientRect();
+    var inBox=c.x>=fr.left&&c.x<=fr.right&&c.y>=fr.top&&c.y<=fr.bottom;
+    var dist=Math.hypot(c.x-(fr.left+fr.width/2),c.y-(fr.top+fr.height/2));
+    if(inBox || (!moved && dist < Math.max(fr.width,220)*1.4)){
+      snapTo();
+    } else {
+      state='idle';
+    }
+  }
+
+  function init(){
+    showFull();
+    if(localStorage.getItem(KEY)==='true' || reduce){
+      // quick revisit / reduced motion: photo already in frame, archived, short exit
+      state='snapping';
+      var fc=rc(frame); offX=fc.x-initC.x; offY=fc.y-initC.y; setT(offX,offY,0);
+      caption.classList.add('hide');
+      archived.classList.add('show');
+      setTimeout(finish, reduce?350:1000);
+      return;
+    }
+    // full experience: wait for user to drag
+  }
+
+  photo.addEventListener('pointerdown',down);
+  photo.addEventListener('pointermove',move);
+  photo.addEventListener('pointerup',up);
+  photo.addEventListener('pointercancel',function(){ if(state==='dragging'){photo.classList.remove('dragging');state='idle';} });
+  photo.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();snapTo();} });
+  if(skip) skip.addEventListener('click',finish);
+  if(replay) replay.addEventListener('click',function(){ localStorage.removeItem(KEY); init(); });
+
+  init();
 })();
 </script>
 </body>
