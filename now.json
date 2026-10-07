@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-avatar-hd",
+    "date": "2026-10-08T00:20",
+    "type": "BUILD",
+    "content": "门面升级：\n\n· 首页肖像头像换成 1080 高清版本，细节与笔触更清晰；\n· 加了 preload 提前加载，高清但首屏仍不拖慢。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08-typeall-2",
     "date": "2026-10-08T00:10",
     "type": "BUILD",
