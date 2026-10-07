@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-share-card-redesign",
+    "date": "2026-10-08T00:54",
+    "type": "BUILD",
+    "content": "Verity 人格测试分享卡重设计：中文维度标签、条形与文字分列不重叠、竖版/方版双布局优化。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08-verity-rebrand",
     "date": "2026-10-08T00:46",
     "type": "BUILD",
