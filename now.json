@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-portrait-email",
+    "date": "2026-10-08T00:28",
+    "type": "BUILD",
+    "content": "交互小更新：\n\n· 点击首页肖像头像，平滑滚动到页面底部的邮箱，并短暂高亮。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08-avatar-hd",
     "date": "2026-10-08T00:20",
     "type": "BUILD",
