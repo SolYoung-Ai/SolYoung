@@ -1220,14 +1220,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   if(!portrait) return;
   portrait.addEventListener('click',function(){
     var mail=document.querySelector('.contact a[href^="mailto"]');
-    if(mail){
-      mail.scrollIntoView({behavior:'smooth',block:'center'});
-      mail.style.color='var(--accent)';
-      setTimeout(function(){ mail.style.color=''; },1300);
-    } else {
-      var c=document.getElementById('contact');
-      if(c) c.scrollIntoView({behavior:'smooth'});
-    }
+    var target = mail || document.getElementById('contact');
+    if(!target) return;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - 72;
+    window.scrollTo({top: top, behavior:'smooth'});
+    if(mail){ mail.style.color='var(--accent)'; setTimeout(function(){ mail.style.color=''; },1300); }
   });
 })();
 </script>
