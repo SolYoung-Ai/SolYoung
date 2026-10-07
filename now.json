@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-07-archive-entry",
+    "date": "2026-10-07T23:50",
+    "type": "BUILD",
+    "content": "网站更新日志：\n\n· 上线「数字档案入口」开场体验：把头像拖进档案框，即可打开 SolYoung 的档案；\n· 首次访问完整体验，之后每次访问只极短暂浮现、不打扰；\n· 页脚可随时 REPLAY INTRO 重温，也支持减少动态效果与手机触屏操作。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-07-footer-image-opt",
     "date": "2026-10-07T23:02",
     "type": "BUILD",
