@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-08-videolab",
+    "date": "2026-10-08T22:10",
+    "type": "BUILD",
+    "content": "更新：\n\n· 独立产品区新增 VideoLAB 自动化剪辑系统（测试中）——文案 + 素材 → 自动成片，域名待定。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08T21:37-think-56azr",
     "date": "2026-10-08T21:37",
     "type": "THINK",
