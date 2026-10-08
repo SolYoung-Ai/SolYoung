@@ -1,5 +1,14 @@
 [
   {
+    "id": "2026-10-08T21:37-think-56azr",
+    "date": "2026-10-08T21:37",
+    "type": "THINK",
+    "content": "如果把人生当成一场游戏，那我现在给自己建一个小农场。而这个网站，就是我现在正在经营的那块农场。\n",
+    "published": true,
+    "images": [],
+    "_pending": false
+  },
+  {
     "id": "2026-10-08-countdown-real",
     "date": "2026-10-08T02:30",
     "type": "BUILD",
