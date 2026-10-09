@@ -1,29 +1,5 @@
 [
   {
-    "id": "why-i-record",
-    "date": "2026 / 09",
-    "title": "为什么我开始记录",
-    "summary": "不是为了证明给谁看。是发现我做完一件东西就忘了——忘掉当时的困惑，忘掉绕过的坑，忘掉为什么这么选。记录，是为了不再重复遗忘。",
-    "page": "thoughts/why-i-record.html",
-    "published": true
-  },
-  {
-    "id": "ai-does-not-decide",
-    "date": "2026 / 08",
-    "title": "AI 不会替我做决定",
-    "summary": "我一度以为 AI 会替我完成创作。用了一阵之后发现不是——它只是把「试错」的成本降得极低，让我在同一个晚上能试出十个方向。选哪个，还是我。",
-    "page": "thoughts/ai-does-not-decide.html",
-    "published": true
-  },
-  {
-    "id": "idea-to-work",
-    "date": "2026 / 07",
-    "title": "一个想法，变成一件作品",
-    "summary": "最大的距离不在「想」和「做」之间，而在「做完一半」和「收尾」。我给自己定了条规矩：想法不落地就不算数，跑通的、粗糙的作品，好过完美的草稿。",
-    "page": "thoughts/idea-to-work.html",
-    "published": true
-  },
-  {
     "id": "2026-10-4-94lm",
     "date": "2026/10/4",
     "title": "一个人有必要建立自己的个人品牌吗？",
