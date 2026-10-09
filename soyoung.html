@@ -1087,7 +1087,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     var nIO = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); nIO.unobserve(e.target); } });
     }, {threshold:.15});
-    list.slice().sort(function(a,b){ return b.date.localeCompare(a.date); }).forEach(function(n,i){
+    list.slice().sort(function(a,b){
+      var pa = String(a.date).split(/[\/\-.]/).map(Number);
+      var pb = String(b.date).split(/[\/\-.]/).map(Number);
+      return (pb[0]-pa[0]) || (pb[1]-pa[1]) || (pb[2]-pa[2]);
+    }).forEach(function(n,i){
       var el = document.createElement('a');
       el.href = n.page; el.className = 'note rv'; el.style.transitionDelay = (i*90) + 'ms';
       el.innerHTML = '<span class="date">' + n.date + '</span><h3>' + n.title + '</h3><p>' + n.summary + '</p>' +
