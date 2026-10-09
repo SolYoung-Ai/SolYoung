@@ -201,6 +201,21 @@ section{position:relative}
 .proj-group-title .en{color:var(--accent);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
 .g-tags{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 16px}
 .tag{font-family:var(--font-display);font-size:10px;letter-spacing:.06em;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:3px 10px;line-height:1}
+/* ===== SolYoung Studio store entry ===== */
+.studio-entry{margin-top:52px;border:1px solid var(--line);border-radius:var(--radius)}
+.studio-link{display:flex;align-items:flex-start;gap:26px;padding:30px 34px;text-decoration:none;color:inherit;transition:background .35s var(--ease)}
+.studio-link:hover{background:var(--bg-soft)}
+.studio-link:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
+.studio-tag{font-family:var(--font-display);font-size:10px;letter-spacing:.2em;color:var(--ink-soft);text-transform:uppercase;white-space:nowrap;padding-top:5px}
+.studio-mid{flex:1;min-width:0}
+.studio-brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.studio-name{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink)}
+.studio-cn{font-family:var(--font-sans);font-size:12px;color:var(--ink-soft)}
+.studio-desc{font-size:13px;color:var(--ink-soft);line-height:1.75;margin-top:9px;max-width:560px}
+.studio-domain{display:block;font-family:var(--font-display);font-size:11px;letter-spacing:.04em;color:var(--ink-faint);margin-top:12px}
+.studio-cta{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--accent);white-space:nowrap;display:inline-flex;align-items:center;gap:6px;margin-left:auto;transition:transform .3s var(--ease)}
+.studio-link:hover .studio-cta{transform:translateX(3px)}
+@media(max-width:768px){.studio-link{flex-direction:column;gap:14px;padding:24px 20px}.studio-cta{margin-left:0;margin-top:8px}.studio-desc{max-width:none}}
 .p-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
 
 /* video reel - horizontal scroll */
@@ -633,6 +648,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       </div>
     </div>
 
+    <div class="studio-entry rv" id="studioEntry">
+      <a class="studio-link" id="studioLink" target="_blank" rel="noopener" aria-label="SolYoung Studio 数字产品商店，点击进入">
+        <span class="studio-tag" data-i18n="studio-tag">DIGITAL PRODUCTS · CREATIVE STUDIO</span>
+        <span class="studio-mid">
+          <span class="studio-brand"><span class="studio-name">SolYoung Studio</span><span class="studio-cn" data-i18n="studio-cn">数字产品商店</span></span>
+          <p class="studio-desc" data-i18n="studio-desc">这里收录我创造并持续迭代的数字工具、AI 创作资源、产品授权与原创数字作品。如果你对我创造的东西感兴趣，可以在这里找到并获取它们。</p>
+          <span class="studio-domain" id="studioDomain"></span>
+        </span>
+        <span class="studio-cta" data-i18n="studio-cta">进入商店 ↗</span>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -837,6 +864,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'pdesc-camsim': {zh:'根据你的使用场景自动生成一套可以直接执行的摄影参数', en:'Generate ready-to-use camera settings for your scenario.'},
     'pdesc-myos': {zh:'这个属于独立创作者的本地工作台，记录 → 思考 → 创作 → 交付 → 归档', en:'A local-first workspace for independent creators — record, think, create, deliver, archive.'},
     'pdesc-videolab': {zh:'文案 + 素材 → 自动成片', en:'Script + footage → finished video'},
+    'studio-tag': {zh:'DIGITAL PRODUCTS · CREATIVE STUDIO', en:'DIGITAL PRODUCTS · CREATIVE STUDIO'},
+    'studio-cn': {zh:'数字产品商店', en:'Digital Product Store'},
+    'studio-desc': {zh:'这里收录我创造并持续迭代的数字工具、AI 创作资源、产品授权与原创数字作品。如果你对我创造的东西感兴趣，可以在这里找到并获取它们。', en:'The digital tools, AI creative resources, product licenses and original works I create and keep evolving. If you are interested in what I make, you can find and get them here.'},
+    'studio-cta': {zh:'进入商店 ↗', en:'Enter Store ↗'},
     'about-quote': {zh:'我是 <span class="hl">SolYoung</span>。<br>一个正在努力把想法变成作品的人。', en:'I\'m <span class="hl">SolYoung</span>.<br>Someone working to turn ideas into works.'},
     'about-p1': {zh:'我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。', en:'I\'m a content creator working in film and editing. Over the years I\'ve explored content, photography, video, AI and new ways of creating — not to become an expert, but because I enjoy making something with my own hands.'},
     'about-p2': {zh:'这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。', en:'This site is not a résumé or a showcase. It\'s more like a digital archive — what I\'ve made, what I\'m trying, and what it taught me. For me it\'s memory; for you, an invitation to see how someone keeps turning ideas into works.'},
@@ -1235,6 +1266,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     var mail=document.querySelector('.contact a[href^="mailto"]');
     if(mail){ mail.style.color='var(--accent)'; setTimeout(function(){ mail.style.color=''; },1300); }
   });
+})();
+
+// ---- SolYoung Studio store entry ----
+// Single source of truth for the store URL. Leave empty ('') to hide the entry.
+var STORE_URL = 'https://solyoung-ai.github.io/Studio/';
+(function(){
+  var entry = document.getElementById('studioEntry');
+  var link = document.getElementById('studioLink');
+  var domain = document.getElementById('studioDomain');
+  if(!STORE_URL){ if(entry) entry.style.display = 'none'; return; }
+  if(link) link.href = STORE_URL;
+  if(domain) domain.textContent = STORE_URL.replace(/^https?:\/\//, '');
 })();
 </script>
 </body>
