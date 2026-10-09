@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-09-avatar-fast",
+    "date": "2026-10-09T22:12",
+    "type": "BUILD",
+    "content": "更新：\n\n· 首页头像改用多尺寸按需加载——普通屏秒开小图、高清屏保持清晰大图，加载明显变快。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-08-videolab",
     "date": "2026-10-08T22:10",
     "type": "BUILD",
