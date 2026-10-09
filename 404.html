@@ -23,6 +23,14 @@
         document.open(); document.write(html); document.close();
       })
       .catch(function () { location.replace('/TypeAll/'); });
+  } else if (p.indexOf('/studio') === 0) {
+    // SolYoung Studio：加载其入口，React Router 以 basename=/studio/ 接管当前 URL
+    fetch('/studio/index.html')
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        document.open(); document.write(html); document.close();
+      })
+      .catch(function () { location.replace('/studio/'); });
   } else {
     location.replace('/');
   }
