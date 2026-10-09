@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-09-thoughts-sort",
+    "date": "2026-10-09T23:40",
+    "type": "BUILD",
+    "content": "修复：\n\n· 思考板块改为按日期真实排序，最新发布的文章排在最前。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-09-avatar-fast",
     "date": "2026-10-09T22:12",
     "type": "BUILD",
