@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-visits",
+    "date": "2026-10-10T16:28",
+    "type": "BUILD",
+    "content": "更新：\n\n· 网站底部新增实时访问量统计，任何访客打开都会自动 +1。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-videolab-domain",
     "date": "2026-10-10T13:40",
     "type": "BUILD",
