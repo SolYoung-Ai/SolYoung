@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-studio-real-works",
+    "date": "2026-10-10T12:20",
+    "type": "BUILD",
+    "content": "更新：\n\n· SolYoung Studio 作品区换为真实作品——My.OS、Verity 人格测试、CamSim 相机参数模拟器、VIDEO LAB 自动剪辑工作台，均免费直达主站工具页。\n· 补齐微信客服二维码，人工核验联系方式可直接扫码。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-videolab-live",
     "date": "2026-10-10T12:03",
     "type": "BUILD",
