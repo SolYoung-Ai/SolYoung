@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-videolab-domain",
+    "date": "2026-10-10T13:40",
+    "type": "BUILD",
+    "content": "更新：\n\n· VideoLAB自动化剪辑系统上线独立入口 solyoung.top/video/（仍标注测试中）。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-works-to-studio",
     "date": "2026-10-10T09:43",
     "type": "BUILD",
