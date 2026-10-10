@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-visits-1000",
+    "date": "2026-10-10T16:43",
+    "type": "BUILD",
+    "content": "更新：\n\n· 网站访问量从 1000 开始显示。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-visits",
     "date": "2026-10-10T16:28",
     "type": "BUILD",
