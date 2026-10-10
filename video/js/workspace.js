@@ -17,6 +17,8 @@ ML.workspace = (function(){
 
   const el = id => root ? root.querySelector(id) : null;
   function qAll(sel){ return root ? Array.from(root.querySelectorAll(sel)) : []; }
+  /* deep clone helper (clipboard/history snapshots must never share refs) */
+  function deep(o){ return JSON.parse(JSON.stringify(o)); }
 
   /* ============ history ============ */
   function snap(){
@@ -622,7 +624,7 @@ ML.workspace = (function(){
   function copySelectedClip(){
     const c = project.timeline.clips.find(x=>x.id===selectedClipId);
     if(!c) return;
-    clipboardClip = S.deep(c);
+    clipboardClip = deep(c);
     L.toast(Tn('ws.copied'));
   }
   function pasteClipboard(){
@@ -631,7 +633,7 @@ ML.workspace = (function(){
     const dur = o.timelineEnd - o.timelineStart;
     const clip = ML.timeline.newClip(o.track, {
       sceneId: o.sceneId, assetId: o.assetId, voiceId: o.voiceId,
-      text: o.text, lines: o.lines, style: S.deep(o.style),
+      text: o.text, lines: o.lines, style: deep(o.style),
       sourceStart: o.sourceStart, sourceEnd: o.sourceEnd,
       timelineStart: currentTime, timelineEnd: currentTime + dur,
       scale: o.transform?o.transform.scale:1, x: o.transform?o.transform.x:0, y: o.transform?o.transform.y:0,
@@ -648,7 +650,7 @@ ML.workspace = (function(){
     const dur = c.timelineEnd - c.timelineStart;
     const clip = ML.timeline.newClip(c.track, {
       sceneId: c.sceneId, assetId: c.assetId, voiceId: c.voiceId,
-      text: c.text, lines: c.lines, style: S.deep(c.style),
+      text: c.text, lines: c.lines, style: deep(c.style),
       sourceStart: c.sourceStart, sourceEnd: c.sourceEnd,
       timelineStart: c.timelineEnd, timelineEnd: c.timelineEnd + dur,
       scale: c.transform?c.transform.scale:1, x: c.transform?c.transform.x:0, y: c.transform?c.transform.y:0,
