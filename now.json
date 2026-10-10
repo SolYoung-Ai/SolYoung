@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-btn-icon",
+    "date": "2026-10-10T05:42",
+    "type": "BUILD",
+    "content": "更新：\n\n· 右上角手机按钮改为手机图标样式，点击切换手机/桌面排版，手机模式下按钮高亮。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-btn-rework",
     "date": "2026-10-10T05:31",
     "type": "BUILD",
