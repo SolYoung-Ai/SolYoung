@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-works-to-studio",
+    "date": "2026-10-10T09:43",
+    "type": "BUILD",
+    "content": "更新：\n\n· 作品入口统一改为跳转 SolYoung Studio 商店（solyoung.top/studio/），取消作品二级页面。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-studio-updates-sync",
     "date": "2026-10-10T15:15",
     "type": "BUILD",
