@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-studio-controls",
+    "date": "2026-10-10T12:35",
+    "type": "BUILD",
+    "content": "更新：\n\n· SolYoung Studio 头部新增手机/桌面视图预览与中英双语切换，界面文案可中英切换并记忆选择；移动端默认自适应。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-studio-real-works",
     "date": "2026-10-10T12:20",
     "type": "BUILD",
