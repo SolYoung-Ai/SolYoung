@@ -320,6 +320,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .foot-slogan{font-family:var(--font-serif);font-size:clamp(20px,3vw,30px);font-weight:600}
 .foot-slogan .q{color:var(--accent)}
 .foot-meta{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+.foot-visits{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint);margin-top:8px}
 .foot-countdown{text-align:center}
 .countdown-time{font-family:var(--font-display);font-size:clamp(20px,3vw,28px);font-weight:600;letter-spacing:.04em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
 .countdown-note{margin-top:12px;font-family:var(--font-sans);font-size:12px;color:var(--ink-soft);line-height:1.8;letter-spacing:.02em;max-width:460px;margin-left:auto;margin-right:auto}
@@ -497,9 +498,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .portrait-wrap{cursor:pointer}
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
-<body>
-<!-- ===== ARCHIVE ENTRY INTRO ===== -->
+<body><!-- ===== ARCHIVE ENTRY INTRO ===== -->
 <div class="archive-intro" id="archiveIntro" aria-hidden="true">
   <div class="ai-center">
     <div class="ai-frame" id="aiFrame"><div class="ai-frame-inner"></div></div>
@@ -759,6 +760,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
     </div>
     <div class="foot-meta" data-i18n="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
+    <div class="foot-visits"><span data-i18n="foot-visits">访问量</span> <span id="busuanzi_value_site_pv">0</span></div>
     <button type="button" class="foot-replay" id="replayIntro">REPLAY INTRO</button>
   </div>
 </footer>
@@ -888,6 +890,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'social-x': {zh:'X', en:'X'},
     'foot-slogan': {zh:'记录，是为了<span class="q">忘记。</span>', en:'To record is to <span class="q">forget.</span>'},
     'foot-meta': {zh:'© 2026 SolYoung · 以探索的方式搭建 · v1.0', en:'© 2026 SolYoung · Built by exploring · v1.0'},
+    'foot-visits': {zh:'访问量', en:'Visits'},
     'foot-countdown-note': {zh:'每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。', en:'Every 100 hours, this site and everything I create change — added or trimmed, always moving toward something better.'},
     'nav-theme': {zh:'切换主题', en:'Toggle theme'},
     'nav-lang': {zh:'切换语言', en:'Toggle language'},
