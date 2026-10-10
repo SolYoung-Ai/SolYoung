@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-videolab-v341",
+    "date": "2026-10-10T16:50",
+    "type": "BUILD",
+    "content": "VIDEO LAB v34.1：\n\n· 修复工作台 Undo/Redo 历史快照的引用污染（深拷贝），拖拽、裁切、删除、替换、字幕与配音调整均可可靠撤销/重做。\n· 同步推送 GitHub 独立仓库 SolYoung-Ai/Video 与本站 video/ 目录，代码与本地完全一致。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-updates-filter",
     "date": "2026-10-10T15:05",
     "type": "BUILD",
