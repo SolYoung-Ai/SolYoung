@@ -1284,6 +1284,22 @@ var STORE_URL = 'https://solyoung.top/studio/';
   if(link) link.href = STORE_URL;
   if(domain) domain.textContent = STORE_URL.replace(/^https?:\/\//, '');
 })();
+
+// ---- visit counter base offset: show real PV + 999 (starts from 1000) ----
+(function(){
+  var el = document.getElementById('busuanzi_value_site_pv');
+  if(!el) return;
+  var OFFSET = 999;
+  var lastRaw = null;
+  new MutationObserver(function(){
+    var t = (el.textContent || '').trim();
+    var v = parseInt(t, 10);
+    if(isNaN(v)) return;
+    if(lastRaw === v) return;
+    lastRaw = v;
+    el.textContent = String(v + OFFSET);
+  }).observe(el, {childList:true, subtree:true, characterData:true});
+})();
 </script>
 </body>
 </html>
