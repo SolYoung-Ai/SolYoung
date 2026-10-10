@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-studio-updates-sync",
+    "date": "2026-10-10T15:15",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 更新日志页改为实时读取主站 now 时间线，子产品每次更新自动同步，并按产品分类筛选。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-videolab-v341",
     "date": "2026-10-10T16:50",
     "type": "BUILD",
