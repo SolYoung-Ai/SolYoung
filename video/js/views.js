@@ -151,6 +151,7 @@ ML.views = (function(){
     /* step 3: media */
     const zone = app.querySelector('.dropzone'), fileInp = app.querySelector('.nw-file');
     app.querySelector('[data-act=pickFiles]').addEventListener('click', ()=>fileInp.click());
+    zone.addEventListener('click', ()=>fileInp.click());
     fileInp.addEventListener('change', ()=>handleFiles(fileInp.files));
     zone.addEventListener('dragover', e=>{ e.preventDefault(); zone.classList.add('over'); });
     zone.addEventListener('dragleave', ()=>zone.classList.remove('over'));
