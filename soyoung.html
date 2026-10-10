@@ -1290,15 +1290,15 @@ var STORE_URL = 'https://solyoung.top/studio/';
   var el = document.getElementById('busuanzi_value_site_pv');
   if(!el) return;
   var OFFSET = 999;
-  var lastRaw = null;
-  new MutationObserver(function(){
-    var t = (el.textContent || '').trim();
-    var v = parseInt(t, 10);
+  var mo = new MutationObserver(function(){
+    // guard against our own write (prevents infinite loop)
+    if(el.dataset.__ok){ delete el.dataset.__ok; return; }
+    var v = parseInt((el.textContent || '').trim(), 10);
     if(isNaN(v)) return;
-    if(lastRaw === v) return;
-    lastRaw = v;
+    el.dataset.__ok = '1';
     el.textContent = String(v + OFFSET);
-  }).observe(el, {childList:true, subtree:true, characterData:true});
+  });
+  mo.observe(el, {childList:true, subtree:true, characterData:true});
 })();
 </script>
 </body>
