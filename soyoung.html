@@ -540,8 +540,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
       <button class="theme-btn comfort-btn" id="comfortBtn" aria-label="切换移动排版">
-        <svg id="iconPhone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>
-        <svg id="iconDesktop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>
       </button>
       <button class="theme-btn lang-btn" id="langBtn" aria-label="切换语言"><span id="langTxt">EN</span></button>
       <button class="burger" id="burger" aria-label="菜单"><span></span><span></span><span></span></button>
@@ -819,13 +818,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
   // mobile comfort toggle — switch to a more relaxed mobile layout
   var comfortBtn = document.getElementById('comfortBtn');
-  var iconPhone = document.getElementById('iconPhone');
-  var iconDesktop = document.getElementById('iconDesktop');
   function applyComfort(on){
     document.body.classList.toggle('mobile-comfort', on);
     if(comfortBtn) comfortBtn.classList.toggle('on', on);
-    if(iconPhone) iconPhone.style.display = on ? '' : 'none';
-    if(iconDesktop) iconDesktop.style.display = on ? 'none' : '';
     if(comfortBtn) comfortBtn.setAttribute('aria-label', on ? '手机排版 / 桌面' : '切换移动排版 / 桌面');
   }
   var savedComfort = localStorage.getItem('soyoung-comfort');
