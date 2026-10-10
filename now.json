@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-videolab-live",
+    "date": "2026-10-10T12:03",
+    "type": "BUILD",
+    "content": "上线：\n\n· VideoLAB 自动化剪辑系统正式上线（solyoung.top/video/）——文案 + 素材 → 自动成片。粘贴脚本、上传素材，自动拆句理解、匹配画面、生成配音与字幕、搭建时间轴，进入工作台微调后一键导出 MP4。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-os-entry",
     "date": "2026-10-10T11:44",
     "type": "BUILD",
