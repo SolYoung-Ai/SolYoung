@@ -56,6 +56,8 @@ ML.providers = (function(){
   /* ---- TTS provider interface ----
      synthesize(text, voice) -> { audio: Blob|null, duration, provider, voiceId, status }
      Mock returns duration estimate only; browser SpeechSynthesis is used for live preview. */
+  let _previewActive = false;
+
   const TTS = {
     async synthesize(text, voiceId){
       const v = voiceId || (config().tts && config().tts.voice) || 'Chinese Female 01';
@@ -75,18 +77,24 @@ ML.providers = (function(){
     },
     async preview(text, voiceId){
       /* live listen — browser speech synthesis, never faked audio */
-      return new Promise(res => {
-        if(!window.speechSynthesis){ res(false); return; }
+      if(!window.speechSynthesis) return false;
+      return new Promise(res=>{
+        let settled = false;
+        const done = ok=>{ if(!settled){ settled = true; _previewActive = false; res(ok); } };
         const u = new SpeechSynthesisUtterance(text);
         u.lang = /[\u4e00-\u9fff]/.test(text) ? 'zh-CN' : 'en-US';
         u.rate = 1; u.pitch = 1;
+        u.onend = ()=>done(true);
+        u.onerror = ()=>done(false);
         window.speechSynthesis.cancel();
+        _previewActive = true;
         window.speechSynthesis.speak(u);
-        u.onend = ()=>res(true);
-        u.onerror = ()=>res(false);
+        /* guard: a cancel() or paused engine must never hang the caller */
+        setTimeout(()=>done(false), 45000);
       });
     },
-    stopPreview(){ if(window.speechSynthesis) window.speechSynthesis.cancel(); },
+    stopPreview(){ if(window.speechSynthesis) window.speechSynthesis.cancel(); _previewActive = false; },
+    isPreviewing(){ return _previewActive; },
     voices(){
       return ['Chinese Female 01','Chinese Female 02','Chinese Male 01','Chinese Male 02','English Female','English Male'];
     },
