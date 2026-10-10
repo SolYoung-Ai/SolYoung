@@ -1,9 +1,9 @@
 [
   {
-    "id": "2026-10-10-fix-scroll",
-    "date": "2026-10-10T16:57",
+    "id": "2026-10-10-videolab-v341",
+    "date": "2026-10-10T16:50",
     "type": "BUILD",
-    "content": "修复：\n\n· 修复访问量偏移造成的页面卡死，现已恢复正常滚动，访问量继续从 1000 开始显示。",
+    "content": "VIDEO LAB v34.1：\n\n· 修复工作台 Undo/Redo 历史快照的引用污染（深拷贝），拖拽、裁切、删除、替换、字幕与配音调整均可可靠撤销/重做。\n· 同步推送 GitHub 独立仓库 SolYoung-Ai/Video 与本站 video/ 目录，代码与本地完全一致。",
     "published": true,
     "images": []
   },
@@ -24,18 +24,10 @@
     "images": []
   },
   {
-    "id": "2026-10-10-videolab-domain",
-    "date": "2026-10-10T13:40",
+    "id": "2026-10-10-videolab-rebuild",
+    "date": "2026-10-10T16:20",
     "type": "BUILD",
-    "content": "更新：\n\n· VideoLAB自动化剪辑系统上线独立入口 solyoung.top/video/（仍标注测试中）。",
-    "published": true,
-    "images": []
-  },
-  {
-    "id": "2026-10-10-works-to-studio",
-    "date": "2026-10-10T09:43",
-    "type": "BUILD",
-    "content": "更新：\n\n· 作品入口统一改为跳转 SolYoung Studio 商店（solyoung.top/studio/），取消作品二级页面。",
+    "content": "VIDEO LAB 专项重构上线（v34）：\n\n· 自动剪辑质量引擎：文案角色识别（Hook/List/Explanation/CTA 等 10 类）驱动镜头节奏；可解释语义匹配（置信度+匹配原因）；前后镜头重复惩罚；4 种剪辑风格（自然/快速/电影感/纪实）真实改变剪辑决策。\n· 成片质量检查：重复素材、冷开场、无匹配场景自动告警并可一键跳转修复。\n· 配音系统：新建流程与工作台均可试听；浏览器合成试听与真实音频分离；单句重新生成不影响其他片段。\n· 工作台：多轨时间轴真实编辑（拖动/裁切/分割/删除/替换）；快捷键全套（Space/S/⌘Z/⌘⇧Z/⌘S/Delete/方向键逐帧/Home/End/M/缩放）并带输入框焦点保护；Undo/Redo 100 步。\n· 字体与审美：6 套可辨识字体（含宋体/楷体）+ 6 种字幕风格预设（编辑式/知识简洁/关键词高亮/电影感/纪实/科技），真实写入项目并影响渲染与导出。\n· 修复：横屏素材竖屏黑边（真实 cover 裁切）、配音重生成后续片段不位移、字体选择器损坏等。\n· 导出：MP4 真实编码（WebCodecs+MP4 Muxer），导出后验证文件大小与时长；SRT 字幕导出；无真实配音时明确标注开发模式。",
     "published": true,
     "images": []
   },
@@ -44,14 +36,6 @@
     "date": "2026-10-10T15:15",
     "type": "BUILD",
     "content": "更新：\n\n· Studio 更新日志页改为实时读取主站 now 时间线，子产品每次更新自动同步，并按产品分类筛选。",
-    "published": true,
-    "images": []
-  },
-  {
-    "id": "2026-10-10-videolab-v341",
-    "date": "2026-10-10T16:50",
-    "type": "BUILD",
-    "content": "VIDEO LAB v34.1：\n\n· 修复工作台 Undo/Redo 历史快照的引用污染（深拷贝），拖拽、裁切、删除、替换、字幕与配音调整均可可靠撤销/重做。\n· 同步推送 GitHub 独立仓库 SolYoung-Ai/Video 与本站 video/ 目录，代码与本地完全一致。",
     "published": true,
     "images": []
   },
@@ -68,14 +52,6 @@
     "date": "2026-10-10T14:50",
     "type": "BUILD",
     "content": "更新：\n\n· Studio 商品卡片与详情主视觉改为各工具首页横版预览截图，Logo 缩小为标题旁小图标。",
-    "published": true,
-    "images": []
-  },
-  {
-    "id": "2026-10-10-videolab-rebuild",
-    "date": "2026-10-10T16:20",
-    "type": "BUILD",
-    "content": "VIDEO LAB 专项重构上线（v34）：\n\n· 自动剪辑质量引擎：文案角色识别（Hook/List/Explanation/CTA 等 10 类）驱动镜头节奏；可解释语义匹配（置信度+匹配原因）；前后镜头重复惩罚；4 种剪辑风格（自然/快速/电影感/纪实）真实改变剪辑决策。\n· 成片质量检查：重复素材、冷开场、无匹配场景自动告警并可一键跳转修复。\n· 配音系统：新建流程与工作台均可试听；浏览器合成试听与真实音频分离；单句重新生成不影响其他片段。\n· 工作台：多轨时间轴真实编辑（拖动/裁切/分割/删除/替换）；快捷键全套（Space/S/⌘Z/⌘⇧Z/⌘S/Delete/方向键逐帧/Home/End/M/缩放）并带输入框焦点保护；Undo/Redo 100 步。\n· 字体与审美：6 套可辨识字体（含宋体/楷体）+ 6 种字幕风格预设（编辑式/知识简洁/关键词高亮/电影感/纪实/科技），真实写入项目并影响渲染与导出。\n· 修复：横屏素材竖屏黑边（真实 cover 裁切）、配音重生成后续片段不位移、字体选择器损坏等。\n· 导出：MP4 真实编码（WebCodecs+MP4 Muxer），导出后验证文件大小与时长；SRT 字幕导出；无真实配音时明确标注开发模式。",
     "published": true,
     "images": []
   },
@@ -104,10 +80,10 @@
     "images": []
   },
   {
-    "id": "2026-10-10-btn-icon",
-    "date": "2026-10-10T05:42",
+    "id": "2026-10-10-videolab-domain",
+    "date": "2026-10-10T13:40",
     "type": "BUILD",
-    "content": "更新：\n\n· 右上角手机按钮改为手机图标样式，点击切换手机/桌面排版，手机模式下按钮高亮。",
+    "content": "更新：\n\n· VideoLAB自动化剪辑系统上线独立入口 solyoung.top/video/（仍标注测试中）。",
     "published": true,
     "images": []
   },
@@ -148,6 +124,22 @@
     "date": "2026-10-10T11:44",
     "type": "BUILD",
     "content": "更新：\n\n· My OS 新增小写入口 solyoung.top/os/，自动跳转到工作台（solyoung.top/OS/），两种写法都能打开。",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": "2026-10-10-works-to-studio",
+    "date": "2026-10-10T09:43",
+    "type": "BUILD",
+    "content": "更新：\n\n· 作品入口统一改为跳转 SolYoung Studio 商店（solyoung.top/studio/），取消作品二级页面。",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": "2026-10-10-btn-icon",
+    "date": "2026-10-10T05:42",
+    "type": "BUILD",
+    "content": "更新：\n\n· 右上角手机按钮改为手机图标样式，点击切换手机/桌面排版，手机模式下按钮高亮。",
     "published": true,
     "images": []
   },
