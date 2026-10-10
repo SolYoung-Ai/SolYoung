@@ -87,7 +87,7 @@ input[type=checkbox]:checked{background:var(--text);border-color:var(--text)}
 input[type=checkbox]:checked::after{content:'';position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #0a0a0a;border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
 
 /* ============ App shell ============ */
-#app{position:fixed;inset:0;top:var(--topbar);overflow-y:auto;overflow-x:hidden}
+#app{position:fixed;inset:0;top:var(--topbar);bottom:52px;overflow-y:auto;overflow-x:hidden}
 .view-error{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:40vh;color:var(--text2);font-size:13px}
 .view-error .btn{margin-top:6px}
 .ws-empty{color:var(--text3);font-size:12px;padding:24px 10px;text-align:center;line-height:1.7}
@@ -404,7 +404,8 @@ input[type=checkbox]:checked::after{content:'';position:absolute;left:4px;top:1p
 .pal-item kbd{font:11px 'JetBrains Mono',monospace;color:var(--text3);border:1px solid var(--border);border-radius:4px;padding:1px 6px}
 
 /* ============ Site footer ============ */
-.site-footer{display:flex;align-items:center;justify-content:center;gap:6px;padding:18px 16px 22px;border-top:1px solid var(--border);font:11px/1.6 var(--sans);letter-spacing:.05em;color:var(--text3);text-align:center}
+.site-footer{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:center;gap:6px;padding:14px 16px 16px;border-top:1px solid var(--border);background:rgba(9,9,9,0.86);backdrop-filter:blur(14px);font:11px/1.6 var(--sans);letter-spacing:.05em;color:var(--text3);text-align:center}
 .site-footer a{color:var(--text2);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
 .site-footer a:hover{color:var(--text);border-color:var(--text3)}
 body[data-route="project"] .site-footer{display:none}
+body[data-route="project"] #app{bottom:0}
