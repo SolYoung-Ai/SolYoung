@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-10-os-entry",
+    "date": "2026-10-10T11:44",
+    "type": "BUILD",
+    "content": "更新：\n\n· My OS 新增小写入口 solyoung.top/os/，自动跳转到工作台（solyoung.top/OS/），两种写法都能打开。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-10-studio-launch",
     "date": "2026-10-10T02:41",
     "type": "BUILD",
