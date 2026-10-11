@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-11-studio-services",
+    "date": "2026-10-11T18:45",
+    "type": "BUILD",
+    "content": "SolYoung Studio 业务升级：\n\n· 新增独立服务页 /services：个人数字空间搭建、AI 数字产品定制、AI 创作工作流梳理，含合作流程、交付边界、FAQ 与项目咨询表单。\n· 首页保留原骨架，新增轻量服务导览；Hero 次按钮改为「聊聊你的想法」。\n· 购买须知、服务条款、隐私说明补充定制项目相关条款。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-11-studio-tiers",
     "date": "2026-10-11T00:30",
     "type": "BUILD",
