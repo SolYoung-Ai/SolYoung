@@ -232,6 +232,39 @@ section{position:relative}
 .vid-name{font-family:var(--font-display);font-weight:600;font-size:15px;display:block;margin-top:12px;color:var(--ink)}
 .vid-meta{font-size:12px;color:var(--ink-soft);margin-top:3px;display:block}
 
+/* ===== Video & Visuals showcase (影像与视频) ===== */
+.vshow-intro{font-size:13px;color:var(--ink-soft);line-height:1.75;margin:-6px 0 18px;max-width:560px}
+.vshow-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.vshow-fbtn{font-family:var(--font-display);font-size:11px;letter-spacing:.08em;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:5px 13px;line-height:1;cursor:pointer;background:transparent;transition:color .3s,border-color .3s}
+.vshow-fbtn:hover{color:var(--accent);border-color:var(--accent)}
+.vshow-fbtn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+.vshow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,24px)}
+@media(max-width:900px){.vshow-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.vshow-grid{grid-template-columns:1fr}}
+.vshow-card{position:relative;display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);transition:border-color .35s,transform .4s var(--ease),box-shadow .35s;transform:translateZ(0)}
+.vshow-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--shadow)}
+.vshow-card:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
+.vshow-cover{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--bg-soft);display:block}
+.vshow-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s var(--ease)}
+.vshow-card:hover .vshow-cover img{transform:scale(1.04)}
+.vshow-state{position:absolute;top:12px;left:12px;font-family:var(--font-display);font-size:10px;letter-spacing:.14em;color:var(--ink-soft);background:rgba(244,240,231,.88);border:1px solid var(--line);border-radius:20px;padding:3px 9px;line-height:1}
+.vshow-play{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);font-size:12px;letter-spacing:.1em;color:#fff;background:rgba(0,0,0,.14);opacity:0;transition:opacity .3s}
+.vshow-card:hover .vshow-play{opacity:1}
+.vshow-meta{padding:14px 16px 16px;display:block}
+.vshow-cat{font-family:var(--font-display);font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;display:block}
+.vshow-title{font-family:var(--font-display);font-weight:600;font-size:15px;line-height:1.4;display:block;margin-top:6px;color:var(--ink)}
+.vshow-desc{font-size:12px;color:var(--ink-soft);line-height:1.6;display:block;margin-top:6px}
+.vshow-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.vshow-platform{font-size:11px;color:var(--ink-faint);letter-spacing:.06em}
+.vshow-open{font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--accent);white-space:nowrap;transition:transform .3s var(--ease)}
+.vshow-card:hover .vshow-open{transform:translateX(2px)}
+.vshow-empty{font-size:13px;color:var(--ink-soft);padding:28px 0;text-align:center}
+.vshow-more{margin-top:26px;text-align:right}
+.vshow-more-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:.1em;color:var(--ink);transition:color .3s}
+.vshow-more-link:hover{color:var(--accent)}
+.vshow-more-link svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.vshow-more-link:hover svg{transform:translateX(4px)}
+
 /* ============ Experiment ============ */
 .exp-feature{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);transition:border-color .4s}
 .exp-feature:hover{border-color:var(--accent)}
@@ -623,6 +656,15 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     </div>
 
     <div class="proj-group rv">
+      <div class="proj-group-title" data-i18n="vid-title">影像与视频 <span class="en">VIDEO &amp; VISUALS</span></div>
+      <p class="vshow-intro" data-i18n="vid-intro">记录影像、内容与 AI 创作实践。从镜头里的画面，到把想法变成现实的过程。</p>
+      <div class="vshow-filters" id="vidFilters" role="group" aria-label="视频分类筛选"></div>
+      <div class="vshow-grid" id="vidGrid"></div>
+      <p class="vshow-empty" id="vidEmpty" style="display:none" data-i18n="vid-empty">该分类暂无视频，后续补充。</p>
+      <div class="vshow-more"><a class="vshow-more-link" id="vidMoreLink" target="_blank" rel="noopener noreferrer" data-i18n="vid-more">查看更多视频 ↗</a></div>
+    </div>
+
+    <div class="proj-group rv">
       <div class="proj-group-title" data-i18n="proj-products">独立产品 <span class="en">PRODUCTS</span></div>
       <div class="g-tags"><span class="tag" data-i18n="tag-test">性格测试</span><span class="tag" data-i18n="tag-cam">摄影工具</span><span class="tag" data-i18n="tag-os">创作系统</span><span class="tag" data-i18n="tag-video">视频工具</span></div>
       <div class="projects">
@@ -894,7 +936,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'foot-countdown-note': {zh:'每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。', en:'Every 100 hours, this site and everything I create change — added or trimmed, always moving toward something better.'},
     'nav-theme': {zh:'切换主题', en:'Toggle theme'},
     'nav-lang': {zh:'切换语言', en:'Toggle language'},
-    'nav-comfort': {zh:'切换移动排版', en:'Toggle mobile layout'}
+    'nav-comfort': {zh:'切换移动排版', en:'Toggle mobile layout'},
+    'vid-title': {zh:'影像与视频 <span class="en">VIDEO &amp; VISUALS</span>', en:'Video <span class="en">VIDEO &amp; VISUALS</span>'},
+    'vid-intro': {zh:'记录影像、内容与 AI 创作实践。从镜头里的画面，到把想法变成现实的过程。', en:'Recording imagery, content and AI-driven creation — from what the lens sees to ideas turned into reality.'},
+    'vid-empty': {zh:'该分类暂无视频，后续补充。', en:'No videos in this category yet.'},
+    'vid-more': {zh:'查看更多视频 ↗', en:'View all videos ↗'}
   };
   var currentLang = localStorage.getItem('soyoung-lang') === 'en' ? 'en' : 'zh';
   function applyLang(lang){
@@ -912,6 +958,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     if(comfortBtnEl) comfortBtnEl.setAttribute('aria-label', I18N['nav-comfort'][lang]);
     document.documentElement.setAttribute('lang', lang==='zh' ? 'zh-CN' : 'en');
     document.documentElement.setAttribute('data-lang', lang);
+    if(window.__renderVideos) window.__renderVideos();
   }
   applyLang(currentLang);
   var langBtn = document.getElementById('langBtn');
@@ -1271,6 +1318,119 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     var mail=document.querySelector('.contact a[href^="mailto"]');
     if(mail){ mail.style.color='var(--accent)'; setTimeout(function(){ mail.style.color=''; },1300); }
   });
+})();
+
+// ---- Video & Visuals showcase (data-driven, replaceable samples) ----
+// "查看更多视频" profile page (single source; reuse existing Douyin account)
+var VIDEO_PROFILE = 'https://v.douyin.com/NT7pNjGp9XM/';
+(function(){
+  var grid = document.getElementById('vidGrid');
+  var filters = document.getElementById('vidFilters');
+  var empty = document.getElementById('vidEmpty');
+  var moreLink = document.getElementById('vidMoreLink');
+  if(!grid || !filters) return;
+  var current = 'all';
+  function lang(){ return localStorage.getItem('soyoung-lang') === 'en' ? 'en' : 'zh'; }
+  var VIDEO_I18N = {
+    'filter-all': {zh:'全部', en:'All'},
+    'view': {zh:'观看视频 ↗', en:'Watch ↗'},
+    'profile': {zh:'前往账号观看 ↗', en:'Open Account ↗'},
+    'sample': {zh:'示例', en:'Sample'}
+  };
+  var VIDEO_CATS = {
+    'AI 创作': {zh:'AI 创作', en:'AI Creation'},
+    '数字产品': {zh:'数字产品', en:'Digital Products'},
+    '影像短片': {zh:'影像短片', en:'Visual Shorts'},
+    '创作实验': {zh:'创作实验', en:'Creative Lab'},
+    '创作思考': {zh:'创作思考', en:'Creative Thinking'}
+  };
+  function t(key){
+    var e = VIDEO_I18N[key];
+    if(e){ var v = e[lang()]; return v !== undefined ? v : e.zh; }
+    return key;
+  }
+  function cate(c){
+    var o = VIDEO_CATS[c];
+    if(o){ var v = o[lang()]; return v || o.zh; }
+    return c;
+  }
+  var VIDEO_WORKS = [
+    {
+      id:'v1', title:'如果把人生当成经营游戏，我用 AI 给自己建了个小农场',
+      category:'AI 创作', desc:'借助 AI 搭建个人网站，持续把想法变成真实作品。',
+      cover:'assets/video-cover-v1.webp', platform:'抖音',
+      videoUrl:'', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/',
+      status:'sample', coverPosition:'center'
+    },
+    {
+      id:'v2', title:'我用 AI 做了一个相机参数模拟器',
+      category:'数字产品', desc:'把实际拍摄需求变成可以操作的摄影参数工具。',
+      cover:'assets/video-cover-v2.webp', platform:'抖音',
+      videoUrl:'', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/',
+      status:'sample', coverPosition:'center'
+    },
+    {
+      id:'v3', title:'用镜头记录那些值得停留的瞬间',
+      category:'影像短片', desc:'「杨十八」的个人影像、氛围短片与电影感作品。',
+      cover:'assets/video-cover-v3.webp', platform:'抖音',
+      videoUrl:'', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/',
+      status:'sample', coverPosition:'center'
+    },
+    {
+      id:'v4', title:'我正在做一个自动化剪辑工具',
+      category:'创作实验', desc:'记录 VideoLAB 的开发尝试与剪辑流程优化。',
+      cover:'assets/video-cover-v4.webp', platform:'抖音',
+      videoUrl:'', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/',
+      status:'sample', coverPosition:'center'
+    },
+    {
+      id:'v5', title:'一个人，如何把脑子里的想法变成作品',
+      category:'创作思考', desc:'围绕个人创作、AI 实践与数字作品制作的口播内容。',
+      cover:'assets/video-cover-v5.webp', platform:'抖音',
+      videoUrl:'', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/',
+      status:'sample', coverPosition:'center'
+    }
+  ];
+  function uniqueCats(){
+    var seen = {}, out = [];
+    VIDEO_WORKS.forEach(function(w){ if(w.category && !seen[w.category]){ seen[w.category]=1; out.push(w.category); } });
+    return out;
+  }
+  function render(){
+    var cats = ['all'].concat(uniqueCats());
+    filters.innerHTML = cats.map(function(c){
+      var label = c === 'all' ? t('filter-all') : cate(c);
+      return '<button type="button" class="vshow-fbtn' + (c===current?' on':'') + '" data-filter="'+c+'">'+label+'</button>';
+    }).join('');
+    var list = VIDEO_WORKS.filter(function(w){ return current==='all' || w.category===current; });
+    if(empty) empty.style.display = list.length ? 'none' : '';
+    if(!list.length){ grid.innerHTML=''; return; }
+    grid.innerHTML = list.map(function(w){
+      var href = (w.videoUrl && w.videoUrl!=='#') ? w.videoUrl : (w.profileUrl || '');
+      var hasVideo = !!(w.videoUrl && w.videoUrl!=='#');
+      var openLabel = hasVideo ? t('view') : t('profile');
+      var stateLabel = t('sample');
+      return '<a class="vshow-card" href="'+href+'" target="_blank" rel="noopener noreferrer" aria-label="'+w.title+'">' +
+        '<span class="vshow-cover"><img loading="lazy" src="'+w.cover+'" alt="'+w.title+'" style="object-position:'+(w.coverPosition||'center')+'">' +
+        '<span class="vshow-state">'+stateLabel+'</span>' +
+        '<span class="vshow-play">'+openLabel+'</span></span>' +
+        '<span class="vshow-meta">' +
+          '<span class="vshow-cat">'+cate(w.category)+'</span>' +
+          '<span class="vshow-title">'+w.title+'</span>' +
+          (w.desc ? '<span class="vshow-desc">'+w.desc+'</span>' : '') +
+          '<span class="vshow-foot"><span class="vshow-platform">'+w.platform+'</span><span class="vshow-open">'+openLabel+'</span></span>' +
+        '</span></a>';
+    }).join('');
+  }
+  filters.addEventListener('click', function(e){
+    var btn = e.target.closest('.vshow-fbtn');
+    if(!btn) return;
+    current = btn.getAttribute('data-filter');
+    render();
+  });
+  if(moreLink) moreLink.href = VIDEO_PROFILE;
+  render();
+  window.__renderVideos = render;
 })();
 
 // ---- SolYoung Studio store entry ----
