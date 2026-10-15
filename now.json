@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-16-studio-cases-title",
+    "date": "2026-10-16T11:00",
+    "type": "BUILD",
+    "content": "SolYoung Studio 案例区大标题改为「这些不是概念，它们已经在浏览器里跑着。」",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "build-remove-capmap",
     "date": "2026-10-16T11:00",
     "type": "BUILD",
