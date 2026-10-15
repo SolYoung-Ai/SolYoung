@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-capmap",
+    "date": "2026-10-15T17:30",
+    "type": "BUILD",
+    "published": true,
+    "content": "关于我下方新增「能力关系图」：\n· 中心节点「把想法变成作品」连接五个能力节点（影像创作 / AI 实践 / 网站与产品 / 内容创作 / 推进与迭代）。\n· 点击节点在下方展开真实作品与链接，悬停高亮关联线，移动端切换为可点列表。",
+    "content_en": "Added a Capability Map below About:\n· A central node \"Ideas into Reality\" connects five skills (Visuals / AI / Web & products / Content / Shipping & iterating).\n· Click a node to open real works and links below; hover highlights the connected line; on mobile it becomes a tap list."
+  },
+  {
     "id": "build-i18n-full",
     "date": "2026-10-15T16:40",
     "type": "BUILD",

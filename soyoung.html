@@ -338,6 +338,55 @@ section{position:relative}
 .about-roles span{font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:.14em;border:1px solid var(--line);border-radius:100px;padding:8px 18px;color:var(--ink-soft);transition:all .3s}
 .about-roles span:hover{border-color:var(--accent);color:var(--accent)}
 
+/* ============ Capability Map (能力关系图) ============ */
+.capmap{margin-top:clamp(40px,7vw,80px)}
+.capmap .cap-eyebrow{font-family:var(--font-display);font-size:11px;letter-spacing:.22em;color:var(--accent);margin-bottom:10px}
+.capmap .cap-lead{font-family:var(--font-serif);font-weight:600;font-size:clamp(18px,2.4vw,24px);line-height:1.5;color:var(--ink);max-width:46ch;margin:0 0 clamp(28px,4vw,44px)}
+.cap-stage{position:relative}
+.cap-svg{display:block;width:100%;height:auto;max-width:780px;margin:0 auto}
+.cap-svg .cap-line{stroke:var(--accent);stroke-width:1.2;fill:none;opacity:0;stroke-dasharray:600;stroke-dashoffset:600;transition:opacity .4s}
+.cap-svg .cap-line.draw{opacity:.45;animation:capdraw 1.1s var(--ease) forwards}
+@keyframes capdraw{to{stroke-dashoffset:0}}
+.cap-svg .cap-node{cursor:pointer;outline:none}
+.cap-svg .cap-node circle.cnode{fill:var(--card);stroke:var(--ink-faint);stroke-width:1.2;transition:stroke .3s,fill .3s,opacity .35s}
+.cap-svg .cap-node text{font-family:var(--font-display);fill:var(--ink);pointer-events:none}
+.cap-svg .cap-node .cn-label{font-weight:600;font-size:13px;letter-spacing:.01em;text-anchor:middle}
+.cap-svg .cap-node .cn-sub{font-size:9.5px;letter-spacing:.1em;fill:var(--ink-faint);text-anchor:middle}
+.cap-svg .cap-center circle.ccore{fill:var(--ink);stroke:var(--ink)}
+.cap-svg .cap-center .cn-label{fill:var(--bg);font-size:15px;font-weight:700}
+.cap-svg .cap-center .cn-sub{fill:rgba(244,240,231,.7);font-size:10px;letter-spacing:.18em}
+.cap-svg .cap-node{opacity:0;transition:opacity .55s var(--ease)}
+.cap-svg .cap-node.in{opacity:1}
+.cap-svg .cap-node:hover circle.cnode,.cap-svg .cap-node:focus-visible circle.cnode,.cap-svg .cap-node.sel circle.cnode{stroke:var(--accent)}
+.cap-svg.dim .cap-node:not(.sel):not(.center){opacity:.3}
+.cap-svg.dim .cap-line{opacity:.08}
+.cap-svg .cap-line.lit{opacity:.9;stroke-width:1.6}
+/* 详情面板 */
+.cap-detail{margin-top:clamp(28px,4vw,44px);border-top:1px solid var(--line);padding-top:clamp(24px,3vw,36px);min-height:120px}
+.cap-detail .cd-tag{font-family:var(--font-display);font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:10px}
+.cap-detail h3{font-family:var(--font-serif);font-weight:600;font-size:clamp(20px,2.6vw,26px);margin:0 0 12px;color:var(--ink)}
+.cap-detail p.cd-desc{color:var(--ink-soft);font-size:15px;line-height:1.9;max-width:64ch;margin:0 0 20px}
+.cd-works{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px}
+.cd-works a{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);display:block;transition:border-color .3s,transform .3s}
+.cd-works a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.cd-works .cw-cover{aspect-ratio:3/4;overflow:hidden;background:var(--bg-soft)}
+.cd-works .cw-cover img{width:100%;height:100%;object-fit:cover}
+.cd-works .cw-plain{aspect-ratio:auto;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:96px}
+.cd-works .cw-name{font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--ink)}
+.cd-works .cw-open{font-size:11px;letter-spacing:.1em;color:var(--accent)}
+.cd-works .cw-plain .cw-open{margin-top:auto}
+/* 移动端：线性节点列表替代 SVG */
+.cap-list{display:none;flex-direction:column;gap:10px}
+.cap-list button{font:inherit;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;cursor:pointer;transition:border-color .3s}
+.cap-list button.on{border-color:var(--accent)}
+.cap-list .cl-name{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ink)}
+.cap-list .cl-sub{font-size:12px;color:var(--ink-faint);margin-top:4px}
+@media(max-width:760px){
+  .cap-svg{display:none}
+  .cap-list{display:flex}
+}
+@media (prefers-reduced-motion:reduce){.cap-svg .cap-line{animation:none!important;stroke-dashoffset:0;opacity:.45}.cap-svg .cap-node{transition:none;opacity:1}.cap-svg .cap-node.in{opacity:1}}
+
 /* ============ Contact ============ */
 .contact{text-align:center;padding:clamp(90px,14vw,180px) 0}
 .contact .big{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,7vw,86px);letter-spacing:-.02em;line-height:1}
@@ -775,10 +824,20 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         </div>
       </div>
     </div>
+    <div class="capmap rv" id="capmap">
+      <div class="cap-eyebrow" data-i18n="cap-eyebrow">CAPABILITY MAP · 能力关系</div>
+      <p class="cap-lead" data-i18n="cap-lead">不是技能清单，也不是评分。这张图记录我实际在用的几种能力——它们彼此连接，共同指向同一件事。</p>
+      <div class="cap-stage">
+        <svg class="cap-svg" id="capSvg" viewBox="0 0 720 540" role="group" aria-label="能力关系图">
+          <g class="cap-lines" id="capLines"></g>
+          <g class="cap-nodes" id="capNodes"></g>
+        </svg>
+        <div class="cap-list" id="capList" role="tablist" aria-label="能力节点列表"></div>
+      </div>
+      <div class="cap-detail" id="capDetail" aria-live="polite"></div>
+    </div>
   </div>
 </section>
-
-<!-- ===== CONTACT ===== -->
 <section class="section contact" id="contact">
   <div class="container">
     <div class="eyebrow rv" data-i18n="contact-eyebrow">一起做点什么</div>
@@ -1404,6 +1463,169 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   window.__renderVideos = render;
 })();
 
+
+// ---- Capability Map (能力关系图) ----
+(function(){
+  var svg=document.getElementById('capSvg');
+  var linesG=document.getElementById('capLines');
+  var nodesG=document.getElementById('capNodes');
+  var list=document.getElementById('capList');
+  var detail=document.getElementById('capDetail');
+  if(!svg||!detail) return;
+  function L(){ return localStorage.getItem('soyoung-lang')==='en'?'en':'zh'; }
+  function pick(o){ return o[L()]||o.zh; }
+  var C={x:360,y:270,r:64,zh:'把想法变成作品',en:'Ideas into Reality',sub:'IDEAS INTO REALITY'};
+  var NODES=[
+    {id:'photo',x:150,y:118,r:48,short:'影像创作',en:'Visuals & Film',
+     sub:{zh:'拍摄 · 剪辑 · 视觉表达',en:'Shooting · Editing · Framing'},
+     desc:{zh:'从手持相机到后期，把一个瞬间拍成有氛围的影像。「楊十八呀」是这条线的实践场。',en:'From camera to edit, turning a moment into something with mood. "楊十八呀" is where this is practiced.'},
+     works:[
+       {cover:'assets/video-cover-yang1.webp',url:'https://v.douyin.com/jHvfaBYrFGc/',zh:'窗边与阳光',en:'Windowlight'},
+       {cover:'assets/video-cover-yang2.webp',url:'https://v.douyin.com/thI1l4X0QbU/',zh:'记录是给未来的礼物',en:'Recording as a gift'},
+       {cover:'assets/video-cover-yang3.webp',url:'https://v.douyin.com/BPe5d1Tlo80/',zh:'被阳光晒透',en:'Basking in light'}]},
+    {id:'ai',x:570,y:118,r:48,short:'AI 实践',en:'AI Practice',
+     sub:{zh:'AI 图像 · AI 视频 · 创作工作流',en:'AI images · video · workflow'},
+     desc:{zh:'把 AI 当成搭档：用它建站、生图、剪片，搭建能反复复用的创作工作流。',en:'Using AI as a partner — to build sites, generate imagery, and shape repeatable creative workflows.'},
+     works:[
+       {cover:'assets/video-cover-sol1.webp',url:'https://v.douyin.com/Sq6F2OZXT5g/',zh:'两小时用 AI 建站',en:'Built a site with AI in ~2hrs'},
+       {cover:'assets/video-ai-site-cover-v3.webp',url:'https://solyoung.top/',zh:'AI 建站实录',en:'AI site build notes'}]},
+    {id:'web',x:100,y:300,r:48,short:'网站与产品',en:'Web & Digital Products',
+     sub:{zh:'页面设计 · AI 辅助开发 · 部署',en:'Design · AI-assisted build · deploy'},
+     desc:{zh:'把想法做成真正能用的网站和工具，并自己上线、迭代。',en:'Turning ideas into working sites and tools, shipped and iterated by hand.'},
+     works:[
+       {url:'https://solyoung.top/Verity/',zh:'Verity 人格测试',en:'Verity personality test',plain:1},
+       {url:'https://solyoung.top/CamSim/',zh:'CamSim 相机参数模拟器',en:'CamSim camera simulator',plain:1},
+       {url:'https://solyoung.top/OS/',zh:'MyOS 创作系统',en:'MyOS system',plain:1},
+       {url:'https://solyoung.top/video/',zh:'VideoLAB 剪辑工具',en:'VideoLAB editing tool',plain:1}]},
+    {id:'content',x:620,y:300,r:48,short:'内容创作',en:'Content Writing',
+     sub:{zh:'选题 · 文案 · 口播 · 账号',en:'Topics · Copy · On-camera · Accounts'},
+     desc:{zh:'从选题到口播，把思考说清楚、写出来，并持续发布在不同账号上。',en:'From topic to on-camera talk — thinking out loud, written and spoken, across accounts.'},
+     works:[
+       {cover:'assets/video-cover-sol2.webp',url:'https://v.douyin.com/lyNa4P4C_GY/',zh:'从能力开始，不从赛道',en:'Start from ability, not track'},
+       {cover:'assets/video-cover-sol3.webp',url:'https://v.douyin.com/gFt575LWN-M/',zh:'为什么也要做个人品牌',en:'Why a personal brand'},
+       {cover:'assets/video-cover-amb1.webp',url:'https://v.douyin.com/BBW_X32fHoY/',zh:'99% 的人会放弃',en:'99% will give up'}]},
+    {id:'ship',x:360,y:478,r:50,short:'推进与迭代',en:'Shipping & Iterating',
+     sub:{zh:'需求梳理 · 测试 · 优化 · 交付',en:'Scope · Test · Polish · Ship'},
+     desc:{zh:'100 小时变化周期：每过一段时间就改一点、删一点、往前一点。看「此刻」就是看这个过程。',en:'A 100-hour change cycle: tweak, cut, move forward. The "Now" log is this process made visible.'},
+     works:[
+       {url:'#experiments',zh:'此刻 · 更新日志',en:'Now · changelog',plain:1,inner:1}]}
+  ];
+  var selected=null;
+  var NS='http://www.w3.org/2000/svg';
+  function el(tag,attrs){ var e=document.createElementNS(NS,tag); for(var k in attrs)e.setAttribute(k,attrs[k]); return e; }
+
+  // lines: center -> each node
+  NODES.forEach(function(n,i){
+    var ln=el('line',{x1:C.x,y1:C.y,x2:n.x,y2:n.y,'class':'cap-line','data-id':n.id});
+    linesG.appendChild(ln);
+  });
+
+  // center node
+  function centerNode(){
+    var g=el('g',{'class':'cap-node cap-center center','tabindex':'0','role':'button','aria-label':'把想法变成作品','data-id':'center'});
+    g.appendChild(el('circle',{cx:C.x,cy:C.y,r:C.r,'class':'cnnode ccore'}));
+    var t1=el('text',{x:C.x,y:C.y-6,'class':'cn-label'}); t1.textContent='把想法变成作品';
+    var t2=el('text',{x:C.x,y:C.y+16,'class':'cn-sub'}); t2.textContent='IDEAS INTO REALITY';
+    g.appendChild(t1); g.appendChild(t2);
+    nodesG.appendChild(g);
+    return g;
+  }
+  centerNode();
+
+  // outer nodes
+  NODES.forEach(function(n,i){
+    var g=el('g',{'class':'cap-node','tabindex':'0','role':'button','aria-label':n.zh,'data-id':n.id,
+      'transform':'translate('+n.x+','+n.y+')'});
+    g.appendChild(el('circle',{cx:0,cy:0,r:n.r,'class':'cnnode cnode'}));
+    var t1=el('text',{x:0,y:-2,'class':'cn-label'}); t1.textContent=n.short||n.zh;
+    var t2=el('text',{x:0,y:16,'class':'cn-sub'});
+    t2.textContent = n.en;
+    g.appendChild(t1); g.appendChild(t2);
+    nodesG.appendChild(g);
+  });
+
+  // mobile list
+  if(list){
+    list.innerHTML='<button type="button" role="tab" data-id="center" class="on"><span class="cl-name">把想法变成作品</span><span class="cl-sub">IDEAS INTO REALITY</span></button>'+
+      NODES.map(function(n){return '<button type="button" role="tab" data-id="'+n.id+'"><span class="cl-name">'+n.zh+'</span><span class="cl-sub">'+n.sub.zh+'</span></button>';}).join('');
+  }
+
+  function nodeById(id){ return nodesG.querySelector('[data-id="'+id+'"]'); }
+  function lineById(id){ return linesG.querySelector('[data-id="'+id+'"]'); }
+  function worksHtml(n){
+    return '<div class="cd-works">'+n.works.map(function(w){
+      if(w.cover){
+        return '<a href="'+w.url+'" target="_blank" rel="noopener noreferrer" aria-label="'+w.zh+'">'+
+          '<span class="cw-cover"><img loading="lazy" src="'+w.cover+'" alt="'+w.zh+'"></span>'+
+          '<span class="cw-plain" style="min-height:0;padding:12px"><span class="cw-name">'+(pick(w))+'</span><span class="cw-open">观看 ↗</span></span></a>';
+      }
+      var ext = /^https?:/.test(w.url);
+      return '<a href="'+w.url+'"'+(ext?' target="_blank" rel="noopener noreferrer"':'')+' aria-label="'+w.zh+'" class="cw-plain">'+
+        '<span class="cw-name">'+pick(w)+'</span><span class="cw-open">'+(ext?'打开 ↗':'查看 →')+'</span></a>';
+    }).join('')+'</div>';
+  }
+  function show(id){
+    selected=id;
+    var node = id==='center' ? {zh:'把想法变成作品',en:'Ideas into Reality',sub:{zh:'所有能力都指向这一件事',en:'All of these point to one thing'},
+      desc:{zh:'我不追求成为某一个头衔的人。影像、AI、网站、内容、推进——这些是不同的工具，共用同一个目的：把脑子里的东西，变成真实存在的作品。',en:'I don\'t want to be defined by one title. Visuals, AI, web, content, shipping — different tools, one purpose: turn what\'s in my head into something that actually exists.'},works:[]}
+      : NODES.filter(function(n){return n.id===id;})[0];
+    // highlight
+    nodesG.querySelectorAll('.cap-node').forEach(function(g){ g.classList.remove('sel'); });
+    svg.classList.remove('dim');
+    linesG.querySelectorAll('.cap-line').forEach(function(l){ l.classList.remove('lit'); });
+    if(id!=='center'){
+      svg.classList.add('dim');
+      var ln=lineById(id); if(ln) ln.classList.add('lit');
+    }
+    var sn=nodeById(id); if(sn) sn.classList.add('sel');
+    if(list){ list.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-id')===id); }); }
+    detail.innerHTML =
+      '<div class="cd-tag">'+(id==='center'?'CORE':pick(node.sub))+'</div>'+
+      '<h3>'+(node.zh||node.short)+'</h3>'+
+      '<p class="cd-desc">'+pick(node.desc)+'</p>'+
+      (node.works&&node.works.length?worksHtml(node):'');
+  }
+
+  // events
+  nodesG.addEventListener('click',function(e){
+    var g=e.target.closest('.cap-node'); if(g) show(g.getAttribute('data-id'));
+  });
+  nodesG.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){ var g=e.target.closest('.cap-node'); if(g){e.preventDefault(); show(g.getAttribute('data-id'));} }
+  });
+  nodesG.addEventListener('mouseover',function(e){
+    var g=e.target.closest('.cap-node'); if(g){ var id=g.getAttribute('data-id'); if(id!=='center'){ svg.classList.add('dim'); var ln=lineById(id); if(ln) ln.classList.add('lit'); } }
+  });
+  nodesG.addEventListener('mouseout',function(e){
+    var g=e.target.closest('.cap-node'); if(g && selected!==g.getAttribute('data-id')){ /* keep selection state */ }
+    if(!g) { }
+    if(selected && selected!=='center'){ svg.classList.add('dim'); var ln=lineById(selected); if(ln) ln.classList.add('lit'); }
+    else { svg.classList.remove('dim'); linesG.querySelectorAll('.cap-line').forEach(function(l){l.classList.remove('lit');}); }
+  });
+  if(list){ list.addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) show(b.getAttribute('data-id')); }); }
+
+  // entrance animation on view
+  var entered=false;
+  function enter(){
+    if(entered) return; entered=true;
+    var c=nodesG.querySelector('.center');
+    if(c) c.classList.add('in');
+    setTimeout(function(){
+      NODES.forEach(function(n,i){
+        var ln=lineById(n.id); if(ln) ln.classList.add('draw');
+        var g=nodeById(n.id); setTimeout(function(){ if(g) g.classList.add('in'); }, 250+i*180);
+      });
+    }, 350);
+  }
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches){ entered=true; nodesG.querySelectorAll('.cap-node').forEach(function(g){g.classList.add('in');}); linesG.querySelectorAll('.cap-line').forEach(function(l){l.classList.add('draw');}); }
+  else if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ enter(); io.disconnect(); } }); },{threshold:.25});
+    io.observe(document.getElementById('capmap'));
+  } else { enter(); }
+
+  show('center');
+  window.__renderCap = function(){ nodesG.querySelectorAll('.cn-label').forEach(function(){}); show(selected||'center'); };
+})();
 
 // ---- SolYoung Studio store entry ----
 // Single source of truth for the store URL. Leave empty ('') to hide the entry.
