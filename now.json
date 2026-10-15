@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-remove-capmap",
+    "date": "2026-10-16T11:00",
+    "type": "BUILD",
+    "published": true,
+    "content": "移除「关于我」下方的能力关系图模块，相关样式与脚本一并清理。",
+    "content_en": "Removed the Capability Map section below About; related styles and scripts cleaned up."
+  },
+  {
     "id": "build-capmap-wid",
     "date": "2026-10-15T18:30",
     "type": "BUILD",
