@@ -372,6 +372,10 @@ section{position:relative}
 .cd-works .cw-cover{aspect-ratio:3/4;overflow:hidden;background:var(--bg-soft)}
 .cd-works .cw-cover img{width:100%;height:100%;object-fit:cover}
 .cd-works .cw-plain{aspect-ratio:auto;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:96px}
+.cd-works .cw-acc{flex-direction:row;align-items:center;gap:12px;min-height:0;padding:14px 16px}
+.cd-works .cw-acc .cw-avatar{width:46px;height:46px;border-radius:50%;overflow:hidden;flex:none;background:var(--bg-soft)}
+.cd-works .cw-acc .cw-avatar img{width:100%;height:100%;object-fit:cover}
+.cd-works .cw-acc .cw-name{font-size:14px}
 .cd-works .cw-name{font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--ink)}
 .cd-works .cw-open{font-size:11px;letter-spacing:.1em;color:var(--accent)}
 .cd-works .cw-plain .cw-open{margin-top:auto}
@@ -1480,15 +1484,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
      sub:{zh:'拍摄 · 剪辑 · 视觉表达',en:'Shooting · Editing · Framing'},
      desc:{zh:'从手持相机到后期，把一个瞬间拍成有氛围的影像。「楊十八呀」是这条线的实践场。',en:'From camera to edit, turning a moment into something with mood. "楊十八呀" is where this is practiced.'},
      works:[
-       {cover:'assets/video-cover-yang1.webp',url:'https://v.douyin.com/jHvfaBYrFGc/',zh:'窗边与阳光',en:'Windowlight'},
-       {cover:'assets/video-cover-yang2.webp',url:'https://v.douyin.com/thI1l4X0QbU/',zh:'记录是给未来的礼物',en:'Recording as a gift'},
-       {cover:'assets/video-cover-yang3.webp',url:'https://v.douyin.com/BPe5d1Tlo80/',zh:'被阳光晒透',en:'Basking in light'}]},
+       {type:'account',name:'楊十八呀',platform:'抖音',avatar:'assets/avatar-yangshibaya.webp',url:'https://v.douyin.com/JHN2VxhUJPA/'}]},
     {id:'ai',x:570,y:118,r:48,short:'AI 实践',en:'AI Practice',
      sub:{zh:'AI 图像 · AI 视频 · 创作工作流',en:'AI images · video · workflow'},
      desc:{zh:'把 AI 当成搭档：用它建站、生图、剪片，搭建能反复复用的创作工作流。',en:'Using AI as a partner — to build sites, generate imagery, and shape repeatable creative workflows.'},
      works:[
-       {cover:'assets/video-cover-sol1.webp',url:'https://v.douyin.com/Sq6F2OZXT5g/',zh:'两小时用 AI 建站',en:'Built a site with AI in ~2hrs'},
-       {cover:'assets/video-ai-site-cover-v3.webp',url:'https://solyoung.top/',zh:'AI 建站实录',en:'AI site build notes'}]},
+       {url:'https://solyoung.top/Verity/',zh:'Verity 人格测试',en:'Verity personality test',plain:1},
+       {url:'https://solyoung.top/CamSim/',zh:'CamSim 相机参数模拟器',en:'CamSim camera simulator',plain:1},
+       {url:'https://solyoung.top/OS/',zh:'MyOS 创作系统',en:'MyOS system',plain:1},
+       {url:'https://solyoung.top/video/',zh:'VideoLAB 剪辑工具',en:'VideoLAB editing tool',plain:1},
+       {type:'account',name:'SolYoung',platform:'抖音 · AI 创作',avatar:'assets/avatar-solyoung.webp',url:'https://v.douyin.com/NT7pNjGp9XM/'}]},
     {id:'web',x:100,y:300,r:48,short:'网站与产品',en:'Web & Digital Products',
      sub:{zh:'页面设计 · AI 辅助开发 · 部署',en:'Design · AI-assisted build · deploy'},
      desc:{zh:'把想法做成真正能用的网站和工具，并自己上线、迭代。',en:'Turning ideas into working sites and tools, shipped and iterated by hand.'},
@@ -1501,9 +1506,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
      sub:{zh:'选题 · 文案 · 口播 · 账号',en:'Topics · Copy · On-camera · Accounts'},
      desc:{zh:'从选题到口播，把思考说清楚、写出来，并持续发布在不同账号上。',en:'From topic to on-camera talk — thinking out loud, written and spoken, across accounts.'},
      works:[
-       {cover:'assets/video-cover-sol2.webp',url:'https://v.douyin.com/lyNa4P4C_GY/',zh:'从能力开始，不从赛道',en:'Start from ability, not track'},
-       {cover:'assets/video-cover-sol3.webp',url:'https://v.douyin.com/gFt575LWN-M/',zh:'为什么也要做个人品牌',en:'Why a personal brand'},
-       {cover:'assets/video-cover-amb1.webp',url:'https://v.douyin.com/BBW_X32fHoY/',zh:'99% 的人会放弃',en:'99% will give up'}]},
+       {type:'account',name:'SolYoung',platform:'抖音 · 创作思考',avatar:'assets/avatar-solyoung.webp',url:'https://v.douyin.com/NT7pNjGp9XM/'},
+       {type:'account',name:'野心互联工作室',platform:'抖音 · 成长/健康',avatar:'assets/avatar-ambition.webp',url:'https://v.douyin.com/1qeGOojqjSE/'}]},
     {id:'ship',x:360,y:478,r:50,short:'推进与迭代',en:'Shipping & Iterating',
      sub:{zh:'需求梳理 · 测试 · 优化 · 交付',en:'Scope · Test · Polish · Ship'},
      desc:{zh:'100 小时变化周期：每过一段时间就改一点、删一点、往前一点。看「此刻」就是看这个过程。',en:'A 100-hour change cycle: tweak, cut, move forward. The "Now" log is this process made visible.'},
@@ -1537,10 +1541,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     var g=el('g',{'class':'cap-node','tabindex':'0','role':'button','aria-label':n.zh,'data-id':n.id,
       'transform':'translate('+n.x+','+n.y+')'});
     g.appendChild(el('circle',{cx:0,cy:0,r:n.r,'class':'cnnode cnode'}));
-    var t1=el('text',{x:0,y:-2,'class':'cn-label'}); t1.textContent=n.short||n.zh;
-    var t2=el('text',{x:0,y:16,'class':'cn-sub'});
-    t2.textContent = n.en;
-    g.appendChild(t1); g.appendChild(t2);
+    var t1=el('text',{x:0,y:5,'class':'cn-label'}); t1.textContent=n.short||n.zh;
+    g.appendChild(t1);
     nodesG.appendChild(g);
   });
 
@@ -1554,6 +1556,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   function lineById(id){ return linesG.querySelector('[data-id="'+id+'"]'); }
   function worksHtml(n){
     return '<div class="cd-works">'+n.works.map(function(w){
+      if(w.type==='account'){
+        return '<a href="'+w.url+'" target="_blank" rel="noopener noreferrer" aria-label="'+w.name+'" class="cw-plain cw-acc">'+
+          '<span class="cw-avatar"><img loading="lazy" src="'+w.avatar+'" alt="'+w.name+'"></span>'+
+          '<span style="display:flex;flex-direction:column;gap:4px"><span class="cw-name">'+w.name+'</span><span class="cw-open">'+w.platform+' ↗</span></span></a>';
+      }
       if(w.cover){
         return '<a href="'+w.url+'" target="_blank" rel="noopener noreferrer" aria-label="'+w.zh+'">'+
           '<span class="cw-cover"><img loading="lazy" src="'+w.cover+'" alt="'+w.zh+'"></span>'+

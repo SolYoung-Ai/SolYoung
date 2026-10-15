@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-capmap-acc",
+    "date": "2026-10-15T18:10",
+    "type": "BUILD",
+    "published": true,
+    "content": "能力关系图微调：去掉节点圆内英文小字；影像创作改为展示「楊十八呀」抖音账号，AI 实践改为四个产品+SolYoung 抖音，内容创作改为展示 SolYoung 与野心互联工作室两个账号。",
+    "content_en": "Cap map tweaks: removed English sub-labels inside nodes; Visuals now links to the 楊十八呀 Douyin account, AI Practice now shows the four products + SolYoung Douyin, Content Writing shows SolYoung and Ambition accounts."
+  },
+  {
     "id": "2026-10-15-studio-qr-crop",
     "date": "2026-10-15T23:00",
     "type": "BUILD",
