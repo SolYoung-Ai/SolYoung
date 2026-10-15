@@ -8,6 +8,14 @@
     "content_en": "Removed the Capability Map section below About; related styles and scripts cleaned up."
   },
   {
+    "id": "2026-10-16-studio-hero-copy",
+    "date": "2026-10-16T10:30",
+    "type": "BUILD",
+    "content": "SolYoung Studio Hero 主标题改为「把你的主意，变成可以使用的解决方案。」",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "build-capmap-wid",
     "date": "2026-10-15T18:30",
     "type": "BUILD",
