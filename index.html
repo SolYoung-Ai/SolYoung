@@ -234,7 +234,7 @@ section{position:relative}
 
 /* ===== Content & Visuals showcase (影像与内容) ===== */
 .cview-intro{font-size:13px;color:var(--ink-soft);line-height:1.75;margin:-6px 0 22px;max-width:640px}
-.cview-wrap{display:grid;grid-template-columns:250px 1fr;gap:clamp(24px,3vw,40px);align-items:start}
+.cview-wrap{display:grid;grid-template-columns:200px 1fr;gap:clamp(18px,2.2vw,30px);align-items:start}
 .cview-accounts{display:flex;flex-direction:column;gap:10px}
 .cview-account{display:flex;align-items:center;gap:14px;text-align:left;width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:var(--radius);background:transparent;cursor:pointer;transition:border-color .3s,background .3s;color:inherit;font-family:inherit}
 .cview-account:hover{border-color:var(--accent)}
@@ -249,8 +249,7 @@ section{position:relative}
 .cview-stage{min-width:0}
 .cview-stage-title{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.04em;color:var(--ink);margin:2px 0 18px;display:flex;align-items:baseline;gap:10px}
 .cview-stage-title .en{color:var(--accent);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-.cview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,20px)}
-@media(max-width:1100px){.cview-grid{grid-template-columns:repeat(2,1fr)}}
+.cview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,16px)}
 .cview-card{position:relative;display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);transition:border-color .35s,transform .4s var(--ease),box-shadow .35s;transform:translateZ(0)}
 .cview-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--shadow)}
 .cview-card:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
@@ -280,9 +279,10 @@ section{position:relative}
   .cview-accounts{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:10px}
   .cview-accounts::-webkit-scrollbar{display:none}
   .cview-account{flex:0 0 auto;width:auto;scroll-snap-align:start;min-width:160px}
-  .cview-grid{grid-template-columns:repeat(2,1fr)}
+  .cview-grid{grid-template-columns:repeat(3,1fr)}
+  .cview-cell{padding:10px 8px}
 }
-@media(max-width:520px){.cview-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.cview-grid{grid-template-columns:repeat(3,1fr);gap:10px}.cview-cell{padding:8px 6px}}
 
 /* ============ Experiment ============ */
 .exp-feature{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);transition:border-color .4s}
@@ -676,7 +676,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
     <div class="proj-group rv">
       <div class="proj-group-title" data-i18n="cview-title">影像与内容 <span class="en">CONTENT &amp; VISUALS</span></div>
-      <p class="cview-intro" data-i18n="cview-intro">不同的账号，不同的表达方式。从影像记录到 AI 创作与内容实践，这里收录我在不同方向上的精选作品。</p>
       <div class="cview-wrap">
         <aside class="cview-accounts" id="cviewAccounts" role="tablist" aria-label="选择账号"></aside>
         <div class="cview-stage">
@@ -774,27 +773,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         <div class="about-roles">
           <span data-i18n="role1">创作者</span><span data-i18n="role2">记录者</span><span data-i18n="role3">探索者</span>
         </div>
-      </div>
-    </div>
-
-    <div class="proj-group rv" style="margin-top:clamp(56px,7vw,96px)">
-      <div class="proj-group-title" data-i18n="proj-social">社交媒体 <span class="en">Social Media</span></div>
-      <div class="projects">
-        <a class="project rv" href="https://v.douyin.com/JHN2VxhUJPA/" target="_blank" rel="noopener" data-preview="assets/avatar-yangshibaya.jpg">
-          <span class="proj-icon"><img loading="lazy" src="assets/avatar-yangshibaya.webp" alt="楊十八呀"></span>
-          <span class="proj-main"><span class="proj-name">楊十八呀 <span class="proj-fans">粉丝指数 37K</span></span><span class="proj-desc" data-i18n="sdesc-yang">个人随拍 · 记录影像。</span></span>
-          <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
-        </a>
-        <a class="project rv" href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" data-preview="assets/avatar-solyoung.jpg">
-          <span class="proj-icon"><img loading="lazy" src="assets/avatar-solyoung.webp" alt="SolYoung"></span>
-          <span class="proj-main"><span class="proj-name">SolYoung <span class="proj-fans">粉丝指数 1.1K</span></span><span class="proj-desc" data-i18n="sdesc-sol">记录我的创作、实践，以及正在发生的可能。</span></span>
-          <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
-        </a>
-        <a class="project rv" href="https://v.douyin.com/1qeGOojqjSE/" target="_blank" rel="noopener" data-preview="assets/avatar-ambition.jpg">
-          <span class="proj-icon"><img loading="lazy" src="assets/avatar-ambition.webp" alt="野心互联工作室"></span>
-          <span class="proj-main"><span class="proj-name">野心互联工作室 <span class="proj-fans">粉丝指数 87K</span></span><span class="proj-desc" data-i18n="sdesc-ambition">成为自己的人生 CEO，分享个人成长及健康类内容。</span></span>
-          <span class="proj-meta" data-i18n="proj-meta-douyin">抖音</span><span class="proj-arr">→</span>
-        </a>
       </div>
     </div>
   </div>
@@ -1366,9 +1344,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     return key;
   }
   var ACCOUNTS = [
-    {id:'yang', name:'楊十八呀', avatar:'assets/avatar-yangshibaya.webp', platform:'抖音', profileUrl:'https://v.douyin.com/JHN2VxhUJPA/', desc:'个人影像、氛围短片、电影感视频。', followers:'37K'},
-    {id:'sol', name:'SolYoung', avatar:'assets/avatar-solyoung.webp', platform:'抖音', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/', desc:'AI 创作、网站制作、数字产品与创作实验。', followers:'1.1K'},
-    {id:'ambition', name:'野心互联工作室', avatar:'assets/avatar-ambition.webp', platform:'抖音', profileUrl:'https://v.douyin.com/1qeGOojqjSE/', desc:'个人成长、健康内容与内容运营实践。', followers:'87K'}
+    {id:'yang', name:'楊十八呀', avatar:'assets/avatar-yangshibaya.webp', platform:'抖音', profileUrl:'https://v.douyin.com/JHN2VxhUJPA/', desc:'个人随拍、记录影像。', followers:'37K'},
+    {id:'sol', name:'SolYoung', avatar:'assets/avatar-solyoung.webp', platform:'抖音', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/', desc:'记录我的创作、实践，以及正在发生的可能。', followers:'1.1K'},
+    {id:'ambition', name:'野心互联工作室', avatar:'assets/avatar-ambition.webp', platform:'抖音', profileUrl:'https://v.douyin.com/1qeGOojqjSE/', desc:'个体成长及健康内容频道。', followers:'87K'}
   ];
   var VIDEOS = [
     {id:'yang-1', accountId:'yang', title:'理解内心所承受的一切，便能安然无恙', cover:'assets/video-cover-yang1.webp', platform:'抖音', publishedAt:'', desc:'氛围影像记录，窗边与阳光。', videoUrl:'https://v.douyin.com/jHvfaBYrFGc/', status:'published', coverPosition:'center'},
@@ -1403,7 +1381,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       var openAttr = hasLink ? ' href="'+v.videoUrl+'" target="_blank" rel="noopener noreferrer"' : ' aria-disabled="true"';
       return '<a class="cview-card' + (hasLink?'':' is-sample') + '"' + openAttr + ' aria-label="'+v.title+'">' +
         '<span class="cview-cover"><img loading="lazy" src="'+v.cover+'" alt="'+v.title+'" style="object-position:'+(v.coverPosition||'center')+'">' +
-        '<span class="cview-state">'+t('sample')+'</span></span>' +
+        (hasLink ? '' : '<span class="cview-state">'+t('sample')+'</span>') + '</span>' +
         '<span class="cview-meta">' +
           '<span class="cview-cat">'+a.platform+'</span>' +
           '<span class="cview-title">'+v.title+'</span>' +
