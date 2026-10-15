@@ -177,16 +177,21 @@ ML.views = (function(){
         (a.analysis?'<div class="nw-mi-tags">'+esc((a.analysis.tags||[]).slice(0,4).join(' · '))+'</div>':'')+
         '</div>').join('');
     }
-    app.querySelector('[data-act=analyzeMedia]').addEventListener('click', ()=>{
+    app.querySelector('[data-act=analyzeMedia]').addEventListener('click', async ()=>{
       if(!draft.assets.length) return;
+      const btn = app.querySelector('[data-act=analyzeMedia]');
       try{
-        ML.media.analyzeAll(draft.assets).forEach((an,i)=>{ draft.assets[i].analysis = an; });
+        btn.disabled = true; btn.textContent = Tn('media.analyzing')+'…';
+        const res = await ML.media.analyzeAll(draft.assets);
+        res.forEach((an,i)=>{ draft.assets[i].analysis = an; });
         renderMediaList();
         L.toast(Tn('media.analyzeDone'));
         app.querySelector('.nw-card[data-step="4"]').classList.add('open');
       }catch(e){
         ML.diag.error('VIEWS','analyzeMedia',null,e);
         L.toast(String(e&&e.message||e), true);
+      }finally{
+        btn.disabled = false; btn.textContent = Tn('media.analyze');
       }
     });
 
@@ -256,9 +261,14 @@ ML.views = (function(){
       if(!draft.voiceSegments.length){
         /* generate voice on the fly if skipped */
         const voice = app.querySelector('.nw-voice').value;
-        for(const sc of draft.scenes){
-          const seg = await ML.voice.generateSegment(draft, sc, { voiceId: voice, speed: parseFloat(vs.value)||1 });
-          draft.voiceSegments.push(seg);
+        try{
+          for(const sc of draft.scenes){
+            const seg = await ML.voice.generateSegment(draft, sc, { voiceId: voice, speed: parseFloat(vs.value)||1 });
+            draft.voiceSegments.push(seg);
+          }
+        }catch(e){
+          L.toast(String(e&&e.message||e), true);
+          return;
         }
       }
       const aeBtn = app.querySelector('[data-act=autoEdit]');
@@ -340,31 +350,150 @@ ML.views = (function(){
   /* ============ SETTINGS ============ */
   async function settings(app){
     const cfg = await ML.providers.loadConfig();
+    const SUP = ML.providers.SUPPLIERS;
+    const supOpts = (sel)=>Object.keys(SUP).map(k=>'<option value="'+k+'"'+(sel===k?' selected':'')+'>'+Tn('set.provider.'+k)+'</option>').join('');
+    const noteFor = k => (SUP[k]&&SUP[k].note)||'';
     app.innerHTML = ''+
       '<div class="st-head"><h2>'+Tn('set.title')+'</h2></div>'+
       (ML.providers.hasAI()||ML.providers.hasTTS() ? '' : '<div class="st-mock"><b>'+Tn('set.mock')+'</b><div>'+Tn('set.mock.desc')+'</div></div>')+
       '<div class="st-grid">'+
         '<section class="st-card"><div class="st-title">'+Tn('set.ai')+'</div><div class="st-desc">'+Tn('set.ai.desc')+'</div>'+
-          '<div class="st-row"><label>'+Tn('set.aiProvider')+'</label><select class="inp" data-k="ai.provider"><option value="none"'+(cfg.ai.provider==='none'?' selected':'')+'>'+Tn('set.provider.none')+'</option><option value="openai"'+(cfg.ai.provider==='openai'?' selected':'')+'>'+Tn('set.provider.openai')+'</option><option value="custom"'+(cfg.ai.provider==='custom'?' selected':'')+'>'+Tn('set.provider.custom')+'</option></select></div>'+
-          '<div class="st-row"><label>'+Tn('set.aiEndpoint')+'</label><input class="inp" data-k="ai.endpoint" value="'+esc(cfg.ai.endpoint)+'" placeholder="https://api.example.com"></div>'+
-          '<div class="st-row"><label>'+Tn('set.aiKey')+'</label><input class="inp" data-k="ai.key" type="password" value="'+esc(cfg.ai.key)+'" placeholder="sk-…"></div>'+
-          '<div class="st-row"><label>'+Tn('set.aiModel')+'</label><input class="inp" data-k="ai.model" value="'+esc(cfg.ai.model)+'"></div>'+
+          '<div class="st-row"><label>'+Tn('set.aiProvider')+'</label><select class="inp" data-k="ai.provider">'+supOpts(cfg.ai.provider)+'</select></div>'+
+          '<div class="st-note" data-note="ai">'+esc(noteFor(cfg.ai.provider))+'</div>'+
+          '<div class="st-row"><label>'+Tn('set.aiEndpoint')+'</label><input class="inp" data-k="ai.baseUrl" value="'+esc(cfg.ai.baseUrl)+'" placeholder="https://api.example.com/v1" spellcheck="false"></div>'+
+          '<div class="st-row"><label>'+Tn('set.aiKey')+'</label><input class="inp" data-k="ai.key" type="password" value="'+esc(cfg.ai.key)+'" placeholder="sk-…" autocomplete="off"></div>'+
+          '<div class="st-row"><label>'+Tn('set.aiModel')+'</label><input class="inp" data-k="ai.model" value="'+esc(cfg.ai.model)+'" spellcheck="false"></div>'+
+          '<div class="st-row"><label>'+Tn('set.aiVisionModel')+'</label><input class="inp" data-k="ai.visionModel" value="'+esc(cfg.ai.visionModel||'')+'" placeholder="'+Tn('set.aiVisionModel.ph')+'" spellcheck="false"></div>'+
+          '<div class="st-actions"><button class="btn btn-sm" data-act="testAI">'+Tn('set.test')+'</button><button class="btn btn-sm btn-ghost" data-act="clearAI">'+Tn('set.clearKey')+'</button></div>'+
+          '<div class="st-result" data-res="ai"></div>'+
         '</section>'+
         '<section class="st-card"><div class="st-title">'+Tn('set.tts')+'</div><div class="st-desc">'+Tn('set.tts.desc')+'</div>'+
-          '<div class="st-row"><label>'+Tn('set.ttsProvider')+'</label><select class="inp" data-k="tts.provider"><option value="none"'+(cfg.tts.provider==='none'?' selected':'')+'>'+Tn('set.provider.none')+'</option><option value="openai"'+(cfg.tts.provider==='openai'?' selected':'')+'>'+Tn('set.provider.openai')+'</option><option value="custom"'+(cfg.tts.provider==='custom'?' selected':'')+'>'+Tn('set.provider.custom')+'</option></select></div>'+
-          '<div class="st-row"><label>'+Tn('set.ttsEndpoint')+'</label><input class="inp" data-k="tts.endpoint" value="'+esc(cfg.tts.endpoint)+'" placeholder="https://api.example.com"></div>'+
-          '<div class="st-row"><label>'+Tn('set.ttsKey')+'</label><input class="inp" data-k="tts.key" type="password" value="'+esc(cfg.tts.key)+'"></div>'+
-          '<div class="st-row"><label>'+Tn('set.ttsVoice')+'</label><select class="inp" data-k="tts.voice">'+ML.providers.TTS.voices().map(v=>'<option'+(v===cfg.tts.voice?' selected':'')+'>'+v+'</option>').join('')+'</select></div>'+
+          '<div class="st-row"><label>'+Tn('set.ttsProvider')+'</label><select class="inp" data-k="tts.provider">'+supOpts(cfg.tts.provider)+'</select></div>'+
+          '<div class="st-note" data-note="tts">'+esc(noteFor(cfg.tts.provider))+'</div>'+
+          '<div class="st-row"><label>'+Tn('set.ttsEndpoint')+'</label><input class="inp" data-k="tts.baseUrl" value="'+esc(cfg.tts.baseUrl)+'" placeholder="https://api.example.com/v1" spellcheck="false"></div>'+
+          '<div class="st-row"><label>'+Tn('set.ttsKey')+'</label><input class="inp" data-k="tts.key" type="password" value="'+esc(cfg.tts.key)+'" autocomplete="off"></div>'+
+          '<div class="st-row"><label>'+Tn('set.ttsModel')+'</label><input class="inp" data-k="tts.model" value="'+esc(cfg.tts.model||'')+'" placeholder="tts-1 / 供应商模型 ID" spellcheck="false"></div>'+
+          '<div class="st-row"><label>'+Tn('set.ttsVoice')+'</label><input class="inp" data-k="tts.voice" value="'+esc(cfg.tts.voice||'alloy')+'" placeholder="alloy / 供应商 voice ID" spellcheck="false"></div>'+
+          '<div class="st-actions"><button class="btn btn-sm" data-act="testTTS">'+Tn('set.test')+'</button><button class="btn btn-sm" data-act="tryTTS">'+Tn('set.ttsTry')+'</button><button class="btn btn-sm btn-ghost" data-act="clearTTS">'+Tn('set.clearKey')+'</button></div>'+
+          '<div class="st-result" data-res="tts"></div>'+
+        '</section>'+
+        '<section class="st-card st-card-wide"><div class="st-title">'+Tn('set.notes')+'</div>'+
+          '<ul class="st-list"><li>'+Tn('set.note.cors')+'</li><li>'+Tn('set.note.key')+'</li><li>'+Tn('set.note.cost')+'</li><li>'+Tn('set.note.real')+'</li></ul>'+
         '</section>'+
         '<section class="st-card st-card-wide"><div class="st-title">'+Tn('set.shortcuts')+'</div><div class="st-desc">'+Tn('set.shortcuts.desc')+'</div>'+
           '<table class="st-kbd">'+SHORTCUTS.map(s=>'<tr><td><kbd>'+s[0]+'</kbd></td><td>'+Tn(s[1])+'</td></tr>').join('')+'</table>'+
         '</section>'+
       '</div>'+
       '<div class="st-save"><button class="btn btn-primary" data-act="saveSettings">'+Tn('set.save')+'</button></div>';
+
+    const read = k=>{ const el = app.querySelector('[data-k="'+k+'"]'); return el ? el.value : ''; };
+    const resultEl = s=>app.querySelector('[data-res="'+s+'"]');
+    function renderResult(s, res){
+      const el = resultEl(s);
+      if(!el) return;
+      if(!res){ el.innerHTML=''; return; }
+      if(res.ok){
+        const caps = res.capabilities||{};
+        const badge = k=>'<span class="st-cap on">'+k+' ✓</span>';
+        const badgeOff = k=>'<span class="st-cap off">'+k+'</span>';
+        el.innerHTML = '<div class="st-res ok"><b>'+esc(res.message)+'</b><div class="st-res-meta">'+(res.latency!=null?'<span>'+res.latency+'ms</span>':'')+(res.modelCount!=null?'<span>'+res.modelCount+' models</span>':'')+'</div>'+
+          (s==='ai' ? '<div class="st-caps">'+badge('chat')+(read('ai.visionModel')? badgeOff('vision · 已填模型，分析时自动启用') : badgeOff('vision · 未填模型'))+'</div>' : '<div class="st-caps">'+badge('tts')+'</div>')+
+          (res.models && res.models.length ? '<div class="st-models">'+res.models.map(m=>'<code>'+esc(m)+'</code>').join('')+'</div>' : '')+
+          '</div>';
+      }else{
+        el.innerHTML = '<div class="st-res fail"><b>'+esc(res.message||'failed')+'</b>'+(res.code?'<div class="st-res-code">'+esc(res.code)+'</div>':'')+(res.detail?'<div class="st-res-detail">'+esc(res.detail)+'</div>':'')+'</div>';
+      }
+    }
+
+    /* supplier presets fill baseUrl + model (never overwrite the key) */
+    app.querySelectorAll('select[data-k]').forEach(sel=>{
+      sel.addEventListener('change', ()=>{
+        const section = sel.dataset.k.split('.')[0];
+        const name = sel.value;
+        const note = app.querySelector('[data-note="'+section+'"]');
+        if(note) note.textContent = noteFor(name);
+        if(name==='none'||name==='custom') return;
+        const p = SUP[name]; if(!p) return;
+        const urlEl = app.querySelector('[data-k="'+section+'.baseUrl"]');
+        const modEl = app.querySelector('[data-k="'+section+'.model"]');
+        if(urlEl && p.baseUrl) urlEl.value = p.baseUrl;
+        if(modEl && p.model && !modEl.value) modEl.value = p.model;
+      });
+    });
+
+    app.querySelector('[data-act=testAI]').addEventListener('click', async ()=>{
+      const btn = app.querySelector('[data-act=testAI]');
+      const el = resultEl('ai');
+      el.innerHTML = '<div class="st-res run">'+Tn('set.testing')+'…</div>';
+      btn.disabled = true;
+      try{
+        cfg.ai.provider = read('ai.provider'); cfg.ai.baseUrl = read('ai.baseUrl').trim(); cfg.ai.key = read('ai.key').trim();
+        cfg.ai.model = read('ai.model').trim(); cfg.ai.visionModel = read('ai.visionModel').trim();
+        const res = await ML.providers.testConnection('ai');
+        cfg.caps = cfg.caps||{}; cfg.caps.ai = { at:Date.now(), ok:res.ok, code:res.code, latency:res.latency };
+        await ML.providers.saveConfig(cfg);
+        renderResult('ai', res);
+      }catch(e){ renderResult('ai', ML.providers.classifyError(e)); }
+      finally{ btn.disabled = false; }
+    });
+    app.querySelector('[data-act=testTTS]').addEventListener('click', async ()=>{
+      const btn = app.querySelector('[data-act=testTTS]');
+      const el = resultEl('tts');
+      el.innerHTML = '<div class="st-res run">'+Tn('set.testing')+'…</div>';
+      btn.disabled = true;
+      try{
+        cfg.tts.provider = read('tts.provider'); cfg.tts.baseUrl = read('tts.baseUrl').trim(); cfg.tts.key = read('tts.key').trim();
+        cfg.tts.model = read('tts.model').trim(); cfg.tts.voice = read('tts.voice').trim();
+        const res = await ML.providers.testConnection('tts');
+        cfg.caps = cfg.caps||{}; cfg.caps.tts = { at:Date.now(), ok:res.ok, code:res.code, latency:res.latency };
+        await ML.providers.saveConfig(cfg);
+        renderResult('tts', res);
+      }catch(e){ renderResult('tts', ML.providers.classifyError(e)); }
+      finally{ btn.disabled = false; }
+    });
+    /* real TTS sample: generate a short clip and play it */
+    let tryUrl = null;
+    app.querySelector('[data-act=tryTTS]').addEventListener('click', async ()=>{
+      const btn = app.querySelector('[data-act=tryTTS]');
+      const el = resultEl('tts');
+      btn.disabled = true; btn.textContent = Tn('set.ttsTrying')+'…';
+      try{
+        cfg.tts.provider = read('tts.provider'); cfg.tts.baseUrl = read('tts.baseUrl').trim(); cfg.tts.key = read('tts.key').trim();
+        cfg.tts.model = read('tts.model').trim(); cfg.tts.voice = read('tts.voice').trim();
+        await ML.providers.saveConfig(cfg);
+        const text = Tn('voice.listenText');
+        const res = await ML.providers.TTS.synthesize(text, cfg.tts.voice);
+        if(!res.audio) throw new Error('no audio');
+        if(tryUrl) URL.revokeObjectURL(tryUrl);
+        tryUrl = URL.createObjectURL(res.audio);
+        const a = new Audio(tryUrl); a.play().catch(()=>{});
+        cfg.caps = cfg.caps||{}; cfg.caps.tts = { at:Date.now(), ok:true, code:null, ttsVerified:true };
+        await ML.providers.saveConfig(cfg);
+        el.innerHTML = '<div class="st-res ok"><b>'+Tn('set.ttsOk')+'</b><div class="st-res-meta"><span>'+(res.provider||'')+'</span><span>'+(res.model||'')+'</span><span>'+L.round(res.duration,1)+'s</span></div></div>';
+      }catch(e){
+        const cls = ML.providers.classifyError(e);
+        el.innerHTML = '<div class="st-res fail"><b>'+esc(cls.message)+'</b>'+(cls.code?'<div class="st-res-code">'+esc(cls.code)+'</div>':'')+'</div>';
+      }finally{ btn.disabled = false; btn.textContent = Tn('set.ttsTry'); }
+    });
+    app.querySelector('[data-act=clearAI]').addEventListener('click', async ()=>{
+      const ok = await L.confirm(Tn('set.clearConfirm'), Tn('set.clearKey'));
+      if(!ok) return;
+      cfg.ai.key = ''; await ML.providers.clearSectionKey('ai');
+      const el = app.querySelector('[data-k="ai.key"]'); if(el) el.value = '';
+      renderResult('ai', null); L.toast(Tn('set.keyCleared'));
+    });
+    app.querySelector('[data-act=clearTTS]').addEventListener('click', async ()=>{
+      const ok = await L.confirm(Tn('set.clearConfirm'), Tn('set.clearKey'));
+      if(!ok) return;
+      cfg.tts.key = ''; await ML.providers.clearSectionKey('tts');
+      const el = app.querySelector('[data-k="tts.key"]'); if(el) el.value = '';
+      renderResult('tts', null); L.toast(Tn('set.keyCleared'));
+    });
     app.querySelector('[data-act=saveSettings]').addEventListener('click', async ()=>{
-      const read = k=>app.querySelector('[data-k="'+k+'"]').value;
-      cfg.ai.provider = read('ai.provider'); cfg.ai.endpoint = read('ai.endpoint').trim(); cfg.ai.key = read('ai.key').trim(); cfg.ai.model = read('ai.model').trim();
-      cfg.tts.provider = read('tts.provider'); cfg.tts.endpoint = read('tts.endpoint').trim(); cfg.tts.key = read('tts.key').trim(); cfg.tts.voice = read('tts.voice');
+      cfg.ai.provider = read('ai.provider'); cfg.ai.baseUrl = read('ai.baseUrl').trim(); cfg.ai.key = read('ai.key').trim();
+      cfg.ai.model = read('ai.model').trim(); cfg.ai.visionModel = read('ai.visionModel').trim();
+      cfg.tts.provider = read('tts.provider'); cfg.tts.baseUrl = read('tts.baseUrl').trim(); cfg.tts.key = read('tts.key').trim();
+      cfg.tts.model = read('tts.model').trim(); cfg.tts.voice = read('tts.voice').trim();
       await ML.providers.saveConfig(cfg);
       L.toast(Tn('set.saved'));
     });

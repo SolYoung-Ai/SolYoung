@@ -441,3 +441,24 @@ body[data-route="project"] #app{bottom:0}
 .st-kbd td:first-child{width:170px}
 
 .tl-playhead{cursor:ew-resize;touch-action:none}
+
+/* ===== settings: provider test / capabilities / key mgmt ===== */
+.st-note{font-size:11.5px;color:var(--text2);line-height:1.5;padding:2px 2px 8px}
+.st-actions{display:flex;gap:8px;align-items:center;margin-top:4px}
+.st-result{margin-top:10px;min-height:0}
+.st-res{border-radius:8px;padding:9px 12px;font-size:12.5px;line-height:1.55}
+.st-res.run{color:var(--text2);border:1px dashed var(--border)}
+.st-res.ok{border:1px solid rgba(168,255,96,.28);background:rgba(168,255,96,.06);color:var(--text1)}
+.st-res.fail{border:1px solid rgba(255,105,97,.35);background:rgba(255,105,97,.07);color:var(--text1)}
+.st-res b{font-weight:600}
+.st-res-meta{display:flex;gap:10px;margin-top:4px;font:11px 'JetBrains Mono',monospace;color:var(--text2)}
+.st-res-code{display:inline-block;margin-top:5px;font:10.5px 'JetBrains Mono',monospace;color:#ff6a5e;background:rgba(255,105,97,.1);border-radius:4px;padding:1px 6px}
+.st-res-detail{margin-top:5px;font-size:11px;color:var(--text2);word-break:break-all}
+.st-caps{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.st-cap{font-size:10.5px;padding:2px 8px;border-radius:20px;font-family:var(--mono)}
+.st-cap.on{color:#a8ff60;border:1px solid rgba(168,255,96,.35);background:rgba(168,255,96,.07)}
+.st-cap.off{color:var(--text3);border:1px solid var(--border)}
+.st-models{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.st-models code{font:10px 'JetBrains Mono',monospace;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 5px}
+.st-list{margin:4px 0 0;padding-left:16px;display:flex;flex-direction:column;gap:5px}
+.st-list li{font-size:12px;color:var(--text2);line-height:1.55}

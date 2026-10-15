@@ -21,6 +21,9 @@ ML.voice = (function(){
     try{
       res = await ML.providers.TTS.synthesize(scene.text, voiceId);
     }catch(e){
+      /* real provider errors pass through with their code/message;
+         only the unconfigured case maps to the "not configured" hint */
+      if(e && e.code) throw e;
       throw new Error(ML.i18n.t('voice.notConfig')+' '+String(e&&e.message||e));
     }
     const seg = {

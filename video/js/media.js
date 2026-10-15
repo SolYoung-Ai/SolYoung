@@ -114,9 +114,21 @@ ML.media = (function(){
     return blob ? URL.createObjectURL(blob) : null;
   }
 
-  function analyzeAll(assets){
-    /* returns per-asset deterministic mock analysis (labelled DEV MOCK) */
-    return assets.map(a => ML.providers.mockMediaAnalysis({ name: a.name, width: a.width, height: a.height }));
+  async function analyzeAll(assets){
+    /* real AI analysis when a provider is configured (vision model optional),
+       otherwise deterministic DEV MOCK — never silently faked */
+    const out = [];
+    for(const a of assets){
+      let an = null;
+      if(ML.providers.hasAI()){
+        try{
+          an = await ML.providers.AI.analyzeMedia({ name:a.name, type:a.type, width:a.width, height:a.height, duration:a.duration, thumb:a.thumb });
+        }catch(e){ ML.diag && ML.diag.error('MEDIA','analyze',a.id,e); }
+      }
+      if(!an) an = ML.providers.mockMediaAnalysis({ name: a.name, width: a.width, height: a.height });
+      out.push(an);
+    }
+    return out;
   }
 
   return { importFile, loadBlobUrl, analyzeAll, typeOf, MAX };

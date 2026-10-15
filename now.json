@@ -644,5 +644,14 @@
     "images": [],
     "published": true,
     "content_en": "In an age where AI can finish things for us faster and faster, what is it that a person is actually still responsible for?\nI don't have an answer yet, so I keep trying."
+  },
+  {
+    "id": "2026-10-16-videolab-v38-provider",
+    "date": "2026-10-16",
+    "type": "DEV",
+    "content": "VIDEO LAB v38：AI/TTS 接入重构完成——支持用户自带 OpenAI 兼容 API（DeepSeek/Moonshot/智谱/通义等），设置页新增真实连接测试、错误诊断分型（密钥无效/地址错误/超时/跨域）、能力分级与密钥清除；素材分析接入真实模型（视觉模型可选），密钥仅存浏览器本地。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v38: AI/TTS provider rework — bring-your-own OpenAI-compatible API (DeepSeek/Moonshot/Zhipu/Qwen…), real connection test with error classification, capability badges, key clearing; real media analysis with optional vision model; keys stay local in the browser."
   }
 ]
