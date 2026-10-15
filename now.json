@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-capmap-wid",
+    "date": "2026-10-15T18:30",
+    "type": "BUILD",
+    "published": true,
+    "content": "能力图作品卡片加宽（220px），不再挤成窄条；AI 实践去掉 SolYoung 抖音入口，只留四个产品。",
+    "content_en": "Widened cap-map work cards to 220px so text no longer squeezes; removed the SolYoung Douyin entry from AI Practice, keeping only the four products."
+  },
+  {
     "id": "build-capmap-mobile",
     "date": "2026-10-15T18:20",
     "type": "BUILD",
