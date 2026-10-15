@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-15-studio-qr-crop",
+    "date": "2026-10-15T23:00",
+    "type": "BUILD",
+    "content": "SolYoung Studio 联系区微信二维码裁切为纯二维码本身，去掉头像、昵称与底部「扫码添加」文字。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "build-i18n-full",
     "date": "2026-10-15T16:40",
     "type": "BUILD",
