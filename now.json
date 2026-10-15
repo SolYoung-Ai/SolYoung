@@ -1,11 +1,21 @@
 [
   {
+  {
+    "id": "2026-10-15-studio-qr-crop",
+    "date": "2026-10-15T23:00",
+    "type": "BUILD",
+    "content": "SolYoung Studio 联系区微信二维码裁切为纯二维码本身，去掉头像、昵称与底部「扫码添加」文字。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "build-capmap",
     "date": "2026-10-15T17:30",
     "type": "BUILD",
     "published": true,
     "content": "关于我下方新增「能力关系图」：\n· 中心节点「把想法变成作品」连接五个能力节点（影像创作 / AI 实践 / 网站与产品 / 内容创作 / 推进与迭代）。\n· 点击节点在下方展开真实作品与链接，悬停高亮关联线，移动端切换为可点列表。",
     "content_en": "Added a Capability Map below About:\n· A central node \"Ideas into Reality\" connects five skills (Visuals / AI / Web & products / Content / Shipping & iterating).\n· Click a node to open real works and links below; hover highlights the connected line; on mobile it becomes a tap list."
+  },
   },
   {
     "id": "build-i18n-full",
@@ -14,6 +24,14 @@
     "published": true,
     "content": "全站双语补齐：\n· 此刻 60+ 条动态全部配上英文，切 EN 即显示英文。\n· 思考列表与两篇正文（个人品牌、创作充实感）全部双语，跟随首页语言切换。",
     "content_en": "Full-site bilingual complete:\n· All 60+ \"Now\" updates now have English; switch to EN to read them in English.\n· The Thoughts list and both articles (personal brand; fulfillment of creating) are fully bilingual and follow the homepage language toggle."
+  },
+  {
+    "id": "2026-10-15-studio-i18n",
+    "date": "2026-10-15T22:10",
+    "type": "BUILD",
+    "content": "SolYoung Studio 全站中英双语：\n\n· 左上角 EN/中 切换现在覆盖导航、Hero、服务卡、案例、合作流程、咨询表单、联系页、FAQ、合作前请了解、隐私、服务条款与全部作品页。\n· 说明页清理老商城残留（二维码收款 / 人工核验 / 邀请码），改为与当前业务一致的版本。\n· 案例区补上 SolYoung 主站首页真实截图。",
+    "published": true,
+    "images": []
   },
   {
     "id": "2026-10-15-studio-polish",
