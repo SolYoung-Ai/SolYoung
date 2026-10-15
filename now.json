@@ -21,7 +21,8 @@
     "type": "BUILD",
     "content": "SolYoung 前两条视频封面居中裁成 3:4，去掉顶部黑边。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Re-cropped the first two SolYoung video covers to 3:4 (centered), removing the black bars at the top."
   },
   {
     "id": "2026-10-15-content-polish",
@@ -29,7 +30,8 @@
     "type": "BUILD",
     "content": "「影像与内容」微调上线：\n\n· 视频卡片一排固定 3 列展示，封面框自适应缩小。\n· 去掉模块介绍文案；三个账号简介更新为各自定位。\n· 修复真实视频卡片误显示「示例」角标的问题。\n· 移除「关于我」下方重复的社交媒体账号列表（已整合进影像与内容区）。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Tuning the Content & Visuals section:\n\n· Videos now show three per row, covers auto-scaling.\n· Removed the module intro line; updated each account's short bio.\n· Fixed the stray 'Sample' badge on already-published cards.\n· Removed the duplicate social account list under About (now integrated into Content & Visuals)."
   },
   {
     "id": "2026-10-15-content-accounts",
@@ -37,7 +39,8 @@
     "type": "BUILD",
     "content": "「影像与视频」升级为「影像与内容 CONTENT & VISUALS」账号选择模块：\n\n· 作品页内新增账号选择双栏：楊十八呀 / SolYoung / 野心互联工作室，点账号即切到该账号精选视频。\n· 三账号共 9 条真实抖音视频已上线，配真实封面，点卡片跳转原视频页（新标签页）。\n· 移动端账号改为横向标签栏；数据集中在一处，后续改数据即可增删作品。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "The old 'Video & Visuals' section is now the 'CONTENT & VISUALS' account-switcher module:\n\n· A two-column account picker on the works page: 楊十八呀 / SolYoung / 野心互联工作室 — click an account to see its featured videos.\n· 9 real Douyin videos across the three accounts are live with real covers; clicking a card opens the original video in a new tab.\n· On mobile the accounts become a horizontal tab bar; all data lives in one place, so adding or editing works is just editing data."
   },
   {
     "id": "2026-10-14-video-section",
@@ -45,7 +48,8 @@
     "type": "BUILD",
     "content": "个人网站新增「影像与视频」区：\n\n· 作品页顶部新增 VIDEO & VISUALS，精选抖音/小红书视频作品，含分类筛选（AI 创作 / 数字产品 / 影像短片 / 创作实验 / 创作思考）。\n· 5 条示例条目数据驱动、可替换；无单条链接时按钮跳转创作者主页。\n· 新增 5 张 3:4 占位封面（待替换）。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Added a 'Video & Visuals' section:\n\n· New VIDEO & VISUALS at the top of the works page, curating selected Douyin/Xiaohongshu videos with category filters (AI creation / digital product / short film / creative experiment / reflection).\n· 5 sample entries, data-driven and swappable; when a single-video link is absent the button links to the creator's profile.\n· Added 5 placeholder 3:4 covers (to be replaced)."
   },
   {
     "id": "2026-10-11-studio-services",
@@ -53,7 +57,8 @@
     "type": "BUILD",
     "content": "SolYoung Studio 业务升级：\n\n· 新增独立服务页 /services：个人数字空间搭建、AI 数字产品定制、AI 创作工作流梳理，含合作流程、交付边界、FAQ 与项目咨询表单。\n· 首页保留原骨架，新增轻量服务导览；Hero 次按钮改为「聊聊你的想法」。\n· 购买须知、服务条款、隐私说明补充定制项目相关条款。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "SolYoung Studio business upgrade:\n\n· New standalone /services page: personal digital-space setup, AI digital-product customization, AI creative workflow consulting — covering collaboration process, delivery scope, FAQ and a project inquiry form.\n· Homepage keeps its skeleton with a light service overview; the secondary hero button now reads 'Tell me your idea'.\n· Purchase notes, terms and privacy policy extended with custom-project clauses."
   },
   {
     "id": "2026-10-11-studio-tiers",
@@ -61,7 +66,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 作品页分区改为 全部 / 免费 / 付费 / 测试：永久免费工具归免费区，VIDEO LAB 归入测试区，预留付费区。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n\n· Studio works page reorganized into All / Free / Paid / Testing: permanently free tools go to Free, VIDEO LAB to Testing, with a reserved Paid section."
   },
   {
     "id": "2026-10-10-videolab-v341",
@@ -69,7 +75,8 @@
     "type": "BUILD",
     "content": "VIDEO LAB v34.1：\n\n· 修复工作台 Undo/Redo 历史快照的引用污染（深拷贝），拖拽、裁切、删除、替换、字幕与配音调整均可可靠撤销/重做。\n· 同步推送 GitHub 独立仓库 SolYoung-Ai/Video 与本站 video/ 目录，代码与本地完全一致。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "VIDEO LAB v34.1:\n\n· Fixed reference pollution in Undo/Redo history snapshots (deep copy) — drag, crop, delete, replace, subtitle and dub edits can now be reliably undone/redone.\n· Synced to the standalone GitHub repo SolYoung-Ai/Video and the /video/ directory on this site; code matches local exactly."
   },
   {
     "id": "2026-10-10-visits",
@@ -77,7 +84,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 网站底部新增实时访问量统计，任何访客打开都会自动 +1。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n\n· Added a live visit counter in the footer; every visitor who opens the site automatically adds +1."
   },
   {
     "id": "2026-10-10-videolab-rebuild",
@@ -85,7 +93,8 @@
     "type": "BUILD",
     "content": "VIDEO LAB 专项重构上线（v34）：\n\n· 自动剪辑质量引擎：文案角色识别（Hook/List/Explanation/CTA 等 10 类）驱动镜头节奏；可解释语义匹配（置信度+匹配原因）；前后镜头重复惩罚；4 种剪辑风格（自然/快速/电影感/纪实）真实改变剪辑决策。\n· 成片质量检查：重复素材、冷开场、无匹配场景自动告警并可一键跳转修复。\n· 配音系统：新建流程与工作台均可试听；浏览器合成试听与真实音频分离；单句重新生成不影响其他片段。\n· 工作台：多轨时间轴真实编辑（拖动/裁切/分割/删除/替换）；快捷键全套（Space/S/⌘Z/⌘⇧Z/⌘S/Delete/方向键逐帧/Home/End/M/缩放）并带输入框焦点保护；Undo/Redo 100 步。\n· 字体与审美：6 套可辨识字体（含宋体/楷体）+ 6 种字幕风格预设（编辑式/知识简洁/关键词高亮/电影感/纪实/科技），真实写入项目并影响渲染与导出。\n· 修复：横屏素材竖屏黑边（真实 cover 裁切）、配音重生成后续片段不位移、字体选择器损坏等。\n· 导出：MP4 真实编码（WebCodecs+MP4 Muxer），导出后验证文件大小与时长；SRT 字幕导出；无真实配音时明确标注开发模式。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "VIDEO LAB major rebuild live (v34):\n\n· Auto-edit quality engine: script-role recognition (Hook/List/Explanation/CTA and 10 roles) drives shot rhythm; explainable semantic matching (confidence + reason); repeat-penalty between consecutive shots; 4 edit styles (natural/fast/cinematic/documentary) that actually change editing decisions.\n· Export quality check: repeated footage, cold open, unmatched scenes auto-alert with one-click jump to fix.\n· Dubbing previewable in both new-flow and workbench."
   },
   {
     "id": "2026-10-10-studio-updates-sync",
@@ -93,7 +102,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 更新日志页改为实时读取主站 now 时间线，子产品每次更新自动同步，并按产品分类筛选。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n\n· Studio changelog now reads the main-site now timeline in real time; each sub-product update syncs automatically and can be filtered by product."
   },
   {
     "id": "2026-10-10-updates-filter",
@@ -101,7 +111,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 更新日志页新增按产品筛选，可单独查看某件作品的更新历史。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n\n· Studio changelog now supports filtering by product, so you can view one product's update history alone."
   },
   {
     "id": "2026-10-10-studio-preview",
@@ -109,7 +120,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 商品卡片与详情主视觉改为各工具首页横版预览截图，Logo 缩小为标题旁小图标。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Studio product cards and detail hero now use each tool's homepage wide preview screenshot; logo shrunk to a small icon next to the title."
   },
   {
     "id": "2026-10-10-studio-nav",
@@ -117,7 +129,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 导航去掉与「产品」重复的「资源」入口；各页面补充独立浏览器标题。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Removed the redundant 'Resources' nav entry that duplicated 'Products'; added standalone browser titles to each page."
   },
   {
     "id": "2026-10-10-verity-logo",
@@ -125,7 +138,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 更换 Verity 人格测试产品封面为新版镭射炫彩大脑 Logo。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Switched the Verity personality test cover to the new laser-iridescent brain logo."
   },
   {
     "id": "2026-10-10-studio-img-opt",
@@ -133,7 +147,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 产品封面图压缩：合计约 3.3MB PNG → 48KB WebP（900px），加载更快且 Retina 仍清晰。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Compressed Studio product covers: ~3.3MB PNG to 48KB WebP (900px total); faster loading yet still sharp on Retina."
   },
   {
     "id": "2026-10-10-videolab-domain",
@@ -141,7 +156,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· VideoLAB自动化剪辑系统上线独立入口 solyoung.top/video/（仍标注测试中）。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· VideoLAB auto-editing system launched at a standalone entry solyoung.top/video/ (still marked in testing)."
   },
   {
     "id": "2026-10-10-studio-wechat",
@@ -149,7 +165,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Studio 联系页新增微信号 solyoung-ai 一键复制；中英切换改为图标按钮。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Studio contact page now has one-click copy of WeChat ID solyoung-ai; the language toggle changed to an icon button."
   },
   {
     "id": "2026-10-10-studio-controls",
@@ -157,7 +174,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· SolYoung Studio 头部新增手机/桌面视图预览与中英双语切换，界面文案可中英切换并记忆选择；移动端默认自适应。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· SolYoung Studio header now has mobile/desktop preview and bilingual toggle; UI copy switches between zh/en and remembers your choice; mobile adapts by default."
   },
   {
     "id": "2026-10-10-studio-real-works",
@@ -165,7 +183,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· SolYoung Studio 作品区换为真实作品——My.OS、Verity 人格测试、CamSim 相机参数模拟器、VIDEO LAB 自动剪辑工作台，均免费直达主站工具页。\n· 补齐微信客服二维码，人工核验联系方式可直接扫码。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· SolYoung Studio works area now shows real works — My.OS, Verity personality test, CamSim camera parameter simulator, VIDEO LAB auto-editing workbench, all linking straight to the main-site tools for free.\n· Added the WeChat customer-service QR code; human-verified contact info can be scanned directly."
   },
   {
     "id": "2026-10-10-videolab-live",
@@ -173,7 +192,8 @@
     "type": "BUILD",
     "content": "上线：\n\n· VideoLAB 自动化剪辑系统正式上线（solyoung.top/video/）——文案 + 素材 → 自动成片。粘贴脚本、上传素材，自动拆句理解、匹配画面、生成配音与字幕、搭建时间轴，进入工作台微调后一键导出 MP4。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Live:\n· VideoLAB auto-editing system officially launched (solyoung.top/video/) — script + footage to finished video. Paste a script, upload footage; it auto-splits sentences, matches visuals, generates voiceover and subtitles, builds the timeline, and after fine-tuning in the workbench exports one-click MP4."
   },
   {
     "id": "2026-10-10-os-entry",
@@ -181,7 +201,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· My OS 新增小写入口 solyoung.top/os/，自动跳转到工作台（solyoung.top/OS/），两种写法都能打开。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· My OS now has a lowercase entry solyoung.top/os/ that redirects to the workbench (solyoung.top/OS/); both spellings work."
   },
   {
     "id": "2026-10-10-works-to-studio",
@@ -189,7 +210,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 作品入口统一改为跳转 SolYoung Studio 商店（solyoung.top/studio/），取消作品二级页面。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Works entries now all jump to the SolYoung Studio studio (solyoung.top/studio/); the standalone works subpage is retired."
   },
   {
     "id": "2026-10-10-btn-icon",
@@ -197,7 +219,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 右上角手机按钮改为手机图标样式，点击切换手机/桌面排版，手机模式下按钮高亮。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· The top-right phone button now uses a phone icon; clicking toggles phone/desktop layout, and highlights in phone mode."
   },
   {
     "id": "2026-10-10-studio-launch",
@@ -205,7 +228,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 上线 SolYoung Studio 数字作品工作室（solyoung.top/studio/）——把想法变成可以使用的东西。数字工具、创作资源与独立实验都在这里。首批内测邀请码演示商品已上架，完整商品展示、结算与人工核验流程上线（演示模式）。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Launched SolYoung Studio digital-work studio (solyoung.top/studio/) — turning ideas into things you can actually use. Digital tools, creative resources and standalone experiments live here. First batch of beta-invite demo products is listed, with full product display, checkout and human-verification flow live (demo mode)."
   },
   {
     "id": "2026-10-09-thoughts-sort",
@@ -213,7 +237,8 @@
     "type": "BUILD",
     "content": "修复：\n\n· 思考板块改为按日期真实排序，最新发布的文章排在最前。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Fix:\n· Thoughts now sort by real date; newest posts appear first."
   },
   {
     "id": "2026-10-09-avatar-fast",
@@ -221,7 +246,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 首页头像改用多尺寸按需加载——普通屏秒开小图、高清屏保持清晰大图，加载明显变快。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Homepage avatar now loads multiple sizes on demand — small image opens fast on normal screens, stays crisp on high-DPI; noticeably faster."
   },
   {
     "id": "2026-10-08-videolab",
@@ -229,7 +255,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 独立产品区新增 VideoLAB 自动化剪辑系统（测试中）——文案 + 素材 → 自动成片，域名待定。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Added VideoLAB auto-editing system to the independent products area (in testing) — script + footage to finished video; domain TBD."
   },
   {
     "id": "2026-10-08T21:37-think-56azr",
@@ -238,7 +265,8 @@
     "content": "如果把人生当成一场游戏，那我现在给自己建一个小农场。而这个网站，就是我现在正在经营的那块农场。\n",
     "published": true,
     "images": [],
-    "_pending": false
+    "_pending": false,
+    "content_en": "If life is a game, then I'm building myself a small farm right now. And this website is the farm I'm tending."
   },
   {
     "id": "2026-10-08-countdown-real",
@@ -246,7 +274,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 页面底部 100 小时倒计时改为真实世界倒计时——锚定固定起点持续递减，刷新页面不再重置。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· The footer 100-hour countdown is now a real-world timer — anchored to a fixed start and counting down; refreshing the page no longer resets it."
   },
   {
     "id": "2026-10-08-verity-logo-2",
@@ -254,7 +283,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Verity人格测试 logo 再换一版——幻彩镭射云朵造型（黑底虹彩，双椭圆镂空），首页图标与 hover 预览已同步。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Verity personality test logo updated again — iridescent laser cloud shape (虹彩 on black, double-ellipse cutout); homepage icon and hover preview synced."
   },
   {
     "id": "2026-10-08-verity-logo",
@@ -262,7 +292,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· Verity人格测试换上全新 logo（黑底虹彩银杏叶造型），首页图标与 hover 预览同步。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Verity personality test got a new logo (iridescent ginkgo-leaf on black); homepage icon and hover preview synced."
   },
   {
     "id": "2026-10-08-portrait-fix",
@@ -270,7 +301,8 @@
     "type": "BUILD",
     "content": "修复：\n\n· 移除头像框跳转此刻页的旧逻辑，点击首页头像框现在只直达页面底部邮箱与倒计时。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Fix:\n· Removed the old avatar-frame jump to the now page; clicking the homepage avatar now goes straight to the email and countdown at the bottom."
   },
   {
     "id": "2026-10-08-portrait-direct-jump",
@@ -278,7 +310,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 点击首页画像改为即时直达页面底部，邮箱与 100 小时倒计时同屏显示，不再经过此刻板块。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· Clicking the homepage portrait now jumps straight to the bottom, showing email and 100-hour countdown on the same screen, skipping the now section."
   },
   {
     "id": "2026-10-08-share-card-redesign",
@@ -286,7 +319,8 @@
     "type": "BUILD",
     "content": "Verity 人格测试分享卡重设计：中文维度标签、条形与文字分列不重叠、竖版/方版双布局优化。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Verity personality test share-card redesign: Chinese dimension labels, bars and text on separate columns without overlap, optimized for both vertical and square layouts."
   },
   {
     "id": "2026-10-08-verity-rebrand",
@@ -294,7 +328,8 @@
     "type": "BUILD",
     "content": "更新：\n\n· 快测正式更名为 Verity人格测试，域名换成 solyoung.top/Verity/；\n· 点击首页画像，会平滑滚动到页面底部的邮箱和 100 小时倒计时，同屏可见。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Updated:\n· The quick test is officially renamed Verity personality test, domain changed to solyoung.top/Verity/;\n· clicking the homepage portrait smoothly scrolls to the email and 100-hour countdown at the bottom, visible on one screen."
   },
   {
     "id": "2026-10-08-favicon-avatar",
@@ -302,7 +337,8 @@
     "type": "BUILD",
     "content": "品牌细节：\n\n· 网站 favicon（浏览器标签小图标）从字母 S 换成我的头像，小尺寸压缩，清晰不变形。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Brand details:\n· The site favicon (browser-tab icon) changed from the letter S to my portrait, compressed for small sizes, clear without distortion."
   },
   {
     "id": "2026-10-08-verity-brand",
@@ -310,7 +346,8 @@
     "type": "BUILD",
     "content": "人格测试站更名「Verity人格测试」并启用新域名 solyoung.top/Verity/：认识自己，不止一个标签。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "The personality test site is renamed 'Verity personality test' with new domain solyoung.top/Verity/: knowing yourself is more than a label."
   },
   {
     "id": "2026-10-08-portrait-email",
@@ -318,7 +355,8 @@
     "type": "BUILD",
     "content": "交互小更新：\n\n· 点击首页肖像头像，平滑滚动到页面底部的邮箱，并短暂高亮。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Small interaction update:\n· Clicking the homepage portrait smoothly scrolls to the email at the bottom and briefly highlights it."
   },
   {
     "id": "2026-10-08-avatar-hd",
@@ -326,7 +364,8 @@
     "type": "BUILD",
     "content": "门面升级：\n\n· 首页肖像头像换成 1080 高清版本，细节与笔触更清晰；\n· 加了 preload 提前加载，高清但首屏仍不拖慢。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Face-lift:\n· Homepage portrait upgraded to a 1080 high-res version, finer detail and brushwork;\n· added preload — high-res but the first screen isn't slowed."
   },
   {
     "id": "2026-10-08-typeall-2",
@@ -334,7 +373,8 @@
     "type": "BUILD",
     "content": "「快测 TypeAll」2.0 重构完成：上线 Big Five 大五人格多维测评，连续维度 + 16 型叙事 + 作答质量检测 + 人格签名，认识自己，不止一个标签。solyoung.top/TypeAll/",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "'Quick Test TypeAll' 2.0 rebuild complete: launched Big Five multi-dimensional assessment, continuous dimensions + 16-type narrative + answer-quality detection + personality signature. Knowing yourself is more than a label. solyoung.top/TypeAll/"
   },
   {
     "id": "2026-10-08-archive-entry-polish",
@@ -342,7 +382,8 @@
     "type": "BUILD",
     "content": "微调档案开场：\n\n· 归档后的文字移到档案框下方，不再遮挡照片；\n· 手机端提示改为「长按并拖入档案」，触屏可长按拖拽。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Polished the archive intro:\n· Archived text moved below the archive frame, no longer covering the photo;\n· mobile hint changed to 'long-press and drag into the archive frame' for touch drag."
   },
   {
     "id": "2026-10-07-archive-entry",
@@ -350,7 +391,8 @@
     "type": "BUILD",
     "content": "网站更新日志：\n\n· 上线「数字档案入口」开场体验：把头像拖进档案框，即可打开 SolYoung 的档案；\n· 首次访问完整体验，之后每次访问只极短暂浮现、不打扰；\n· 页脚可随时 REPLAY INTRO 重温，也支持减少动态效果与手机触屏操作。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Site changelog:\n· Launched the 'digital archive entry' intro experience: drag the avatar into the archive frame to open SolYoung's archive;\n· full experience on first visit, afterward it only flashes briefly and doesn't disturb;\n· footer has a REPLAY INTRO to replay anytime; supports reduced-motion and touch."
   },
   {
     "id": "2026-10-07-footer-image-opt",
@@ -358,7 +400,8 @@
     "type": "BUILD",
     "content": "网站更新日志：\n\n· 页脚 100 小时倒计时移到「记录是为了忘记」正下方、版权信息上方，并换成更稳定的数字字体（手机端显示更清晰）；\n· 全站图片压缩转 WebP 并加懒加载：相机参数模拟器 logo 从 1.6MB 降到约 4KB，首页图片总量从约 2.6MB 降到约 130KB，国内访问加载明显变快。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Site changelog:\n· Footer 100-hour countdown moved to right below 'We record so we can forget', above the copyright, switched to a more stable numeral font (clearer on mobile);\n· All site images compressed to WebP with lazy loading: camera-simulator logo dropped from 1.6MB to ~4KB, total homepage images from ~2.6MB to ~130KB; noticeably faster in China."
   },
   {
     "id": "2026-10-07-foot-countdown",
@@ -366,7 +409,8 @@
     "type": "BUILD",
     "content": "网站更新日志：\n\n· 页脚新增 100 小时循环倒计时，精确到秒，归零后自动重新开始；\n· 并附一句说明：每过 100 小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Site changelog:\n· Footer added a 100-hour loop countdown, precise to the second, auto-restarts when it hits zero;\n· with a note: every 100 hours, this site and everything I create keeps changing. Added or removed, always moving toward something better."
   },
   {
     "id": "2026-10-07-lang-toggle",
@@ -374,7 +418,8 @@
     "type": "BUILD",
     "content": "网站更新日志：\n\n· 右上角新增中英语言切换按钮，整站文案可一键在中英文之间切换；\n· 覆盖导航、首屏、板块标题、独立产品、关于我、联系与页脚；\n· 语言选择会被记住，下次打开保持上次选择。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Site changelog:\n· Added a zh/en language toggle in the top-right; the whole site's copy switches between Chinese and English with one click;\n· covers nav, hero, section titles, independent products, about, contact and footer;\n· language choice is remembered and kept on next visit."
   },
   {
     "id": "2026-10-04-myos-launch",
@@ -382,7 +427,8 @@
     "type": "BUILD",
     "content": "MyOS创作系统上线：独立产品新增第三个作品——面向独立创作者的本地优先创作工作台，已可点击访问 solyoung.top/OS/。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "MyOS creation system launched: the third work in independent products — a local-first creation workbench for independent creators, now clickable at solyoung.top/OS/."
   },
   {
     "id": "2026-10-04-update-log",
@@ -390,7 +436,8 @@
     "type": "BUILD",
     "content": "网站更新日志：\n\n· 移除了「讨论」板块——评论功能因国内网络不可用，整体删除；\n· 作品、关于我标题可点击跳转二级页，新增 works/ 与 about/ 独立页面；\n· 关于我页 SolYoung 主标突出，副句改为下方小字；\n· 首页首屏下方新增一排快捷导航框（作品/此刻/思考/关于我）；\n· 移除右侧章节垂直导航。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Site changelog:\n· Removed the 'Discussion' section — comments were unusable on China's network, deleted entirely;\n· Works and About titles now link to subpages; added standalone works/ and about/ pages;\n· About page: SolYoung main title emphasized, subtitle moved to small text below;\n· Added a row of quick-nav boxes below the homepage hero (Works/Now/Thoughts/About);\n· Removed the right-side vertical section nav."
   },
   {
     "id": "2026-10-04-update-camsim-logo",
@@ -398,7 +445,8 @@
     "type": "BUILD",
     "content": "相机参数模拟器换上新的产品 logo。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "The camera parameter simulator got a new product logo."
   },
   {
     "id": "2026-10-04-wrapup",
@@ -406,7 +454,8 @@
     "type": "BUILD",
     "content": "今日更新收尾：思考板块改为左右滑动并新增全部思考页、此刻标题可一键直达、手机端新增排版适配与单行优化、产品更新为 solyoung.top 新域名，并完成全站数据与链接排查。一切正常，休息。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Wrapping up today's updates: thoughts section changed to horizontal swipe with a full-thoughts page, now title one-click jump, mobile layout adaptation and single-line optimization, products updated to the new solyoung.top domain, and a full-site data and link check. All good, resting."
   },
   {
     "id": "2026-10-04-build-typeall-domain",
@@ -414,7 +463,8 @@
     "type": "BUILD",
     "content": "把「快测」收拢到了自己的域名下：solyoung.top/TypeAll/，聚合全网主流性格测试的一站式平台，25 套测试随时测一个。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Brought the 'Quick Test' under its own domain: solyoung.top/TypeAll/ — a one-stop platform aggregating mainstream personality tests across the web, 25 tests ready to take anytime."
   },
   {
     "id": "2026-10-04-promo-camsim",
@@ -424,7 +474,8 @@
     "published": true,
     "images": [
       "assets/camera-simulator-logo.png"
-    ]
+    ],
+    "content_en": "Got the camera parameter simulator to a state I'm happy with: based on your shooting scenario, it auto-generates a set of photography parameters you can execute directly.\n\nTry it: solyoung.top/CamSim/"
   },
   {
     "id": "2026-10-04-update-mobile-comfort",
@@ -432,7 +483,8 @@
     "type": "BUILD",
     "content": "网站新增手机排版适配微标：手机端可一键切换更宽松自然的排版，点击右上角图标即可。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Added a mobile layout comfort toggle: on mobile you can switch to a looser, more natural layout with one tap on the top-right icon."
   },
   {
     "id": "2026-10-04-update-thoughts",
@@ -440,7 +492,8 @@
     "type": "BUILD",
     "content": "网站更新：思考板块改为左右滑动，标题可一键进入全部思考页，并新增 VIEW ALL THOUGHTS 引导。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Site update: thoughts section changed to horizontal swipe, titles link to the full-thoughts page, and added a VIEW ALL THOUGHTS cue."
   },
   {
     "id": "2026-10-04T02:43-life-4o59p",
@@ -449,7 +502,8 @@
     "content": "优化网站，像是在经营自己的菜园",
     "published": true,
     "images": [],
-    "_pending": false
+    "_pending": false,
+    "content_en": "Optimizing the website feels like tending my own vegetable garden."
   },
   {
     "id": "2026-10-04-think-nxuex",
@@ -457,7 +511,8 @@
     "type": "THINK",
     "content": "创造让人乐此不疲",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "Creation that keeps you coming back."
   },
   {
     "id": "2026-10-03-build-camsim",
@@ -467,7 +522,8 @@
     "images": [
       "assets/camera-simulator-logo.png"
     ],
-    "published": true
+    "published": true,
+    "content_en": "Reworked the camera parameter simulator again recently.\n\nTurns out the hard part isn't the parameters themselves, but translating a photographer's experience into rules. This interaction finally feels right."
   },
   {
     "id": "2026-10-01-test-ai-editing",
@@ -475,7 +531,8 @@
     "type": "TEST",
     "content": "开始重新测试 AI 辅助剪辑。\n暂时不追求效率，先看看它到底能不能改变我的剪辑思路。",
     "images": [],
-    "published": true
+    "published": true,
+    "content_en": "Started retesting AI-assisted editing.\nNot chasing efficiency for now — first seeing whether it can actually change the way I edit."
   },
   {
     "id": "2026-09-27-shoot-nature",
@@ -483,7 +540,8 @@
     "type": "SHOOT",
     "content": "周末出去拍了一组东西。\n走进大自然，慢慢记录身边的风景。",
     "images": [],
-    "published": true
+    "published": true,
+    "content_en": "Went out and shot a set of things over the weekend.\nWalked into nature, slowly recording the scenery around me."
   },
   {
     "id": "2026-09-22-build-typeall",
@@ -493,7 +551,8 @@
     "images": [
       "assets/personality-hub.jpg"
     ],
-    "published": true
+    "published": true,
+    "content_en": "Gathered all kinds of personality tests into one site.\nQuick test — take one anytime."
   },
   {
     "id": "2026-09-15-think-what-remains",
@@ -501,6 +560,7 @@
     "type": "THINK",
     "content": "在一个 AI 可以越来越快帮我们完成事情的时代，一个人真正应该负责的，到底还剩下什么。\n这个问题我还没有答案，所以我继续试。",
     "images": [],
-    "published": true
+    "published": true,
+    "content_en": "In an age where AI can finish things for us faster and faster, what is it that a person is actually still responsible for?\nI don't have an answer yet, so I keep trying."
   }
 ]

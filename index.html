@@ -961,6 +961,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     document.documentElement.setAttribute('lang', lang==='zh' ? 'zh-CN' : 'en');
     document.documentElement.setAttribute('data-lang', lang);
     if(window.__renderVideos) window.__renderVideos();
+    if(window.__renderNow) window.__renderNow();
   }
   applyLang(currentLang);
   var langBtn = document.getElementById('langBtn');
@@ -1119,7 +1120,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     if(p[1]) out += ' · ' + p[1];
     return out;
   }
+  var nowData = null;
   function renderNow(items){
+    nowData = items;
     if(!nowFeed) return;
     nowFeed.innerHTML = '';
     var nowIO = new IntersectionObserver(function(es){
@@ -1136,7 +1139,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       el.innerHTML =
         '<div class="now-head"><img class="now-av" src="assets/avatar.webp" alt="SolYoung"><span class="now-name">SolYoung</span><span class="now-handle">@solyoung</span></div>' +
         '<div class="now-meta"><span class="now-type">' + post.type + '</span><span class="now-date">' + fmtNowDate(post.date) + '</span></div>' +
-        '<div class="now-body">' + post.content.replace(/\n/g,'<br>') + '</div>' +
+        '<div class="now-body">' + ((localStorage.getItem('soyoung-lang')==='en' && post.content_en) ? post.content_en : post.content).replace(/\n/g,'<br>') + '</div>' +
         media;
       nowFeed.appendChild(el);
       nowIO.observe(el);
@@ -1147,6 +1150,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       .then(function(r){ return r.json(); })
       .then(function(d){ renderNow(d); })
       .catch(function(){ nowFeed.innerHTML = '<p class="now-fail">动态需要在线访问加载。</p>'; });
+  window.__renderNow = function(){ if(nowData) renderNow(nowData); };
   }
 
   // lightbox — click a now image to view at full size
