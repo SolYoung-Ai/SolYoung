@@ -1,11 +1,20 @@
 [
   {
+    "id": "build-i18n-full",
+    "date": "2026-10-15T16:40",
+    "type": "BUILD",
+    "published": true,
+    "content": "全站双语补齐：\n· 此刻 60+ 条动态全部配上英文，切 EN 即显示英文。\n· 思考列表与两篇正文（个人品牌、创作充实感）全部双语，跟随首页语言切换。",
+    "content_en": "Full-site bilingual complete:\n· All 60+ \"Now\" updates now have English; switch to EN to read them in English.\n· The Thoughts list and both articles (personal brand; fulfillment of creating) are fully bilingual and follow the homepage language toggle."
+  },
+  {
     "id": "2026-10-15-studio-polish",
     "date": "2026-10-15T16:30",
     "type": "BUILD",
     "content": "SolYoung Studio 首页精简：\n\n· 删除首页分区导航条、需求方向卡片区、为什么合作区块、价格范围区块、首页 FAQ 区块与最近更新区，信息层级更直接。\n· 顶部导航「购买说明」改为「联系我」，直达 /contact。\n· 案例区「SolYoung 个人网站」补上主站首页真实截图。\n· 咨询表单：品牌合作新增「网站广告位展示」选项，期望完成时间改为一周内起；选品牌合作时「当前进度」切换为「品牌方类型」。\n· 首页底部联系条补上微信二维码。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "SolYoung Studio homepage streamlined:\n\n· Removed the section nav bar, needs-direction cards, \"why work with us\" block, pricing block, homepage FAQ, and recent-updates section; the information hierarchy is now more direct.\n· Top nav \"Pricing\" renamed \"Contact Me\", linking straight to /contact.\n· Case study \"SolYoung personal site\" now uses a real screenshot of the homepage.\n· Inquiry form: brand collaborations gained a \"website ad-space\" option; expected timeline changed to within one week; when brand collaboration is selected, \"current progress\" switches to \"brand type\".\n· Added a WeChat QR code to the contact bar at the page bottom."
   },
   {
     "id": "2026-10-15-studio-relaunch",
@@ -13,7 +22,8 @@
     "type": "BUILD",
     "content": "SolYoung Studio 首页商业升级：\n\n· 首页重构为 9 屏转化结构：首屏定位、需求入口、服务详情、真实自研案例、为什么合作、合作流程、价格范围、FAQ、动态咨询表单。\n· 服务收敛为两项主打：AI 个人网站与数字空间搭建、品牌与商业合作；下线轻量数字产品服务。\n· 新增首屏分区导航，可一键跳转各板块；案例区以 SolYoung 主站、My.OS、Verity、CamSim、VideoLAB 等自研项目为主，不包装成客户案例。\n· 咨询表单按服务类型动态切换问题与成果选项，提交走邮件/复制摘要，不假装后端提交。\n· 购买须知、常见问题、隐私说明、服务条款同步新服务结构。",
     "published": true,
-    "images": []
+    "images": [],
+    "content_en": "SolYoung Studio homepage commercial upgrade:\n\n· Rebuilt the homepage into a 9-screen conversion flow: above-the-fold positioning, needs entry, service details, real self-built case studies, why work with us, process, pricing, FAQ, and a dynamic inquiry form.\n· Services narrowed to two main offerings: AI personal sites & digital spaces, and brand/business collaborations; lighterweight digital-product services were retired.\n· Added an above-the-fold section nav for one-click jumping; case studies center on self-built projects like the SolYoung main site, My.OS, Verity, CamSim, and VideoLAB, not packaged as client work.\n· The inquiry form swaps questions and options by service type; submission goes via email/copied summary — no fake backend submit."
   },
   {
     "id": "2026-10-15-cover-crop",
