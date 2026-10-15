@@ -8,6 +8,14 @@
     "content_en": "Full-site bilingual complete:\n· All 60+ \"Now\" updates now have English; switch to EN to read them in English.\n· The Thoughts list and both articles (personal brand; fulfillment of creating) are fully bilingual and follow the homepage language toggle."
   },
   {
+    "id": "2026-10-15-studio-i18n",
+    "date": "2026-10-15T22:10",
+    "type": "BUILD",
+    "content": "SolYoung Studio 全站中英双语：\n\n· 左上角 EN/中 切换现在覆盖导航、Hero、服务卡、案例、合作流程、咨询表单、联系页、FAQ、合作前请了解、隐私、服务条款与全部作品页。\n· 说明页清理老商城残留（二维码收款 / 人工核验 / 邀请码），改为与当前业务一致的版本。\n· 案例区补上 SolYoung 主站首页真实截图。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-15-studio-polish",
     "date": "2026-10-15T16:30",
     "type": "BUILD",
