@@ -55,13 +55,13 @@ h1 .accent{color:var(--accent)}
 <header class="hd">
   <div class="container hd-in">
     <a class="brand" href="../index.html" aria-label="返回首页">Sol<span class="dot">.</span>Young</a>
-    <a class="back" href="../index.html#notes">← 返回首页</a>
+    <a class="back" href="../index.html#notes" id="thBack">← 返回首页</a>
   </div>
 </header>
 
 <main class="container">
   <section class="hero">
-    <h1>THOUGHTS <span class="accent">·</span> 思考</h1>
+    <h1 id="thH1">THOUGHTS <span class="accent">·</span> 思考</h1>
   </section>
   <section class="grid" id="list" aria-live="polite"></section>
 </main>
@@ -78,14 +78,16 @@ h1 .accent{color:var(--accent)}
     if(!list) return;
     var pub = items.filter(function(p){ return p.published; })
       .slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
-    if(!pub.length){ list.innerHTML='<p class="fail">还没有思考。</p>'; return; }
+    if(!pub.length){ list.innerHTML='<p class="fail">'+(localStorage.getItem('soyoung-lang')==='en'?'No thoughts yet.':'还没有思考。')+'</p>'; return; }
     list.innerHTML='';
+    var en = localStorage.getItem('soyoung-lang')==='en';
+    if(en){ document.getElementById('thH1').innerHTML='THOUGHTS'; document.getElementById('thBack').textContent='← Back home'; }
     pub.forEach(function(n,i){
       var el=document.createElement('a');
-      var href=(n.page||'').split('/').pop() || '#';   // thoughts/index.html 内相对路径
+      var href=(n.page||'').split('/').pop() || '#';
       el.href=href; el.className='card'; el.style.transitionDelay=(i*90)+'ms';
-      el.innerHTML='<span class="date">'+esc(n.date)+'</span><h3>'+esc(n.title)+'</h3><p>'+esc(n.summary)+'</p>'+
-        '<span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
+      el.innerHTML='<span class="date">'+esc(n.date)+'</span><h3>'+esc(en&&n.title_en?n.title_en:n.title)+'</h3><p>'+esc(en&&n.summary_en?n.summary_en:n.summary)+'</p>'+
+        '<span class="more">'+(en?'Read':'阅读')+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
       list.appendChild(el);
       var io=new IntersectionObserver(function(es){
         es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
