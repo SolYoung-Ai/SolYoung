@@ -830,7 +830,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     </div>
     <div class="capmap rv" id="capmap">
       <div class="cap-eyebrow" data-i18n="cap-eyebrow">CAPABILITY MAP · 能力关系</div>
-      <p class="cap-lead" data-i18n="cap-lead">不是技能清单，也不是评分。这张图记录我实际在用的几种能力——它们彼此连接，共同指向同一件事。</p>
       <div class="cap-stage">
         <svg class="cap-svg" id="capSvg" viewBox="0 0 720 540" role="group" aria-label="能力关系图">
           <g class="cap-lines" id="capLines"></g>
@@ -1549,7 +1548,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   // mobile list
   if(list){
     list.innerHTML='<button type="button" role="tab" data-id="center" class="on"><span class="cl-name">把想法变成作品</span><span class="cl-sub">IDEAS INTO REALITY</span></button>'+
-      NODES.map(function(n){return '<button type="button" role="tab" data-id="'+n.id+'"><span class="cl-name">'+n.zh+'</span><span class="cl-sub">'+n.sub.zh+'</span></button>';}).join('');
+      NODES.map(function(n){return '<button type="button" role="tab" data-id="'+n.id+'"><span class="cl-name">'+(n.short||n.zh)+'</span><span class="cl-sub">'+n.sub.zh+'</span></button>';}).join('');
   }
 
   function nodeById(id){ return nodesG.querySelector('[data-id="'+id+'"]'); }

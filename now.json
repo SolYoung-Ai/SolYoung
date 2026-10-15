@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-capmap-mobile",
+    "date": "2026-10-15T18:20",
+    "type": "BUILD",
+    "published": true,
+    "content": "能力图修复：删除引导句；修复移动端节点列表名显示 undefined 的问题。",
+    "content_en": "Cap map fix: removed the intro line; fixed mobile node list showing undefined names."
+  },
+  {
     "id": "build-capmap-acc",
     "date": "2026-10-15T18:10",
     "type": "BUILD",
