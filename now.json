@@ -1,5 +1,12 @@
 [
   {
+    "id": "u-2026-10-16-studio-home-reduce",
+    "date": "2026-10-16T22:45:00+08:00",
+    "type": "studio",
+    "content": "Studio 首页信息密度精简：Hero 副标题缩成一行，服务卡从 6 栏砍到 2 栏，案例区改为横向滑动卡片，流程区改为横向流程图；更新日志页改为只记录本站改动，不再同步主站。",
+    "published": true
+  },
+  {
     "id": "build-social-cards",
     "date": "2026-10-16T19:20",
     "type": "BUILD",
