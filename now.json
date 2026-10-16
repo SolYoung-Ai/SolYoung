@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-works-restructure",
+    "date": "2026-10-16T18:40",
+    "type": "BUILD",
+    "published": true,
+    "content": "作品区重构：「影像与内容」改名「社交媒体」；删除独立产品列表；底部改为两张通栏入口——SolHub 数字工具社区（带 logo）与 SolYoung Studio 数字服务工作室（字母 logo）。",
+    "content_en": "Works section restructured: \"Content & Visuals\" renamed to \"Social\"; removed the standalone products list; bottom now has two entries — SolHub (digital tools hub, with logo) and SolYoung Studio (digital services, lettermark)."
+  },
+  {
     "id": "2026-10-16-solhub-community",
     "date": "2026-10-16T16:50",
     "type": "BUILD",
