@@ -94,6 +94,44 @@ ML.views = (function(){
               ['9:16','1:1','4:5','16:9'].map(r=>'<button class="ratio-btn'+(r==='9:16'?' on':'')+'" data-ratio="'+r+'">'+r+'</button>').join('')+
             '</div>'+
             '<div class="nw-hint">'+Tn('create.ratio.hint')+'</div>'+
+            '<div class="nw-mode">'+
+              '<button class="nw-mode-btn on" data-mode="script">'+Tn('vo.modeScript')+'</button>'+
+              '<button class="nw-mode-btn" data-mode="voiceover">'+Tn('vo.modeVoiceover')+'</button>'+
+            '</div>'+
+          '</div>'+
+        '</section>'+
+        '<section class="nw-card nw-vo-card" data-step="2v" hidden>'+
+          '<div class="nw-card-head"><span class="nw-idx">02</span><span>'+Tn('vo.voiceover')+'</span><span class="nw-badge" data-badge="vo">—</span></div>'+
+          '<div class="nw-body">'+
+            '<div class="dropzone" data-vo-zone>'+Tn('vo.drop')+'<br><span>'+Tn('vo.dropSub')+'</span></div>'+
+            '<input type="file" class="nw-vo-file" accept="video/*,audio/*" hidden>'+
+            '<div class="nw-vo-meta"></div>'+
+            '<div class="nw-row"><label>'+Tn('vo.transcribeWith')+'</label><select class="inp nw-tr-provider">'+
+              '<option value="whisper-local">'+Tn('vo.trWhisper')+'</option>'+
+              '<option value="api">'+Tn('vo.trApi')+'</option>'+
+              '<option value="srt">'+Tn('vo.trSrt')+'</option>'+
+            '</select></div>'+
+            '<div class="nw-tr-cfg" data-cfg="whisper-local">'+
+              '<div class="nw-row"><label>'+Tn('vo.model')+'</label><select class="inp nw-tr-model">'+
+                '<option value="Xenova/whisper-tiny">whisper-tiny '+Tn('vo.fast')+'</option>'+
+                '<option value="Xenova/whisper-base">whisper-base '+Tn('vo.balanced')+'</option>'+
+                '<option value="Xenova/whisper-small">whisper-small '+Tn('vo.accurate')+'</option>'+
+              '</select></div>'+
+              '<div class="nw-row"><label>'+Tn('vo.lang')+'</label><select class="inp nw-tr-lang">'+
+                '<option value="zh">中文</option><option value="en">English</option><option value="ja">日本語</option><option value="ko">한국어</option>'+
+              '</select></div>'+
+              '<div class="nw-row"><label>'+Tn('vo.mirror')+'</label><input class="inp nw-tr-mirror" placeholder="'+esc(Tn('vo.mirrorPh'))+'"></div>'+
+              '<div class="nw-hint">'+Tn('vo.whisperNote')+'</div>'+
+            '</div>'+
+            '<div class="nw-tr-cfg" data-cfg="api" hidden>'+
+              '<div class="nw-hint">'+Tn('vo.apiNote')+'</div>'+
+              '<div class="nw-row"><label>'+Tn('vo.apiModel')+'</label><input class="inp nw-tr-api-model" value="whisper-1" placeholder="whisper-1"></div>'+
+            '</div>'+
+            '<div class="nw-tr-cfg" data-cfg="srt" hidden>'+
+              '<textarea class="inp nw-tr-srt" rows="5" placeholder="'+esc(Tn('vo.srtPh'))+'"></textarea>'+
+            '</div>'+
+            '<div class="nw-actions"><button class="btn" data-act="runTranscribe">'+Tn('vo.transcribe')+'</button></div>'+
+            '<div class="nw-segs"></div>'+
           '</div>'+
         '</section>'+
         '<section class="nw-card" data-step="2">'+
@@ -140,6 +178,86 @@ ML.views = (function(){
       app.querySelectorAll('.ratio-btn').forEach(x=>x.classList.remove('on'));
       b.classList.add('on'); draft.ratio = b.dataset.ratio;
     }));
+
+    /* mode switch: script+assets vs voiceover auto-cut */
+    let voMode = false;
+    app.querySelectorAll('.nw-mode-btn').forEach(b=>b.addEventListener('click', ()=>{
+      voMode = b.dataset.mode === 'voiceover';
+      app.querySelectorAll('.nw-mode-btn').forEach(x=>x.classList.toggle('on', x===b));
+      app.querySelector('.nw-vo-card').hidden = !voMode;
+      app.querySelector('.nw-card[data-step="2"]').hidden = voMode;
+      app.querySelector('.nw-card[data-step="4"]').hidden = voMode;
+    }));
+
+    /* voiceover card: pick source media, transcribe, list segments */
+    const voZone = app.querySelector('.nw-vo-card .dropzone'), voFile = app.querySelector('.nw-vo-file');
+    voZone.addEventListener('click', ()=>voFile.click());
+    voFile.addEventListener('change', ()=>handleVoFile(voFile.files[0]));
+    voZone.addEventListener('dragover', e=>{ e.preventDefault(); voZone.classList.add('over'); });
+    voZone.addEventListener('dragleave', ()=>voZone.classList.remove('over'));
+    voZone.addEventListener('drop', e=>{ e.preventDefault(); voZone.classList.remove('over'); if(e.dataTransfer.files[0]) handleVoFile(e.dataTransfer.files[0]); });
+    async function handleVoFile(file){
+      const res = await ML.media.importFile(file);
+      if(res.error){ L.toast(res.error, true); return; }
+      const a = res.asset;
+      if(a.type==='image'){ L.toast(Tn('vo.needMedia'), true); return; }
+      /* keep in draft.assets but mark as the voiceover source */
+      const prev = draft.voMediaId;
+      if(prev) draft.assets = draft.assets.filter(x=>x.id!==prev);
+      draft.assets.push(a);
+      draft.voMediaId = a.id;
+      draft.voSegments = [];
+      app.querySelector('.nw-vo-meta').innerHTML = '<div class="nw-mi-tags">'+esc(a.name)+' · '+(a.type==='video'?L.round(a.duration,1)+'s':'')+' '+(a.width? a.width+'×'+a.height:'')+'</div>';
+      app.querySelector('[data-badge=vo]').textContent = '—';
+      app.querySelector('.nw-segs').innerHTML = '';
+      app.querySelector('[data-badge=media]').textContent = draft.assets.length;
+    }
+    /* transcribe provider cfg switching */
+    app.querySelector('.nw-tr-provider').addEventListener('change', e=>{
+      const v = e.target.value;
+      app.querySelectorAll('.nw-tr-cfg').forEach(c=>c.hidden = c.dataset.cfg!==v);
+    });
+    app.querySelector('[data-act=runTranscribe]').addEventListener('click', async ()=>{
+      if(!draft.voMediaId){ L.toast(Tn('vo.needMedia'), true); return; }
+      const provider = app.querySelector('.nw-tr-provider').value;
+      const asset = draft.assets.find(a=>a.id===draft.voMediaId);
+      const blob = await ML.store.getAssetBlob(asset.id);
+      if(!blob){ L.toast(Tn('vo.noBlob'), true); return; }
+      const cfg = {
+        provider,
+        language: app.querySelector('.nw-tr-lang').value,
+        mirror: app.querySelector('.nw-tr-mirror').value.trim(),
+        baseUrl: ML.providers.config().ai.baseUrl,
+        key: ML.providers.config().ai.key,
+        model: provider==='api' ? (app.querySelector('.nw-tr-api-model').value||'whisper-1') : app.querySelector('.nw-tr-model').value,
+        srtText: app.querySelector('.nw-tr-srt').value
+      };
+      if(provider==='srt' && !cfg.srtText.trim()){ L.toast(Tn('vo.needSrt'), true); return; }
+      if(provider==='api' && !(cfg.baseUrl && cfg.key)){ L.toast(Tn('vo.needApi'), true); return; }
+      const btn = app.querySelector('[data-act=runTranscribe]');
+      btn.disabled = true; btn.textContent = Tn('vo.transcribing')+'…';
+      try{
+        const res = await ML.transcribe.transcribe(blob, cfg, (st, pct)=>{});
+        draft.voSegments = res.segments;
+        renderSegs(res);
+        app.querySelector('[data-badge=vo]').textContent = res.segments.length;
+        L.toast(Tn('vo.trDone')+' ('+res.source+')');
+      }catch(e){
+        ML.diag && ML.diag.error('VIEWS','transcribe',null,ML.providers.classifyError ? ML.providers.classifyError(e) : e);
+        L.toast(String(e&&e.message||e), true);
+      }finally{
+        btn.disabled = false; btn.textContent = Tn('vo.transcribe');
+      }
+    });
+    function renderSegs(res){
+      const box = app.querySelector('.nw-segs');
+      if(!res.segments.length){ box.innerHTML = '<div class="ws-empty">'+Tn('vo.noSegs')+'</div>'; return; }
+      box.innerHTML = res.segments.map((s,i)=>{
+        const t = typeof s.start==='number' ? L.round(s.start,2)+'s → '+L.round(s.end,2)+'s' : Tn('vo.noTs');
+        return '<div class="nw-scene"><span class="nw-sc-idx">'+String(i+1).padStart(2,'0')+'</span><span class="nw-sc-text">'+esc(s.text)+'</span><span class="nw-sc-dur">'+t+'</span></div>';
+      }).join('');
+      if(res.source==='srt' || res.source==='api') box.insertAdjacentHTML('beforeend','<div class="nw-hint">'+Tn('vo.sourceNote')+' ('+esc(res.source)+')</div>');
+    }
 
     /* step 2: script */
     app.querySelector('[data-act=analyzeScript]').addEventListener('click', ()=>{
@@ -256,6 +374,34 @@ ML.views = (function(){
 
     /* step 5: auto edit */
     app.querySelector('[data-act=autoEdit]').addEventListener('click', async ()=>{
+      if(voMode){
+        if(!draft.voSegments || !draft.voSegments.length){ L.toast(Tn('vo.needSegs'), true); return; }
+        const aeBtn = app.querySelector('[data-act=autoEdit]');
+        const prog = app.querySelector('.ae-progress');
+        aeBtn.disabled = true; prog.hidden = false;
+        const stage = app.querySelector('.ae-stage'), bar = app.querySelector('.ae-bar-in');
+        const poll = setInterval(()=>{
+          const j = ML.autoedit.job();
+          if(j){ stage.textContent = j.stage+' '+Math.round(j.progress)+'%'; bar.style.width = j.progress+'%'; }
+        }, 120);
+        try{
+          await ML.autoedit.runVoiceover(draft, {
+            mediaId: draft.voMediaId,
+            segments: draft.voSegments,
+            style: app.querySelector('.nw-style').value
+          });
+          clearInterval(poll);
+          await ML.store.saveProject(draft);
+          ML.router.go('/projects/'+draft.id);
+        }catch(e){
+          clearInterval(poll);
+          const j = ML.autoedit.job();
+          if(j && j.status==='cancelled'){ L.toast(Tn('ae.cancelled')); }
+          else L.toast(String(e&&e.message||e), true);
+          aeBtn.disabled = false; prog.hidden = true;
+        }
+        return;
+      }
       if(!draft.scenes.length){ L.toast(Tn('sc.noScenes'), true); return; }
       if(!draft.assets.length){ L.toast(Tn('media.noAssets'), true); return; }
       if(!draft.voiceSegments.length){
