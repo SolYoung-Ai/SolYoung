@@ -1,5 +1,12 @@
 [
   {
+    "id": "u-2026-10-17-studio-rm-videolab",
+    "date": "2026-10-17T10:00:00+08:00",
+    "type": "studio",
+    "content": "下线 VideoLAB 自动剪辑工作台（已从主站删除），同步移除 Studio 首页案例与产品页入口。",
+    "published": true
+  },
+  {
     "id": "u-2026-10-16-studio-rm-viewport-toggle",
     "date": "2026-10-16T23:15:00+08:00",
     "type": "studio",
