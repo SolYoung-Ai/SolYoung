@@ -1,1 +1,0 @@
-var e={githubIssueRepo:`SolYoung-Ai/solhub`,remoteEndpoint:void 0};export{e as t};
