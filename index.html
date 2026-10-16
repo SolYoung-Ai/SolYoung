@@ -206,7 +206,9 @@ section{position:relative}
 .studio-link{display:flex;align-items:center;gap:22px;padding:26px 30px;text-decoration:none;color:inherit;transition:background .35s var(--ease)}
 .studio-logo{width:52px;height:52px;border-radius:12px;overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;background:var(--bg-soft)}
 .studio-logo img{width:100%;height:100%;object-fit:contain}
-.studio-logo-text{background:var(--ink);color:var(--bg);font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.02em}
+.studio-logo-text{background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:var(--font-display);font-weight:700;line-height:1;letter-spacing:.04em;color:var(--ink)}
+.studio-logo-text .l1{font-size:9px}
+.studio-logo-text .l2{font-size:11px;color:var(--accent)}
 .studio-link:hover{background:var(--bg-soft)}
 .studio-link:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
 .studio-tag{font-family:var(--font-display);font-size:10px;letter-spacing:.2em;color:var(--ink-soft);text-transform:uppercase;white-space:nowrap;padding-top:5px}
@@ -690,6 +692,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       </div>
     </div>
 
+    <div class="proj-group-title" data-i18n="digi-title" style="margin-top:clamp(36px,5vw,56px)">数字产品 <span class="en">DIGITAL PRODUCTS</span></div>
+
     <div class="studio-entry rv">
       <a class="studio-link" href="https://solyoung.top/solhub/" target="_blank" rel="noopener" aria-label="SolHub 数字工具社区，点击进入">
         <span class="studio-logo"><img loading="lazy" src="assets/solhub-logo.png" alt="SolHub logo"></span>
@@ -703,7 +707,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
     <div class="studio-entry rv">
       <a class="studio-link" href="https://solyoung.top/studio/" target="_blank" rel="noopener" aria-label="SolYoung Studio 数字服务工作室，点击进入">
-        <span class="studio-logo studio-logo-text">SS</span>
+        <span class="studio-logo studio-logo-text"><span class="l1">SOLYOUNG<span style="color:var(--accent)">.</span></span><span class="l2">STUDIO</span></span>
         <span class="studio-mid">
           <span class="studio-brand"><span class="studio-name">SolYoung Studio</span><span class="studio-cn" data-i18n="studio-cn">数字服务工作室</span></span>
           <p class="studio-desc" data-i18n="studio-desc">提供数字产品定制、网站与工具开发、AI 工作流搭建等服务。想把一个想法做成可用的东西，可以从这里开始。</p>
@@ -903,6 +907,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'solhub-cn': {zh:'数字工具社区', en:'Digital Tools Hub'},
     'solhub-desc': {zh:'一个数字工具与 AI 产品的聚集地，收录我自己做的、以及我日常在用的小工具。', en:'A home for digital tools and AI products — the ones I build and the ones I use every day.'},
     'solhub-cta': {zh:'进入社区 ↗', en:'Open SolHub ↗'},
+    'digi-title': {zh:'数字产品 <span class="en">DIGITAL PRODUCTS</span>', en:'Digital Products <span class="en">DIGITAL PRODUCTS</span>'},
     'about-quote': {zh:'我是 <span class="hl">SolYoung</span>。<br>一个正在努力把想法变成作品的人。', en:'I\'m <span class="hl">SolYoung</span>.<br>Someone working to turn ideas into works.'},
     'about-p1': {zh:'我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。', en:'I\'m a content creator working in film and editing. Over the years I\'ve explored content, photography, video, AI and new ways of creating — not to become an expert, but because I enjoy making something with my own hands.'},
     'about-p2': {zh:'这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。', en:'This site is not a résumé or a showcase. It\'s more like a digital archive — what I\'ve made, what I\'m trying, and what it taught me. For me it\'s memory; for you, an invitation to see how someone keeps turning ideas into works.'},

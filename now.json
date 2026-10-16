@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-works-logos",
+    "date": "2026-10-16T18:50",
+    "type": "BUILD",
+    "published": true,
+    "content": "作品区加「数字产品」组标题；SolHub 换成新版 S 图标；Studio logo 改为 SOLYOUNG./STUDIO 字标，STUDIO 用橙色。",
+    "content_en": "Added a \"Digital Products\" group title; swapped SolHub to the new S mark; Studio logo is now a SOLYOUNG./STUDIO wordmark with STUDIO in accent orange."
+  },
+  {
     "id": "2026-10-16-solhub-i18n",
     "date": "2026-10-16",
     "type": "BUILD",
