@@ -282,6 +282,23 @@ section{position:relative}
 /* mobile: accounts become horizontal scroller, single column stage */
 @media(max-width:860px){
   .cview-wrap{grid-template-columns:1fr;gap:12px}
+  /* 全局移动端保护 */
+  body{font-size:15px}
+  img,svg{max-width:100%}
+  .section{padding:clamp(56px,9vw,90px) 0}
+  .container{padding:0 18px}
+  /* 社交媒体卡 */
+  .cview-account{padding:16px;gap:10px}
+  .cview-acc-name{font-size:15px}
+  .cview-acc-desc{font-size:12px}
+  /* 数字产品卡 */
+  .studio-link{flex-wrap:wrap;gap:12px;padding:16px}
+  .studio-logo{width:44px;height:44px}
+  .studio-logo-plain img{height:30px}
+  .studio-mid{flex:1;min-width:0}
+  .studio-name{font-size:16px}
+  .studio-desc{font-size:12px;line-height:1.6}
+  .studio-cta{font-size:12px}
 }
 
 /* ============ Experiment ============ */

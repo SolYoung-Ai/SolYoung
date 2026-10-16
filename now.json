@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-mobile-polish",
+    "date": "2026-10-16T19:35",
+    "type": "BUILD",
+    "published": true,
+    "content": "移动端适配优化：缩小section上下间距、container左右边距18px；社交媒体卡和数字产品卡在小屏下缩小padding、字号、logo尺寸，避免溢出裁切。",
+    "content_en": "Mobile polish: reduced section spacing and container padding; shrank social account cards and digital product cards on small screens to prevent overflow and clipping."
+  },
+  {
     "id": "u-2026-10-16-studio-home-reduce",
     "date": "2026-10-16T22:45:00+08:00",
     "type": "studio",
