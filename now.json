@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-16-solhub-submit-timeout",
+    "date": "2026-10-16",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub：修复提交按钮一直转圈无反馈的问题——CloudBase SDK 初始化加 10 秒超时，提交流程加异常兜底，网络异常时不再无限 loading。",
+    "images": []
+  },
+  {
     "id": "2026-10-16-solhub-toolbar-fix",
     "date": "2026-10-16",
     "type": "BUILD",
