@@ -1,5 +1,9 @@
 [
   {
+    "time": "2026-10-16 19:19",
+    "text": "SolHub: 提交后端切换为 GitHub Issues 模式（免 CORS，免费），社区列表从 GitHub API 读取"
+  },
+  {
     "id": "2026-10-16-solhub-submit-timeout",
     "date": "2026-10-16",
     "type": "BUILD",
