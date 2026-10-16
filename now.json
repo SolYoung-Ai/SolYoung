@@ -1,19 +1,19 @@
 [
   {
-    "id": "build-works-logos",
-    "date": "2026-10-16T18:50",
-    "type": "BUILD",
-    "published": true,
-    "content": "作品区加「数字产品」组标题；SolHub 换成新版 S 图标；Studio logo 改为 SOLYOUNG./STUDIO 字标，STUDIO 用橙色。",
-    "content_en": "Added a \"Digital Products\" group title; swapped SolHub to the new S mark; Studio logo is now a SOLYOUNG./STUDIO wordmark with STUDIO in accent orange."
-  },
-  {
     "id": "2026-10-16-solhub-i18n",
     "date": "2026-10-16",
     "type": "BUILD",
     "published": true,
     "content": "SolHub 上线中英双语：导航左上角新增中英翻译 / 深浅色 / 手机电脑视口三个切换按钮，全站文案（含 16 个工具、榜单、提交页、详情页）全局翻译无遗漏；英文版生成 /en/ 前缀静态页面，深色主题与 430px 手机视口模拟已可用。",
     "images": []
+  },
+  {
+    "id": "build-works-logos",
+    "date": "2026-10-16T18:50",
+    "type": "BUILD",
+    "published": true,
+    "content": "作品区加「数字产品」组标题；SolHub 换成新版 S 图标；Studio logo 改为 SOLYOUNG./STUDIO 字标，STUDIO 用橙色。",
+    "content_en": "Added a \"Digital Products\" group title; swapped SolHub to the new S mark; Studio logo is now a SOLYOUNG./STUDIO wordmark with STUDIO in accent orange."
   },
   {
     "id": "build-works-restructure",
