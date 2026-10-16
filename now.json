@@ -775,5 +775,14 @@
     "images": [],
     "published": true,
     "content_en": "VIDEO LAB v43: voiceover auto-cut — upload your talking video/audio, transcribe locally in the browser with Whisper (real timestamps, zero server), auto-cut by semantic segments, subtitle, keep the original audio, optional B-roll; exported MP4 carries a real AAC 48kHz audio track. Sources: local Whisper (free) / your transcription API / pasted SRT."
+  },
+  {
+    "id": "2026-10-16-videolab-v44-preproduction",
+    "date": "2026-10-16",
+    "type": "DEV",
+    "content": "VIDEO LAB v44：产品转型为 AI 分镜与拍摄工作台（AI Video Pre-production Studio）——项目中心（9 类项目、复制/搜索/删除）、脚本工作台（段落化编辑、语速时长估算）、分镜编辑器（卡片/表格双视图、拖拽+上下移动排序、15 项镜头字段、参考图 Blob 本地存储、按状态筛选）、拍摄执行板（场景/道具/人物自动归类、任务清单、真实进度）、AI 创作助手（用户自带 OpenAI 兼容 API，结构化 JSON 输出经校验后预览确认才合并/替换，含分镜生成/画面优化/查漏/风格建议/中英视频提示词工具）、真实导出（Markdown/CSV/JSON 备份与导入恢复/中文正确可打印 PDF，pdf-lib 渲染）。全部浏览器本地 IndexedDB 存储，密钥仅存本地，零服务器。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v44: now an AI Pre-production Studio — Projects center (9 types, copy/search/delete), Script workspace (paragraph editing, WPM duration estimate), Storyboard editor (card/table views, drag + move buttons, 15 shot fields, reference-image blobs in IndexedDB, state filter), Production board (auto scene/prop/cast lists, tasks, real progress), AI Assistant (bring-your-own OpenAI-compatible API; structured JSON validated, previewed and confirmed before merge/replace; storyboard draft, visual polish, gap check, style advice, CN/EN video prompts), real exports (Markdown/CSV/JSON backup+restore/Chinese-safe print PDF via pdf-lib). Everything local in the browser (IndexedDB), keys stay local, zero server."
   }
 ]

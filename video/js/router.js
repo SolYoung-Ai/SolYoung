@@ -1,12 +1,10 @@
-/* ============ ML.router — hash routing ============ */
+/* ============ ML.router — hash routing (pre-production studio) ============ */
 ML.router = (function(){
-  let current = null;
   function parse(){
     const h = location.hash || '#/';
-    if(h.indexOf('#/projects/')===0) return { name:'project', id: decodeURIComponent(h.slice('#/projects/'.length)) };
-    if(h==='#/'||h==='#/projects') return { name:'home' };
-    if(h==='#/new') return { name:'new' };
-    if(h==='#/assets') return { name:'assets' };
+    let m = h.match(/^#\/project\/([^/]+)\/(script|storyboard|production|ai|export)$/);
+    if(m) return { name:'project', id: decodeURIComponent(m[1]), sub: m[2] };
+    if(h==='#/' || h==='#/projects') return { name:'projects' };
     if(h==='#/settings') return { name:'settings' };
     return { name:'404' };
   }
@@ -14,34 +12,43 @@ ML.router = (function(){
     if(location.hash === '#'+path) render();
     else location.hash = path;
   }
-  function render(){
+  function pageLabel(){
+    const r = parse();
+    const T = ML.i18n.t;
+    if(r.name==='projects') return T('nav.projects');
+    if(r.name==='settings') return T('nav.settings');
+    if(r.sub==='script') return T('nav.script');
+    if(r.sub==='storyboard') return T('nav.storyboard');
+    if(r.sub==='production') return T('nav.production');
+    if(r.sub==='ai') return T('nav.ai');
+    if(r.sub==='export') return T('nav.export');
+    return '';
+  }
+  async function render(){
     const route = parse();
-    if(current === route.name && route.name==='project' && currentId===route.id){ return; }
     const app = document.getElementById('app');
     if(!app) return;
-    /* unmount workspace if leaving it */
-    if(current==='project' && ML.workspace){ ML.workspace.unmount(); }
-    const navActive = route.name;
-    document.body.dataset.route = route.name;
-    document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('on', n.dataset.route===navActive));
-    current = route.name; currentId = route.id;
+    app.classList.remove('view-swap');
+    let project = null;
+    if(route.name==='project'){
+      const cur = ML.app.getProject();
+      project = (cur && cur.id===route.id) ? cur : await ML.app.openProject(route.id);
+      if(!project){ app.innerHTML = '<div class="empty"><div class="t">404</div><div class="s">项目不存在或已被删除</div><button class="btn btn-primary" data-act="back">返回项目中心</button></div>'; app.querySelector('[data-act=back]').addEventListener('click', ()=>go('/projects')); return; }
+    }
     try{
-      if(route.name==='home') ML.views.home(app);
-      else if(route.name==='new') ML.views.newEdit(app);
-      else if(route.name==='assets') ML.views.assets(app);
-      else if(route.name==='settings') ML.views.settings(app);
-      else if(route.name==='project') ML.views.project(app, route.id);
-      else ML.views.notFound(app);
+      ML.views.render(route, app, project);
+      ML.app.renderShell();
     }catch(e){
       ML.diag && ML.diag.error('ROUTER','render',route.name,e);
-      app.innerHTML = '<div class="view-error">'+ML.i18n.t('err.generic')+'<button class="btn" onclick="location.hash=\'#/\'">'+ML.i18n.t('err.home')+'</button></div>';
+      app.innerHTML = '<div class="empty"><div class="t">'+ML.i18n.t('err.generic')+'</div><div class="s">'+String(e&&e.message||e)+'</div><button class="btn btn-primary" data-act="back">返回</button></div>';
+      const b = app.querySelector('[data-act=back]');
+      if(b) b.addEventListener('click', ()=>go('/projects'));
     }
   }
-  let currentId = null;
   function init(){
-    window.addEventListener('hashchange', render);
-    if(!location.hash) location.replace('#/');
+    window.addEventListener('hashchange', ()=>{ render(); });
+    if(!location.hash) location.replace('#/projects');
     render();
   }
-  return { init, render, go, get current(){ return current; } };
+  return { init, render, go, pageLabel, get current(){ return parse(); } };
 })();
