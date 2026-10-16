@@ -1,5 +1,12 @@
 [
   {
+    "id": "u-2026-10-16-studio-rm-viewport-toggle",
+    "date": "2026-10-16T23:15:00+08:00",
+    "type": "studio",
+    "content": "移除顶栏手机/桌面视图切换按钮，移动端由浏览器自适应。",
+    "published": true
+  },
+  {
     "id": "u-2026-10-16-studio-mobile-fix",
     "date": "2026-10-16T23:05:00+08:00",
     "type": "studio",
