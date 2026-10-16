@@ -47,19 +47,26 @@ ML.views = (function(){
       if(!list.length){ empty.classList.remove('hidden'); return; }
       empty.classList.add('hidden');
       list.forEach(p=>{
-        const typeName = (M().PROJECT_TYPES.find(t=>t.id===p.type)||{}).label || p.type;
+        const typeDef = M().PROJECT_TYPES.find(t=>t.id===p.type) || { label:p.type, label_en:'' };
+        const typeName = typeDef.label;
         const shots = (p.shots||[]).length;
+        const glyph = (typeName||'?').trim().charAt(0);
         const card = document.createElement('div');
-        card.className = 'card proj-card';
+        card.className = 'proj-card';
         card.innerHTML =
           '<div class="proj-actions">'+
             '<button class="btn btn-icon btn-sm" data-a="copy" title="'+T('pj.copy')+'">'+icon(IC.copy)+'</button>'+
             '<button class="btn btn-icon btn-sm btn-danger" data-a="del" title="'+T('pj.del')+'">'+icon(IC.trash)+'</button>'+
           '</div>'+
-          '<div class="proj-type">'+esc(typeName)+'</div>'+
-          '<div class="proj-name">'+esc(p.name)+'</div>'+
-          (p.desc? '<div class="proj-meta" style="color:var(--text2)">'+esc(p.desc.length>80? p.desc.slice(0,80)+'…':p.desc)+'</div>':'')+
-          '<div class="proj-meta">'+T('pj.updated').replace('{t}', M().fmtTime(p.updatedAt))+' · '+shots+' '+T('pj.shots')+'</div>';
+          '<div class="proj-cover">'+
+            '<div class="proj-glyph">'+esc(glyph)+'</div>'+
+            '<div class="pt">'+esc(typeName)+(typeDef.label_en?'<small>'+esc(typeDef.label_en)+'</small>':'')+'</div>'+
+          '</div>'+
+          '<div class="proj-body">'+
+            '<div class="proj-name">'+esc(p.name)+'</div>'+
+            (p.desc? '<div class="proj-desc">'+esc(p.desc.length>70? p.desc.slice(0,70)+'…':p.desc)+'</div>':'')+
+            '<div class="proj-meta"><span class="mono">'+T('pj.updated').replace('{t}', M().fmtTime(p.updatedAt))+'</span><span class="proj-count">'+shots+' '+T('pj.shots')+'</span></div>'+
+          '</div>';
         card.addEventListener('click', async ()=>{
           await A().openProject(p.id);
           ML.router.go('/project/'+p.id+'/script');
@@ -346,7 +353,19 @@ ML.views = (function(){
         return true;
       });
       if(!list.length){
-        box.innerHTML = '<div class="shot-empty">'+(shots().length? T('sb.noResult') : T('sb.emptyT'))+'</div>';
+        if(shots().length){
+          box.innerHTML = '<div class="shot-empty">'+T('sb.noResult')+'</div>';
+        }else{
+          box.innerHTML =
+            '<div class="shot-empty rich">'+
+              '<div class="ic">'+icon(IC.film)+'</div>'+
+              '<div class="t">'+T('sb.emptyT')+'</div>'+
+              '<div class="s">'+T('sb.emptyS')+'</div>'+
+              '<button class="btn btn-primary" data-empty-add>'+icon(IC.plus)+T('sb.emptyB')+'</button>'+
+            '</div>';
+          const eb = box.querySelector('[data-empty-add]');
+          if(eb) eb.addEventListener('click', addShot);
+        }
         return;
       }
       list.forEach(s=>{

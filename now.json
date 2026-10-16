@@ -793,5 +793,14 @@
     "images": [],
     "published": true,
     "content_en": "VIDEO LAB v55: fixed three real bugs in the AI generation path — 1) the Generate button did nothing for users who had configured an API (aiassist read config() as a property, always mis-reporting 'not configured'); 2) chatJSON wasn't exported, breaking the request; 3) error classification args were swapped so real auth failures couldn't display. Now errors distinguish auth/endpoint/bad-request/rate-limit/network; the full chain generate -> validate -> preview -> merge/replace is verified locally."
+  },
+  {
+    "id": "2026-10-17-videolab-v56-dark-cinema",
+    "date": "2026-10-17",
+    "type": "DEV",
+    "content": "VIDEO LAB v56：视觉重构为深色电影工作台——炭黑底色 + 深橙强调，达芬奇/Premiere 级创作软件质感。重构项目中心卡片（类型图标封面、Talking head 双语标签、镜头数徽标、hover 抬升）、分镜编辑器（镜头卡编号块与状态 chips、空状态插画引导 + 一键新建镜头）、顶部工具栏（类型+页面面包屑、保存状态徽标、撤销/重做/导出主次分明）；修复弹窗类名错位导致样式失效的问题；表格/设置/导出/拍摄板/提示条全页深色化，支持系统减少动效。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v56: dark cinema workstation — charcoal base + deep orange accent, DaVinci/Premiere-grade craft feel. Rebuilt project cards (type glyph cover, bilingual label, shot-count badge, hover lift), storyboard (shot number block & state chips, illustrated empty state with one-click New Shot), topbar (type+page breadcrumb, save-state badge, clear undo/redo/export hierarchy); fixed modal class mismatch that broke dialog styling; full-page dark theme for table/settings/export/production/toasts, respects reduced-motion."
   }
 ]
