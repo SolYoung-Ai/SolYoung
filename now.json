@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-16-solhub-toolbar-fix",
+    "date": "2026-10-16",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub：修复首页副标题 HTML 换行被转义成纯文本显示的问题；语言/深浅色/手机视口三个切换按钮从左上角移到导航栏右上角靠边位置。",
+    "images": []
+  },
+  {
     "id": "build-works-fix",
     "date": "2026-10-16T19:00",
     "type": "BUILD",
