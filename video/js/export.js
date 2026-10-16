@@ -45,7 +45,9 @@ ML.export = (function(){
     const snap = snapshot(project);
     await preloadSnapshotAssets(snap);
     const fps = opts.fps || 30;
-    const [W, H] = ML.compose.ratioSize(snap.ratio, opts.base || 1080);
+    const [rw, rh] = ML.compose.ratioSize(snap.ratio, opts.base || 1080);
+    /* H.264 requires even dimensions — round down to even to keep the encoder happy */
+    const W = Math.max(2, Math.floor(rw/2)*2), H = Math.max(2, Math.floor(rh/2)*2);
     const duration = ML.timeline.durationOf(snap) || 5;
     const totalFrames = Math.max(1, Math.ceil(duration*fps));
 
@@ -53,6 +55,7 @@ ML.export = (function(){
     const muxer = new Mp4Muxer.Muxer({
       target: new Mp4Muxer.ArrayBufferTarget(),
       video: { codec: 'avc', width: W, height: H },
+      audio: { codec: 'aac', sampleRate: 48000, numberOfChannels: 1 },
       fastStart: 'in-memory',
       firstTimestampBehavior: 'offset'
     });
@@ -89,6 +92,37 @@ ML.export = (function(){
         }
         audioBuf = await off.startRendering();
       }
+    }
+
+    /* mix real source-media audio (voiceover mode): every video clip with audio:true
+       contributes the asset's own audio sliced to sourceStart..sourceEnd */
+    if(!audioBuf && (snap.timeline.clips||[]).some(c=>c.track==='video' && c.audio)){
+      audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+      const off = new OfflineAudioContext(1, Math.ceil(duration*48000), 48000);
+      for(const clip of snap.timeline.clips.filter(c=>c.track==='video' && c.audio && c.assetId)){
+        const a = (snap.assets||[]).find(x=>x.id===clip.assetId);
+        if(!a || a.type!=='video') continue;
+        let blob = null;
+        try{ blob = await ML.store.getAssetBlob(a.id); }catch(e){}
+        if(!blob) continue;
+        try{
+          const ab = await blob.arrayBuffer();
+          const buf = await off.decodeAudioData(ab);
+          const srcData = buf.getChannelData(0);
+          const s0 = Math.max(0, Math.floor((clip.sourceStart||0)*buf.sampleRate));
+          const n = Math.min(Math.ceil((clip.sourceEnd-clip.sourceStart)*buf.sampleRate), srcData.length - s0);
+          if(n <= 0) continue;
+          const slice = off.createBuffer(1, n, buf.sampleRate);
+          slice.copyToChannel(srcData.subarray(s0, s0+n), 0);
+          const src = off.createBufferSource();
+          src.buffer = slice;
+          const g = off.createGain(); g.gain.value = (clip.volume||1);
+          src.connect(g); g.connect(off.destination);
+          src.start(Math.max(0, clip.timelineStart||0));
+          hasRealAudio = true;
+        }catch(e){ ML.diag && ML.diag.error('EXPORT','source-audio',a.id,e); }
+      }
+      if(hasRealAudio) audioBuf = await off.startRendering();
     }
 
     try{

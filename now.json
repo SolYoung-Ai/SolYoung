@@ -669,5 +669,14 @@
     "images": [],
     "published": true,
     "content_en": "VIDEO LAB v38: AI/TTS provider rework — bring-your-own OpenAI-compatible API (DeepSeek/Moonshot/Zhipu/Qwen…), real connection test with error classification, capability badges, key clearing; real media analysis with optional vision model; keys stay local in the browser."
+  },
+  {
+    "id": "2026-10-16-videolab-v43-voiceover",
+    "date": "2026-10-16",
+    "type": "DEV",
+    "content": "VIDEO LAB v43：口播视频自动剪辑上线——上传口播视频/音频后，浏览器本地 Whisper 真实转录（带时间戳，无需服务器），自动按语义段剪辑、生成字幕、保留原声；可混入 B-roll 素材；导出 MP4 真实包含音轨（AAC 48kHz）。支持本地 Whisper（免费）/ 自带转录 API / 粘贴 SRT 三种来源。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v43: voiceover auto-cut — upload your talking video/audio, transcribe locally in the browser with Whisper (real timestamps, zero server), auto-cut by semantic segments, subtitle, keep the original audio, optional B-roll; exported MP4 carries a real AAC 48kHz audio track. Sources: local Whisper (free) / your transcription API / pasted SRT."
   }
 ]
