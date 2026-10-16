@@ -69,12 +69,6 @@ html,body{overflow-x:hidden;max-width:100%}
 #themeBtn .i-moon{display:none}
 [data-theme="dark"] #themeBtn .i-sun{display:none}
 [data-theme="dark"] #themeBtn .i-moon{display:block}
-#viewBtn .i-phone{display:none}
-body.view-phone #viewBtn .i-desktop{display:none}
-body.view-phone #viewBtn .i-phone{display:block}
-body.view-phone #app{max-width:420px;margin:0 auto;border-left:1px solid var(--border);border-right:1px solid var(--border);min-height:100vh;background:var(--bg)}
-body.view-phone .nav-inner{max-width:420px}
-body.view-phone{background:#888}
 .nav-cta:hover{opacity:.85}
 
 /* 汉堡 */
@@ -379,8 +373,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:-.02em}
   .grid.c2,.grid.c3,.grid.c4{grid-template-columns:1fr 1fr}
   .demo-suite{flex-direction:column;gap:14px}
   .nav-brand span.hide-sm{display:none}
-  /* 手机端：隐藏仅桌面预览用的视图切换按钮，避免导航拥挤 */
-  #viewBtn{display:none}
   .nav-right{gap:8px}
   .icon-btn{width:34px;height:34px}
   .wrap{padding:0 16px}
@@ -419,10 +411,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:-.02em}
     <div class="nav-right">
       <button class="icon-btn" id="langBtn" aria-label="切换语言" title="中/EN">
         <span id="langLabel" style="font-size:12px;font-weight:600;letter-spacing:.02em">EN</span>
-      </button>
-      <button class="icon-btn" id="viewBtn" aria-label="切换视图" title="桌面/手机视图">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="i-desktop"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6"/></svg>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="i-phone"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
       </button>
       <button class="icon-btn burger" id="burgerBtn" aria-label="打开菜单">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -1991,7 +1979,6 @@ function renderRoute(){
 }
 function init(){
   setTheme(Store.theme);
-  setView(Store.view);
   $("#langLabel").textContent = Store.lang==="en"?"中":"EN";
   document.documentElement.lang = Store.lang==="en"?"en":"zh-CN";
   parseHash();
@@ -1999,7 +1986,6 @@ function init(){
   document.querySelectorAll(".nav-brand,.nav-cta").forEach(el=>el.addEventListener("click",()=>{ if(el.classList.contains("nav-brand")) navigate("home"); else navigate("simulator"); closeMenu(); }));
   $("#themeBtn").addEventListener("click",()=>setTheme(Store.theme==="light"?"dark":"light"));
   $("#langBtn").addEventListener("click",()=>setLang(Store.lang==="en"?"zh":"en"));
-  $("#viewBtn").addEventListener("click",()=>setView(Store.view==="phone"?"desktop":"phone"));
   $("#burgerBtn").addEventListener("click",openMenu);
   $("#closeMenu").addEventListener("click",closeMenu);
   buildMenuLinks();
