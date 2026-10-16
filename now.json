@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-works-fix",
+    "date": "2026-10-16T19:00",
+    "type": "BUILD",
+    "published": true,
+    "content": "微调：SolHub S 图标重新裁切居中；Studio 字标缩小字号避免切边；SolHub 简介改为开放社区定位（可提交工具）。",
+    "content_en": "Polish: re-cropped the SolHub S mark; shrank the Studio wordmark so it no longer clips; rewrote the SolHub blurb to reflect an open community where anyone can submit tools."
+  },
+  {
     "id": "2026-10-16-solhub-i18n",
     "date": "2026-10-16",
     "type": "BUILD",
