@@ -802,5 +802,14 @@
     "images": [],
     "published": true,
     "content_en": "VIDEO LAB v56: dark cinema workstation — charcoal base + deep orange accent, DaVinci/Premiere-grade craft feel. Rebuilt project cards (type glyph cover, bilingual label, shot-count badge, hover lift), storyboard (shot number block & state chips, illustrated empty state with one-click New Shot), topbar (type+page breadcrumb, save-state badge, clear undo/redo/export hierarchy); fixed modal class mismatch that broke dialog styling; full-page dark theme for table/settings/export/production/toasts, respects reduced-motion."
+  },
+  {
+    "id": "2026-10-17-videolab-removed",
+    "date": "2026-10-17",
+    "type": "DEV",
+    "content": "VIDEO LAB 已下线移除：产品与独立仓库不再维护，视频目录已从本站删除。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB removed: product and its repository are no longer maintained; the video directory has been removed from this site."
   }
 ]
