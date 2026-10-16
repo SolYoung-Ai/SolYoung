@@ -1,0 +1,1 @@
+function e(){let e=`/solhub/`;return e.endsWith(`/`)?e:e+`/`}function t(t){return e()+(t.startsWith(`/`)?t.slice(1):t)}export{t};

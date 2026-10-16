@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-16-solhub-launch",
+    "date": "2026-10-16T12:49",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub 上线：https://solyoung.top/solhub/ —— 独立产品发现平台与在线工具箱。16 个免费工具（JSON 格式化、Base64、UUID、密码、二维码、图片压缩等）全部在浏览器本地运行；产品榜单规则透明、核验状态真实；提交页已开放，欢迎把自己的产品提交进来。与 SolYoung Studio 同一设计语言。",
+    "images": []
+  },
+  {
     "id": "2026-10-16-studio-cases-title",
     "date": "2026-10-16T11:00",
     "type": "BUILD",
