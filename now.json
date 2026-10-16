@@ -56,6 +56,14 @@
     "images": []
   },
   {
+    "id": "2026-10-16-studio-nav-community",
+    "date": "2026-10-16T11:30",
+    "type": "BUILD",
+    "content": "SolYoung Studio 右上角导航在「产品」后新增「社区」，新窗口跳转 https://solyoung.top/solhub/。",
+    "published": true,
+    "images": []
+  },
+  {
     "id": "2026-10-16-studio-cases-title",
     "date": "2026-10-16T11:00",
     "type": "BUILD",
