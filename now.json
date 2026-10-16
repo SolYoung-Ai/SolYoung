@@ -1,5 +1,13 @@
 [
   {
+    "id": "build-social-cards",
+    "date": "2026-10-16T19:20",
+    "type": "BUILD",
+    "published": true,
+    "content": "社交媒体区重构：删掉精选视频网格，三个账号改为横排卡片，点击直接跳转抖音主页。",
+    "content_en": "Restructured the Social section: removed the featured video grid, replaced with three horizontal account cards that link directly to Douyin profiles."
+  },
+  {
     "time": "2026-10-16 19:19",
     "text": "SolHub: 提交后端切换为 GitHub Issues 模式（免 CORS，免费），社区列表从 GitHub API 读取"
   },

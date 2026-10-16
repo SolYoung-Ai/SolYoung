@@ -241,18 +241,17 @@ section{position:relative}
 
 /* ===== Content & Visuals showcase (影像与内容) ===== */
 .cview-intro{font-size:13px;color:var(--ink-soft);line-height:1.75;margin:-6px 0 22px;max-width:640px}
-.cview-wrap{display:grid;grid-template-columns:200px 1fr;gap:clamp(18px,2.2vw,30px);align-items:start}
-.cview-accounts{display:flex;flex-direction:column;gap:10px}
-.cview-account{display:flex;align-items:center;gap:14px;text-align:left;width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:var(--radius);background:transparent;cursor:pointer;transition:border-color .3s,background .3s;color:inherit;font-family:inherit}
-.cview-account:hover{border-color:var(--accent)}
-.cview-account.on{border-color:var(--accent);background:var(--bg-soft)}
+.cview-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,18px);align-items:stretch}
+.cview-accounts{display:contents}
+.cview-account{display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;width:100%;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);cursor:pointer;transition:border-color .3s,transform .4s var(--ease),box-shadow .35s;color:inherit;font-family:inherit;text-decoration:none;transform:translateZ(0)}
+.cview-account:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow)}
 .cview-account:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
-.cview-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--line)}
+.cview-avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--line)}
 .cview-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.cview-acc-txt{min-width:0}
-.cview-acc-name{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink);display:block}
-.cview-acc-desc{font-size:11px;color:var(--ink-soft);line-height:1.5;display:block;margin-top:2px}
-.cview-acc-meta{font-family:var(--font-display);font-size:10px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;display:block;margin-top:3px}
+.cview-acc-txt{min-width:0;width:100%}
+.cview-acc-name{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ink);display:block}
+.cview-acc-desc{font-size:12px;color:var(--ink-soft);line-height:1.6;display:block;margin-top:4px}
+.cview-acc-meta{font-family:var(--font-display);font-size:10px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;display:block;margin-top:8px}
 .cview-stage{min-width:0}
 .cview-stage-title{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.04em;color:var(--ink);margin:2px 0 18px;display:flex;align-items:baseline;gap:10px}
 .cview-stage-title .en{color:var(--accent);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
@@ -282,14 +281,8 @@ section{position:relative}
 .cview-more-link:hover svg{transform:translateX(4px)}
 /* mobile: accounts become horizontal scroller, single column stage */
 @media(max-width:860px){
-  .cview-wrap{grid-template-columns:1fr;gap:18px}
-  .cview-accounts{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:10px}
-  .cview-accounts::-webkit-scrollbar{display:none}
-  .cview-account{flex:0 0 auto;width:auto;scroll-snap-align:start;min-width:160px}
-  .cview-grid{grid-template-columns:repeat(3,1fr)}
-  .cview-cell{padding:10px 8px}
+  .cview-wrap{grid-template-columns:1fr;gap:12px}
 }
-@media(max-width:520px){.cview-grid{grid-template-columns:repeat(3,1fr);gap:10px}.cview-cell{padding:8px 6px}}
 
 /* ============ Experiment ============ */
 .exp-feature{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);transition:border-color .4s}
@@ -683,15 +676,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
     <div class="proj-group rv">
       <div class="proj-group-title" data-i18n="cview-title">社交媒体 <span class="en">SOCIAL</span></div>
-      <div class="cview-wrap">
-        <aside class="cview-accounts" id="cviewAccounts" role="tablist" aria-label="选择账号"></aside>
-        <div class="cview-stage">
-          <h3 class="cview-stage-title" id="cviewStageTitle"></h3>
-          <div class="cview-grid" id="cviewGrid"></div>
-          <p class="cview-empty" id="cviewEmpty" style="display:none" data-i18n="cview-empty">该账号暂无视频，后续补充。</p>
-          <div class="cview-more"><a class="cview-more-link" id="cviewMoreLink" target="_blank" rel="noopener noreferrer" data-i18n="cview-more">查看更多视频 ↗</a></div>
-        </div>
-      </div>
+      <div class="cview-wrap" id="cviewAccounts"></div>
     </div>
 
     <div class="proj-group-title" data-i18n="digi-title" style="margin-top:clamp(36px,5vw,56px)">数字产品 <span class="en">DIGITAL PRODUCTS</span></div>
@@ -1321,81 +1306,22 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 })();
 
 // ---- Content & Visuals showcase (account selector + featured videos) ----
-// Single source of truth: account profiles + per-video links. Edit data to update.
+// Social accounts: cards link out to each profile.
 (function(){
   var accountsEl = document.getElementById('cviewAccounts');
-  var stageTitle = document.getElementById('cviewStageTitle');
-  var grid = document.getElementById('cviewGrid');
-  var empty = document.getElementById('cviewEmpty');
-  var moreLink = document.getElementById('cviewMoreLink');
-  if(!accountsEl || !grid) return;
-  var current = 'yang';
-  function lang(){ return localStorage.getItem('soyoung-lang') === 'en' ? 'en' : 'zh'; }
-  var I18N_CVIEW = {
-    'featured': {zh:'精选视频', en:'Featured'},
-    'view': {zh:'观看视频 ↗', en:'Watch ↗'},
-    'sample': {zh:'示例', en:'Sample'}
-  };
-  function t(key){
-    var e = I18N_CVIEW[key];
-    if(e){ var v = e[lang()]; return v !== undefined ? v : e.zh; }
-    return key;
-  }
+  if(!accountsEl) return;
   var ACCOUNTS = [
     {id:'yang', name:'楊十八呀', avatar:'assets/avatar-yangshibaya.webp', platform:'抖音', profileUrl:'https://v.douyin.com/JHN2VxhUJPA/', desc:'个人随拍、记录影像。', followers:'37K'},
     {id:'sol', name:'SolYoung', avatar:'assets/avatar-solyoung.webp', platform:'抖音', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/', desc:'记录我的创作、实践，以及正在发生的可能。', followers:'1.1K'},
     {id:'ambition', name:'野心互联工作室', avatar:'assets/avatar-ambition.webp', platform:'抖音', profileUrl:'https://v.douyin.com/1qeGOojqjSE/', desc:'个体成长及健康内容频道。', followers:'87K'}
   ];
-  var VIDEOS = [
-    {id:'yang-1', accountId:'yang', title:'理解内心所承受的一切，便能安然无恙', cover:'assets/video-cover-yang1.webp', platform:'抖音', publishedAt:'', desc:'氛围影像记录，窗边与阳光。', videoUrl:'https://v.douyin.com/jHvfaBYrFGc/', status:'published', coverPosition:'center'},
-    {id:'yang-2', accountId:'yang', title:'记录是给未来自己的礼物', cover:'assets/video-cover-yang2.webp', platform:'抖音', publishedAt:'', desc:'实景与插画对照的瞬间记录。', videoUrl:'https://v.douyin.com/thI1l4X0QbU/', status:'published', coverPosition:'center'},
-    {id:'yang-3', accountId:'yang', title:'别无所求，只想被阳光晒透', cover:'assets/video-cover-yang3.webp', platform:'抖音', publishedAt:'', desc:'阳光透过树叶洒下的慵懒片刻。', videoUrl:'https://v.douyin.com/BPe5d1Tlo80/', status:'published', coverPosition:'center'},
-    {id:'sol-1', accountId:'sol', title:'我花了不到两个小时，用 AI 搭建了一个个人网站', cover:'assets/video-cover-sol1.webp', platform:'抖音', publishedAt:'', desc:'用 AI 搭建个人网站的全过程记录。', videoUrl:'https://v.douyin.com/Sq6F2OZXT5g/', status:'published', coverPosition:'center'},
-    {id:'sol-2', accountId:'sol', title:'不要从赛道开始，从能力开始', cover:'assets/video-cover-sol2.webp', platform:'抖音', publishedAt:'', desc:'创作者圣经 · 关于赛道与能力的选择。', videoUrl:'https://v.douyin.com/lyNa4P4C_GY/', status:'published', coverPosition:'center'},
-    {id:'sol-3', accountId:'sol', title:'不做网红，为什么也要做个人品牌？', cover:'assets/video-cover-sol3.webp', platform:'抖音', publishedAt:'', desc:'关于个人品牌与自媒体的思考。', videoUrl:'https://v.douyin.com/gFt575LWN-M/', status:'published', coverPosition:'50% 12%'},
-    {id:'amb-1', accountId:'ambition', title:'放松，99%的人都会放弃，你不需要打败所有人', cover:'assets/video-cover-amb1.webp', platform:'抖音', publishedAt:'', desc:'个人成长 · 坚持与长期主义。', videoUrl:'https://v.douyin.com/BBW_X32fHoY/', status:'published', coverPosition:'center'},
-    {id:'amb-2', accountId:'ambition', title:'你不会因为变老而失去肌肉，失去肌肉才会更快变老', cover:'assets/video-cover-amb2.webp', platform:'抖音', publishedAt:'', desc:'健康与衰老 · 关于肌肉与运动。', videoUrl:'https://v.douyin.com/tUs2AGybiZ4/', status:'published', coverPosition:'center'},
-    {id:'amb-3', accountId:'ambition', title:'如何研究你自己：你的头脑、思想与习惯', cover:'assets/video-cover-amb3.webp', platform:'抖音', publishedAt:'', desc:'自我研究 · 从头脑、思想到习惯。', videoUrl:'https://v.douyin.com/u-jJK5lRq3I/', status:'published', coverPosition:'center'}
-  ];
-  function acc(id){ for(var i=0;i<ACCOUNTS.length;i++){ if(ACCOUNTS[i].id===id) return ACCOUNTS[i]; } return ACCOUNTS[0]; }
-  function vidsOf(id){ return VIDEOS.filter(function(v){ return v.accountId===id; }); }
-  function render(){
-    accountsEl.innerHTML = ACCOUNTS.map(function(a){
-      return '<button type="button" class="cview-account' + (a.id===current?' on':'') + '" role="tab" aria-selected="' + (a.id===current) + '" data-acc="'+a.id+'">' +
-        '<span class="cview-avatar"><img loading="lazy" src="'+a.avatar+'" alt="'+a.name+'"></span>' +
-        '<span class="cview-acc-txt"><span class="cview-acc-name">'+a.name+'</span>' +
-        '<span class="cview-acc-desc">'+a.desc+'</span>' +
-        '<span class="cview-acc-meta">'+a.platform + (a.followers ? ' · '+a.followers : '')+'</span></span></button>';
-    }).join('');
-    var a = acc(current);
-    if(stageTitle) stageTitle.innerHTML = a.name + ' / ' + t('featured');
-    if(moreLink) moreLink.href = a.profileUrl;
-    var list = vidsOf(current);
-    if(empty) empty.style.display = list.length ? 'none' : '';
-    if(!list.length){ grid.innerHTML=''; return; }
-    grid.innerHTML = list.map(function(v){
-      var hasLink = !!(v.videoUrl && v.videoUrl!=='#');
-      var openLabel = hasLink ? t('view') : t('sample');
-      var openAttr = hasLink ? ' href="'+v.videoUrl+'" target="_blank" rel="noopener noreferrer"' : ' aria-disabled="true"';
-      return '<a class="cview-card' + (hasLink?'':' is-sample') + '"' + openAttr + ' aria-label="'+v.title+'">' +
-        '<span class="cview-cover"><img loading="lazy" src="'+v.cover+'" alt="'+v.title+'" style="object-position:'+(v.coverPosition||'center')+'">' +
-        (hasLink ? '' : '<span class="cview-state">'+t('sample')+'</span>') + '</span>' +
-        '<span class="cview-meta">' +
-          '<span class="cview-cat">'+a.platform+'</span>' +
-          '<span class="cview-title">'+v.title+'</span>' +
-          (v.desc ? '<span class="cview-desc">'+v.desc+'</span>' : '') +
-          '<span class="cview-foot"><span class="cview-platform">'+v.platform+'</span><span class="cview-open">'+openLabel+'</span></span>' +
-        '</span></a>';
-    }).join('');
-  }
-  accountsEl.addEventListener('click', function(e){
-    var btn = e.target.closest('.cview-account');
-    if(!btn) return;
-    current = btn.getAttribute('data-acc');
-    render();
-  });
-  render();
-  window.__renderVideos = render;
+  accountsEl.innerHTML = ACCOUNTS.map(function(a){
+    return '<a class="cview-account" href="'+a.profileUrl+'" target="_blank" rel="noopener noreferrer" aria-label="'+a.name+' 抖音主页">' +
+      '<span class="cview-avatar"><img loading="lazy" src="'+a.avatar+'" alt="'+a.name+'"></span>' +
+      '<span class="cview-acc-txt"><span class="cview-acc-name">'+a.name+'</span>' +
+      '<span class="cview-acc-desc">'+a.desc+'</span>' +
+      '<span class="cview-acc-meta">'+a.platform + (a.followers ? ' · '+a.followers : '')+' ↗</span></span></a>';
+  }).join('');
 })();
 
 
