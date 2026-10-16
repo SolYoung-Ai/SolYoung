@@ -5,11 +5,11 @@ ML.aiassist = (function(){
 
   function isConfigured(){ return P().hasAI(); }
   function configInfo(){
-    const c = P().config;
+    const c = P().config();
     if(!c || !c.ai || c.ai.provider==='none' || !c.ai.baseUrl) return null;
     return { provider: c.ai.provider, model: c.ai.model, baseUrl: c.ai.baseUrl };
   }
-  function cfg(){ return P().config && P().config.ai; }
+  function cfg(){ const c = P().config(); return c && c.ai; }
 
   /* ---- safe AI call wrapper ---- */
   async function callAI(system, user){
@@ -23,7 +23,7 @@ ML.aiassist = (function(){
       const out = await P().chatJSON(c.baseUrl, c.key, c.model, system, user);
       return out;
     }catch(err){
-      const cls = (err && (err.vlabClass || err.class)) ? err : P().classifyError(err && err.httpStatus, (err&&err.message)||String(err));
+      const cls = (err && (err.vlabClass || err.class)) ? err : P().classifyError(err, err && err.httpStatus);
       err.vlabCode = cls.code; err.vlabMessage = cls.message;
       throw err;
     }

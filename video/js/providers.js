@@ -361,6 +361,6 @@ ML.providers = (function(){
 
   return { loadConfig, saveConfig, config, hasAI, hasTTS, mode,
     AI, TTS, testConnection, clearSectionKey,
-    SUPPLIERS, supplierList, supplier, base, classifyError,
+    SUPPLIERS, supplierList, supplier, base, classifyError, chatJSON,
     estimateDuration, extractKeywords, mockMediaAnalysis, VISUAL_MAP };
 })();

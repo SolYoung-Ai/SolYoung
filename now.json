@@ -784,5 +784,14 @@
     "images": [],
     "published": true,
     "content_en": "VIDEO LAB v44: now an AI Pre-production Studio — Projects center (9 types, copy/search/delete), Script workspace (paragraph editing, WPM duration estimate), Storyboard editor (card/table views, drag + move buttons, 15 shot fields, reference-image blobs in IndexedDB, state filter), Production board (auto scene/prop/cast lists, tasks, real progress), AI Assistant (bring-your-own OpenAI-compatible API; structured JSON validated, previewed and confirmed before merge/replace; storyboard draft, visual polish, gap check, style advice, CN/EN video prompts), real exports (Markdown/CSV/JSON backup+restore/Chinese-safe print PDF via pdf-lib). Everything local in the browser (IndexedDB), keys stay local, zero server."
+  },
+  {
+    "id": "2026-10-17-videolab-v55-ai-fix",
+    "date": "2026-10-17",
+    "type": "DEV",
+    "content": "VIDEO LAB v55：修复 AI 生成链路三个真实 bug——①已配置 API 用户点击“生成分镜方案”无反应（aiassist 把 config() 当属性读，永远误报“尚未配置”）；②chatJSON 未导出导致请求中断；③错误分型参数顺序错误，API Key 无效等真实错误无法正确显示。现错误信息精确区分鉴权/地址/参数/限流/网络问题；生成→结构化校验→预览确认→合并/替换全链路本地验证通过。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v55: fixed three real bugs in the AI generation path — 1) the Generate button did nothing for users who had configured an API (aiassist read config() as a property, always mis-reporting 'not configured'); 2) chatJSON wasn't exported, breaking the request; 3) error classification args were swapped so real auth failures couldn't display. Now errors distinguish auth/endpoint/bad-request/rate-limit/network; the full chain generate -> validate -> preview -> merge/replace is verified locally."
   }
 ]
