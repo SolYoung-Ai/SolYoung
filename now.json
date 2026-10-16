@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-10-16-solhub-community",
+    "date": "2026-10-16T16:50",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub 社区提交上线：任何人可提交产品/工具，提交即自动公开；支持托管自包含 HTML 工具在沙箱内运行；接入腾讯云 CloudBase 实时数据库；移除全部演示产品，榜单仅保留真实可访问站点。",
+    "images": []
+  },
+  {
     "id": "2026-10-16-solhub-launch",
     "date": "2026-10-16T12:49",
     "type": "BUILD",
