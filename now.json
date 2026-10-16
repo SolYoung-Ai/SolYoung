@@ -1,5 +1,12 @@
 [
   {
+    "id": "u-2026-10-16-studio-mobile-fix",
+    "date": "2026-10-16T23:05:00+08:00",
+    "type": "studio",
+    "content": "Studio 手机端适配优化：全局禁止横向溢出，Hero 标题/副标题在手机端字号与字距缩小，CTA 按钮改为全宽堆叠，避免裁切与挤压。",
+    "published": true
+  },
+  {
     "id": "build-mobile-polish",
     "date": "2026-10-16T19:35",
     "type": "BUILD",
