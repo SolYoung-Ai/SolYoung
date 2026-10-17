@@ -1,5 +1,89 @@
 [
   {
+    "id": "auto-2026-10-17-1538-5a6e4d",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "build",
+    "content": "主站：auto: log 19 new commit(s) to now.json",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-4a7a79",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：update homepage community section to All Products",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-9e861c",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：embed full product ranking on homepage",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-4d3c72",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：remove test product",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-746daf",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "studio",
+    "content": "SolYoung Studio 工作室：加入SolHub社区推广入口",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-4e1e65",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：add modify/delete via email note",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-25aa54",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：add 5s timeout to community fetch to prevent hang",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-4750cb",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：add 15s timeout and error message on submit",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-bd861a",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "studio",
+    "content": "SolYoung Studio 工作室：SolHub logo改透明底",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-eb8abc",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "studio",
+    "content": "SolYoung Studio 工作室：SolHub banner标题改为品牌名",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-fd0487",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：fix build, redeploy all pages",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1538-a644f7",
+    "date": "2026-10-17T15:38:02+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：simplify to email-only submission, remove login",
+    "published": true
+  },
+  {
     "id": "u-2026-10-17-studio-solhub-title",
     "date": "2026-10-17T15:35:00+08:00",
     "type": "studio",
