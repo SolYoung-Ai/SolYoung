@@ -1,0 +1,28 @@
+import { a as __exportAll } from "./paths_BlCYKCPI.mjs";
+import { m as maybeRenderHead, o as renderComponent, p as renderTemplate, s as Fragment } from "./server_Ciq-jqkO.mjs";
+import { O as createAstro, k as createComponent, t as $$BaseLayout } from "./BaseLayout_BpPz4rCZ.mjs";
+//#region src/pages/privacy.astro
+var privacy_exports = /* @__PURE__ */ __exportAll({
+	default: () => $$Privacy,
+	file: () => $$file,
+	url: () => $$url
+});
+createAstro("https://solyoung.top");
+var $$Privacy = createComponent(($$result, $$props, $$slots) => {
+	const Astro = $$result.createAstro($$props, $$slots);
+	Astro.self = $$Privacy;
+	const locale = Astro.props.locale ?? "zh";
+	const en = locale === "en";
+	return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, {
+		"title": en ? "Privacy" : "隐私说明",
+		"description": en ? "SolHub privacy: tools run locally in your browser; GitHub OAuth login only reads your public profile; submissions are public GitHub Issues." : "SolHub 隐私说明：工具在浏览器本地运行；GitHub 登录仅读取公开资料；提交内容为公开 GitHub Issue。",
+		"route": "/privacy/",
+		"locale": locale
+	}, { "default": ($$result) => renderTemplate` ${maybeRenderHead($$result)}<section class="border-b border-border bg-secondary/30 py-14"> <div class="container-page"> <p class="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+Privacy
+</p> <h1 class="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl"> ${en ? "Privacy" : "隐私说明"} </h1> <p class="mt-3 max-w-2xl text-[15px] leading-7 text-muted-foreground"> ${en ? renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`SolHub 的原则：<strong>尽量减少数据收集</strong>。本页说明实际数据流向。` })}` : renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`SolHub 的原则：<strong>尽量减少数据收集</strong>。本页说明实际数据流向。` })}`} </p> </div> </section> <section class="py-12"> <div class="container-page prose-solhub max-w-3xl"> <h2>${en ? "GitHub Login" : "GitHub 登录"}</h2> <p> ${en ? renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`Login uses GitHub OAuth. We only read your <strong>public profile</strong> (username, avatar). We do not access your private repositories, private email, or account settings. After login, a session token is stored in an HttpOnly cookie on this domain.` })}` : renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`登录使用 GitHub OAuth。我们仅读取你的<strong>公开资料</strong>（用户名、头像）。不访问你的私有仓库、私人邮箱或账户设置。登录后会话令牌存储在本站的 HttpOnly Cookie 中。` })}`} </p> <ul> <li>${en ? "What we collect: GitHub username, avatar image URL." : "收集内容：GitHub 用户名、头像图片地址。"}</li> <li>${en ? "What we don't collect: private email, private repos, organizations, settings." : "不收集：私人邮箱、私有仓库、组织、设置。"}</li> <li>${en ? "Logout clears the session cookie immediately." : "退出登录立即清除会话 Cookie。"}</li> </ul> <h2>${en ? "Product Submissions" : "产品提交"}</h2> <p> ${en ? renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`Submitted products are stored as <strong>public GitHub Issues</strong> in the SolHub repository. Anyone can view, comment, or close them. This means:` })}` : renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`提交的产品以<strong>公开 GitHub Issue</strong>形式存储在 SolHub 仓库中。任何人都可以查看、评论或关闭。这意味着：` })}`} </p> <ul> <li>${en ? "Your name, product description, and website link are public." : "你的名字、产品描述和官网链接是公开的。"}</li> <li>${en ? "You can edit or delete (close) your submissions from the My Submissions page." : "你可以在「我的提交」页面编辑或删除（关闭）你的提交。"}</li> <li>${en ? "No private data (email, phone, address) is collected during submission." : "提交过程中不收集任何私人数据（邮箱、电话、地址）。"}</li> </ul> <h2>${en ? "Tools run locally" : "工具在本地运行"}</h2> <p> ${en ? renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`All online tools run entirely in your browser. Your input is <strong>never sent to any server</strong>.` })}` : renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`所有在线工具都在浏览器本地运行。你的输入内容<strong>不会发送到任何服务器</strong>。` })}`} </p> <h2>${en ? "No tracking" : "不跟踪"}</h2> <p> ${en ? renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`SolHub does not use analytics scripts, ad trackers, or third-party cookies. The only network requests are: loading the page itself, fetching the public product list from GitHub API, and the GitHub OAuth login flow.` })}` : renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result) => renderTemplate`SolHub 不使用分析脚本、广告跟踪器或第三方 Cookie。唯一的网络请求是：加载页面本身、从 GitHub API 拉取公开产品列表、以及 GitHub OAuth 登录流程。` })}`} </p> <h2>${en ? "Static hosting" : "页面静态托管"}</h2> <p> ${en ? "SolHub is a static site on GitHub Pages. The hosting platform may record standard access logs (IP, browser type, request time) for infrastructure purposes — this is universal hosting behavior." : "SolHub 是静态网站，部署于 GitHub Pages。托管平台可能出于基础设施目的记录标准访问日志（IP、浏览器类型、请求时间），这是所有托管服务的通用行为。"} </p> <h2>${en ? "Changes" : "变更"}</h2> <p> ${en ? "This page will be updated as features evolve." : "本说明会随网站功能变化更新。"} </p> </div> </section> ` })}`;
+}, "/Users/songyang/Doubao/chats/2026-10-16/new-chat/src/pages/privacy.astro", void 0);
+var $$file = "/Users/songyang/Doubao/chats/2026-10-16/new-chat/src/pages/privacy.astro";
+var $$url = "/solhub/privacy/";
+//#endregion
+export { privacy_exports as n, $$Privacy as t };
