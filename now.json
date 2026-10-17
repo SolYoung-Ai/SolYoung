@@ -1,5 +1,12 @@
 [
   {
+    "id": "u-2026-10-17-studio-solhub-logo-transparent",
+    "date": "2026-10-17T15:30:00+08:00",
+    "type": "studio",
+    "content": "SolHub 通栏 logo 改为透明底，去掉白色方块与边框，适配浅色背景。",
+    "published": true
+  },
+  {
     "id": "u-2026-10-17-studio-solhub-promo",
     "date": "2026-10-17T15:15:00+08:00",
     "type": "studio",
