@@ -1,5 +1,138 @@
 [
   {
+    "id": "auto-2026-10-17-1411-a8b2e9",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "build",
+    "content": "主站：auto: log 2 new commit(s) to now.json",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-f7a9cc",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：only show open issues, closed ones disappear after delete",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-2dcad6",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：add GitHub records link on my-submissions",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-10b8b8",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：fix logout not clearing session",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-5800d7",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：parse real product name from issue body for community list",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-333add",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：merge community items into main list, add detail page c-[id]",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-5649dd",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：fix community detail page route prop",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-351acb",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：robust line-by-line parsing for community detail page",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-cccb30",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：match product detail page layout for community items",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-770f24",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：strip markdown bold/heading markers when parsing issue body",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-a041cd",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：rename homepage section to 近期全部榜单",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-f45922",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：community items show rank numbers, homepage CTA links to all products",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-35a4d1",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：remove profile edit button",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-20f78c",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：add email submission button on submit page",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-01071c",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：update contact email",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-15b780",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：fix email body field paths",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-48d5e0",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：direct Worker submission, no GitHub account needed",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-9240fe",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：update docs for direct submission, 24h verification",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1411-653797",
+    "date": "2026-10-17T14:11:33+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：fix build, deploy all pages including community detail",
+    "published": true
+  },
+  {
     "id": "auto-2026-10-17-1226-808b41",
     "date": "2026-10-17T12:26:43+08:00",
     "type": "solhub",
