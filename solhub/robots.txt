@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://solyoung.top/solhub/sitemap-index.xml
