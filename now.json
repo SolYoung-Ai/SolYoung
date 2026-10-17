@@ -1,5 +1,54 @@
 [
   {
+    "id": "auto-2026-10-17-1804-127dd4",
+    "date": "2026-10-17T18:04:27+08:00",
+    "type": "build",
+    "content": "主站：auto: log 12 new commit(s) to now.json",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1804-1221ba",
+    "date": "2026-10-17T18:04:27+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：hosted tools via email attachment",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1804-686017",
+    "date": "2026-10-17T18:04:27+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：remove login from mobile menu",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1804-235822",
+    "date": "2026-10-17T18:04:27+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：require same email for modify/delete",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1804-dd964e",
+    "date": "2026-10-17T18:04:27+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：fix icon upload, embed as data URL in email",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1804-837cf3",
+    "date": "2026-10-17T18:04:27+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：remove all auth/network calls for fast load",
+    "published": true
+  },
+  {
+    "id": "auto-2026-10-17-1804-add3ea",
+    "date": "2026-10-17T18:04:27+08:00",
+    "type": "solhub",
+    "content": "SolHub 数字工具社区：don't embed data URL in email body",
+    "published": true
+  },
+  {
     "id": "auto-2026-10-17-1538-5a6e4d",
     "date": "2026-10-17T15:38:02+08:00",
     "type": "build",
