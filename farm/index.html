@@ -5,201 +5,386 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>我的农场 · SolYoung</title>
 <style>
+:root{
+  --grass:#6a9e3f; --grass-d:#5a8c35; --dirt:#8b6f47; --dirt-wet:#5a452a;
+  --wood:#8b5a2a; --wood-d:#5a3a1a; --roof:#b83a2a; --wall:#e8d4a8;
+  --ink:#2d1f0e; --accent:#E87028; --panel:#3a2a1a; --gold:#ffd97a;
+}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%}
-.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 40px}
-.head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;flex-wrap:wrap;gap:10px}
-.head h1{font-size:clamp(20px,3vw,28px);text-shadow:2px 2px 0 #000;letter-spacing:2px}
-.back{color:#fff;opacity:.7;text-decoration:none;font-size:13px}
-.back:hover{opacity:1;color:#ffd97a}
-.sub{font-size:13px;color:#cfe3c9;margin-bottom:16px;line-height:1.6;text-shadow:1px 1px 0 #000}
-.map{position:relative;border:4px solid #2d1f0e;box-shadow:0 0 0 4px #8b6f47,0 8px 0 4px rgba(0,0,0,.3);overflow:hidden;cursor:crosshair;user-select:none}
-.map img{display:block;width:100%;height:auto;image-rendering:pixelated;pointer-events:none}
+.wrap{max-width:900px;margin:0 auto;padding:16px 12px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.topbar h1{font-size:18px;text-shadow:2px 2px 0 #000;letter-spacing:2px}
+.topbar .back{color:#fff;opacity:.7;text-decoration:none;font-size:12px}
+.topbar .back:hover{color:var(--gold)}
+.status{display:flex;gap:14px;font-size:12px;background:var(--panel);padding:6px 12px;border:2px solid var(--wood-d);border-radius:4px}
+.status b{color:var(--gold)}
 
-/* wooden sign board nailed to buildings */
-.wood-sign{position:absolute;transform:translate(-50%,-50%);z-index:5;pointer-events:none}
-.wood-sign svg{display:block;image-rendering:pixelated}
-.wood-sign span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"Courier New",monospace;font-weight:bold;font-size:13px;color:#3a2a1a;letter-spacing:1px;white-space:nowrap}
-@media (max-width:640px){ .wood-sign span{font-size:9px} }
+/* game world */
+.world{position:relative;width:100%;aspect-ratio:20/14;background:var(--grass);border:4px solid var(--wood-d);box-shadow:0 0 0 3px var(--wood),0 6px 0 3px rgba(0,0,0,.3);overflow:hidden;image-rendering:pixelated}
+.tile{position:absolute;width:5%;height:7.1428%;}
+.tile.grass-d{background:var(--grass-d)}
+.tile.path{background:#b8a070}
+.tile.tilled{background:var(--dirt)}
+.tile.wet{background:var(--dirt-wet)}
+.tile.crop{position:absolute}
 
-/* door that slides open when player approaches */
-.door{position:absolute;transform:translate(-50%,-50%);z-index:6;transition:transform .6s ease;pointer-events:none}
-.door.open{transform:translate(-120%,-50%)}
-.door svg{display:block;image-rendering:pixelated}
+/* buildings */
+.building{position:absolute;image-rendering:pixelated}
+.building svg{display:block;width:100%;height:100%;image-rendering:pixelated}
+.building .bsign{position:absolute;left:50%;top:8%;transform:translateX(-50%);background:var(--wood);color:#fff;padding:2px 8px;border:2px solid var(--wood-d);font-size:11px;font-weight:bold;letter-spacing:1px;white-space:nowrap;cursor:pointer;text-shadow:1px 1px 0 #000}
+.building .bsign:hover{background:var(--accent)}
 
 /* player */
-.player{position:absolute;width:30px;height:42px;transform:translate(-50%,-100%);z-index:10;pointer-events:none;will-change:left,top}
-.player svg{width:100%;height:100%;display:block;image-rendering:pixelated}
+.player{position:absolute;width:3.5%;height:5%;z-index:15;transform:translate(-50%,-80%);transition:left .1s linear, top .1s linear;pointer-events:none}
+.player svg{width:100%;height:100%;image-rendering:pixelated}
 .player.walking{animation:bob .3s infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes bob{0%,100%{transform:translate(-50%,-80%)}50%{transform:translate(-50%,-83%)}}
 
-/* toast */
-.toast{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);background:#000;color:#ffd97a;font-size:13px;padding:8px 16px;border:2px solid #E87028;opacity:0;transition:opacity .3s;pointer-events:none;z-index:20;white-space:nowrap}
+/* toolbar */
+.toolbar{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;background:var(--panel);padding:10px;border:2px solid var(--wood-d);border-radius:4px;align-items:center}
+.tool{width:48px;height:48px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;color:#fff;position:relative;transition:transform .1s}
+.tool:hover{transform:translateY(-2px)}
+.tool.active{background:var(--accent);border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.tool .icon{font-size:18px;line-height:1}
+.tool .count{position:absolute;right:2px;bottom:2px;background:#000;color:var(--gold);font-size:9px;padding:0 3px;border-radius:2px}
+.spacer{flex:1}
+.btn{background:var(--wood);color:#fff;border:2px solid var(--wood-d);padding:8px 14px;cursor:pointer;font-family:inherit;font-size:12px;border-radius:3px}
+.btn:hover{background:var(--accent)}
+.btn.gold{background:var(--gold);color:var(--ink)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal.show{display:flex}
+.panel{background:var(--panel);border:3px solid var(--wood-d);border-radius:6px;padding:20px;max-width:420px;width:100%;max-height:80vh;overflow:auto}
+.panel h2{font-size:16px;margin-bottom:12px;color:var(--gold)}
+.panel .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed #5a4a2a;font-size:13px}
+.panel .row:last-child{border:none}
+.panel .actions{margin-top:14px;display:flex;gap:8px;justify-content:flex-end}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000;color:var(--gold);padding:8px 16px;border:2px solid var(--accent);font-size:13px;z-index:99;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
+.tip{margin-top:8px;font-size:11px;color:#cfe3c9;opacity:.8;text-align:center}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="head">
-    <h1>★ 我的农场</h1>
-    <a class="back" href="/">← 离开农场</a>
+  <div class="topbar">
+    <h1>★ SolYoung Farm</h1>
+    <div class="status">
+      <span>Day <b id="ui-day">1</b></span>
+      <span>Gold <b id="ui-gold">50</b></span>
+      <span>Radish <b id="ui-radish">0</b></span>
+    </div>
+    <a class="back" href="/">← 网站</a>
   </div>
-  <p class="sub">点地面走过去。走到门口，门会自己打开，再走进去就到了。</p>
 
-  <div class="map" id="map">
-    <img src="assets/farm-bg.png" alt="SolYoung 农场">
-
-    <!-- 主屋门牌 -->
-    <div class="wood-sign" style="left:25%;top:30%">
-      <svg width="120" height="28" viewBox="0 0 120 28">
-        <rect width="120" height="28" fill="#8b6f47" stroke="#5a3f1a" stroke-width="2"/>
-        <rect x="4" y="4" width="112" height="20" fill="#c9a06a"/>
+  <div class="world" id="world">
+    <!-- buildings -->
+    <div class="building" style="left:5%;top:10%;width:22%;height:30%" data-spot="house">
+      <svg viewBox="0 0 200 140" shape-rendering="crispEdges">
+        <rect x="30" y="50" width="140" height="80" fill="#e8d4a8" stroke="#8b5a2a" stroke-width="3"/>
+        <polygon points="20,55 100,10 180,55" fill="#b83a2a" stroke="#7a2015" stroke-width="3"/>
+        <rect x="85" y="90" width="30" height="40" fill="#5a3a1a"/>
+        <rect x="45" y="70" width="22" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+        <rect x="133" y="70" width="22" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
       </svg>
-      <span>solyoung.top</span>
+      <div class="bsign" data-spot="house">SOLYOUNG.TOP</div>
     </div>
 
-    <!-- 主屋门（会滑开） -->
-    <div class="door" id="door-house" style="left:25%;top:52%">
-      <svg width="26" height="40" viewBox="0 0 26 40">
-        <rect width="26" height="40" fill="#5a3f1a" stroke="#3a2a1a" stroke-width="2"/>
-        <rect x="3" y="3" width="20" height="34" fill="#8b5a2a"/>
-        <circle cx="20" cy="20" r="2" fill="#ffd97a"/>
+    <div class="building" style="left:38%;top:14%;width:18%;height:26%" data-spot="market">
+      <svg viewBox="0 0 160 120" shape-rendering="crispEdges">
+        <rect x="20" y="50" width="120" height="60" fill="#c9a06a" stroke="#6b4f2a" stroke-width="3"/>
+        <rect x="20" y="35" width="120" height="18" fill="#c0392b"/>
+        <rect x="20" y="35" width="20" height="18" fill="#fff"/>
+        <rect x="60" y="35" width="20" height="18" fill="#fff"/>
+        <rect x="100" y="35" width="20" height="18" fill="#fff"/>
+        <rect x="55" y="75" width="50" height="35" fill="#5a3a1a"/>
       </svg>
+      <div class="bsign" data-spot="market">DIGITAL MARKET</div>
     </div>
 
-    <!-- 集市招牌 -->
-    <div class="wood-sign" style="left:67%;top:55%">
-      <svg width="90" height="26" viewBox="0 0 90 26">
-        <rect width="90" height="26" fill="#8b6f47" stroke="#5a3f1a" stroke-width="2"/>
-        <rect x="4" y="4" width="82" height="18" fill="#c9a06a"/>
+    <div class="building" style="left:68%;top:10%;width:22%;height:30%" data-spot="studio">
+      <svg viewBox="0 0 200 140" shape-rendering="crispEdges">
+        <rect x="30" y="60" width="140" height="70" fill="#d4a76a" stroke="#5a3a1a" stroke-width="3"/>
+        <polygon points="25,65 100,25 175,65" fill="#5a3a1a"/>
+        <rect x="80" y="90" width="40" height="40" fill="#2d1f0e"/>
+        <rect x="45" y="75" width="20" height="18" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
       </svg>
-      <span>SolHub</span>
+      <div class="bsign" data-spot="studio">STUDIO</div>
     </div>
 
-    <!-- 工坊招牌 -->
-    <div class="wood-sign" style="left:83%;top:14%">
-      <svg width="80" height="26" viewBox="0 0 80 26">
-        <rect width="80" height="26" fill="#8b6f47" stroke="#5a3f1a" stroke-width="2"/>
-        <rect x="4" y="4" width="72" height="18" fill="#c9a06a"/>
-      </svg>
-      <span>Studio</span>
-    </div>
-
-    <!-- 像素小人：棕发、灰短袖、短裤、双肩包 -->
+    <!-- player -->
     <div class="player" id="player">
       <svg viewBox="0 0 16 22" shape-rendering="crispEdges">
-        <!-- backpack -->
         <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
-        <!-- hair (brown) -->
         <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
         <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
-        <!-- face -->
         <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
         <rect x="6" y="5" width="1" height="1" fill="#000"/>
         <rect x="10" y="5" width="1" height="1" fill="#000"/>
-        <!-- gray t-shirt -->
         <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
-        <!-- arms -->
         <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
         <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
-        <!-- shorts -->
-        <rect x="4" y="15" width="9" height="3" fill="#3a2a1a"/>
-        <!-- legs -->
+        <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
         <rect x="5" y="18" width="2" height="3" fill="#f0c8a0"/>
         <rect x="10" y="18" width="2" height="3" fill="#f0c8a0"/>
-        <!-- shoes -->
-        <rect x="5" y="21" width="2" height="1" fill="#3a2a1a"/>
-        <rect x="10" y="21" width="2" height="1" fill="#3a2a1a"/>
+        <rect x="5" y="21" width="2" height="1" fill="#2d1f0e"/>
+        <rect x="10" y="21" width="2" height="1" fill="#2d1f0e"/>
       </svg>
     </div>
-
-    <div class="toast" id="toast"></div>
   </div>
+
+  <div class="toolbar">
+    <div class="tool active" data-tool="hand"><span class="icon">✋</span>手</div>
+    <div class="tool" data-tool="hoe"><span class="icon">⛏️</span>锄</div>
+    <div class="tool" data-tool="seeds"><span class="icon">🌱</span>种子<span class="count" id="cnt-seeds">5</span></div>
+    <div class="tool" data-tool="water"><span class="icon">💧</span>壶</div>
+    <div class="spacer"></div>
+    <button class="btn" id="btn-day">结束今日 ⏭</button>
+    <button class="btn gold" id="btn-reset">重置</button>
+  </div>
+  <p class="tip">点地面走路 · 选工具后点地块劳作 · 走到建筑旁触发交互</p>
+
+  <div class="modal" id="modal">
+    <div class="panel">
+      <h2 id="m-title"></h2>
+      <div id="m-body"></div>
+      <div class="actions">
+        <button class="btn" id="m-close">关闭</button>
+        <button class="btn gold" id="m-action" style="display:none"></button>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
 </div>
 
 <script>
-const map = document.getElementById('map');
-const player = document.getElementById('player');
-const toast = document.getElementById('toast');
-const doorHouse = document.getElementById('door-house');
+const SAVE_KEY = 'solyoung_farm_v1';
+const COLS = 20, ROWS = 14;
+const FARM = {x0:5, x1:14, y0:9, y1:12}; // farmable area in grid coords
 
-// destinations: door position, enter position, url, name, door element
-const spots = [
-  {door:{x:25,y:52}, enter:{x:25,y:56}, url:'/', name:'主屋', door:doorHouse},
-  {door:{x:67,y:65}, enter:{x:67,y:68}, url:'https://solhub.solyoung.top/', name:'SolHub 集市', door:null},
-  {door:{x:83,y:32}, enter:{x:83,y:36}, url:'https://studio.solyoung.top/', name:'Studio 工坊', door:null}
+// obstacles (grid rectangles, walk-around)
+const OBSTACLES = [
+  {x0:2,x1:6,y0:2,y1:5},   // house
+  {x0:7,x1:10,y0:2,y1:5},  // market
+  {x0:14,x1:18,y0:2,y1:5}, // studio
 ];
 
-let pos = {x:50, y:88};
-let target = {x:50, y:88};
-let walking = false;
-let nearDoor = null;
-let doorOpened = false;
-let toastTimer = null;
+let state = null;
+let currentTool = 'hand';
+let player = {x:10, y:13}; // grid pos
+let targetPos = null;
 
-function showToast(msg){
-  toast.textContent = msg;
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toast.classList.remove('show'), 1800);
+function defaultState(){
+  const plots = {};
+  for(let y=FARM.y0; y<=FARM.y1; y++)
+    for(let x=FARM.x0; x<=FARM.x1; x++)
+      plots[x+','+y] = {tilled:false, watered:false, crop:null, growth:0};
+  return {day:1, gold:50, seeds:5, radish:0, plots};
 }
 
-function setPos(x,y){
-  pos = {x,y};
-  player.style.left = x + '%';
-  player.style.top = y + '%';
+function load(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(raw){ state = JSON.parse(raw); if(state.plots) return; }
+  }catch(e){}
+  state = defaultState(); save();
+}
+function save(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.remove('show'), 1800);
 }
 
-map.addEventListener('click', (e)=>{
-  const rect = map.getBoundingClientRect();
-  target = {
-    x: ((e.clientX - rect.left) / rect.width) * 100,
-    y: ((e.clientY - rect.top) / rect.height) * 100
-  };
-  walking = true;
-  doorOpened = false;
-  player.classList.add('walking');
-});
+function updateUI(){
+  document.getElementById('ui-day').textContent = state.day;
+  document.getElementById('ui-gold').textContent = state.gold;
+  document.getElementById('ui-radish').textContent = state.radish;
+  document.getElementById('cnt-seeds').textContent = state.seeds;
+}
 
-function tick(){
-  if(walking){
-    const dx = target.x - pos.x;
-    const dy = target.y - pos.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const speed = 0.35; // slow walk, % per frame
-
-    if(dist < 0.3){
-      walking = false;
-      player.classList.remove('walking');
-    } else {
-      setPos(pos.x + dx/dist*speed, pos.y + dy/dist*speed);
+// render farm plots as divs
+const world = document.getElementById('world');
+function renderPlots(){
+  document.querySelectorAll('.tile').forEach(e=>e.remove());
+  for(const key in state.plots){
+    const p = state.plots[key];
+    const [gx,gy] = key.split(',').map(Number);
+    const el = document.createElement('div');
+    el.className = 'tile';
+    el.style.left = (gx/COLS*100)+'%';
+    el.style.top = (gy/ROWS*100)+'%';
+    el.dataset.gx = gx; el.dataset.gy = gy;
+    if(p.tilled) el.classList.add(p.wet?'wet':'tilled');
+    if(p.crop){
+      const c = document.createElement('div');
+      c.className = 'crop';
+      c.style.cssText = 'position:absolute;left:20%;top:20%;width:60%;height:60%;image-rendering:pixelated';
+      const stage = p.growth;
+      if(stage < 2) c.innerHTML = '<div style="width:100%;height:100%;background:#4d7a30;border-radius:2px"></div>';
+      else if(stage < 4) c.innerHTML = '<div style="width:100%;height:100%;background:#3a6b2a;border-radius:3px"></div>';
+      else c.innerHTML = '<div style="width:100%;height:100%;background:#c0392b;border-radius:4px;border:2px solid #7a2015"></div>';
+      el.appendChild(c);
     }
+    world.appendChild(el);
+  }
+}
 
-    // check if near a door → open it
-    for(const s of spots){
-      const ddx = pos.x - s.door.x;
-      const ddy = pos.y - s.door.y;
-      if(Math.sqrt(ddx*ddx+ddy*ddy) < 4){
-        if(s.door && !s.door.classList.contains('open')){
-          s.door.classList.add('open');
-          showToast('门开了，走进去…');
-        }
-        // if reached enter position → navigate
-        const edx = pos.x - s.enter.x;
-        const edy = pos.y - s.enter.y;
-        if(Math.sqrt(edx*edx+edy*edy) < 1.2){
-          walking = false;
-          showToast('进入 ' + s.name);
-          setTimeout(()=>{ window.location.href = s.url; }, 800);
-        }
-      }
+// player position
+const playerEl = document.getElementById('player');
+function renderPlayer(){
+  playerEl.style.left = (player.x/COLS*100)+'%';
+  playerEl.style.top = (player.y/ROWS*100)+'%';
+}
+
+function inObstacle(x,y){
+  for(const o of OBSTACLES) if(x>=o.x0 && x<=o.x1 && y>=o.y0 && y<=o.y1) return true;
+  return false;
+}
+
+function moveTo(gx, gy){
+  if(gx<0||gx>=COLS||gy<0||gy>=ROWS) return;
+  if(inObstacle(gx,gy)){ toast('过不去'); return; }
+  targetPos = {x:gx, y:gy};
+  playerEl.classList.add('walking');
+}
+
+// movement loop
+let lastT = performance.now();
+function loop(t){
+  const dt = (t-lastT)/1000; lastT = t;
+  if(targetPos){
+    const dx = targetPos.x - player.x;
+    const dy = targetPos.y - player.y;
+    const dist = Math.sqrt(dx*dx+dy*dy);
+    const speed = 4; // grid cells per second
+    if(dist < 0.05){
+      player.x = targetPos.x; player.y = targetPos.y;
+      targetPos = null;
+      playerEl.classList.remove('walking');
+      onArrive();
+    } else {
+      player.x += dx/dist*speed*dt;
+      player.y += dy/dist*speed*dt;
+    }
+    renderPlayer();
+  }
+  requestAnimationFrame(loop);
+}
+
+function onArrive(){
+  const key = Math.round(player.x)+','+Math.round(player.y);
+  const p = state.plots[key];
+  if(p) doTool(p, key);
+  // check buildings near
+  if(Math.round(player.y) < 6){
+    const gx = Math.round(player.x);
+    if(gx>=2 && gx<=6) openHouse();
+    else if(gx>=7 && gx<=10) openMarket();
+    else if(gx>=14 && gx<=18) openStudio();
+  }
+}
+
+function doTool(p, key){
+  if(currentTool==='hoe'){
+    if(!p.tilled){ p.tilled=true; toast('翻好了'); save(); renderPlots(); }
+  } else if(currentTool==='seeds'){
+    if(!p.tilled){ toast('先翻土'); return; }
+    if(p.crop){ toast('这里有作物了'); return; }
+    if(state.seeds<=0){ toast('没种子了，去集市买'); return; }
+    state.seeds--; p.crop='radish'; p.growth=0; p.watered=false;
+    toast('种好了'); save(); updateUI(); renderPlots();
+  } else if(currentTool==='water'){
+    if(!p.crop){ toast('这里没作物'); return; }
+    p.watered = true; toast('浇过水了'); save(); renderPlots();
+  } else if(currentTool==='hand'){
+    if(p.crop && p.growth>=4){
+      state.radish++; p.crop=null; p.tilled=false; p.watered=false; p.growth=0;
+      toast('收获一个萝卜！'); save(); updateUI(); renderPlots();
     }
   }
-  requestAnimationFrame(tick);
 }
 
-setPos(pos.x, pos.y);
-tick();
+// world click
+world.addEventListener('click', (e)=>{
+  if(e.target.closest('.bsign')) return;
+  const rect = world.getBoundingClientRect();
+  const gx = Math.floor((e.clientX-rect.left)/rect.width*COLS);
+  const gy = Math.floor((e.clientY-rect.top)/rect.height*ROWS);
+  moveTo(gx, gy);
+});
+
+// tools
+document.querySelectorAll('.tool').forEach(el=>{
+  el.addEventListener('click', ()=>{
+    document.querySelectorAll('.tool').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+    currentTool = el.dataset.tool;
+  });
+});
+
+// end day
+document.getElementById('btn-day').addEventListener('click', ()=>{
+  state.day++;
+  for(const key in state.plots){
+    const p = state.plots[key];
+    if(p.crop && p.watered && p.growth<4){ p.growth++; p.watered=false; }
+  }
+  save(); updateUI(); renderPlots();
+  toast('第 '+state.day+' 天');
+});
+
+// reset
+document.getElementById('btn-reset').addEventListener('click', ()=>{
+  if(confirm('确定要清空农场重新开始吗？')){
+    state = defaultState(); save(); updateUI(); renderPlots(); toast('新的开始');
+  }
+});
+
+// modals
+const modal = document.getElementById('modal');
+const mTitle = document.getElementById('m-title');
+const mBody = document.getElementById('m-body');
+const mAction = document.getElementById('m-action');
+document.getElementById('m-close').addEventListener('click', ()=>modal.classList.remove('show'));
+
+function openHouse(){
+  mTitle.textContent = '主屋 · SolYoung';
+  mBody.innerHTML = '<p style="line-height:1.7;font-size:13px">这是我的个人主页。记录我的创作、实践和正在发生的可能。</p>';
+  mAction.style.display='inline-block'; mAction.textContent='访问 solyoung.top';
+  mAction.onclick = ()=>window.location.href='/';
+  modal.classList.add('show');
+}
+function openStudio(){
+  mTitle.textContent = 'Studio · 数字服务工作室';
+  mBody.innerHTML = '<p style="line-height:1.7;font-size:13px">视频创作、AI 实践、数字产品定制。把想法做成可用的东西。</p>';
+  mAction.style.display='inline-block'; mAction.textContent='访问 studio.solyoung.top';
+  mAction.onclick = ()=>window.open('https://studio.solyoung.top/','_blank');
+  modal.classList.add('show');
+}
+function openMarket(){
+  mTitle.textContent = 'Digital Market · 数字集市';
+  mBody.innerHTML = `
+    <div class="row"><span>萝卜种子 (5金)</span><button class="btn" onclick="buySeed()">购买</button></div>
+    <div class="row"><span>出售萝卜 (15金/个)</span><button class="btn" onclick="sellCrop()">出售</button></div>
+  `;
+  mAction.style.display='none';
+  modal.classList.add('show');
+}
+window.buySeed = ()=>{
+  if(state.gold<5){ toast('金币不够'); return; }
+  state.gold-=5; state.seeds++; save(); updateUI(); toast('买了一颗种子');
+};
+window.sellCrop = ()=>{
+  if(state.radish<=0){ toast('没有萝卜'); return; }
+  state.radish--; state.gold+=15; save(); updateUI(); toast('卖了 15 金');
+};
+
+// init
+load(); updateUI(); renderPlots(); renderPlayer();
+requestAnimationFrame(loop);
 </script>
 </body>
 </html>
