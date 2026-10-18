@@ -213,6 +213,23 @@ section{position:relative}
 .studio-logo-text .l2{font-size:9px;color:var(--accent);letter-spacing:.08em;width:100%;text-align:center}
 .studio-link:hover{background:var(--bg-soft)}
 
+/* Farm entry card */
+.farm-entry{display:flex;align-items:center;gap:22px;margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);padding:20px 26px;background:var(--card);text-decoration:none;color:inherit;transition:border-color .35s var(--ease)}
+.farm-entry:hover{border-color:var(--accent)}
+.farm-thumb{flex:none;width:120px;height:80px;border-radius:8px;overflow:hidden;background:var(--bg-soft)}
+.farm-thumb svg{width:100%;height:100%;display:block}
+.farm-mid{flex:1;min-width:0}
+.farm-brand{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.farm-name{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink)}
+.farm-cn{font-size:12px;color:var(--accent);letter-spacing:.04em}
+.farm-desc{font-size:13px;line-height:1.6;color:var(--ink);opacity:.75;margin:0}
+.farm-cta{flex:none;font-family:var(--font-display);font-size:12px;letter-spacing:.1em;color:var(--accent);white-space:nowrap}
+@media (max-width:640px){
+  .farm-entry{flex-wrap:wrap;padding:18px 16px}
+  .farm-thumb{width:100%;height:90px}
+  .farm-cta{width:100%;text-align:right}
+}
+
 /* GitHub contribution card */
 .gh-card{display:block;margin-top:36px;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px 18px;background:var(--card);text-decoration:none;color:inherit;transition:border-color .35s var(--ease)}
 .gh-card:hover{border-color:var(--accent)}
@@ -729,6 +746,29 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       </a>
     </div>
 
+    <a class="farm-entry rv" href="farm/" aria-label="进入我的农场">
+      <span class="farm-thumb" aria-hidden="true">
+        <svg viewBox="0 0 120 80" width="120" height="80">
+          <rect width="120" height="80" fill="#F4F0E7"/>
+          <path d="M0 60 Q30 55 60 60 T120 60 V80 H0 Z" fill="#E8DCC4"/>
+          <rect x="14" y="34" width="22" height="20" fill="#1D1A15" rx="2"/>
+          <path d="M10 36 L25 24 L40 36 Z" fill="#E87028"/>
+          <rect x="78" y="40" width="14" height="18" fill="#1D1A15" rx="1.5"/>
+          <path d="M76 42 L85 34 L94 42 Z" fill="#C9B896"/>
+          <circle cx="102" cy="22" r="6" fill="#E87028"/>
+          <path d="M102 28 V38" stroke="#1D1A15" stroke-width="1.5"/>
+          <ellipse cx="55" cy="68" rx="4" ry="2.5" fill="#E87028"/>
+          <ellipse cx="66" cy="68" rx="4" ry="2.5" fill="#C9B896"/>
+          <ellipse cx="44" cy="68" rx="4" ry="2.5" fill="#E87028"/>
+        </svg>
+      </span>
+      <span class="farm-mid">
+        <span class="farm-brand"><span class="farm-name" data-i18n="farm-name">我的农场</span><span class="farm-cn" data-i18n="farm-cn">项目地图</span></span>
+        <p class="farm-desc" data-i18n="farm-desc">一座把想法种出来的农场：每栋房子、每块菜地，都是我正在做的东西。点进去看看。</p>
+      </span>
+      <span class="farm-cta" data-i18n="farm-cta">进入农场 ↗</span>
+    </a>
+
     <a class="gh-card rv" href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener" aria-label="GitHub 贡献动态">
       <div class="gh-head">
         <span class="gh-label" data-i18n="gh-title">GitHub 动态 <span class="en">COMMITS</span></span>
@@ -931,6 +971,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'solhub-cta': {zh:'进入社区 ↗', en:'Open SolHub ↗'},
     'digi-title': {zh:'数字产品 <span class="en">DIGITAL PRODUCTS</span>', en:'Digital Products <span class="en">DIGITAL PRODUCTS</span>'},
     'gh-title': {zh:'GitHub 动态 <span class="en">COMMITS</span>', en:'GitHub Activity <span class="en">COMMITS</span>'},
+    'farm-name': {zh:'我的农场', en:'My Farm'},
+    'farm-cn': {zh:'项目地图', en:'Project Map'},
+    'farm-desc': {zh:'一座把想法种出来的农场：每栋房子、每块菜地，都是我正在做的东西。点进去看看。', en:'A farm where ideas grow: every house and field is something I’m building. Step in.'},
+    'farm-cta': {zh:'进入农场 ↗', en:'Enter Farm ↗'},
     'about-quote': {zh:'我是 <span class="hl">SolYoung</span>。<br>一个正在努力把想法变成作品的人。', en:'I\'m <span class="hl">SolYoung</span>.<br>Someone working to turn ideas into works.'},
     'about-p1': {zh:'我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。', en:'I\'m a content creator working in film and editing. Over the years I\'ve explored content, photography, video, AI and new ways of creating — not to become an expert, but because I enjoy making something with my own hands.'},
     'about-p2': {zh:'这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。', en:'This site is not a résumé or a showcase. It\'s more like a digital archive — what I\'ve made, what I\'m trying, and what it taught me. For me it\'s memory; for you, an invitation to see how someone keeps turning ideas into works.'},

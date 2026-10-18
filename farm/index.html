@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的农场 · SolYoung</title>
+<meta name="description" content="一座把想法种出来的农场：每栋房子、每块菜地，都是 SolYoung 正在做的项目。">
+<style>
+:root{
+  --bg:#F4F0E7;
+  --ink:#1D1A15;
+  --accent:#E87028;
+  --line:rgba(29,26,21,.18);
+  --card:#FAF7F0;
+  --field:#E8DCC4;
+  --wood:#C9B896;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;min-height:100%}
+.wrap{max-width:1100px;margin:0 auto;padding:40px 24px 60px}
+.head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;flex-wrap:wrap;gap:12px}
+.head h1{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.01em}
+.head h1 span{color:var(--accent)}
+.back{font-size:13px;color:var(--ink);opacity:.6;text-decoration:none;letter-spacing:.05em}
+.back:hover{opacity:1;color:var(--accent)}
+.sub{font-size:14px;opacity:.65;margin-bottom:28px;line-height:1.6;max-width:560px}
+.map{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;overflow:hidden}
+.map svg{width:100%;height:auto;display:block}
+.hint{margin-top:18px;font-size:12px;opacity:.5;text-align:center;letter-spacing:.05em}
+
+/* clickable building */
+.building{cursor:pointer;transition:opacity .3s}
+.building:hover{opacity:1}
+.map svg .group{transition:transform .35s cubic-bezier(.2,.8,.2,1);transform-origin:center;transform-box:fill-box}
+.map svg a:hover .group{transform:translateY(-3px)}
+.map svg .group{filter:drop-shadow(0 2px 0 rgba(29,26,21,.08))}
+.label{font-family:inherit;font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle}
+.label-sub{font-size:10px;fill:var(--ink);opacity:.55;text-anchor:middle;letter-spacing:.05em}
+
+@media (max-width:640px){
+  .wrap{padding:24px 14px 40px}
+  .map{padding:8px;border-radius:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>我的农场 <span>FARM</span></h1>
+    <a class="back" href="/">← 返回主页</a>
+  </div>
+  <p class="sub">每栋房子、每块菜地都是一个正在生长的项目。点上去看看它们长什么样。</p>
+
+  <div class="map">
+    <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" aria-label="SolYoung 项目农场地图">
+      <!-- ground -->
+      <rect width="1000" height="620" fill="#FAF7F0"/>
+      <path d="M0 480 Q250 460 500 480 T1000 480 V620 H0 Z" fill="#E8DCC4"/>
+
+      <!-- path -->
+      <path d="M480 620 Q500 480 500 380 T500 200" stroke="#D4C4A0" stroke-width="22" fill="none" stroke-linecap="round" opacity=".7"/>
+
+      <!-- 1. Main house (home) -->
+      <a href="/" class="building">
+        <g class="group">
+          <rect x="120" y="180" width="130" height="90" rx="3" fill="#1D1A15"/>
+          <path d="M105 190 L185 130 L265 190 Z" fill="#E87028"/>
+          <rect x="170" y="225" width="30" height="45" fill="#FAF7F0"/>
+          <rect x="135" y="200" width="22" height="22" fill="#FAF7F0"/>
+          <rect x="215" y="200" width="22" height="22" fill="#FAF7F0"/>
+          <text x="185" y="300" class="label">主屋</text>
+          <text x="185" y="316" class="label-sub">个人主页</text>
+        </g>
+      </a>
+
+      <!-- 2. Barn (SolHub) -->
+      <a href="https://solhub.solyoung.top/" class="building" target="_blank" rel="noopener">
+        <g class="group">
+          <rect x="380" y="150" width="160" height="110" rx="3" fill="#C9B896"/>
+          <path d="M365 165 L460 100 L555 165 Z" fill="#1D1A15"/>
+          <rect x="430" y="200" width="60" height="60" fill="#FAF7F0"/>
+          <path d="M430 200 L490 260 M490 200 L430 260" stroke="#1D1A15" stroke-width="2"/>
+          <text x="460" y="285" class="label">谷仓</text>
+          <text x="460" y="301" class="label-sub">SolHub 工具社区</text>
+        </g>
+      </a>
+
+      <!-- 3. Workshop (Studio) -->
+      <a href="https://studio.solyoung.top/" class="building" target="_blank" rel="noopener">
+        <g class="group">
+          <rect x="660" y="170" width="140" height="95" rx="3" fill="#1D1A15"/>
+          <path d="M660 170 L730 130 L800 170 Z" fill="#C9B896"/>
+          <rect x="685" y="195" width="30" height="25" fill="#FAF7F0"/>
+          <rect x="745" y="195" width="30" height="25" fill="#FAF7F0"/>
+          <rect x="710" y="225" width="40" height="40" fill="#E87028"/>
+          <text x="730" y="290" class="label">工坊</text>
+          <text x="730" y="306" class="label-sub">SolYoung Studio</text>
+        </g>
+      </a>
+
+      <!-- 4. Tree (GitHub) -->
+      <a href="https://github.com/SolYoung-Ai" class="building" target="_blank" rel="noopener">
+        <g class="group">
+          <rect x="880" y="220" width="10" height="50" fill="#8B6F47"/>
+          <circle cx="885" cy="195" r="34" fill="#C9B896"/>
+          <circle cx="865" cy="210" r="20" fill="#D4C4A0"/>
+          <circle cx="905" cy="210" r="20" fill="#D4C4A0"/>
+          <text x="885" y="290" class="label">树</text>
+          <text x="885" y="306" class="label-sub">GitHub</text>
+        </g>
+      </a>
+
+      <!-- Field 1: Verity -->
+      <a href="/Verity/" class="building">
+        <g class="group">
+          <rect x="100" y="430" width="180" height="120" rx="6" fill="#D4C4A0"/>
+          <line x1="100" y1="470" x2="280" y2="470" stroke="#B8A47A" stroke-width="1.5"/>
+          <line x1="100" y1="510" x2="280" y2="510" stroke="#B8A47A" stroke-width="1.5"/>
+          <circle cx="130" cy="455" r="8" fill="#E87028"/>
+          <circle cx="180" cy="455" r="8" fill="#C9B896"/>
+          <circle cx="230" cy="455" r="8" fill="#E87028"/>
+          <circle cx="155" cy="495" r="8" fill="#C9B896"/>
+          <circle cx="205" cy="495" r="8" fill="#E87028"/>
+          <circle cx="255" cy="495" r="8" fill="#C9B896"/>
+          <text x="190" y="575" class="label">菜地 · Verity</text>
+          <text x="190" y="591" class="label-sub">人格测试集合站</text>
+        </g>
+      </a>
+
+      <!-- Field 2: CamSim -->
+      <a href="/CamSim/" class="building">
+        <g class="group">
+          <rect x="410" y="430" width="180" height="120" rx="6" fill="#D4C4A0"/>
+          <line x1="410" y1="470" x2="590" y2="470" stroke="#B8A47A" stroke-width="1.5"/>
+          <line x1="410" y1="510" x2="590" y2="510" stroke="#B8A47A" stroke-width="1.5"/>
+          <circle cx="440" cy="455" r="8" fill="#C9B896"/>
+          <circle cx="490" cy="455" r="8" fill="#E87028"/>
+          <circle cx="540" cy="455" r="8" fill="#C9B896"/>
+          <circle cx="465" cy="495" r="8" fill="#E87028"/>
+          <circle cx="515" cy="495" r="8" fill="#C9B896"/>
+          <circle cx="565" cy="495" r="8" fill="#E87028"/>
+          <text x="500" y="575" class="label">菜地 · CamSim</text>
+          <text x="500" y="591" class="label-sub">相机参数模拟器</text>
+        </g>
+      </a>
+
+      <!-- Field 3: MyOS -->
+      <a href="/OS/" class="building">
+        <g class="group">
+          <rect x="720" y="430" width="180" height="120" rx="6" fill="#D4C4A0"/>
+          <line x1="720" y1="470" x2="900" y2="470" stroke="#B8A47A" stroke-width="1.5"/>
+          <line x1="720" y1="510" x2="900" y2="510" stroke="#B8A47A" stroke-width="1.5"/>
+          <circle cx="750" cy="455" r="8" fill="#E87028"/>
+          <circle cx="800" cy="455" r="8" fill="#E87028"/>
+          <circle cx="850" cy="455" r="8" fill="#C9B896"/>
+          <circle cx="775" cy="495" r="8" fill="#C9B896"/>
+          <circle cx="825" cy="495" r="8" fill="#E87028"/>
+          <circle cx="875" cy="495" r="8" fill="#C9B896"/>
+          <text x="810" y="575" class="label">菜地 · MyOS</text>
+          <text x="810" y="591" class="label-sub">个人数字工作台</text>
+        </g>
+      </a>
+
+      <!-- sun -->
+      <circle cx="920" cy="70" r="28" fill="#E87028" opacity=".85"/>
+    </svg>
+  </div>
+  <p class="hint">点击建筑或菜地进入对应项目 · 地图会随项目增加继续扩展</p>
+</div>
+</body>
+</html>
