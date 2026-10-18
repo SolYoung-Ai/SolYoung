@@ -6,9 +6,10 @@
 <title>SolYoung Farm</title>
 <style>
 :root{
-  --grass:#6a9e3f; --grass-d:#5a8c35; --dirt:#8b6f47; --dirt-wet:#5a452a;
-  --wood:#8b5a2a; --wood-d:#5a3a1a; --roof:#b83a2a;
-  --ink:#2d1f0e; --accent:#E87028; --panel:#3a2a1a; --gold:#ffd97a;
+  --grass:#6a9e3f; --grass-d:#5a8c35; --grass-l:#7bb34a;
+  --dirt:#8b6f47; --dirt-wet:#5a452a;
+  --wood:#8b5a2a; --wood-d:#5a3a1a; --wood-l:#b8874a;
+  --panel:#3a2a1a; --gold:#ffd97a; --accent:#E87028;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%;touch-action:manipulation}
@@ -21,27 +22,38 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
 .status b{color:var(--gold)}
 
 .world{position:relative;width:100%;aspect-ratio:20/14;background:var(--grass);border:4px solid var(--wood-d);box-shadow:0 0 0 3px var(--wood),0 6px 0 3px rgba(0,0,0,.3);overflow:hidden;image-rendering:pixelated;cursor:pointer}
-.tile{position:absolute}
+.world::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 15% 20%, var(--grass-l) 0 4px, transparent 5px),
+  radial-gradient(circle at 80% 15%, var(--grass-l) 0 3px, transparent 4px),
+  radial-gradient(circle at 60% 50%, var(--grass-d) 0 3px, transparent 4px),
+  radial-gradient(circle at 25% 70%, var(--grass-l) 0 4px, transparent 5px),
+  radial-gradient(circle at 90% 60%, var(--grass-d) 0 3px, transparent 4px),
+  radial-gradient(circle at 45% 35%, var(--grass-l) 0 3px, transparent 4px);
+  pointer-events:none;z-index:1}
+
+.tile{position:absolute;z-index:2}
 .tile.path{background:#b8a070}
 .tile.tilled{background:var(--dirt)}
 .tile.wet{background:var(--dirt-wet)}
 
-.building{position:absolute;image-rendering:pixelated}
+.decor{position:absolute;z-index:3;image-rendering:pixelated;pointer-events:none}
+.decor svg{display:block;width:100%;height:100%}
+
+.building{position:absolute;z-index:4;image-rendering:pixelated}
 .building svg{display:block;width:100%;height:100%;image-rendering:pixelated}
-.bsign{position:absolute;left:50%;top:6%;transform:translateX(-50%);background:var(--wood);color:#fff;padding:2px 8px;border:2px solid var(--wood-d);font-size:11px;font-weight:bold;letter-spacing:1px;white-space:nowrap;cursor:pointer;text-shadow:1px 1px 0 #000}
-.bsign:hover{background:var(--accent)}
 
 .player{position:absolute;width:3.5%;height:5%;z-index:15;transform:translate(-50%,-80%);pointer-events:none}
 .player svg{width:100%;height:100%;image-rendering:pixelated}
 .player.flip svg{transform:scaleX(-1)}
-.player.walking{animation:bob .3s infinite}
-@keyframes bob{0%,100%{transform:translate(-50%,-80%)}50%{transform:translate(-50%,-83%)}}
+.player .frame2{display:none}
+.player.walking .frame1{display:none}
+.player.walking .frame2{display:block}
 
 .toolbar{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;background:var(--panel);padding:8px;border:2px solid var(--wood-d);border-radius:4px;align-items:center}
-.tool{width:44px;height:44px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;color:#fff;position:relative;transition:transform .1s}
+.tool{width:46px;height:46px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;transition:transform .1s}
 .tool:hover{transform:translateY(-2px)}
 .tool.active{background:var(--accent);border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
-.tool .icon{font-size:16px;line-height:1}
+.tool svg{width:22px;height:22px;image-rendering:pixelated}
 .tool .count{position:absolute;right:1px;bottom:1px;background:#000;color:var(--gold);font-size:8px;padding:0 2px;border-radius:2px}
 .spacer{flex:1}
 .btn{background:var(--wood);color:#fff;border:2px solid var(--wood-d);padding:7px 12px;cursor:pointer;font-family:inherit;font-size:11px;border-radius:3px}
@@ -73,47 +85,111 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
 
   <div class="world" id="world">
     <!-- paths -->
-    <div class="tile path" style="left:25%;top:35%;width:50%;height:3%"></div>
-    <div class="tile path" style="left:48%;top:38%;width:4%;height:55%"></div>
+    <div class="tile path" style="left:25%;top:35%;width:50%;height:3%;z-index:2"></div>
+    <div class="tile path" style="left:48%;top:38%;width:4%;height:55%;z-index:2"></div>
 
-    <!-- house -->
-    <div class="building" style="left:5%;top:10%;width:22%;height:30%">
-      <svg viewBox="0 0 200 140" shape-rendering="crispEdges">
-        <rect x="30" y="50" width="140" height="80" fill="#e8d4a8" stroke="#8b5a2a" stroke-width="3"/>
-        <polygon points="20,55 100,10 180,55" fill="#b83a2a" stroke="#7a2015" stroke-width="3"/>
-        <rect x="85" y="90" width="30" height="40" fill="#5a3a1a"/>
-        <rect x="45" y="70" width="22" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
-        <rect x="133" y="70" width="22" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <!-- decorations: trees -->
+    <div class="decor" style="left:1%;top:5%;width:6%;height:12%">
+      <svg viewBox="0 0 40 50" shape-rendering="crispEdges">
+        <rect x="17" y="35" width="6" height="12" fill="#5a3a1a"/>
+        <rect x="8" y="18" width="24" height="20" fill="#3a6b2a"/>
+        <rect x="12" y="8" width="16" height="14" fill="#4d7a30"/>
       </svg>
-      <div class="bsign" data-spot="house">SOLYOUNG.TOP</div>
+    </div>
+    <div class="decor" style="left:92%;top:5%;width:6%;height:12%">
+      <svg viewBox="0 0 40 50" shape-rendering="crispEdges">
+        <rect x="17" y="35" width="6" height="12" fill="#5a3a1a"/>
+        <rect x="8" y="18" width="24" height="20" fill="#3a6b2a"/>
+        <rect x="12" y="8" width="16" height="14" fill="#4d7a30"/>
+      </svg>
+    </div>
+    <!-- stones -->
+    <div class="decor" style="left:3%;top:55%;width:3%;height:5%">
+      <svg viewBox="0 0 20 20"><rect x="4" y="8" width="12" height="8" fill="#9a9a9a"/><rect x="6" y="6" width="8" height="4" fill="#b8b8b8"/></svg>
+    </div>
+    <div class="decor" style="left:94%;top:55%;width:3%;height:5%">
+      <svg viewBox="0 0 20 20"><rect x="4" y="8" width="12" height="8" fill="#9a9a9a"/><rect x="6" y="6" width="8" height="4" fill="#b8b8b8"/></svg>
     </div>
 
-    <!-- market -->
-    <div class="building" style="left:39%;top:14%;width:18%;height:26%">
-      <svg viewBox="0 0 160 120" shape-rendering="crispEdges">
-        <rect x="20" y="50" width="120" height="60" fill="#c9a06a" stroke="#6b4f2a" stroke-width="3"/>
-        <rect x="20" y="35" width="120" height="18" fill="#c0392b"/>
-        <rect x="20" y="35" width="20" height="18" fill="#fff"/>
-        <rect x="60" y="35" width="20" height="18" fill="#fff"/>
-        <rect x="100" y="35" width="20" height="18" fill="#fff"/>
-        <rect x="55" y="75" width="50" height="35" fill="#5a3a1a"/>
+    <!-- HOUSE with embedded sign -->
+    <div class="building" style="left:5%;top:10%;width:22%;height:30%" data-spot="house">
+      <svg viewBox="0 0 200 150" shape-rendering="crispEdges">
+        <!-- wall -->
+        <rect x="30" y="55" width="140" height="85" fill="#e8d4a8" stroke="#8b5a2a" stroke-width="2"/>
+        <!-- wall texture lines -->
+        <line x1="30" y1="75" x2="170" y2="75" stroke="#c9b088" stroke-width="1"/>
+        <line x1="30" y1="95" x2="170" y2="95" stroke="#c9b088" stroke-width="1"/>
+        <line x1="30" y1="115" x2="170" y2="115" stroke="#c9b088" stroke-width="1"/>
+        <!-- roof -->
+        <polygon points="20,60 100,12 180,60" fill="#b83a2a" stroke="#7a2015" stroke-width="2"/>
+        <!-- roof tiles lines -->
+        <line x1="35" y1="48" x2="165" y2="48" stroke="#9a2a1a" stroke-width="1"/>
+        <line x1="50" y1="36" x2="150" y2="36" stroke="#9a2a1a" stroke-width="1"/>
+        <!-- chimney -->
+        <rect x="140" y="20" width="14" height="25" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="1"/>
+        <!-- door -->
+        <rect x="88" y="100" width="28" height="40" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+        <circle cx="110" cy="122" r="2" fill="#ffd97a"/>
+        <!-- steps -->
+        <rect x="84" y="140" width="36" height="6" fill="#b8a070"/>
+        <!-- windows -->
+        <rect x="45" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+        <rect x="131" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+        <line x1="57" y1="80" x2="57" y2="102" stroke="#5a3a1a" stroke-width="1"/>
+        <line x1="143" y1="80" x2="143" y2="102" stroke="#5a3a1a" stroke-width="1"/>
+        <!-- embedded wooden sign above door -->
+        <rect x="68" y="78" width="64" height="16" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="2"/>
+        <text x="100" y="90" font-family="Courier New,monospace" font-size="9" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">SOLYOUNG.TOP</text>
       </svg>
-      <div class="bsign" data-spot="market">DIGITAL MARKET</div>
     </div>
 
-    <!-- studio -->
-    <div class="building" style="left:68%;top:10%;width:22%;height:30%">
-      <svg viewBox="0 0 200 140" shape-rendering="crispEdges">
-        <rect x="30" y="60" width="140" height="70" fill="#d4a76a" stroke="#5a3a1a" stroke-width="3"/>
-        <polygon points="25,65 100,25 175,65" fill="#5a3a1a"/>
-        <rect x="80" y="90" width="40" height="40" fill="#2d1f0e"/>
-        <rect x="45" y="75" width="20" height="18" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <!-- MARKET with embedded sign -->
+    <div class="building" style="left:39%;top:14%;width:18%;height:26%" data-spot="market">
+      <svg viewBox="0 0 160 130" shape-rendering="crispEdges">
+        <rect x="20" y="55" width="120" height="65" fill="#c9a06a" stroke="#6b4f2a" stroke-width="2"/>
+        <!-- counter -->
+        <rect x="30" y="85" width="100" height="25" fill="#8b5a2a"/>
+        <!-- awning stripes -->
+        <rect x="15" y="35" width="130" height="20" fill="#c0392b"/>
+        <rect x="15" y="35" width="22" height="20" fill="#fff"/>
+        <rect x="59" y="35" width="22" height="20" fill="#fff"/>
+        <rect x="103" y="35" width="22" height="20" fill="#fff"/>
+        <!-- awning poles -->
+        <rect x="20" y="55" width="4" height="10" fill="#5a3a1a"/>
+        <rect x="136" y="55" width="4" height="10" fill="#5a3a1a"/>
+        <!-- goods on counter -->
+        <rect x="40" y="78" width="12" height="8" fill="#c0392b"/>
+        <rect x="60" y="78" width="12" height="8" fill="#e87028"/>
+        <rect x="80" y="78" width="12" height="8" fill="#d6487a"/>
+        <!-- embedded sign -->
+        <rect x="40" y="108" width="80" height="14" fill="#5a3a1a"/>
+        <text x="80" y="118" font-family="Courier New,monospace" font-size="8" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">DIGITAL MARKET</text>
       </svg>
-      <div class="bsign" data-spot="studio">STUDIO</div>
     </div>
 
+    <!-- STUDIO with embedded sign -->
+    <div class="building" style="left:68%;top:10%;width:22%;height:30%" data-spot="studio">
+      <svg viewBox="0 0 200 150" shape-rendering="crispEdges">
+        <rect x="30" y="65" width="140" height="75" fill="#d4a76a" stroke="#5a3a1a" stroke-width="2"/>
+        <!-- wood plank lines -->
+        <line x1="30" y1="85" x2="170" y2="85" stroke="#b8956a" stroke-width="1"/>
+        <line x1="30" y1="105" x2="170" y2="105" stroke="#b8956a" stroke-width="1"/>
+        <!-- roof -->
+        <polygon points="25,70 100,25 175,70" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+        <!-- door -->
+        <rect x="82" y="100" width="36" height="40" fill="#2d1f0e"/>
+        <rect x="86" y="104" width="28" height="36" fill="#4a6b8a"/>
+        <!-- window -->
+        <rect x="45" y="85" width="22" height="20" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+        <!-- embedded sign above door -->
+        <rect x="68" y="82" width="64" height="16" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+        <text x="100" y="94" font-family="Courier New,monospace" font-size="10" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="2">STUDIO</text>
+      </svg>
+    </div>
+
+    <!-- player: two walk frames -->
     <div class="player" id="player">
-      <svg viewBox="0 0 16 22" shape-rendering="crispEdges">
+      <svg class="frame1" viewBox="0 0 16 22" shape-rendering="crispEdges">
         <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
         <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
         <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
@@ -129,16 +205,47 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
         <rect x="5" y="21" width="2" height="1" fill="#2d1f0e"/>
         <rect x="10" y="21" width="2" height="1" fill="#2d1f0e"/>
       </svg>
+      <svg class="frame2" viewBox="0 0 16 22" shape-rendering="crispEdges">
+        <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
+        <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
+        <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
+        <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
+        <rect x="6" y="5" width="1" height="1" fill="#000"/>
+        <rect x="10" y="5" width="1" height="1" fill="#000"/>
+        <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
+        <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
+        <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
+        <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
+        <rect x="4" y="18" width="2" height="3" fill="#f0c8a0"/>
+        <rect x="11" y="18" width="2" height="3" fill="#f0c8a0"/>
+        <rect x="4" y="21" width="2" height="1" fill="#2d1f0e"/>
+        <rect x="11" y="21" width="2" height="1" fill="#2d1f0e"/>
+      </svg>
     </div>
   </div>
 
   <div class="toolbar">
-    <div class="tool active" data-tool="hand"><span class="icon">✋</span>手</div>
-    <div class="tool" data-tool="hoe"><span class="icon">⛏️</span>锄</div>
-    <div class="tool" data-tool="seed-radish"><span class="icon">🥬</span>萝卜<span class="count" id="cnt-radish-seed">3</span></div>
-    <div class="tool" data-tool="seed-tomato"><span class="icon">🍅</span>番茄<span class="count" id="cnt-tomato-seed">2</span></div>
-    <div class="tool" data-tool="seed-berry"><span class="icon">🍓</span>草莓<span class="count" id="cnt-berry-seed">1</span></div>
-    <div class="tool" data-tool="water"><span class="icon">💧</span>壶</div>
+    <div class="tool active" data-tool="hand">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="5" y="4" width="6" height="8" fill="#f0c8a0"/><rect x="4" y="6" width="2" height="4" fill="#f0c8a0"/><rect x="11" y="6" width="2" height="4" fill="#f0c8a0"/></svg>
+    </div>
+    <div class="tool" data-tool="hoe">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="7" y="2" width="2" height="12" fill="#8b5a2a"/><rect x="4" y="2" width="8" height="3" fill="#9a9a9a"/></svg>
+    </div>
+    <div class="tool" data-tool="seed-radish">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="6" y="8" width="4" height="6" fill="#c0392b"/><rect x="6" y="5" width="4" height="3" fill="#4d7a30"/></svg>
+      <span class="count" id="cnt-radish-seed">3</span>
+    </div>
+    <div class="tool" data-tool="seed-tomato">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><circle cx="8" cy="9" r="4" fill="#e87028"/><rect x="7" y="4" width="2" height="3" fill="#4d7a30"/></svg>
+      <span class="count" id="cnt-tomato-seed">2</span>
+    </div>
+    <div class="tool" data-tool="seed-berry">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><circle cx="8" cy="9" r="4" fill="#d6487a"/><rect x="7" y="4" width="2" height="2" fill="#4d7a30"/></svg>
+      <span class="count" id="cnt-berry-seed">1</span>
+    </div>
+    <div class="tool" data-tool="water">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="5" y="6" width="6" height="7" fill="#4a6b8a"/><rect x="6" y="3" width="4" height="3" fill="#4a6b8a"/><circle cx="12" cy="10" r="1" fill="#a8d8ea"/></svg>
+    </div>
     <div class="spacer"></div>
     <button class="btn" id="btn-bag">背包</button>
     <button class="btn" id="btn-day">结束今日</button>
@@ -210,9 +317,9 @@ function renderPlots(){
     el.dataset.plot=k;
     el.style.left=(gx/COLS*100)+'%';el.style.top=(gy/ROWS*100)+'%';
     el.style.width=(1/COLS*100)+'%';el.style.height=(1/ROWS*100)+'%';
+    el.style.zIndex=2;
     if(p.crop){
-      const c=CROPS[p.crop];
-      const stage=p.growth;
+      const c=CROPS[p.crop];const stage=p.growth;
       const sz=stage<2?30:stage<4?55:80;
       const col=stage<2?'#4d7a30':stage<4?'#3a6b2a':c.color;
       el.innerHTML=`<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:${sz}%;height:${sz}%;background:${col};border-radius:${sz<50?2:5}px;border:2px solid rgba(0,0,0,.3)"></div>`;
@@ -225,12 +332,10 @@ function inObstacle(x,y){for(const o of OBSTACLES)if(x>=o.x0&&x<=o.x1&&y>=o.y0&&
 
 function findPath(sx,sy,tx,ty){
   if(inObstacle(tx,ty)||tx<0||tx>=COLS||ty<0||ty>=ROWS)return null;
-  // simple greedy with wall avoidance: try direct, if blocked try going around horizontally
   const open=[{x:sx,y:sy,path:[]}],closed=new Set();
   while(open.length){
     open.sort((a,b)=>Math.abs(a.x-tx)+Math.abs(a.y-ty)-(Math.abs(b.x-tx)+Math.abs(b.y-ty)));
-    const cur=open.shift();
-    const key=cur.x+','+cur.y;
+    const cur=open.shift();const key=cur.x+','+cur.y;
     if(closed.has(key))continue;closed.add(key);
     if(cur.x===tx&&cur.y===ty)return cur.path.slice(1);
     for(const[dx,dy]of[[0,1],[0,-1],[1,0],[-1,0]]){
@@ -305,7 +410,7 @@ function doTool(p,key){
 }
 
 world.addEventListener('click',e=>{
-  if(e.target.closest('.bsign'))return;
+  if(e.target.closest('.building'))return;
   const r=world.getBoundingClientRect();
   const gx=Math.floor((e.clientX-r.left)/r.width*COLS);
   const gy=Math.floor((e.clientY-r.top)/r.height*ROWS);
@@ -357,10 +462,10 @@ window.sell=(t,p)=>{if(state.bag[t]<=0){toast('没有'+CROPS[t].name);return;}st
 
 document.getElementById('btn-bag').addEventListener('click',()=>{
   openModal('背包',
-    `<div class="row"><span>🥬 萝卜</span><span>${state.bag.radish}</span></div>
-     <div class="row"><span>🍅 番茄</span><span>${state.bag.tomato}</span></div>
-     <div class="row"><span>🍓 草莓</span><span>${state.bag.berry}</span></div>
-     <div class="row"><span>💰 金币</span><span>${state.gold}</span></div>`);
+    `<div class="row"><span>萝卜</span><span>${state.bag.radish}</span></div>
+     <div class="row"><span>番茄</span><span>${state.bag.tomato}</span></div>
+     <div class="row"><span>草莓</span><span>${state.bag.berry}</span></div>
+     <div class="row"><span>金币</span><span>${state.gold}</span></div>`);
 });
 
 load();updateUI();renderPlots();renderPlayer();
