@@ -16,15 +16,22 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
 .map{position:relative;border:4px solid #2d1f0e;box-shadow:0 0 0 4px #8b6f47,0 8px 0 4px rgba(0,0,0,.3);overflow:hidden;cursor:crosshair;user-select:none}
 .map img{display:block;width:100%;height:auto;image-rendering:pixelated;pointer-events:none}
 
-/* pixel sign on buildings */
-.sign{position:absolute;font-family:"Courier New",monospace;font-weight:bold;color:#fff;text-shadow:2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;letter-spacing:2px;white-space:nowrap;transform:translate(-50%,-50%);pointer-events:none}
-.sign small{display:block;font-size:10px;letter-spacing:3px;opacity:.85;margin-top:2px}
+/* wooden sign board nailed to buildings */
+.wood-sign{position:absolute;transform:translate(-50%,-50%);z-index:5;pointer-events:none}
+.wood-sign svg{display:block;image-rendering:pixelated}
+.wood-sign span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"Courier New",monospace;font-weight:bold;font-size:13px;color:#3a2a1a;letter-spacing:1px;white-space:nowrap}
+@media (max-width:640px){ .wood-sign span{font-size:9px} }
 
-/* pixel character */
-.player{position:absolute;width:36px;height:48px;transform:translate(-50%,-100%);z-index:10;pointer-events:none;will-change:left,top}
+/* door that slides open when player approaches */
+.door{position:absolute;transform:translate(-50%,-50%);z-index:6;transition:transform .6s ease;pointer-events:none}
+.door.open{transform:translate(-120%,-50%)}
+.door svg{display:block;image-rendering:pixelated}
+
+/* player */
+.player{position:absolute;width:30px;height:42px;transform:translate(-50%,-100%);z-index:10;pointer-events:none;will-change:left,top}
 .player svg{width:100%;height:100%;display:block;image-rendering:pixelated}
-.player.walking{animation:bob .25s infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.player.walking{animation:bob .3s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 
 /* toast */
 .toast{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);background:#000;color:#ffd97a;font-size:13px;padding:8px 16px;border:2px solid #E87028;opacity:0;transition:opacity .3s;pointer-events:none;z-index:20;white-space:nowrap}
@@ -37,38 +44,72 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
     <h1>★ 我的农场</h1>
     <a class="back" href="/">← 离开农场</a>
   </div>
-  <p class="sub">点一下地面，小人会走过去。走到房子里，就会自动进入那个项目。</p>
+  <p class="sub">点地面走过去。走到门口，门会自己打开，再走进去就到了。</p>
 
   <div class="map" id="map">
     <img src="assets/farm-bg.png" alt="SolYoung 农场">
 
-    <!-- signs -->
-    <div class="sign" style="left:26%;top:16%">solyoung.top<small>主屋</small></div>
-    <div class="sign" style="left:67%;top:52%">SolHub<small>集市</small></div>
-    <div class="sign" style="left:83%;top:10%">Studio<small>工坊</small></div>
+    <!-- 主屋门牌 -->
+    <div class="wood-sign" style="left:25%;top:30%">
+      <svg width="120" height="28" viewBox="0 0 120 28">
+        <rect width="120" height="28" fill="#8b6f47" stroke="#5a3f1a" stroke-width="2"/>
+        <rect x="4" y="4" width="112" height="20" fill="#c9a06a"/>
+      </svg>
+      <span>solyoung.top</span>
+    </div>
 
-    <!-- player -->
-    <div class="player" id="player" style="left:50%;top:88%">
-      <svg viewBox="0 0 18 24" shape-rendering="crispEdges">
-        <!-- hair -->
-        <rect x="4" y="0" width="10" height="3" fill="#4a3728"/>
-        <rect x="3" y="2" width="12" height="2" fill="#4a3728"/>
+    <!-- 主屋门（会滑开） -->
+    <div class="door" id="door-house" style="left:25%;top:52%">
+      <svg width="26" height="40" viewBox="0 0 26 40">
+        <rect width="26" height="40" fill="#5a3f1a" stroke="#3a2a1a" stroke-width="2"/>
+        <rect x="3" y="3" width="20" height="34" fill="#8b5a2a"/>
+        <circle cx="20" cy="20" r="2" fill="#ffd97a"/>
+      </svg>
+    </div>
+
+    <!-- 集市招牌 -->
+    <div class="wood-sign" style="left:67%;top:55%">
+      <svg width="90" height="26" viewBox="0 0 90 26">
+        <rect width="90" height="26" fill="#8b6f47" stroke="#5a3f1a" stroke-width="2"/>
+        <rect x="4" y="4" width="82" height="18" fill="#c9a06a"/>
+      </svg>
+      <span>SolHub</span>
+    </div>
+
+    <!-- 工坊招牌 -->
+    <div class="wood-sign" style="left:83%;top:14%">
+      <svg width="80" height="26" viewBox="0 0 80 26">
+        <rect width="80" height="26" fill="#8b6f47" stroke="#5a3f1a" stroke-width="2"/>
+        <rect x="4" y="4" width="72" height="18" fill="#c9a06a"/>
+      </svg>
+      <span>Studio</span>
+    </div>
+
+    <!-- 像素小人：棕发、灰短袖、短裤、双肩包 -->
+    <div class="player" id="player">
+      <svg viewBox="0 0 16 22" shape-rendering="crispEdges">
+        <!-- backpack -->
+        <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
+        <!-- hair (brown) -->
+        <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
+        <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
         <!-- face -->
-        <rect x="4" y="4" width="10" height="5" fill="#f0c8a0"/>
-        <!-- eyes -->
+        <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
         <rect x="6" y="5" width="1" height="1" fill="#000"/>
-        <rect x="11" y="5" width="1" height="1" fill="#000"/>
-        <!-- body (orange shirt) -->
-        <rect x="4" y="9" width="10" height="7" fill="#E87028"/>
+        <rect x="10" y="5" width="1" height="1" fill="#000"/>
+        <!-- gray t-shirt -->
+        <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
         <!-- arms -->
-        <rect x="2" y="9" width="2" height="5" fill="#f0c8a0"/>
-        <rect x="14" y="9" width="2" height="5" fill="#f0c8a0"/>
-        <!-- pants -->
-        <rect x="5" y="16" width="3" height="5" fill="#2a4a6a"/>
-        <rect x="10" y="16" width="3" height="5" fill="#2a4a6a"/>
+        <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
+        <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
+        <!-- shorts -->
+        <rect x="4" y="15" width="9" height="3" fill="#3a2a1a"/>
+        <!-- legs -->
+        <rect x="5" y="18" width="2" height="3" fill="#f0c8a0"/>
+        <rect x="10" y="18" width="2" height="3" fill="#f0c8a0"/>
         <!-- shoes -->
-        <rect x="5" y="21" width="3" height="2" fill="#3a2a1a"/>
-        <rect x="10" y="21" width="3" height="2" fill="#3a2a1a"/>
+        <rect x="5" y="21" width="2" height="1" fill="#3a2a1a"/>
+        <rect x="10" y="21" width="2" height="1" fill="#3a2a1a"/>
       </svg>
     </div>
 
@@ -80,18 +121,20 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
 const map = document.getElementById('map');
 const player = document.getElementById('player');
 const toast = document.getElementById('toast');
+const doorHouse = document.getElementById('door-house');
 
-// buildings: center position (% of map), radius (%), url, name
-const buildings = [
-  {cx:25, cy:45, r:14, url:'/', name:'主屋'},
-  {cx:67, cy:67, r:10, url:'https://solhub.solyoung.top/', name:'SolHub 集市'},
-  {cx:83, cy:30, r:10, url:'https://studio.solyoung.top/', name:'Studio 工坊'}
+// destinations: door position, enter position, url, name, door element
+const spots = [
+  {door:{x:25,y:52}, enter:{x:25,y:56}, url:'/', name:'主屋', door:doorHouse},
+  {door:{x:67,y:65}, enter:{x:67,y:68}, url:'https://solhub.solyoung.top/', name:'SolHub 集市', door:null},
+  {door:{x:83,y:32}, enter:{x:83,y:36}, url:'https://studio.solyoung.top/', name:'Studio 工坊', door:null}
 ];
 
-let pos = {x:50, y:88};      // current position %
+let pos = {x:50, y:88};
 let target = {x:50, y:88};
 let walking = false;
-let arrived = false;
+let nearDoor = null;
+let doorOpened = false;
 let toastTimer = null;
 
 function showToast(msg){
@@ -107,47 +150,52 @@ function setPos(x,y){
   player.style.top = y + '%';
 }
 
-// click to move
 map.addEventListener('click', (e)=>{
   const rect = map.getBoundingClientRect();
-  const x = ((e.clientX - rect.left) / rect.width) * 100;
-  const y = ((e.clientY - rect.top) / rect.height) * 100;
-  target = {x,y};
+  target = {
+    x: ((e.clientX - rect.left) / rect.width) * 100,
+    y: ((e.clientY - rect.top) / rect.height) * 100
+  };
   walking = true;
-  arrived = false;
+  doorOpened = false;
   player.classList.add('walking');
 });
 
-// movement loop
 function tick(){
   if(walking){
     const dx = target.x - pos.x;
     const dy = target.y - pos.y;
     const dist = Math.sqrt(dx*dx + dy*dy);
-    if(dist < 0.5){
+    const speed = 0.35; // slow walk, % per frame
+
+    if(dist < 0.3){
       walking = false;
       player.classList.remove('walking');
-      arrived = true;
-      checkArrival();
     } else {
-      const speed = 1.2; // % per frame
       setPos(pos.x + dx/dist*speed, pos.y + dy/dist*speed);
+    }
+
+    // check if near a door → open it
+    for(const s of spots){
+      const ddx = pos.x - s.door.x;
+      const ddy = pos.y - s.door.y;
+      if(Math.sqrt(ddx*ddx+ddy*ddy) < 4){
+        if(s.door && !s.door.classList.contains('open')){
+          s.door.classList.add('open');
+          showToast('门开了，走进去…');
+        }
+        // if reached enter position → navigate
+        const edx = pos.x - s.enter.x;
+        const edy = pos.y - s.enter.y;
+        if(Math.sqrt(edx*edx+edy*edy) < 1.2){
+          walking = false;
+          showToast('进入 ' + s.name);
+          setTimeout(()=>{ window.location.href = s.url; }, 800);
+        }
+      }
     }
   }
   requestAnimationFrame(tick);
-}
-
-function checkArrival(){
-  for(const b of buildings){
-    const dx = pos.x - b.cx;
-    const dy = pos.y - b.cy;
-    const d = Math.sqrt(dx*dx + dy*dy);
-    if(d < b.r){
-      showToast('走到了 ' + b.name + '，进入…');
-      setTimeout(()=>{ window.location.href = b.url; }, 900);
-      return;
-    }
-  }
 }
 
 setPos(pos.x, pos.y);
