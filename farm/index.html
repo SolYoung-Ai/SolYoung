@@ -2,68 +2,62 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的农场 · SolYoung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>SolYoung Farm</title>
 <style>
 :root{
   --grass:#6a9e3f; --grass-d:#5a8c35; --dirt:#8b6f47; --dirt-wet:#5a452a;
-  --wood:#8b5a2a; --wood-d:#5a3a1a; --roof:#b83a2a; --wall:#e8d4a8;
+  --wood:#8b5a2a; --wood-d:#5a3a1a; --roof:#b83a2a;
   --ink:#2d1f0e; --accent:#E87028; --panel:#3a2a1a; --gold:#ffd97a;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%}
-.wrap{max-width:900px;margin:0 auto;padding:16px 12px}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
-.topbar h1{font-size:18px;text-shadow:2px 2px 0 #000;letter-spacing:2px}
+html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%;touch-action:manipulation}
+.wrap{max-width:900px;margin:0 auto;padding:12px 10px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.topbar h1{font-size:16px;text-shadow:2px 2px 0 #000;letter-spacing:2px}
 .topbar .back{color:#fff;opacity:.7;text-decoration:none;font-size:12px}
 .topbar .back:hover{color:var(--gold)}
-.status{display:flex;gap:14px;font-size:12px;background:var(--panel);padding:6px 12px;border:2px solid var(--wood-d);border-radius:4px}
+.status{display:flex;gap:12px;font-size:12px;background:var(--panel);padding:5px 10px;border:2px solid var(--wood-d);border-radius:4px}
 .status b{color:var(--gold)}
 
-/* game world */
-.world{position:relative;width:100%;aspect-ratio:20/14;background:var(--grass);border:4px solid var(--wood-d);box-shadow:0 0 0 3px var(--wood),0 6px 0 3px rgba(0,0,0,.3);overflow:hidden;image-rendering:pixelated}
-.tile{position:absolute;width:5%;height:7.1428%;}
-.tile.grass-d{background:var(--grass-d)}
+.world{position:relative;width:100%;aspect-ratio:20/14;background:var(--grass);border:4px solid var(--wood-d);box-shadow:0 0 0 3px var(--wood),0 6px 0 3px rgba(0,0,0,.3);overflow:hidden;image-rendering:pixelated;cursor:pointer}
+.tile{position:absolute}
 .tile.path{background:#b8a070}
 .tile.tilled{background:var(--dirt)}
 .tile.wet{background:var(--dirt-wet)}
-.tile.crop{position:absolute}
 
-/* buildings */
 .building{position:absolute;image-rendering:pixelated}
 .building svg{display:block;width:100%;height:100%;image-rendering:pixelated}
-.building .bsign{position:absolute;left:50%;top:8%;transform:translateX(-50%);background:var(--wood);color:#fff;padding:2px 8px;border:2px solid var(--wood-d);font-size:11px;font-weight:bold;letter-spacing:1px;white-space:nowrap;cursor:pointer;text-shadow:1px 1px 0 #000}
-.building .bsign:hover{background:var(--accent)}
+.bsign{position:absolute;left:50%;top:6%;transform:translateX(-50%);background:var(--wood);color:#fff;padding:2px 8px;border:2px solid var(--wood-d);font-size:11px;font-weight:bold;letter-spacing:1px;white-space:nowrap;cursor:pointer;text-shadow:1px 1px 0 #000}
+.bsign:hover{background:var(--accent)}
 
-/* player */
-.player{position:absolute;width:3.5%;height:5%;z-index:15;transform:translate(-50%,-80%);transition:left .1s linear, top .1s linear;pointer-events:none}
+.player{position:absolute;width:3.5%;height:5%;z-index:15;transform:translate(-50%,-80%);pointer-events:none}
 .player svg{width:100%;height:100%;image-rendering:pixelated}
+.player.flip svg{transform:scaleX(-1)}
 .player.walking{animation:bob .3s infinite}
 @keyframes bob{0%,100%{transform:translate(-50%,-80%)}50%{transform:translate(-50%,-83%)}}
 
-/* toolbar */
-.toolbar{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;background:var(--panel);padding:10px;border:2px solid var(--wood-d);border-radius:4px;align-items:center}
-.tool{width:48px;height:48px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;color:#fff;position:relative;transition:transform .1s}
+.toolbar{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;background:var(--panel);padding:8px;border:2px solid var(--wood-d);border-radius:4px;align-items:center}
+.tool{width:44px;height:44px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;color:#fff;position:relative;transition:transform .1s}
 .tool:hover{transform:translateY(-2px)}
 .tool.active{background:var(--accent);border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
-.tool .icon{font-size:18px;line-height:1}
-.tool .count{position:absolute;right:2px;bottom:2px;background:#000;color:var(--gold);font-size:9px;padding:0 3px;border-radius:2px}
+.tool .icon{font-size:16px;line-height:1}
+.tool .count{position:absolute;right:1px;bottom:1px;background:#000;color:var(--gold);font-size:8px;padding:0 2px;border-radius:2px}
 .spacer{flex:1}
-.btn{background:var(--wood);color:#fff;border:2px solid var(--wood-d);padding:8px 14px;cursor:pointer;font-family:inherit;font-size:12px;border-radius:3px}
+.btn{background:var(--wood);color:#fff;border:2px solid var(--wood-d);padding:7px 12px;cursor:pointer;font-family:inherit;font-size:11px;border-radius:3px}
 .btn:hover{background:var(--accent)}
 .btn.gold{background:var(--gold);color:var(--ink)}
 
-/* modal */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100;padding:12px}
 .modal.show{display:flex}
-.panel{background:var(--panel);border:3px solid var(--wood-d);border-radius:6px;padding:20px;max-width:420px;width:100%;max-height:80vh;overflow:auto}
-.panel h2{font-size:16px;margin-bottom:12px;color:var(--gold)}
-.panel .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed #5a4a2a;font-size:13px}
+.panel{background:var(--panel);border:3px solid var(--wood-d);border-radius:6px;padding:18px;max-width:400px;width:100%;max-height:80vh;overflow:auto}
+.panel h2{font-size:15px;margin-bottom:10px;color:var(--gold)}
+.panel .row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px dashed #5a4a2a;font-size:12px}
 .panel .row:last-child{border:none}
-.panel .actions{margin-top:14px;display:flex;gap:8px;justify-content:flex-end}
-.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000;color:var(--gold);padding:8px 16px;border:2px solid var(--accent);font-size:13px;z-index:99;opacity:0;transition:opacity .3s;pointer-events:none}
+.panel .actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end}
+.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#000;color:var(--gold);padding:7px 14px;border:2px solid var(--accent);font-size:12px;z-index:99;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
-.tip{margin-top:8px;font-size:11px;color:#cfe3c9;opacity:.8;text-align:center}
+.tip{margin-top:6px;font-size:10px;color:#cfe3c9;opacity:.8;text-align:center}
 </style>
 </head>
 <body>
@@ -73,14 +67,17 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
     <div class="status">
       <span>Day <b id="ui-day">1</b></span>
       <span>Gold <b id="ui-gold">50</b></span>
-      <span>Radish <b id="ui-radish">0</b></span>
     </div>
     <a class="back" href="/">← 网站</a>
   </div>
 
   <div class="world" id="world">
-    <!-- buildings -->
-    <div class="building" style="left:5%;top:10%;width:22%;height:30%" data-spot="house">
+    <!-- paths -->
+    <div class="tile path" style="left:25%;top:35%;width:50%;height:3%"></div>
+    <div class="tile path" style="left:48%;top:38%;width:4%;height:55%"></div>
+
+    <!-- house -->
+    <div class="building" style="left:5%;top:10%;width:22%;height:30%">
       <svg viewBox="0 0 200 140" shape-rendering="crispEdges">
         <rect x="30" y="50" width="140" height="80" fill="#e8d4a8" stroke="#8b5a2a" stroke-width="3"/>
         <polygon points="20,55 100,10 180,55" fill="#b83a2a" stroke="#7a2015" stroke-width="3"/>
@@ -91,7 +88,8 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
       <div class="bsign" data-spot="house">SOLYOUNG.TOP</div>
     </div>
 
-    <div class="building" style="left:38%;top:14%;width:18%;height:26%" data-spot="market">
+    <!-- market -->
+    <div class="building" style="left:39%;top:14%;width:18%;height:26%">
       <svg viewBox="0 0 160 120" shape-rendering="crispEdges">
         <rect x="20" y="50" width="120" height="60" fill="#c9a06a" stroke="#6b4f2a" stroke-width="3"/>
         <rect x="20" y="35" width="120" height="18" fill="#c0392b"/>
@@ -103,7 +101,8 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
       <div class="bsign" data-spot="market">DIGITAL MARKET</div>
     </div>
 
-    <div class="building" style="left:68%;top:10%;width:22%;height:30%" data-spot="studio">
+    <!-- studio -->
+    <div class="building" style="left:68%;top:10%;width:22%;height:30%">
       <svg viewBox="0 0 200 140" shape-rendering="crispEdges">
         <rect x="30" y="60" width="140" height="70" fill="#d4a76a" stroke="#5a3a1a" stroke-width="3"/>
         <polygon points="25,65 100,25 175,65" fill="#5a3a1a"/>
@@ -113,7 +112,6 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
       <div class="bsign" data-spot="studio">STUDIO</div>
     </div>
 
-    <!-- player -->
     <div class="player" id="player">
       <svg viewBox="0 0 16 22" shape-rendering="crispEdges">
         <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
@@ -137,13 +135,16 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
   <div class="toolbar">
     <div class="tool active" data-tool="hand"><span class="icon">✋</span>手</div>
     <div class="tool" data-tool="hoe"><span class="icon">⛏️</span>锄</div>
-    <div class="tool" data-tool="seeds"><span class="icon">🌱</span>种子<span class="count" id="cnt-seeds">5</span></div>
+    <div class="tool" data-tool="seed-radish"><span class="icon">🥬</span>萝卜<span class="count" id="cnt-radish-seed">3</span></div>
+    <div class="tool" data-tool="seed-tomato"><span class="icon">🍅</span>番茄<span class="count" id="cnt-tomato-seed">2</span></div>
+    <div class="tool" data-tool="seed-berry"><span class="icon">🍓</span>草莓<span class="count" id="cnt-berry-seed">1</span></div>
     <div class="tool" data-tool="water"><span class="icon">💧</span>壶</div>
     <div class="spacer"></div>
-    <button class="btn" id="btn-day">结束今日 ⏭</button>
+    <button class="btn" id="btn-bag">背包</button>
+    <button class="btn" id="btn-day">结束今日</button>
     <button class="btn gold" id="btn-reset">重置</button>
   </div>
-  <p class="tip">点地面走路 · 选工具后点地块劳作 · 走到建筑旁触发交互</p>
+  <p class="tip">点地面走路 · 选种子后点翻好的地播种 · 浇水后点"结束今日"生长</p>
 
   <div class="modal" id="modal">
     <div class="panel">
@@ -159,231 +160,210 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
 </div>
 
 <script>
-const SAVE_KEY = 'solyoung_farm_v1';
-const COLS = 20, ROWS = 14;
-const FARM = {x0:5, x1:14, y0:9, y1:12}; // farmable area in grid coords
-
-// obstacles (grid rectangles, walk-around)
-const OBSTACLES = [
-  {x0:2,x1:6,y0:2,y1:5},   // house
-  {x0:7,x1:10,y0:2,y1:5},  // market
-  {x0:14,x1:18,y0:2,y1:5}, // studio
+const SAVE='solyoung_farm_v2';
+const COLS=20, ROWS=14;
+const FARM={x0:5,x1:14,y0:9,y1:12};
+const OBSTACLES=[
+  {x0:2,x1:6,y0:2,y1:5},
+  {x0:7,x1:10,y0:2,y1:5},
+  {x0:14,x1:18,y0:2,y1:5},
 ];
+const CROPS={
+  radish:{name:'萝卜',days:3,sell:15,color:'#c0392b'},
+  tomato:{name:'番茄',days:5,sell:35,color:'#e87028'},
+  berry:{name:'草莓',days:7,sell:60,color:'#d6487a'},
+};
 
-let state = null;
-let currentTool = 'hand';
-let player = {x:10, y:13}; // grid pos
-let targetPos = null;
+let state, currentTool='hand', player={x:10,y:13}, path=[];
+const world=document.getElementById('world');
+const playerEl=document.getElementById('player');
 
 function defaultState(){
-  const plots = {};
-  for(let y=FARM.y0; y<=FARM.y1; y++)
-    for(let x=FARM.x0; x<=FARM.x1; x++)
-      plots[x+','+y] = {tilled:false, watered:false, crop:null, growth:0};
-  return {day:1, gold:50, seeds:5, radish:0, plots};
+  const plots={};
+  for(let y=FARM.y0;y<=FARM.y1;y++)for(let x=FARM.x0;x<=FARM.x1;x++)
+    plots[x+','+y]={tilled:false,watered:false,crop:null,growth:0};
+  return {day:1,gold:50,seeds:{radish:3,tomato:2,berry:1},bag:{radish:0,tomato:0,berry:0},plots};
 }
-
 function load(){
-  try{
-    const raw = localStorage.getItem(SAVE_KEY);
-    if(raw){ state = JSON.parse(raw); if(state.plots) return; }
-  }catch(e){}
-  state = defaultState(); save();
+  try{const r=localStorage.getItem(SAVE);if(r){state=JSON.parse(r);if(state.plots)return;}}catch(e){}
+  state=defaultState();save();
 }
-function save(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function save(){try{localStorage.setItem(SAVE,JSON.stringify(state));}catch(e){}}
 
-function toast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.remove('show'), 1800);
-}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1600);}
+function beep(f){try{const a=new (window.AudioContext||window.webkitAudioContext)();const o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.connect(g);g.connect(a.destination);o.start();g.gain.value=.05;o.stop(a.currentTime+.1);}catch(e){}}
 
 function updateUI(){
-  document.getElementById('ui-day').textContent = state.day;
-  document.getElementById('ui-gold').textContent = state.gold;
-  document.getElementById('ui-radish').textContent = state.radish;
-  document.getElementById('cnt-seeds').textContent = state.seeds;
+  document.getElementById('ui-day').textContent=state.day;
+  document.getElementById('ui-gold').textContent=state.gold;
+  document.getElementById('cnt-radish-seed').textContent=state.seeds.radish;
+  document.getElementById('cnt-tomato-seed').textContent=state.seeds.tomato;
+  document.getElementById('cnt-berry-seed').textContent=state.seeds.berry;
 }
 
-// render farm plots as divs
-const world = document.getElementById('world');
 function renderPlots(){
-  document.querySelectorAll('.tile').forEach(e=>e.remove());
-  for(const key in state.plots){
-    const p = state.plots[key];
-    const [gx,gy] = key.split(',').map(Number);
-    const el = document.createElement('div');
-    el.className = 'tile';
-    el.style.left = (gx/COLS*100)+'%';
-    el.style.top = (gy/ROWS*100)+'%';
-    el.dataset.gx = gx; el.dataset.gy = gy;
-    if(p.tilled) el.classList.add(p.wet?'wet':'tilled');
+  document.querySelectorAll('.tile[data-plot]').forEach(e=>e.remove());
+  for(const k in state.plots){
+    const p=state.plots[k],[gx,gy]=k.split(',').map(Number);
+    const el=document.createElement('div');
+    el.className='tile'+(p.tilled?(p.wet?' wet':' tilled'):'');
+    el.dataset.plot=k;
+    el.style.left=(gx/COLS*100)+'%';el.style.top=(gy/ROWS*100)+'%';
+    el.style.width=(1/COLS*100)+'%';el.style.height=(1/ROWS*100)+'%';
     if(p.crop){
-      const c = document.createElement('div');
-      c.className = 'crop';
-      c.style.cssText = 'position:absolute;left:20%;top:20%;width:60%;height:60%;image-rendering:pixelated';
-      const stage = p.growth;
-      if(stage < 2) c.innerHTML = '<div style="width:100%;height:100%;background:#4d7a30;border-radius:2px"></div>';
-      else if(stage < 4) c.innerHTML = '<div style="width:100%;height:100%;background:#3a6b2a;border-radius:3px"></div>';
-      else c.innerHTML = '<div style="width:100%;height:100%;background:#c0392b;border-radius:4px;border:2px solid #7a2015"></div>';
-      el.appendChild(c);
+      const c=CROPS[p.crop];
+      const stage=p.growth;
+      const sz=stage<2?30:stage<4?55:80;
+      const col=stage<2?'#4d7a30':stage<4?'#3a6b2a':c.color;
+      el.innerHTML=`<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:${sz}%;height:${sz}%;background:${col};border-radius:${sz<50?2:5}px;border:2px solid rgba(0,0,0,.3)"></div>`;
     }
     world.appendChild(el);
   }
 }
 
-// player position
-const playerEl = document.getElementById('player');
+function inObstacle(x,y){for(const o of OBSTACLES)if(x>=o.x0&&x<=o.x1&&y>=o.y0&&y<=o.y1)return true;return false;}
+
+function findPath(sx,sy,tx,ty){
+  if(inObstacle(tx,ty)||tx<0||tx>=COLS||ty<0||ty>=ROWS)return null;
+  // simple greedy with wall avoidance: try direct, if blocked try going around horizontally
+  const open=[{x:sx,y:sy,path:[]}],closed=new Set();
+  while(open.length){
+    open.sort((a,b)=>Math.abs(a.x-tx)+Math.abs(a.y-ty)-(Math.abs(b.x-tx)+Math.abs(b.y-ty)));
+    const cur=open.shift();
+    const key=cur.x+','+cur.y;
+    if(closed.has(key))continue;closed.add(key);
+    if(cur.x===tx&&cur.y===ty)return cur.path.slice(1);
+    for(const[dx,dy]of[[0,1],[0,-1],[1,0],[-1,0]]){
+      const nx=cur.x+dx,ny=cur.y+dy;
+      if(nx<0||nx>=COLS||ny<0||ny>=ROWS||inObstacle(nx,ny))continue;
+      open.push({x:nx,y:ny,path:[...cur.path,{x:nx,y:ny}]});
+    }
+  }
+  return null;
+}
+
 function renderPlayer(){
-  playerEl.style.left = (player.x/COLS*100)+'%';
-  playerEl.style.top = (player.y/ROWS*100)+'%';
+  playerEl.style.left=(player.x/COLS*100)+'%';
+  playerEl.style.top=(player.y/ROWS*100)+'%';
 }
 
-function inObstacle(x,y){
-  for(const o of OBSTACLES) if(x>=o.x0 && x<=o.x1 && y>=o.y0 && y<=o.y1) return true;
-  return false;
-}
-
-function moveTo(gx, gy){
-  if(gx<0||gx>=COLS||gy<0||gy>=ROWS) return;
-  if(inObstacle(gx,gy)){ toast('过不去'); return; }
-  targetPos = {x:gx, y:gy};
-  playerEl.classList.add('walking');
-}
-
-// movement loop
-let lastT = performance.now();
+let lastT=performance.now();
 function loop(t){
-  const dt = (t-lastT)/1000; lastT = t;
-  if(targetPos){
-    const dx = targetPos.x - player.x;
-    const dy = targetPos.y - player.y;
-    const dist = Math.sqrt(dx*dx+dy*dy);
-    const speed = 4; // grid cells per second
-    if(dist < 0.05){
-      player.x = targetPos.x; player.y = targetPos.y;
-      targetPos = null;
-      playerEl.classList.remove('walking');
-      onArrive();
-    } else {
-      player.x += dx/dist*speed*dt;
-      player.y += dy/dist*speed*dt;
+  const dt=(t-lastT)/1000;lastT=t;
+  if(path.length){
+    const nxt=path[0];
+    const dx=nxt.x-player.x,dy=nxt.y-player.y;
+    const d=Math.sqrt(dx*dx+dy*dy);
+    const speed=5;
+    if(d<.05){path.shift();if(!path.length){playerEl.classList.remove('walking');onArrive();}}
+    else{
+      player.x+=dx/d*speed*dt;player.y+=dy/d*speed*dt;
+      if(Math.abs(dx)>0.05)playerEl.classList.toggle('flip',dx<0);
     }
     renderPlayer();
   }
   requestAnimationFrame(loop);
 }
 
+function goTo(tx,ty){
+  const sx=Math.round(player.x),sy=Math.round(player.y);
+  const p=findPath(sx,sy,tx,ty);
+  if(!p){toast('走不过去');return;}
+  path=p;playerEl.classList.add('walking');
+}
+
 function onArrive(){
-  const key = Math.round(player.x)+','+Math.round(player.y);
-  const p = state.plots[key];
-  if(p) doTool(p, key);
-  // check buildings near
-  if(Math.round(player.y) < 6){
-    const gx = Math.round(player.x);
-    if(gx>=2 && gx<=6) openHouse();
-    else if(gx>=7 && gx<=10) openMarket();
-    else if(gx>=14 && gx<=18) openStudio();
+  const gx=Math.round(player.x),gy=Math.round(player.y);
+  const p=state.plots[gx+','+gy];
+  if(p)doTool(p,gx+','+gy);
+  if(gy<6){
+    if(gx>=2&&gx<=6)openHouse();
+    else if(gx>=7&&gx<=10)openMarket();
+    else if(gx>=14&&gx<=18)openStudio();
   }
 }
 
-function doTool(p, key){
+function doTool(p,key){
   if(currentTool==='hoe'){
-    if(!p.tilled){ p.tilled=true; toast('翻好了'); save(); renderPlots(); }
-  } else if(currentTool==='seeds'){
-    if(!p.tilled){ toast('先翻土'); return; }
-    if(p.crop){ toast('这里有作物了'); return; }
-    if(state.seeds<=0){ toast('没种子了，去集市买'); return; }
-    state.seeds--; p.crop='radish'; p.growth=0; p.watered=false;
-    toast('种好了'); save(); updateUI(); renderPlots();
-  } else if(currentTool==='water'){
-    if(!p.crop){ toast('这里没作物'); return; }
-    p.watered = true; toast('浇过水了'); save(); renderPlots();
-  } else if(currentTool==='hand'){
-    if(p.crop && p.growth>=4){
-      state.radish++; p.crop=null; p.tilled=false; p.watered=false; p.growth=0;
-      toast('收获一个萝卜！'); save(); updateUI(); renderPlots();
+    if(!p.tilled){p.tilled=true;beep(200);toast('翻好了');save();renderPlots();}
+  }else if(currentTool.startsWith('seed-')){
+    const type=currentTool.slice(5);
+    if(!p.tilled){toast('先翻土');return;}
+    if(p.crop){toast('这里有作物');return;}
+    if(state.seeds[type]<=0){toast('没种子了');return;}
+    state.seeds[type]--;p.crop=type;p.growth=0;p.watered=false;
+    beep(400);toast('种下了'+CROPS[type].name);save();updateUI();renderPlots();
+  }else if(currentTool==='water'){
+    if(!p.crop){toast('没作物');return;}
+    p.watered=true;beep(600);toast('浇过水');save();renderPlots();
+  }else if(currentTool==='hand'){
+    if(p.crop&&p.growth>=CROPS[p.crop].days){
+      state.bag[p.crop]++;p.crop=null;p.tilled=false;p.watered=false;p.growth=0;
+      beep(800);toast('收获了'+CROPS[p.crop].name);save();updateUI();renderPlots();
     }
   }
 }
 
-// world click
-world.addEventListener('click', (e)=>{
-  if(e.target.closest('.bsign')) return;
-  const rect = world.getBoundingClientRect();
-  const gx = Math.floor((e.clientX-rect.left)/rect.width*COLS);
-  const gy = Math.floor((e.clientY-rect.top)/rect.height*ROWS);
-  moveTo(gx, gy);
+world.addEventListener('click',e=>{
+  if(e.target.closest('.bsign'))return;
+  const r=world.getBoundingClientRect();
+  const gx=Math.floor((e.clientX-r.left)/r.width*COLS);
+  const gy=Math.floor((e.clientY-r.top)/r.height*ROWS);
+  goTo(gx,gy);
 });
 
-// tools
 document.querySelectorAll('.tool').forEach(el=>{
-  el.addEventListener('click', ()=>{
+  el.addEventListener('click',e=>{
+    e.stopPropagation();
     document.querySelectorAll('.tool').forEach(t=>t.classList.remove('active'));
-    el.classList.add('active');
-    currentTool = el.dataset.tool;
+    el.classList.add('active');currentTool=el.dataset.tool;
   });
 });
 
-// end day
-document.getElementById('btn-day').addEventListener('click', ()=>{
+document.getElementById('btn-day').addEventListener('click',()=>{
   state.day++;
-  for(const key in state.plots){
-    const p = state.plots[key];
-    if(p.crop && p.watered && p.growth<4){ p.growth++; p.watered=false; }
-  }
-  save(); updateUI(); renderPlots();
-  toast('第 '+state.day+' 天');
+  for(const k in state.plots){const p=state.plots[k];if(p.crop&&p.watered&&p.growth<CROPS[p.crop].days){p.growth++;p.watered=false;}}
+  save();updateUI();renderPlots();beep(300);toast('第 '+state.day+' 天');
 });
 
-// reset
-document.getElementById('btn-reset').addEventListener('click', ()=>{
-  if(confirm('确定要清空农场重新开始吗？')){
-    state = defaultState(); save(); updateUI(); renderPlots(); toast('新的开始');
-  }
+document.getElementById('btn-reset').addEventListener('click',()=>{
+  if(confirm('清空存档重新开始？')){state=defaultState();save();updateUI();renderPlots();toast('新开始');}
 });
 
-// modals
-const modal = document.getElementById('modal');
-const mTitle = document.getElementById('m-title');
-const mBody = document.getElementById('m-body');
-const mAction = document.getElementById('m-action');
-document.getElementById('m-close').addEventListener('click', ()=>modal.classList.remove('show'));
+const modal=document.getElementById('modal');
+function openModal(title,body,actionText,actionFn){
+  document.getElementById('m-title').textContent=title;
+  document.getElementById('m-body').innerHTML=body;
+  const act=document.getElementById('m-action');
+  if(actionText){act.style.display='inline-block';act.textContent=actionText;act.onclick=actionFn;}
+  else act.style.display='none';
+  modal.classList.add('show');
+}
+document.getElementById('m-close').addEventListener('click',()=>modal.classList.remove('show'));
 
-function openHouse(){
-  mTitle.textContent = '主屋 · SolYoung';
-  mBody.innerHTML = '<p style="line-height:1.7;font-size:13px">这是我的个人主页。记录我的创作、实践和正在发生的可能。</p>';
-  mAction.style.display='inline-block'; mAction.textContent='访问 solyoung.top';
-  mAction.onclick = ()=>window.location.href='/';
-  modal.classList.add('show');
-}
-function openStudio(){
-  mTitle.textContent = 'Studio · 数字服务工作室';
-  mBody.innerHTML = '<p style="line-height:1.7;font-size:13px">视频创作、AI 实践、数字产品定制。把想法做成可用的东西。</p>';
-  mAction.style.display='inline-block'; mAction.textContent='访问 studio.solyoung.top';
-  mAction.onclick = ()=>window.open('https://studio.solyoung.top/','_blank');
-  modal.classList.add('show');
-}
+function openHouse(){openModal('主屋 · SolYoung','<p style="line-height:1.7;font-size:13px">我的个人主页，记录创作与实践。</p>','访问 solyoung.top',()=>location.href='/');}
+function openStudio(){openModal('Studio · 数字服务工作室','<p style="line-height:1.7;font-size:13px">视频创作、AI 实践、数字产品定制。</p>','访问 studio.solyoung.top',()=>window.open('https://studio.solyoung.top/','_blank'));}
 function openMarket(){
-  mTitle.textContent = 'Digital Market · 数字集市';
-  mBody.innerHTML = `
-    <div class="row"><span>萝卜种子 (5金)</span><button class="btn" onclick="buySeed()">购买</button></div>
-    <div class="row"><span>出售萝卜 (15金/个)</span><button class="btn" onclick="sellCrop()">出售</button></div>
-  `;
-  mAction.style.display='none';
-  modal.classList.add('show');
+  openModal('Digital Market',
+    `<div class="row"><span>萝卜种子 (5金)</span><button class="btn" onclick="buy('radish',5)">买</button></div>
+     <div class="row"><span>番茄种子 (10金)</span><button class="btn" onclick="buy('tomato',10)">买</button></div>
+     <div class="row"><span>草莓种子 (18金)</span><button class="btn" onclick="buy('berry',18)">买</button></div>
+     <div class="row"><span>出售萝卜 (15金)</span><button class="btn" onclick="sell('radish',15)">卖</button></div>
+     <div class="row"><span>出售番茄 (35金)</span><button class="btn" onclick="sell('tomato',35)">卖</button></div>
+     <div class="row"><span>出售草莓 (60金)</span><button class="btn" onclick="sell('berry',60)">卖</button></div>`);
 }
-window.buySeed = ()=>{
-  if(state.gold<5){ toast('金币不够'); return; }
-  state.gold-=5; state.seeds++; save(); updateUI(); toast('买了一颗种子');
-};
-window.sellCrop = ()=>{
-  if(state.radish<=0){ toast('没有萝卜'); return; }
-  state.radish--; state.gold+=15; save(); updateUI(); toast('卖了 15 金');
-};
+window.buy=(t,c)=>{if(state.gold<c){toast('金币不够');return;}state.gold-=c;state.seeds[t]++;save();updateUI();beep(500);toast('买了'+CROPS[t].name+'种子');};
+window.sell=(t,p)=>{if(state.bag[t]<=0){toast('没有'+CROPS[t].name);return;}state.bag[t]--;state.gold+=p;save();updateUI();beep(700);toast('卖了'+p+'金');};
 
-// init
-load(); updateUI(); renderPlots(); renderPlayer();
+document.getElementById('btn-bag').addEventListener('click',()=>{
+  openModal('背包',
+    `<div class="row"><span>🥬 萝卜</span><span>${state.bag.radish}</span></div>
+     <div class="row"><span>🍅 番茄</span><span>${state.bag.tomato}</span></div>
+     <div class="row"><span>🍓 草莓</span><span>${state.bag.berry}</span></div>
+     <div class="row"><span>💰 金币</span><span>${state.gold}</span></div>`);
+});
+
+load();updateUI();renderPlots();renderPlayer();
 requestAnimationFrame(loop);
 </script>
 </body>
