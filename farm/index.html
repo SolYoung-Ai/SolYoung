@@ -4,168 +4,251 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>我的农场 · SolYoung</title>
-<meta name="description" content="一座把想法种出来的农场：每栋房子、每块菜地，都是 SolYoung 正在做的项目。">
+<meta name="description" content="星露谷风格的项目地图：每块地都是一个正在生长的项目。">
 <style>
 :root{
-  --bg:#F4F0E7;
-  --ink:#1D1A15;
-  --accent:#E87028;
-  --line:rgba(29,26,21,.18);
-  --card:#FAF7F0;
-  --field:#E8DCC4;
-  --wood:#C9B896;
+  --bg:#1a2f1a;
+  --ink:#2d1f0e;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;min-height:100%}
-.wrap{max-width:1100px;margin:0 auto;padding:40px 24px 60px}
-.head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;flex-wrap:wrap;gap:12px}
-.head h1{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.01em}
-.head h1 span{color:var(--accent)}
-.back{font-size:13px;color:var(--ink);opacity:.6;text-decoration:none;letter-spacing:.05em}
-.back:hover{opacity:1;color:var(--accent)}
-.sub{font-size:14px;opacity:.65;margin-bottom:28px;line-height:1.6;max-width:560px}
-.map{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;overflow:hidden}
-.map svg{width:100%;height:auto;display:block}
-.hint{margin-top:18px;font-size:12px;opacity:.5;text-align:center;letter-spacing:.05em}
-
-/* clickable building */
-.building{cursor:pointer;transition:opacity .3s}
-.building:hover{opacity:1}
-.map svg .group{transition:transform .35s cubic-bezier(.2,.8,.2,1);transform-origin:center;transform-box:fill-box}
-.map svg a:hover .group{transform:translateY(-3px)}
-.map svg .group{filter:drop-shadow(0 2px 0 rgba(29,26,21,.08))}
-.label{font-family:inherit;font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle}
-.label-sub{font-size:10px;fill:var(--ink);opacity:.55;text-anchor:middle;letter-spacing:.05em}
-
-@media (max-width:640px){
-  .wrap{padding:24px 14px 40px}
-  .map{padding:8px;border-radius:10px}
-}
+html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%}
+.wrap{max-width:1100px;margin:0 auto;padding:30px 16px 50px}
+.head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;flex-wrap:wrap;gap:10px}
+.head h1{font-size:clamp(20px,3vw,28px);color:#fff;text-shadow:2px 2px 0 #000;letter-spacing:2px}
+.back{color:#fff;opacity:.7;text-decoration:none;font-size:13px}
+.back:hover{opacity:1;color:#ffd97a}
+.sub{font-size:13px;color:#cfe3c9;margin-bottom:20px;line-height:1.6;text-shadow:1px 1px 0 #000}
+.map{background:#5a8c3a;border:4px solid #2d1f0e;box-shadow:0 0 0 4px #8b6f47, 0 8px 0 4px rgba(0,0,0,.3);padding:10px;image-rendering:pixelated}
+.map svg{width:100%;height:auto;display:block;image-rendering:pixelated;shape-rendering:crispEdges}
+.hint{margin-top:16px;font-size:11px;color:#cfe3c9;text-align:center;opacity:.8;letter-spacing:1px;text-shadow:1px 1px 0 #000}
+a{cursor:pointer}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="head">
-    <h1>我的农场 <span>FARM</span></h1>
-    <a class="back" href="/">← 返回主页</a>
+    <h1>★ 我的农场</h1>
+    <a class="back" href="/">← 离开农场</a>
   </div>
-  <p class="sub">每栋房子、每块菜地都是一个正在生长的项目。点上去看看它们长什么样。</p>
+  <p class="sub">春天的农场，每块地都种着一个项目。走过去看看吧。</p>
 
   <div class="map">
-    <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" aria-label="SolYoung 项目农场地图">
-      <!-- ground -->
-      <rect width="1000" height="620" fill="#FAF7F0"/>
-      <path d="M0 480 Q250 460 500 480 T1000 480 V620 H0 Z" fill="#E8DCC4"/>
+    <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+      <!-- grass base -->
+      <rect width="800" height="600" fill="#5a8c3a"/>
+      <!-- grass texture speckles -->
+      <g fill="#4d7a30">
+        <rect x="40" y="40" width="6" height="6"/><rect x="120" y="80" width="4" height="4"/>
+        <rect x="220" y="50" width="6" height="6"/><rect x="350" y="100" width="4" height="4"/>
+        <rect x="500" y="60" width="6" height="6"/><rect x="650" y="90" width="4" height="4"/>
+        <rect x="720" y="50" width="6" height="6"/><rect x="80" y="180" width="4" height="4"/>
+        <rect x="180" y="220" width="6" height="6"/><rect x="400" y="200" width="4" height="4"/>
+        <rect x="600" y="200" width="6" height="6"/><rect x="700" y="250" width="4" height="4"/>
+        <rect x="30" y="350" width="6" height="6"/><rect x="200" y="400" width="4" height="4"/>
+        <rect x="550" y="380" width="6" height="6"/><rect x="730" y="420" width="4" height="4"/>
+        <rect x="100" y="520" width="6" height="6"/><rect x="400" y="540" width="4" height="4"/>
+        <rect x="650" y="530" width="6" height="6"/>
+      </g>
+      <g fill="#6b9e47">
+        <rect x="60" y="120" width="4" height="4"/><rect x="280" y="150" width="6" height="6"/>
+        <rect x="450" y="120" width="4" height="4"/><rect x="680" y="150" width="6" height="6"/>
+        <rect x="150" y="300" width="4" height="4"/><rect x="380" y="320" width="6" height="6"/>
+        <rect x="620" y="320" width="4" height="4"/><rect x="50" y="480" width="4" height="4"/>
+        <rect x="300" y="480" width="6" height="6"/><rect x="580" y="480" width="4" height="4"/>
+      </g>
 
-      <!-- path -->
-      <path d="M480 620 Q500 480 500 380 T500 200" stroke="#D4C4A0" stroke-width="22" fill="none" stroke-linecap="round" opacity=".7"/>
+      <!-- dirt path -->
+      <rect x="370" y="0" width="60" height="600" fill="#8b6f47"/>
+      <rect x="370" y="0" width="60" height="600" fill="#7a5f3a"/>
+      <g fill="#6b4f2a">
+        <rect x="385" y="50" width="8" height="6"/><rect x="405" y="120" width="6" height="8"/>
+        <rect x="390" y="200" width="10" height="6"/><rect x="410" y="280" width="6" height="6"/>
+        <rect x="385" y="360" width="8" height="8"/><rect x="405" y="440" width="10" height="6"/>
+        <rect x="390" y="520" width="6" height="6"/>
+      </g>
 
-      <!-- 1. Main house (home) -->
-      <a href="/" class="building">
-        <g class="group">
-          <rect x="120" y="180" width="130" height="90" rx="3" fill="#1D1A15"/>
-          <path d="M105 190 L185 130 L265 190 Z" fill="#E87028"/>
-          <rect x="170" y="225" width="30" height="45" fill="#FAF7F0"/>
-          <rect x="135" y="200" width="22" height="22" fill="#FAF7F0"/>
-          <rect x="215" y="200" width="22" height="22" fill="#FAF7F0"/>
-          <text x="185" y="300" class="label">主屋</text>
-          <text x="185" y="316" class="label-sub">个人主页</text>
+      <!-- fence around whole farm -->
+      <g fill="#c9a06a">
+        <rect x="0" y="0" width="800" height="12"/><rect x="0" y="588" width="800" height="12"/>
+        <rect x="0" y="0" width="12" height="600"/><rect x="788" y="0" width="12" height="600"/>
+      </g>
+      <g fill="#8b6f47">
+        <rect x="40" y="0" width="6" height="12"/><rect x="100" y="0" width="6" height="12"/>
+        <rect x="160" y="0" width="6" height="12"/><rect x="220" y="0" width="6" height="12"/>
+        <rect x="280" y="0" width="6" height="12"/><rect x="340" y="0" width="6" height="12"/>
+        <rect x="460" y="0" width="6" height="12"/><rect x="520" y="0" width="6" height="12"/>
+        <rect x="580" y="0" width="6" height="12"/><rect x="640" y="0" width="6" height="12"/>
+        <rect x="700" y="0" width="6" height="12"/><rect x="760" y="0" width="6" height="12"/>
+      </g>
+
+      <!-- MAIN HOUSE (top-left) -->
+      <a href="/">
+        <g>
+          <!-- house body -->
+          <rect x="60" y="80" width="140" height="100" fill="#e8d4a8"/>
+          <rect x="60" y="80" width="140" height="100" fill="none" stroke="#8b6f47" stroke-width="3"/>
+          <!-- roof red -->
+          <polygon points="50,85 130,30 210,85" fill="#c0392b"/>
+          <polygon points="50,85 130,30 210,85" fill="none" stroke="#8b2a1a" stroke-width="3"/>
+          <!-- door -->
+          <rect x="115" y="130" width="30" height="50" fill="#6b4f2a"/>
+          <rect x="138" y="155" width="4" height="4" fill="#ffd97a"/>
+          <!-- windows -->
+          <rect x="75" y="105" width="22" height="22" fill="#a8d8ea" stroke="#6b4f2a" stroke-width="2"/>
+          <rect x="160" y="105" width="22" height="22" fill="#a8d8ea" stroke="#6b4f2a" stroke-width="2"/>
+          <rect x="83" y="113" width="6" height="6" fill="#fff"/>
+          <rect x="168" y="113" width="6" height="6" fill="#fff"/>
+          <!-- label -->
+          <rect x="75" y="195" width="110" height="20" fill="#fff" stroke="#2d1f0e" stroke-width="2"/>
+          <text x="130" y="210" font-family="Courier New,monospace" font-size="13" font-weight="bold" fill="#2d1f0e" text-anchor="middle">主屋 · 主页</text>
         </g>
       </a>
 
-      <!-- 2. Barn (SolHub) -->
-      <a href="https://solhub.solyoung.top/" class="building" target="_blank" rel="noopener">
-        <g class="group">
-          <rect x="380" y="150" width="160" height="110" rx="3" fill="#C9B896"/>
-          <path d="M365 165 L460 100 L555 165 Z" fill="#1D1A15"/>
-          <rect x="430" y="200" width="60" height="60" fill="#FAF7F0"/>
-          <path d="M430 200 L490 260 M490 200 L430 260" stroke="#1D1A15" stroke-width="2"/>
-          <text x="460" y="285" class="label">谷仓</text>
-          <text x="460" y="301" class="label-sub">SolHub 工具社区</text>
+      <!-- BARN / SOLHUB (top-right) -->
+      <a href="https://solhub.solyoung.top/" target="_blank" rel="noopener">
+        <g>
+          <!-- barn body -->
+          <rect x="540" y="90" width="150" height="110" fill="#e8d4a8"/>
+          <rect x="540" y="90" width="150" height="110" fill="none" stroke="#8b6f47" stroke-width="3"/>
+          <!-- roof -->
+          <polygon points="530,95 615,35 700,95" fill="#8b2a1a"/>
+          <polygon points="530,95 615,35 700,95" fill="none" stroke="#5a1a10" stroke-width="3"/>
+          <!-- big barn door X -->
+          <rect x="585" y="135" width="60" height="65" fill="#c0392b"/>
+          <line x1="585" y1="135" x2="645" y2="200" stroke="#fff" stroke-width="3"/>
+          <line x1="645" y1="135" x2="585" y2="200" stroke="#fff" stroke-width="3"/>
+          <!-- loft window -->
+          <rect x="605" y="100" width="20" height="20" fill="#a8d8ea" stroke="#6b4f2a" stroke-width="2"/>
+          <!-- label -->
+          <rect x="545" y="215" width="140" height="20" fill="#fff" stroke="#2d1f0e" stroke-width="2"/>
+          <text x="615" y="230" font-family="Courier New,monospace" font-size="13" font-weight="bold" fill="#2d1f0e" text-anchor="middle">谷仓 · SolHub</text>
         </g>
       </a>
 
-      <!-- 3. Workshop (Studio) -->
-      <a href="https://studio.solyoung.top/" class="building" target="_blank" rel="noopener">
-        <g class="group">
-          <rect x="660" y="170" width="140" height="95" rx="3" fill="#1D1A15"/>
-          <path d="M660 170 L730 130 L800 170 Z" fill="#C9B896"/>
-          <rect x="685" y="195" width="30" height="25" fill="#FAF7F0"/>
-          <rect x="745" y="195" width="30" height="25" fill="#FAF7F0"/>
-          <rect x="710" y="225" width="40" height="40" fill="#E87028"/>
-          <text x="730" y="290" class="label">工坊</text>
-          <text x="730" y="306" class="label-sub">SolYoung Studio</text>
+      <!-- WORKSHOP / STUDIO (right) -->
+      <a href="https://studio.solyoung.top/" target="_blank" rel="noopener">
+        <g>
+          <rect x="560" y="280" width="110" height="80" fill="#d4a76a"/>
+          <rect x="560" y="280" width="110" height="80" fill="none" stroke="#6b4f2a" stroke-width="3"/>
+          <polygon points="555,285 615,245 675,285" fill="#6b4f2a"/>
+          <rect x="595" y="315" width="40" height="45" fill="#3a2a1a"/>
+          <!-- tools -->
+          <rect x="570" y="295" width="12" height="12" fill="#c0392b"/>
+          <rect x="640" y="295" width="12" height="12" fill="#a8d8ea"/>
+          <rect x="555" y="375" width="120" height="20" fill="#fff" stroke="#2d1f0e" stroke-width="2"/>
+          <text x="615" y="390" font-family="Courier New,monospace" font-size="12" font-weight="bold" fill="#2d1f0e" text-anchor="middle">工坊 · Studio</text>
         </g>
       </a>
 
-      <!-- 4. Tree (GitHub) -->
-      <a href="https://github.com/SolYoung-Ai" class="building" target="_blank" rel="noopener">
-        <g class="group">
-          <rect x="880" y="220" width="10" height="50" fill="#8B6F47"/>
-          <circle cx="885" cy="195" r="34" fill="#C9B896"/>
-          <circle cx="865" cy="210" r="20" fill="#D4C4A0"/>
-          <circle cx="905" cy="210" r="20" fill="#D4C4A0"/>
-          <text x="885" y="290" class="label">树</text>
-          <text x="885" y="306" class="label-sub">GitHub</text>
+      <!-- TREE / GitHub (left) -->
+      <a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener">
+        <g>
+          <rect x="100" y="290" width="14" height="40" fill="#6b4f2a"/>
+          <circle cx="107" cy="275" r="35" fill="#3a6b2a"/>
+          <circle cx="85" cy="290" r="20" fill="#4d7a30"/>
+          <circle cx="130" cy="290" r="20" fill="#4d7a30"/>
+          <!-- apples -->
+          <circle cx="90" cy="270" r="4" fill="#c0392b"/>
+          <circle cx="120" cy="265" r="4" fill="#c0392b"/>
+          <circle cx="107" cy="295" r="4" fill="#c0392b"/>
+          <rect x="60" y="340" width="95" height="20" fill="#fff" stroke="#2d1f0e" stroke-width="2"/>
+          <text x="107" y="355" font-family="Courier New,monospace" font-size="12" font-weight="bold" fill="#2d1f0e" text-anchor="middle">大树 · GitHub</text>
         </g>
       </a>
 
-      <!-- Field 1: Verity -->
-      <a href="/Verity/" class="building">
-        <g class="group">
-          <rect x="100" y="430" width="180" height="120" rx="6" fill="#D4C4A0"/>
-          <line x1="100" y1="470" x2="280" y2="470" stroke="#B8A47A" stroke-width="1.5"/>
-          <line x1="100" y1="510" x2="280" y2="510" stroke="#B8A47A" stroke-width="1.5"/>
-          <circle cx="130" cy="455" r="8" fill="#E87028"/>
-          <circle cx="180" cy="455" r="8" fill="#C9B896"/>
-          <circle cx="230" cy="455" r="8" fill="#E87028"/>
-          <circle cx="155" cy="495" r="8" fill="#C9B896"/>
-          <circle cx="205" cy="495" r="8" fill="#E87028"/>
-          <circle cx="255" cy="495" r="8" fill="#C9B896"/>
-          <text x="190" y="575" class="label">菜地 · Verity</text>
-          <text x="190" y="591" class="label-sub">人格测试集合站</text>
+      <!-- FIELD 1: Verity (bottom-left) -->
+      <a href="/Verity/">
+        <g>
+          <!-- tilled soil -->
+          <rect x="60" y="400" width="130" height="100" fill="#6b4f2a"/>
+          <g fill="#5a3f1a">
+            <rect x="60" y="420" width="130" height="4"/>
+            <rect x="60" y="445" width="130" height="4"/>
+            <rect x="60" y="470" width="130" height="4"/>
+            <rect x="60" y="495" width="130" height="4"/>
+          </g>
+          <!-- crops growing -->
+          <g fill="#c0392b">
+            <circle cx="80" cy="432" r="5"/><circle cx="110" cy="432" r="5"/><circle cx="140" cy="432" r="5"/><circle cx="170" cy="432" r="5"/>
+          </g>
+          <g fill="#e87028">
+            <circle cx="95" cy="457" r="5"/><circle cx="125" cy="457" r="5"/><circle cx="155" cy="457" r="5"/>
+          </g>
+          <g fill="#ffd97a">
+            <circle cx="80" cy="482" r="5"/><circle cx="110" cy="482" r="5"/><circle cx="140" cy="482" r="5"/><circle cx="170" cy="482" r="5"/>
+          </g>
+          <rect x="60" y="510" width="130" height="20" fill="#fff" stroke="#2d1f0e" stroke-width="2"/>
+          <text x="125" y="525" font-family="Courier New,monospace" font-size="12" font-weight="bold" fill="#2d1f0e" text-anchor="middle">菜地 · Verity</text>
         </g>
       </a>
 
-      <!-- Field 2: CamSim -->
-      <a href="/CamSim/" class="building">
-        <g class="group">
-          <rect x="410" y="430" width="180" height="120" rx="6" fill="#D4C4A0"/>
-          <line x1="410" y1="470" x2="590" y2="470" stroke="#B8A47A" stroke-width="1.5"/>
-          <line x1="410" y1="510" x2="590" y2="510" stroke="#B8A47A" stroke-width="1.5"/>
-          <circle cx="440" cy="455" r="8" fill="#C9B896"/>
-          <circle cx="490" cy="455" r="8" fill="#E87028"/>
-          <circle cx="540" cy="455" r="8" fill="#C9B896"/>
-          <circle cx="465" cy="495" r="8" fill="#E87028"/>
-          <circle cx="515" cy="495" r="8" fill="#C9B896"/>
-          <circle cx="565" cy="495" r="8" fill="#E87028"/>
-          <text x="500" y="575" class="label">菜地 · CamSim</text>
-          <text x="500" y="591" class="label-sub">相机参数模拟器</text>
+      <!-- FIELD 2: CamSim (bottom-center) -->
+      <a href="/CamSim/">
+        <g>
+          <rect x="290" y="400" width="130" height="100" fill="#6b4f2a"/>
+          <g fill="#5a3f1a">
+            <rect x="290" y="420" width="130" height="4"/>
+            <rect x="290" y="445" width="130" height="4"/>
+            <rect x="290" y="470" width="130" height="4"/>
+            <rect x="290" y="495" width="130" height="4"/>
+          </g>
+          <g fill="#a8d8ea">
+            <circle cx="310" cy="432" r="5"/><circle cx="340" cy="432" r="5"/><circle cx="370" cy="432" r="5"/><circle cx="400" cy="432" r="5"/>
+          </g>
+          <g fill="#c9a06a">
+            <circle cx="325" cy="457" r="5"/><circle cx="355" cy="457" r="5"/><circle cx="385" cy="457" r="5"/>
+          </g>
+          <g fill="#e87028">
+            <circle cx="310" cy="482" r="5"/><circle cx="340" cy="482" r="5"/><circle cx="370" cy="482" r="5"/><circle cx="400" cy="482" r="5"/>
+          </g>
+          <rect x="290" y="510" width="130" height="20" fill="#fff" stroke="#2d1f0e" stroke-width="2"/>
+          <text x="355" y="525" font-family="Courier New,monospace" font-size="12" font-weight="bold" fill="#2d1f0e" text-anchor="middle">菜地 · CamSim</text>
         </g>
       </a>
 
-      <!-- Field 3: MyOS -->
-      <a href="/OS/" class="building">
-        <g class="group">
-          <rect x="720" y="430" width="180" height="120" rx="6" fill="#D4C4A0"/>
-          <line x1="720" y1="470" x2="900" y2="470" stroke="#B8A47A" stroke-width="1.5"/>
-          <line x1="720" y1="510" x2="900" y2="510" stroke="#B8A47A" stroke-width="1.5"/>
-          <circle cx="750" cy="455" r="8" fill="#E87028"/>
-          <circle cx="800" cy="455" r="8" fill="#E87028"/>
-          <circle cx="850" cy="455" r="8" fill="#C9B896"/>
-          <circle cx="775" cy="495" r="8" fill="#C9B896"/>
-          <circle cx="825" cy="495" r="8" fill="#E87028"/>
-          <circle cx="875" cy="495" r="8" fill="#C9B896"/>
-          <text x="810" y="575" class="label">菜地 · MyOS</text>
-          <text x="810" y="591" class="label-sub">个人数字工作台</text>
+      <!-- FIELD 3: MyOS (bottom-right) -->
+      <a href="/OS/">
+        <g>
+          <rect x="520" y="400" width="130" height="100" fill="#6b4f2a"/>
+          <g fill="#5a3f1a">
+            <rect x="520" y="420" width="130" height="4"/>
+            <rect x="520" y="445" width="130" height="4"/>
+            <rect x="520" y="470" width="130" height="4"/>
+            <rect x="520" y="495" width="130" height="4"/>
+          </g>
+          <g fill="#3a6b2a">
+            <rect x="535" y="425" width="10" height="14"/><rect x="565" y="425" width="10" height="14"/>
+            <rect x="595" y="425" width="10" height="14"/><rect x="625" y="425" width="10" height="14"/>
+          </g>
+          <g fill="#e87028">
+            <circle cx="545" cy="465" r="5"/><circle cx="575" cy="465" r="5"/><circle cx="605" cy="465" r="5"/><circle cx="635" cy="465" r="5"/>
+          </g>
+          <g fill="#ffd97a">
+            <circle cx="560" cy="490" r="5"/><circle cx="590" cy="490" r="5"/><circle cx="620" cy="490" r="5"/>
+          </g>
+          <rect x="520" y="510" width="130" height="20" fill="#fff" stroke="#2d1f0e" stroke-width="2"/>
+          <text x="585" y="525" font-family="Courier New,monospace" font-size="12" font-weight="bold" fill="#2d1f0e" text-anchor="middle">菜地 · MyOS</text>
         </g>
       </a>
+
+      <!-- well decoration -->
+      <g>
+        <rect x="290" y="100" width="40" height="30" fill="#8b6f47"/>
+        <rect x="295" y="105" width="30" height="20" fill="#3a5f7a"/>
+        <polygon points="285,100 310,75 335,100" fill="#c0392b"/>
+      </g>
 
       <!-- sun -->
-      <circle cx="920" cy="70" r="28" fill="#E87028" opacity=".85"/>
+      <circle cx="400" cy="30" r="18" fill="#ffd97a"/>
+      <g stroke="#ffd97a" stroke-width="3">
+        <line x1="400" y1="5" x2="400" y2="12"/>
+        <line x1="400" y1="48" x2="400" y2="55"/>
+        <line x1="375" y1="30" x2="382" y2="30"/>
+        <line x1="418" y1="30" x2="425" y2="30"/>
+      </g>
     </svg>
   </div>
-  <p class="hint">点击建筑或菜地进入对应项目 · 地图会随项目增加继续扩展</p>
+  <p class="hint">★ 点击建筑或菜地进入对应项目 · 新的作物会随项目长出 ★</p>
 </div>
 </body>
 </html>
