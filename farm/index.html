@@ -12,37 +12,30 @@
   --panel:#3a2a1a; --gold:#ffd97a; --accent:#E87028;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%;touch-action:manipulation}
-.wrap{max-width:900px;margin:0 auto;padding:12px 10px}
+html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%;touch-action:manipulation;overflow:hidden}
+.wrap{max-width:960px;margin:0 auto;padding:10px;height:100vh;display:flex;flex-direction:column}
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
-.topbar h1{font-size:16px;text-shadow:2px 2px 0 #000;letter-spacing:2px}
+.topbar h1{font-size:15px;text-shadow:2px 2px 0 #000;letter-spacing:2px}
 .topbar .back{color:#fff;opacity:.7;text-decoration:none;font-size:12px}
 .topbar .back:hover{color:var(--gold)}
 .status{display:flex;gap:12px;font-size:12px;background:var(--panel);padding:5px 10px;border:2px solid var(--wood-d);border-radius:4px}
 .status b{color:var(--gold)}
 
-.world{position:relative;width:100%;aspect-ratio:20/14;background:var(--grass);border:4px solid var(--wood-d);box-shadow:0 0 0 3px var(--wood),0 6px 0 3px rgba(0,0,0,.3);overflow:hidden;image-rendering:pixelated;cursor:pointer}
-.world::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(circle at 15% 20%, var(--grass-l) 0 4px, transparent 5px),
-  radial-gradient(circle at 80% 15%, var(--grass-l) 0 3px, transparent 4px),
-  radial-gradient(circle at 60% 50%, var(--grass-d) 0 3px, transparent 4px),
-  radial-gradient(circle at 25% 70%, var(--grass-l) 0 4px, transparent 5px),
-  radial-gradient(circle at 90% 60%, var(--grass-d) 0 3px, transparent 4px),
-  radial-gradient(circle at 45% 35%, var(--grass-l) 0 3px, transparent 4px);
-  pointer-events:none;z-index:1}
+.viewport{position:relative;width:100%;flex:1;min-height:0;background:var(--grass);border:4px solid var(--wood-d);box-shadow:0 0 0 3px var(--wood),0 6px 0 3px rgba(0,0,0,.3);overflow:hidden;image-rendering:pixelated;cursor:pointer}
+.world{position:absolute;left:0;top:0;transform-origin:0 0;image-rendering:pixelated}
 
-.tile{position:absolute;z-index:2}
+.tile{position:absolute}
 .tile.path{background:#b8a070}
 .tile.tilled{background:var(--dirt)}
 .tile.wet{background:var(--dirt-wet)}
 
-.decor{position:absolute;z-index:3;image-rendering:pixelated;pointer-events:none}
+.decor{position:absolute;image-rendering:pixelated;pointer-events:none}
 .decor svg{display:block;width:100%;height:100%}
 
-.building{position:absolute;z-index:4;image-rendering:pixelated}
+.building{position:absolute;image-rendering:pixelated;cursor:pointer}
 .building svg{display:block;width:100%;height:100%;image-rendering:pixelated}
 
-.player{position:absolute;width:3.5%;height:5%;z-index:15;transform:translate(-50%,-80%);pointer-events:none}
+.player{position:absolute;z-index:50;transform:translate(-50%,-80%);pointer-events:none}
 .player svg{width:100%;height:100%;image-rendering:pixelated}
 .player.flip svg{transform:scaleX(-1)}
 .player .frame2{display:none}
@@ -50,7 +43,7 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
 .player.walking .frame2{display:block}
 
 .toolbar{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;background:var(--panel);padding:8px;border:2px solid var(--wood-d);border-radius:4px;align-items:center}
-.tool{width:46px;height:46px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;transition:transform .1s}
+.tool{width:44px;height:44px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;transition:transform .1s}
 .tool:hover{transform:translateY(-2px)}
 .tool.active{background:var(--accent);border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
 .tool svg{width:22px;height:22px;image-rendering:pixelated}
@@ -83,145 +76,8 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
     <a class="back" href="/">← 网站</a>
   </div>
 
-  <div class="world" id="world">
-    <!-- paths -->
-    <div class="tile path" style="left:25%;top:35%;width:50%;height:3%;z-index:2"></div>
-    <div class="tile path" style="left:48%;top:38%;width:4%;height:55%;z-index:2"></div>
-
-    <!-- decorations: trees -->
-    <div class="decor" style="left:1%;top:5%;width:6%;height:12%">
-      <svg viewBox="0 0 40 50" shape-rendering="crispEdges">
-        <rect x="17" y="35" width="6" height="12" fill="#5a3a1a"/>
-        <rect x="8" y="18" width="24" height="20" fill="#3a6b2a"/>
-        <rect x="12" y="8" width="16" height="14" fill="#4d7a30"/>
-      </svg>
-    </div>
-    <div class="decor" style="left:92%;top:5%;width:6%;height:12%">
-      <svg viewBox="0 0 40 50" shape-rendering="crispEdges">
-        <rect x="17" y="35" width="6" height="12" fill="#5a3a1a"/>
-        <rect x="8" y="18" width="24" height="20" fill="#3a6b2a"/>
-        <rect x="12" y="8" width="16" height="14" fill="#4d7a30"/>
-      </svg>
-    </div>
-    <!-- stones -->
-    <div class="decor" style="left:3%;top:55%;width:3%;height:5%">
-      <svg viewBox="0 0 20 20"><rect x="4" y="8" width="12" height="8" fill="#9a9a9a"/><rect x="6" y="6" width="8" height="4" fill="#b8b8b8"/></svg>
-    </div>
-    <div class="decor" style="left:94%;top:55%;width:3%;height:5%">
-      <svg viewBox="0 0 20 20"><rect x="4" y="8" width="12" height="8" fill="#9a9a9a"/><rect x="6" y="6" width="8" height="4" fill="#b8b8b8"/></svg>
-    </div>
-
-    <!-- HOUSE with embedded sign -->
-    <div class="building" style="left:5%;top:10%;width:22%;height:30%" data-spot="house">
-      <svg viewBox="0 0 200 150" shape-rendering="crispEdges">
-        <!-- wall -->
-        <rect x="30" y="55" width="140" height="85" fill="#e8d4a8" stroke="#8b5a2a" stroke-width="2"/>
-        <!-- wall texture lines -->
-        <line x1="30" y1="75" x2="170" y2="75" stroke="#c9b088" stroke-width="1"/>
-        <line x1="30" y1="95" x2="170" y2="95" stroke="#c9b088" stroke-width="1"/>
-        <line x1="30" y1="115" x2="170" y2="115" stroke="#c9b088" stroke-width="1"/>
-        <!-- roof -->
-        <polygon points="20,60 100,12 180,60" fill="#b83a2a" stroke="#7a2015" stroke-width="2"/>
-        <!-- roof tiles lines -->
-        <line x1="35" y1="48" x2="165" y2="48" stroke="#9a2a1a" stroke-width="1"/>
-        <line x1="50" y1="36" x2="150" y2="36" stroke="#9a2a1a" stroke-width="1"/>
-        <!-- chimney -->
-        <rect x="140" y="20" width="14" height="25" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="1"/>
-        <!-- door -->
-        <rect x="88" y="100" width="28" height="40" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
-        <circle cx="110" cy="122" r="2" fill="#ffd97a"/>
-        <!-- steps -->
-        <rect x="84" y="140" width="36" height="6" fill="#b8a070"/>
-        <!-- windows -->
-        <rect x="45" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
-        <rect x="131" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
-        <line x1="57" y1="80" x2="57" y2="102" stroke="#5a3a1a" stroke-width="1"/>
-        <line x1="143" y1="80" x2="143" y2="102" stroke="#5a3a1a" stroke-width="1"/>
-        <!-- embedded wooden sign above door -->
-        <rect x="68" y="78" width="64" height="16" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="2"/>
-        <text x="100" y="90" font-family="Courier New,monospace" font-size="9" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">SOLYOUNG.TOP</text>
-      </svg>
-    </div>
-
-    <!-- MARKET with embedded sign -->
-    <div class="building" style="left:39%;top:14%;width:18%;height:26%" data-spot="market">
-      <svg viewBox="0 0 160 130" shape-rendering="crispEdges">
-        <rect x="20" y="55" width="120" height="65" fill="#c9a06a" stroke="#6b4f2a" stroke-width="2"/>
-        <!-- counter -->
-        <rect x="30" y="85" width="100" height="25" fill="#8b5a2a"/>
-        <!-- awning stripes -->
-        <rect x="15" y="35" width="130" height="20" fill="#c0392b"/>
-        <rect x="15" y="35" width="22" height="20" fill="#fff"/>
-        <rect x="59" y="35" width="22" height="20" fill="#fff"/>
-        <rect x="103" y="35" width="22" height="20" fill="#fff"/>
-        <!-- awning poles -->
-        <rect x="20" y="55" width="4" height="10" fill="#5a3a1a"/>
-        <rect x="136" y="55" width="4" height="10" fill="#5a3a1a"/>
-        <!-- goods on counter -->
-        <rect x="40" y="78" width="12" height="8" fill="#c0392b"/>
-        <rect x="60" y="78" width="12" height="8" fill="#e87028"/>
-        <rect x="80" y="78" width="12" height="8" fill="#d6487a"/>
-        <!-- embedded sign -->
-        <rect x="40" y="108" width="80" height="14" fill="#5a3a1a"/>
-        <text x="80" y="118" font-family="Courier New,monospace" font-size="8" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">DIGITAL MARKET</text>
-      </svg>
-    </div>
-
-    <!-- STUDIO with embedded sign -->
-    <div class="building" style="left:68%;top:10%;width:22%;height:30%" data-spot="studio">
-      <svg viewBox="0 0 200 150" shape-rendering="crispEdges">
-        <rect x="30" y="65" width="140" height="75" fill="#d4a76a" stroke="#5a3a1a" stroke-width="2"/>
-        <!-- wood plank lines -->
-        <line x1="30" y1="85" x2="170" y2="85" stroke="#b8956a" stroke-width="1"/>
-        <line x1="30" y1="105" x2="170" y2="105" stroke="#b8956a" stroke-width="1"/>
-        <!-- roof -->
-        <polygon points="25,70 100,25 175,70" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
-        <!-- door -->
-        <rect x="82" y="100" width="36" height="40" fill="#2d1f0e"/>
-        <rect x="86" y="104" width="28" height="36" fill="#4a6b8a"/>
-        <!-- window -->
-        <rect x="45" y="85" width="22" height="20" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
-        <!-- embedded sign above door -->
-        <rect x="68" y="82" width="64" height="16" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
-        <text x="100" y="94" font-family="Courier New,monospace" font-size="10" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="2">STUDIO</text>
-      </svg>
-    </div>
-
-    <!-- player: two walk frames -->
-    <div class="player" id="player">
-      <svg class="frame1" viewBox="0 0 16 22" shape-rendering="crispEdges">
-        <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
-        <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
-        <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
-        <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
-        <rect x="6" y="5" width="1" height="1" fill="#000"/>
-        <rect x="10" y="5" width="1" height="1" fill="#000"/>
-        <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
-        <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
-        <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
-        <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
-        <rect x="5" y="18" width="2" height="3" fill="#f0c8a0"/>
-        <rect x="10" y="18" width="2" height="3" fill="#f0c8a0"/>
-        <rect x="5" y="21" width="2" height="1" fill="#2d1f0e"/>
-        <rect x="10" y="21" width="2" height="1" fill="#2d1f0e"/>
-      </svg>
-      <svg class="frame2" viewBox="0 0 16 22" shape-rendering="crispEdges">
-        <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
-        <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
-        <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
-        <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
-        <rect x="6" y="5" width="1" height="1" fill="#000"/>
-        <rect x="10" y="5" width="1" height="1" fill="#000"/>
-        <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
-        <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
-        <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
-        <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
-        <rect x="4" y="18" width="2" height="3" fill="#f0c8a0"/>
-        <rect x="11" y="18" width="2" height="3" fill="#f0c8a0"/>
-        <rect x="4" y="21" width="2" height="1" fill="#2d1f0e"/>
-        <rect x="11" y="21" width="2" height="1" fill="#2d1f0e"/>
-      </svg>
-    </div>
+  <div class="viewport" id="viewport">
+    <div class="world" id="world"></div>
   </div>
 
   <div class="toolbar">
@@ -268,22 +124,34 @@ html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-
 
 <script>
 const SAVE='solyoung_farm_v2';
-const COLS=20, ROWS=14;
-const FARM={x0:5,x1:14,y0:9,y1:12};
+const TILE=32;
+const COLS=30, ROWS=20;
+const WORLD_W=COLS*TILE, WORLD_H=ROWS*TILE;
+
+// farm plots area (bigger)
+const FARM={x0:8,x1:21,y0:13,y1:18};
+
+// obstacles: buildings
 const OBSTACLES=[
-  {x0:2,x1:6,y0:2,y1:5},
-  {x0:7,x1:10,y0:2,y1:5},
-  {x0:14,x1:18,y0:2,y1:5},
+  {x0:5,x1:10,y0:4,y1:8, spot:'house'},    // main house
+  {x0:13,x1:17,y0:4,y1:8, spot:'market'},  // market
+  {x0:20,x1:25,y0:4,y1:8, spot:'studio'},   // studio
 ];
+
 const CROPS={
   radish:{name:'萝卜',days:3,sell:15,color:'#c0392b'},
   tomato:{name:'番茄',days:5,sell:35,color:'#e87028'},
   berry:{name:'草莓',days:7,sell:60,color:'#d6487a'},
 };
 
-let state, currentTool='hand', player={x:10,y:13}, path=[];
+let state, currentTool='hand', path=[];
+const player={x:15,y:11};
+const camera={x:0,y:0};
+
+const viewport=document.getElementById('viewport');
 const world=document.getElementById('world');
-const playerEl=document.getElementById('player');
+world.style.width=WORLD_W+'px';
+world.style.height=WORLD_H+'px';
 
 function defaultState(){
   const plots={};
@@ -308,21 +176,163 @@ function updateUI(){
   document.getElementById('cnt-berry-seed').textContent=state.seeds.berry;
 }
 
+// build static world: paths, buildings, decorations
+function buildWorld(){
+  // horizontal path in front of buildings
+  addPath(3,10,26,1);
+  // vertical path to farm
+  addPath(14,11,1,2);
+  // buildings
+  addBuilding(OBSTACLES[0],houseSVG());
+  addBuilding(OBSTACLES[1],marketSVG());
+  addBuilding(OBSTACLES[2],studioSVG());
+  // trees around edges
+  for(let i=0;i<8;i++){
+    addDecor(1+i*3,1,treeSVG());
+    addDecor(1+i*3,19,treeSVG());
+  }
+  for(let i=0;i<5;i++){
+    addDecor(1,3+i*3,treeSVG());
+    addDecor(28,3+i*3,treeSVG());
+  }
+  // player
+  const pe=document.createElement('div');
+  pe.className='player';
+  pe.id='player';
+  pe.innerHTML=`<svg class="frame1" viewBox="0 0 16 22" shape-rendering="crispEdges">
+    <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
+    <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
+    <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
+    <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
+    <rect x="6" y="5" width="1" height="1" fill="#000"/>
+    <rect x="10" y="5" width="1" height="1" fill="#000"/>
+    <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
+    <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
+    <rect x="5" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="10" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="5" y="21" width="2" height="1" fill="#2d1f0e"/>
+    <rect x="10" y="21" width="2" height="1" fill="#2d1f0e"/>
+  </svg><svg class="frame2" viewBox="0 0 16 22" shape-rendering="crispEdges">
+    <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
+    <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
+    <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
+    <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
+    <rect x="6" y="5" width="1" height="1" fill="#000"/>
+    <rect x="10" y="5" width="1" height="1" fill="#000"/>
+    <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
+    <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
+    <rect x="4" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="11" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="4" y="21" width="2" height="1" fill="#2d1f0e"/>
+    <rect x="11" y="21" width="2" height="1" fill="#2d1f0e"/>
+  </svg>`;
+  world.appendChild(pe);
+}
+
+function addPath(gx,gy,gw,gh){
+  const el=document.createElement('div');
+  el.className='tile path';
+  el.style.left=(gx*TILE)+'px';el.style.top=(gy*TILE)+'px';
+  el.style.width=(gw*TILE)+'px';el.style.height=(gh*TILE)+'px';
+  world.appendChild(el);
+}
+function addDecor(gx,gy,svg){
+  const el=document.createElement('div');
+  el.className='decor';
+  el.style.left=(gx*TILE)+'px';el.style.top=(gy*TILE)+'px';
+  el.style.width=(TILE*1.2)+'px';el.style.height=(TILE*1.5)+'px';
+  el.innerHTML=svg;
+  world.appendChild(el);
+}
+function addBuilding(obs,svg){
+  const el=document.createElement('div');
+  el.className='building';
+  el.dataset.spot=obs.spot;
+  const w=(obs.x1-obs.x0+1)*TILE;
+  const h=(obs.y1-obs.y0+1)*TILE;
+  el.style.left=(obs.x0*TILE)+'px';el.style.top=(obs.y0*TILE)+'px';
+  el.style.width=w+'px';el.style.height=h+'px';
+  el.innerHTML=svg;
+  world.appendChild(el);
+}
+
+function treeSVG(){
+  return `<svg viewBox="0 0 40 50" shape-rendering="crispEdges">
+    <rect x="17" y="35" width="6" height="12" fill="#5a3a1a"/>
+    <rect x="8" y="18" width="24" height="20" fill="#3a6b2a"/>
+    <rect x="12" y="8" width="16" height="14" fill="#4d7a30"/>
+  </svg>`;
+}
+function houseSVG(){
+  return `<svg viewBox="0 0 200 150" shape-rendering="crispEdges">
+    <rect x="30" y="55" width="140" height="85" fill="#e8d4a8" stroke="#8b5a2a" stroke-width="2"/>
+    <line x1="30" y1="75" x2="170" y2="75" stroke="#c9b088" stroke-width="1"/>
+    <line x1="30" y1="95" x2="170" y2="95" stroke="#c9b088" stroke-width="1"/>
+    <line x1="30" y1="115" x2="170" y2="115" stroke="#c9b088" stroke-width="1"/>
+    <polygon points="20,60 100,12 180,60" fill="#b83a2a" stroke="#7a2015" stroke-width="2"/>
+    <line x1="35" y1="48" x2="165" y2="48" stroke="#9a2a1a" stroke-width="1"/>
+    <line x1="50" y1="36" x2="150" y2="36" stroke="#9a2a1a" stroke-width="1"/>
+    <rect x="140" y="20" width="14" height="25" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="1"/>
+    <rect x="88" y="100" width="28" height="40" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+    <circle cx="110" cy="122" r="2" fill="#ffd97a"/>
+    <rect x="84" y="140" width="36" height="6" fill="#b8a070"/>
+    <rect x="45" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <rect x="131" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <line x1="57" y1="80" x2="57" y2="102" stroke="#5a3a1a" stroke-width="1"/>
+    <line x1="143" y1="80" x2="143" y2="102" stroke="#5a3a1a" stroke-width="1"/>
+    <rect x="68" y="78" width="64" height="16" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="2"/>
+    <text x="100" y="90" font-family="Courier New,monospace" font-size="9" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">SOLYOUNG.TOP</text>
+  </svg>`;
+}
+function marketSVG(){
+  return `<svg viewBox="0 0 160 130" shape-rendering="crispEdges">
+    <rect x="20" y="55" width="120" height="65" fill="#c9a06a" stroke="#6b4f2a" stroke-width="2"/>
+    <rect x="30" y="85" width="100" height="25" fill="#8b5a2a"/>
+    <rect x="15" y="35" width="130" height="20" fill="#c0392b"/>
+    <rect x="15" y="35" width="22" height="20" fill="#fff"/>
+    <rect x="59" y="35" width="22" height="20" fill="#fff"/>
+    <rect x="103" y="35" width="22" height="20" fill="#fff"/>
+    <rect x="20" y="55" width="4" height="10" fill="#5a3a1a"/>
+    <rect x="136" y="55" width="4" height="10" fill="#5a3a1a"/>
+    <rect x="40" y="78" width="12" height="8" fill="#c0392b"/>
+    <rect x="60" y="78" width="12" height="8" fill="#e87028"/>
+    <rect x="80" y="78" width="12" height="8" fill="#d6487a"/>
+    <rect x="40" y="108" width="80" height="14" fill="#5a3a1a"/>
+    <text x="80" y="118" font-family="Courier New,monospace" font-size="8" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">DIGITAL MARKET</text>
+  </svg>`;
+}
+function studioSVG(){
+  return `<svg viewBox="0 0 200 150" shape-rendering="crispEdges">
+    <rect x="30" y="65" width="140" height="75" fill="#d4a76a" stroke="#5a3a1a" stroke-width="2"/>
+    <line x1="30" y1="85" x2="170" y2="85" stroke="#b8956a" stroke-width="1"/>
+    <line x1="30" y1="105" x2="170" y2="105" stroke="#b8956a" stroke-width="1"/>
+    <polygon points="25,70 100,25 175,70" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+    <rect x="82" y="100" width="36" height="40" fill="#2d1f0e"/>
+    <rect x="86" y="104" width="28" height="36" fill="#4a6b8a"/>
+    <rect x="45" y="85" width="22" height="20" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <rect x="68" y="82" width="64" height="16" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+    <text x="100" y="94" font-family="Courier New,monospace" font-size="10" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="2">STUDIO</text>
+  </svg>`;
+}
+
 function renderPlots(){
-  document.querySelectorAll('.tile[data-plot]').forEach(e=>e.remove());
+  world.querySelectorAll('.tile[data-plot]').forEach(e=>e.remove());
   for(const k in state.plots){
     const p=state.plots[k],[gx,gy]=k.split(',').map(Number);
     const el=document.createElement('div');
     el.className='tile'+(p.tilled?(p.wet?' wet':' tilled'):'');
     el.dataset.plot=k;
-    el.style.left=(gx/COLS*100)+'%';el.style.top=(gy/ROWS*100)+'%';
-    el.style.width=(1/COLS*100)+'%';el.style.height=(1/ROWS*100)+'%';
-    el.style.zIndex=2;
+    el.style.left=(gx*TILE)+'px';el.style.top=(gy*TILE)+'px';
+    el.style.width=TILE+'px';el.style.height=TILE+'px';
     if(p.crop){
       const c=CROPS[p.crop];const stage=p.growth;
-      const sz=stage<2?30:stage<4?55:80;
+      const sz=stage<2?10:stage<4?18:26;
       const col=stage<2?'#4d7a30':stage<4?'#3a6b2a':c.color;
-      el.innerHTML=`<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:${sz}%;height:${sz}%;background:${col};border-radius:${sz<50?2:5}px;border:2px solid rgba(0,0,0,.3)"></div>`;
+      el.innerHTML=`<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:${sz}px;height:${sz}px;background:${col};border-radius:${sz<15?2:5}px;border:2px solid rgba(0,0,0,.3)"></div>`;
     }
     world.appendChild(el);
   }
@@ -347,9 +357,20 @@ function findPath(sx,sy,tx,ty){
   return null;
 }
 
+const playerEl=document.getElementById('player');
 function renderPlayer(){
-  playerEl.style.left=(player.x/COLS*100)+'%';
-  playerEl.style.top=(player.y/ROWS*100)+'%';
+  playerEl.style.left=(player.x*TILE+TILE/2)+'px';
+  playerEl.style.top=(player.y*TILE+TILE/2)+'px';
+}
+
+function updateCamera(){
+  const vw=viewport.clientWidth, vh=viewport.clientHeight;
+  let tx=player.x*TILE+TILE/2 - vw/2;
+  let ty=player.y*TILE+TILE/2 - vh/2;
+  tx=Math.max(0,Math.min(tx,WORLD_W-vw));
+  ty=Math.max(0,Math.min(ty,WORLD_H-vh));
+  camera.x=tx;camera.y=ty;
+  world.style.transform=`translate(${-tx}px,${-ty}px)`;
 }
 
 let lastT=performance.now();
@@ -367,6 +388,7 @@ function loop(t){
     }
     renderPlayer();
   }
+  updateCamera();
   requestAnimationFrame(loop);
 }
 
@@ -381,10 +403,13 @@ function onArrive(){
   const gx=Math.round(player.x),gy=Math.round(player.y);
   const p=state.plots[gx+','+gy];
   if(p)doTool(p,gx+','+gy);
-  if(gy<6){
-    if(gx>=2&&gx<=6)openHouse();
-    else if(gx>=7&&gx<=10)openMarket();
-    else if(gx>=14&&gx<=18)openStudio();
+  // building interaction: if near building front
+  for(const o of OBSTACLES){
+    if(gy===o.y1+1 && gx>=o.x0 && gx<=o.x1){
+      if(o.spot==='house')openHouse();
+      else if(o.spot==='market')openMarket();
+      else if(o.spot==='studio')openStudio();
+    }
   }
 }
 
@@ -409,11 +434,13 @@ function doTool(p,key){
   }
 }
 
-world.addEventListener('click',e=>{
+viewport.addEventListener('click',e=>{
   if(e.target.closest('.building'))return;
-  const r=world.getBoundingClientRect();
-  const gx=Math.floor((e.clientX-r.left)/r.width*COLS);
-  const gy=Math.floor((e.clientY-r.top)/r.height*ROWS);
+  const r=viewport.getBoundingClientRect();
+  const wx=e.clientX-r.left+camera.x;
+  const wy=e.clientY-r.top+camera.y;
+  const gx=Math.floor(wx/TILE);
+  const gy=Math.floor(wy/TILE);
   goTo(gx,gy);
 });
 
@@ -468,7 +495,7 @@ document.getElementById('btn-bag').addEventListener('click',()=>{
      <div class="row"><span>金币</span><span>${state.gold}</span></div>`);
 });
 
-load();updateUI();renderPlots();renderPlayer();
+load();buildWorld();updateUI();renderPlots();renderPlayer();
 requestAnimationFrame(loop);
 </script>
 </body>
