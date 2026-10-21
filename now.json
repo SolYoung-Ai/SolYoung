@@ -1,5 +1,124 @@
 [
   {
+    "id": "major-2026-10-21-1028-f9f745",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：暂时隐藏主站农场入口卡片，代码保留待后续优化",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-3e3d72",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场相机跟随系统：世界扩大到30x20网格、视口跟随角色、边缘clamp、点击坐标正确映射",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-9e9718",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场美术升级：招牌嵌入建筑SVG、人物双帧走路动画、像素图标工具栏、草地纹理装饰",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-1adc6f",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场完整成品：A*寻路绕建筑、三作物、音效、背包、商店、localStorage v2存档",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-68d1cd",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场重构为完整可玩像素农场：网格移动+碰撞+翻土播种浇水收获+商店+localStorage存档",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-f55aa6",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场小人重画为棕发灰短袖短裤背包，减速走路，主屋门走近自动滑开，木牌门牌融合",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-cf8634",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场页加像素小人跟随点击移动，建筑挂像素招牌，走到建筑自动跳转",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-a9a83a",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场页改为真星露谷像素风背景图，主站入口缩略图同步替换",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-06c776",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场页改为星露谷像素风，绿色草地+红屋顶+作物田",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-a1a30f",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：作品区新增「我的农场」项目地图，二级页 farm/ 可点击建筑跳转各项目",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-8f9e77",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：工作室与社区入口切换为独立子域名 studio.solyoung.top / solhub.solyoung.top",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-561a6a",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：小红书 logo 红方块内放小红书三字，缩小字号适配",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-45ef08",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：小红书 logo 改为单字薯，避免三字溢出红方块",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-06888f",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：手机端联系区社交按钮改为两行排列，logo 放大",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-d29378",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：作品区新增 GitHub 贡献热力图卡片",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-27e840",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：联系区新增 GitHub 跳转按钮",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-044f6e",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：社交媒体卡片抖音文字替换为 logo 图标",
+    "published": true
+  },
+  {
     "id": "u-2026-10-17-studio-solhub-title",
     "date": "2026-10-17T15:35:00+08:00",
     "type": "studio",
