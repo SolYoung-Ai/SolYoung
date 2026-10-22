@@ -1,5 +1,12 @@
 [
   {
+    "id": "manual-202610221143",
+    "date": "2026-10-22T11:43:09+08:00",
+    "type": "build",
+    "content": "主站：修复首页 scroll hint 文字与竖线/箭头不对齐",
+    "published": true
+  },
+  {
     "id": "major-2026-10-22-1139-82438e",
     "date": "2026-10-22T11:39:17+08:00",
     "type": "build",
