@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SolYoung — 一个正在努力把想法变成作品的人</title>
-<meta name="description" content="SolYoung，影像创作者。拍摄与剪辑，持续探索摄影、视频、AI 与新的创作方式。记录，是为了忘记。">
+<title>SolYoung — 把人生，当成一场游戏来经营</title>
+<meta name="description" content="SolYoung，一个持续更新的个人世界。影像、AI、数字产品与内容创作，记录正在建造的东西，也记录尚未完成的想法。">
 <link rel="icon" type="image/png" href="assets/avatar-favicon.png">
 <link rel="apple-touch-icon" href="assets/avatar-favicon.png">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap">
@@ -138,6 +138,8 @@ section{position:relative}
 .hero-title .row:nth-child(3) span{animation-delay:.24s}
 @keyframes rise{to{transform:translateY(0)}}
 .hero-sub{font-family:var(--font-serif);font-size:clamp(17px,2vw,22px);color:var(--ink-soft);margin-top:26px;line-height:1.6}
+.hero-slogan{font-family:var(--font-serif);font-size:clamp(18px,2.2vw,24px);color:var(--ink);margin-top:28px;line-height:1.5}
+.hero-slogan-sub{font-size:clamp(14px,1.4vw,16px);color:var(--ink-mute);margin-top:10px;line-height:1.7;max-width:420px}
 .hero-tags{display:flex;flex-wrap:wrap;gap:12px 26px;margin-top:30px}
 .hero-tags span{font-family:var(--font-display);font-weight:500;font-size:12px;letter-spacing:.18em;color:var(--ink-soft);position:relative;padding-left:16px}
 .hero-tags span::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;border-radius:50%;background:var(--accent);transform:translateY(-50%)}
@@ -729,6 +731,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="hero-tags rv in rv-d2">
         <span data-i18n="hero-tag1">影像</span><span data-i18n="hero-tag2">AI</span><span data-i18n="hero-tag3">创作</span><span data-i18n="hero-tag4">实验</span>
       </div>
+      <p class="hero-slogan rv in rv-d3" data-i18n="hero-slogan">把人生，当成一场游戏来经营。</p>
+      <p class="hero-slogan-sub rv in rv-d3" data-i18n="hero-slogan-sub">一个持续更新的个人世界。记录正在建造的东西，也记录尚未完成的想法。</p>
     </div>
     <div class="hero-visual">
       <div class="portrait-wrap">
@@ -880,11 +884,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <div class="about-grid">
       <div class="about-quote rv" data-i18n="about-quote">
         我是 <span class="hl">SolYoung</span>。<br>
-        一个正在努力把想法变成作品的人。
+        把人生，当成一场游戏来经营。
       </div>
       <div class="about-body rv rv-d1">
         <p data-i18n="about-p1">我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。</p>
-        <p data-i18n="about-p2">这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。</p>
+        <p data-i18n="about-p2">这个网站不是我的简历，也不是我的展示柜。它是一个持续更新的个人存档：记录我正在建造什么、暂时搁置了什么，又在这个过程中想通了什么。探索地图，收集灵感，建造作品，持续存档。</p>
         <div class="about-roles">
           <span data-i18n="role1">创作者</span><span data-i18n="role2">记录者</span><span data-i18n="role3">探索者</span>
         </div>
@@ -1018,6 +1022,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'hero-tag2': {zh:'AI', en:'AI'},
     'hero-tag3': {zh:'创作', en:'Creating'},
     'hero-tag4': {zh:'实验', en:'Experimenting'},
+    'hero-slogan': {zh:'把人生，当成一场游戏来经营。', en:'Playing life as a management game.'},
+    'hero-slogan-sub': {zh:'一个持续更新的个人世界。记录正在建造的东西，也记录尚未完成的想法。', en:'A personal world in constant update. Documenting what I build, and the ideas still in progress.'},
     'qn-works': {zh:'作品<span class="qn-en">Works</span>', en:'Works'},
     'qn-now': {zh:'此刻<span class="qn-en">Now</span>', en:'Now'},
     'qn-thoughts': {zh:'思考<span class="qn-en">Thoughts</span>', en:'Thoughts'},
@@ -1051,9 +1057,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'farm-cn': {zh:'项目地图', en:'Project Map'},
     'farm-desc': {zh:'一座把想法种出来的农场：每栋房子、每块菜地，都是我正在做的东西。点进去看看。', en:'A farm where ideas grow: every house and field is something I’m building. Step in.'},
     'farm-cta': {zh:'进入农场 ↗', en:'Enter Farm ↗'},
-    'about-quote': {zh:'我是 <span class="hl">SolYoung</span>。<br>一个正在努力把想法变成作品的人。', en:'I\'m <span class="hl">SolYoung</span>.<br>Someone working to turn ideas into works.'},
+    'about-quote': {zh:'我是 <span class="hl">SolYoung</span>。<br>把人生，当成一场游戏来经营。', en:'I\'m <span class="hl">SolYoung</span>.<br>Playing life as a management game.'},
     'about-p1': {zh:'我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。', en:'I\'m a content creator working in film and editing. Over the years I\'ve explored content, photography, video, AI and new ways of creating — not to become an expert, but because I enjoy making something with my own hands.'},
-    'about-p2': {zh:'这个网站不是我的简历，也不是我的展示柜。它更像一间数字档案室：记录我做过什么、正在试什么、又因此想通了什么。对我自己，它是记忆；对路过的你，它是一份邀请——来，看看一个人是怎么持续把想法变成作品的。', en:'This site is not a résumé or a showcase. It\'s more like a digital archive — what I\'ve made, what I\'m trying, and what it taught me. For me it\'s memory; for you, an invitation to see how someone keeps turning ideas into works.'},
+    'about-p2': {zh:'这个网站不是我的简历，也不是我的展示柜。它是一个持续更新的个人存档：记录我正在建造什么、暂时搁置了什么，又在这个过程中想通了什么。探索地图，收集灵感，建造作品，持续存档。', en:'This site is not a résumé or a showcase. It\'s a personal save file in constant update — what I\'m building, what I\'ve paused, and what I learned along the way. Explore the map, collect ideas, build works, keep saving.'},
     'role1': {zh:'创作者', en:'Creator'},
     'role2': {zh:'记录者', en:'Recorder'},
     'role3': {zh:'探索者', en:'Explorer'},
