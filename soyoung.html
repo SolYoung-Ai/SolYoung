@@ -1485,7 +1485,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
           if(hovering) card.style.transform='perspective(900px) rotateX('+cy.toFixed(2)+'deg) rotateY('+cx.toFixed(2)+'deg) translateY(-10px) scale(1.02)';
         });
       }
-      card.addEventListener('pointerenter',function(){hovering=true;});
+      card.addEventListener('pointerenter',function(){
+        hovering=true;
+        card.style.transform='perspective(900px) translateY(-10px) scale(1.02)';
+      });
       card.addEventListener('pointermove',onMove);
       card.addEventListener('pointerleave',function(){
         hovering=false;
@@ -1727,12 +1730,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   var accountsEl = document.getElementById('cviewAccounts');
   if(!accountsEl) return;
   var ACCOUNTS = [
-    {id:'yang', name:'楊十八呀', avatar:'assets/avatar-yangshibaya.webp', platform:'抖音', profileUrl:'https://v.douyin.com/JHN2VxhUJPA/', desc:'个人随拍、记录影像。', followers:'37K'},
     {id:'sol', name:'SolYoung', avatar:'assets/avatar-solyoung.webp', platform:'抖音 / X', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/', desc:'记录创作、实践，以及正在发生的可能。', followers:'1.1K',
      links:[
        {label:'抖音 · 视频', url:'https://v.douyin.com/NT7pNjGp9XM/'},
        {label:'X · 实时推文', url:'https://x.com/SolYoungA'}
      ]},
+    {id:'yang', name:'楊十八呀', avatar:'assets/avatar-yangshibaya.webp', platform:'抖音', profileUrl:'https://v.douyin.com/JHN2VxhUJPA/', desc:'个人随拍、记录影像。', followers:'37K'},
     {id:'ambition', name:'野心互联工作室', avatar:'assets/avatar-ambition.webp', platform:'抖音', profileUrl:'https://v.douyin.com/1qeGOojqjSE/', desc:'个体成长及健康内容频道。', followers:'87K'}
   ];
   accountsEl.innerHTML = ACCOUNTS.map(function(a){
