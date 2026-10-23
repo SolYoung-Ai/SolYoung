@@ -295,6 +295,8 @@ section{position:relative}
 .cview-account:focus-visible{outline:1px solid var(--accent);outline-offset:-1}
 .cview-avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--line)}
 .cview-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.cview-chip{font-size:10px;padding:4px 11px;border:1px solid var(--line);border-radius:20px;color:var(--ink-soft);text-decoration:none;transition:all .25s var(--ease)}
+.cview-chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
 .cview-acc-txt{min-width:0;width:100%}
 .cview-acc-name{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ink);display:block}
 .cview-acc-desc{font-size:12px;color:var(--ink-soft);line-height:1.6;display:block;margin-top:4px}
@@ -1726,19 +1728,31 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   if(!accountsEl) return;
   var ACCOUNTS = [
     {id:'yang', name:'楊十八呀', avatar:'assets/avatar-yangshibaya.webp', platform:'抖音', profileUrl:'https://v.douyin.com/JHN2VxhUJPA/', desc:'个人随拍、记录影像。', followers:'37K'},
-    {id:'sol', name:'SolYoung', avatar:'assets/avatar-solyoung.webp', platform:'抖音', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/', desc:'记录我的创作、实践，以及正在发生的可能。', followers:'1.1K'},
+    {id:'sol', name:'SolYoung', avatar:'assets/avatar-solyoung.webp', platform:'抖音 / X', profileUrl:'https://v.douyin.com/NT7pNjGp9XM/', desc:'记录创作、实践，以及正在发生的可能。', followers:'1.1K',
+     links:[
+       {label:'抖音 · 视频', url:'https://v.douyin.com/NT7pNjGp9XM/'},
+       {label:'X · 实时推文', url:'https://x.com/SolYoungA'}
+     ]},
     {id:'ambition', name:'野心互联工作室', avatar:'assets/avatar-ambition.webp', platform:'抖音', profileUrl:'https://v.douyin.com/1qeGOojqjSE/', desc:'个体成长及健康内容频道。', followers:'87K'}
   ];
   accountsEl.innerHTML = ACCOUNTS.map(function(a){
-    return '<a class="win cview-account" href="'+a.profileUrl+'" target="_blank" rel="noopener noreferrer" aria-label="'+a.name+' 抖音主页">' +
-      '<div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>' +
+    var bar = '<div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>' +
       '<span class="win-title">'+a.name+'</span>' +
-      '<span class="win-state live">'+a.platform+'</span></div>' +
-      '<div class="win-body" style="padding:18px;flex-direction:row;gap:14px;align-items:flex-start">' +
+      '<span class="win-state live">'+a.platform+'</span></div>';
+    var bodyStart = '<div class="win-body" style="padding:18px;flex-direction:row;gap:14px;align-items:flex-start">' +
       '<span class="cview-avatar" style="flex-shrink:0"><img loading="lazy" src="'+a.avatar+'" alt="'+a.name+'"></span>' +
       '<span class="cview-acc-txt" style="min-width:0">' +
       '<span class="cview-acc-name" style="font-size:14px;display:block">'+a.name+(a.followers?' <span style="font-size:10px;color:var(--accent);font-weight:500">'+a.followers+'</span>':'')+'</span>' +
-      '<span class="cview-acc-desc" style="font-size:12px;display:block;margin-top:4px">'+a.desc+'</span>' +
+      '<span class="cview-acc-desc" style="font-size:12px;display:block;margin-top:4px">'+a.desc+'</span>';
+    if(a.links){
+      var chips = a.links.map(function(l){
+        return '<a href="'+l.url+'" target="_blank" rel="noopener noreferrer" class="cview-chip">'+l.label+' ↗</a>';
+      }).join('');
+      return '<div class="win cview-account">' + bar + bodyStart +
+        '<span style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">'+chips+'</span>' +
+        '</span></div></div>';
+    }
+    return '<a class="win cview-account" href="'+a.profileUrl+'" target="_blank" rel="noopener noreferrer" aria-label="'+a.name+' 主页">' + bar + bodyStart +
       '<span class="cview-acc-meta" style="font-size:9px;display:block;margin-top:8px">'+a.platform+' · 点击访问 ↗</span>' +
       '</span></div></a>';
   }).join('');
