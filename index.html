@@ -13,7 +13,16 @@
 :root{
   --accent:#E87028;
   --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
   --radius:2px;
+  --t-fast:.22s;
+  --t-mid:.4s;
+  --t-slow:.65s;
+  --t-window:.55s;
+  --lift:-4px;
+  --lift-active:-6px;
+  --parallax:6px;
   --font-display:'Archivo','Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
   --font-serif:'Noto Serif SC',Georgia,'Songti SC',serif;
   --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
@@ -203,8 +212,8 @@ section{position:relative}
 .g-tags{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 16px}
 .tag{font-family:var(--font-display);font-size:10px;letter-spacing:.06em;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:3px 10px;line-height:1}
 /* ===== SolYoung Studio store entry ===== */
-.studio-entry{margin-top:36px;border:1px solid var(--line);border-radius:var(--radius)}
-.studio-link{display:flex;align-items:center;gap:22px;padding:26px 30px;text-decoration:none;color:inherit;transition:background .35s var(--ease)}
+.studio-entry{margin-top:16px}
+.studio-link{display:flex;align-items:center;gap:22px;padding:22px 26px;text-decoration:none;color:inherit;transition:background .35s var(--ease);width:100%}
 .studio-logo{width:52px;height:52px;border-radius:12px;overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;background:var(--bg-soft)}
 .studio-logo img{width:100%;height:100%;object-fit:contain}
 .studio-logo-plain{width:52px;height:52px;background:transparent;border-radius:0;overflow:visible;align-items:center}
@@ -232,8 +241,7 @@ section{position:relative}
 }
 
 /* GitHub contribution card */
-.gh-card{display:block;margin-top:36px;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px 18px;background:var(--card);text-decoration:none;color:inherit;transition:border-color .35s var(--ease)}
-.gh-card:hover{border-color:var(--accent)}
+.gh-card{margin-top:16px}
 .gh-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
 .gh-label{font-family:var(--font-display);font-size:12px;letter-spacing:.14em;color:var(--ink);text-transform:uppercase}
 .gh-label .en{color:var(--accent)}
@@ -273,9 +281,8 @@ section{position:relative}
 .cview-intro{font-size:13px;color:var(--ink-soft);line-height:1.75;margin:-6px 0 22px;max-width:640px}
 .cview-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,18px);align-items:stretch}
 .cview-accounts{display:contents}
-.cview-account{display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;width:100%;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);cursor:pointer;transition:border-color .3s,transform .4s var(--ease),box-shadow .35s;color:inherit;font-family:inherit;text-decoration:none;transform:translateZ(0)}
-.cview-account:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow)}
-.cview-account:focus-visible{outline:1px solid var(--accent);outline-offset:-1px}
+.cview-account{display:flex;flex-direction:column;align-items:flex-start;text-align:left;width:100%;color:inherit;text-decoration:none}
+.cview-account:focus-visible{outline:1px solid var(--accent);outline-offset:-1}
 .cview-avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--line)}
 .cview-avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .cview-acc-txt{min-width:0;width:100%}
@@ -368,8 +375,7 @@ section{position:relative}
 /* ============ Notes ============ */
 .notes{display:flex;overflow-x:auto;gap:clamp(16px,3vw,28px);scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-width:none;-ms-overflow-style:none}
 .notes::-webkit-scrollbar{display:none}
-.note{flex:0 0 320px;scroll-snap-align:start;display:block;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3vw,34px);background:var(--card);transition:border-color .3s ease-out,transform .3s ease-out}
-.note:hover{border-color:var(--accent);transform:translateY(-3px)}
+.note{flex:0 0 320px;display:flex;flex-direction:column;scroll-snap-align:start}
 .note .date{font-family:var(--font-display);font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
 .note h3{font-family:var(--font-serif);font-size:20px;line-height:1.4;margin-top:14px}
 .note p{color:var(--ink-soft);font-size:14px;margin-top:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -489,6 +495,63 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .now-more-arr{transition:transform .3s var(--ease)}
 .now-more:hover .now-more-arr{transform:translateX(5px)}
 .now-fail{color:var(--ink-faint);font-size:13px;padding:28px 4px}
+
+/* ============ Window System ============ */
+/* window title bar — applied to cards that look like digital windows */
+.win{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden;transition:transform var(--t-mid) var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid);transform:translateZ(0);will-change:transform}
+.win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(var(--lift));box-shadow:var(--shadow)}
+.win:active{transform:translateY(-2px);transition-duration:var(--t-fast)}
+.win-bar{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--line-soft);background:color-mix(in srgb,var(--card) 92%,var(--ink) 8%);flex-shrink:0;user-select:none}
+.win-dots{display:flex;gap:5px;flex-shrink:0}
+.win-dots i{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);opacity:.5;transition:all var(--t-fast);display:block}
+.win:hover .win-dots i:nth-child(1){opacity:.9;background:var(--accent)}
+.win:hover .win-dots i:nth-child(2){opacity:.7}
+.win:hover .win-dots i:nth-child(3){opacity:.5}
+.win-title{font-family:var(--font-display);font-weight:600;font-size:11px;letter-spacing:.12em;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0;transition:color var(--t-fast)}
+.win:hover .win-title{color:var(--ink)}
+.win-state{font-family:var(--font-display);font-size:9px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;flex-shrink:0;display:flex;align-items:center;gap:5px}
+.win-state::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink-faint);display:block}
+.win-state.live{color:var(--accent)}
+.win-state.live::before{background:var(--accent);animation:breathe 2.2s ease-in-out infinite}
+.win-body{flex:1;display:flex;flex-direction:column;position:relative;overflow:hidden}
+
+/* adjacent stagger — when hovering one card, siblings shift slightly */
+.win-row{display:contents}
+@media(hover:hover){
+  .cview-wrap:has(.win:hover) .win:not(:hover){transform:translateY(2px);opacity:.85}
+}
+
+/* window image parallax on hover */
+.win-img{position:relative;overflow:hidden}
+.win-img img{transition:transform var(--t-slow) var(--ease-out);will-change:transform}
+.win:hover .win-img img{transform:scale(1.05)}
+
+/* window open hint */
+.win-open{font-family:var(--font-display);font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity var(--t-fast),transform var(--t-fast) var(--ease-out);flex-shrink:0}
+.win:hover .win-open{opacity:1;transform:none}
+
+/* expanded window modal */
+.win-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:5vh 5vw;opacity:0;pointer-events:none;transition:opacity var(--t-mid) var(--ease-out)}
+.win-modal.open{opacity:1;pointer-events:auto}
+.win-modal-backdrop{position:absolute;inset:0;background:rgba(15,12,8,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.win-modal-frame{position:relative;width:100%;max-width:780px;max-height:88vh;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 40px 80px -30px rgba(0,0,0,.7);overflow:hidden;transform:scale(.92) translateY(16px);opacity:0;transition:transform var(--t-window) var(--ease-spring),opacity var(--t-mid) var(--ease-out)}
+.win-modal.open .win-modal-frame{transform:none;opacity:1}
+.win-modal.closing .win-modal-frame{transform:scale(.95) translateY(8px);opacity:0;transition:transform var(--t-fast) var(--ease-out),opacity var(--t-fast)}
+.win-modal.closing{opacity:0;transition:opacity var(--t-fast)}
+.win-modal .win-bar{padding:12px 18px;cursor:default}
+.win-modal-close{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-soft);font-size:14px;line-height:1;background:transparent;transition:all var(--t-fast);flex-shrink:0}
+.win-modal-close:hover{color:var(--accent);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.win-modal-content{flex:1;overflow-y:auto;padding:clamp(20px,4vw,36px);-webkit-overflow-scrolling:touch}
+.win-modal-content h3{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,3vw,28px);margin-bottom:12px}
+.win-modal-content p{color:var(--ink-soft);font-size:14px;line-height:1.8;margin-bottom:14px}
+.win-modal-content .wm-meta{font-family:var(--font-display);font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
+.win-modal-content .wm-link{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.08em;color:var(--accent);padding:10px 20px;border:1px solid var(--accent);border-radius:var(--radius);transition:all var(--t-fast)}
+.win-modal-content .wm-link:hover{background:var(--accent);color:#fff}
+
+/* drag handle for expanded window (desktop progressive enhancement) */
+.win-modal .win-bar{cursor:grab}
+.win-modal.dragging .win-bar{cursor:grabbing}
+.win-modal.dragging .win-modal-frame{transition:none}
 
 /* ============ Responsive ============ */
 @media(max-width:960px){
@@ -724,25 +787,33 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
     <div class="proj-group-title" data-i18n="digi-title" style="margin-top:clamp(36px,5vw,56px)">数字产品 <span class="en">DIGITAL PRODUCTS</span></div>
 
-    <div class="studio-entry rv">
-      <a class="studio-link" href="https://solhub.solyoung.top/" target="_blank" rel="noopener" aria-label="SolHub 数字工具社区，点击进入">
+    <div class="win studio-entry rv" style="margin-top:0">
+      <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
+        <span class="win-title">SolHub</span>
+        <span class="win-state live">LIVE</span>
+        <span class="win-open">OPEN ↗</span>
+      </div>
+      <a class="studio-link" href="https://solhub.solyoung.top/" target="_blank" rel="noopener" aria-label="SolHub 数字工具社区，点击进入" style="flex:1">
         <span class="studio-logo studio-logo-plain"><img loading="lazy" src="assets/solhub-logo.png" alt="SolHub logo"></span>
         <span class="studio-mid">
           <span class="studio-brand"><span class="studio-name">SolHub</span><span class="studio-cn" data-i18n="solhub-cn">数字工具社区</span></span>
           <p class="studio-desc" data-i18n="solhub-desc">一个开放的产品与免费在线工具社区：探索独立开发者的作品，也可以提交自己的工具。</p>
         </span>
-        <span class="studio-cta" data-i18n="solhub-cta">进入社区 ↗</span>
       </a>
     </div>
 
-    <div class="studio-entry rv">
-      <a class="studio-link" href="https://studio.solyoung.top/" target="_blank" rel="noopener" aria-label="SolYoung Studio 数字服务工作室，点击进入">
+    <div class="win studio-entry rv" style="margin-top:16px">
+      <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
+        <span class="win-title">SolYoung Studio</span>
+        <span class="win-state live">LIVE</span>
+        <span class="win-open">OPEN ↗</span>
+      </div>
+      <a class="studio-link" href="https://studio.solyoung.top/" target="_blank" rel="noopener" aria-label="SolYoung Studio 数字服务工作室，点击进入" style="flex:1">
         <span class="studio-logo studio-logo-plain"><img loading="lazy" src="assets/studio-logo.png" alt="SolYoung Studio logo"></span>
         <span class="studio-mid">
           <span class="studio-brand"><span class="studio-name">SolYoung Studio</span><span class="studio-cn" data-i18n="studio-cn">数字服务工作室</span></span>
           <p class="studio-desc" data-i18n="studio-desc">提供数字产品定制、网站与工具开发、AI 工作流搭建等服务。想把一个想法做成可用的东西，可以从这里开始。</p>
         </span>
-        <span class="studio-cta" data-i18n="studio-cta">进入工作室 ↗</span>
       </a>
     </div>
 
@@ -759,13 +830,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     </a>
     -->
 
-    <a class="gh-card rv" href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener" aria-label="GitHub 贡献动态">
-      <div class="gh-head">
-        <span class="gh-label" data-i18n="gh-title">GitHub 动态 <span class="en">COMMITS</span></span>
-        <span class="gh-user">@SolYoung-Ai ↗</span>
+    <div class="win gh-card rv" style="margin-top:16px">
+      <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
+        <span class="win-title">GitHub Activity</span>
+        <span class="win-state">@SolYoung-Ai</span>
+        <span class="win-open">OPEN ↗</span>
       </div>
-      <img class="gh-chart" loading="lazy" src="https://ghchart.rshah.org/E87028/SolYoung-Ai" alt="SolYoung-Ai GitHub 贡献图" width="1000" height="120">
-    </a>
+      <a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener" aria-label="GitHub 贡献动态" style="display:block;padding:18px 20px 14px">
+        <img class="gh-chart" loading="lazy" src="https://ghchart.rshah.org/E87028/SolYoung-Ai" alt="SolYoung-Ai GitHub 贡献图" width="1000" height="120">
+      </a>
+    </div>
 
   </div>
 </section>
@@ -854,6 +928,19 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <!-- cursor label + hover preview -->
 <div class="cursel" id="cursel"><span id="curselTxt">VIEW</span></div>
 <div class="hprev" id="hprev"><img id="hprevImg" alt=""></div>
+
+<!-- project window modal -->
+<div class="win-modal" id="winModal" role="dialog" aria-modal="true" aria-labelledby="winModalTitle">
+  <div class="win-modal-backdrop" id="winModalBackdrop"></div>
+  <div class="win-modal-frame" id="winModalFrame">
+    <div class="win-bar" id="winModalBar">
+      <span class="win-dots"><i></i><i></i><i></i></span>
+      <span class="win-title" id="winModalTitle"></span>
+      <button class="win-modal-close" id="winModalClose" aria-label="关闭">×</button>
+    </div>
+    <div class="win-modal-content" id="winModalContent"></div>
+  </div>
+</div>
 
 <!-- lightbox -->
 <div class="lb" id="lb" aria-hidden="true"><button class="lb-close" id="lbClose" aria-label="关闭">×</button><img id="lbImg" alt=""></div>
@@ -1183,6 +1270,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       var el = document.createElement('article');
       el.className = 'now-item';
       el.style.transitionDelay = (i*90) + 'ms';
+      el.style.cursor = 'pointer';
       var media = (post.images && post.images.length)
         ? '<div class="now-media"><img src="' + post.images[0] + '" alt="" loading="lazy"></div>' : '';
       el.innerHTML =
@@ -1190,6 +1278,15 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         '<div class="now-meta"><span class="now-type">' + post.type + '</span><span class="now-date">' + fmtNowDate(post.date) + '</span></div>' +
         '<div class="now-body">' + ((localStorage.getItem('soyoung-lang')==='en' && post.content_en) ? post.content_en : post.content).replace(/\n/g,'<br>') + '</div>' +
         media;
+      el.addEventListener('click', function(e){
+        if(e.target.closest('.now-media')) return;
+        var body = (localStorage.getItem('soyoung-lang')==='en' && post.content_en) ? post.content_en : post.content;
+        var imgs = (post.images||[]).map(function(src){return '<img src="'+src+'" alt="" style="width:100%;border-radius:4px;margin-bottom:12px">';}).join('');
+        window.__openWin({
+          title: post.type + ' · ' + fmtNowDate(post.date),
+          content: '<div class="wm-meta">'+post.type+'</div><p style="font-size:15px;white-space:pre-line;line-height:1.9">'+body+'</p>'+imgs
+        });
+      });
       nowFeed.appendChild(el);
       nowIO.observe(el);
     });
@@ -1201,6 +1298,90 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       .catch(function(){ nowFeed.innerHTML = '<p class="now-fail">动态需要在线访问加载。</p>'; });
   window.__renderNow = function(){ if(nowData) renderNow(nowData); };
   }
+
+  // ---- Project Window Modal ----
+  (function(){
+    var modal=document.getElementById('winModal');
+    var frame=document.getElementById('winModalFrame');
+    var titleEl=document.getElementById('winModalTitle');
+    var contentEl=document.getElementById('winModalContent');
+    var closeBtn=document.getElementById('winModalClose');
+    var backdrop=document.getElementById('winModalBackdrop');
+    var bar=document.getElementById('winModalBar');
+    if(!modal) return;
+    var lastFocus=null, scrollY=0, isOpen=false;
+
+    function open(data){
+      if(isOpen) return;
+      lastFocus=document.activeElement;
+      scrollY=window.scrollY;
+      titleEl.textContent=data.title||'';
+      contentEl.innerHTML=data.content||'';
+      modal.classList.remove('closing');
+      modal.classList.add('open');
+      document.body.style.overflow='hidden';
+      document.body.style.height='100vh';
+      isOpen=true;
+      setTimeout(function(){ closeBtn.focus(); },350);
+    }
+    function close(){
+      if(!isOpen) return;
+      modal.classList.add('closing');
+      document.body.style.overflow='';
+      document.body.style.height='';
+      window.scrollTo(0,scrollY);
+      isOpen=false;
+      setTimeout(function(){
+        modal.classList.remove('open','closing');
+        if(lastFocus) lastFocus.focus();
+      },280);
+    }
+    window.__openWin=open;
+    window.__closeWin=close;
+
+    closeBtn.addEventListener('click',close);
+    backdrop.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&isOpen) close();
+    });
+
+    // Draggable window (desktop only, progressive enhancement)
+    var isTouch='ontouchstart' in window||navigator.maxTouchPoints>0;
+    if(!isTouch){
+      var dragging=false, sx=0, sy=0, ox=0, oy=0;
+      bar.addEventListener('pointerdown',function(e){
+        if(e.target===closeBtn) return;
+        dragging=true;
+        modal.classList.add('dragging');
+        sx=e.clientX; sy=e.clientY;
+        var r=frame.getBoundingClientRect();
+        var cr=frame.style.transform;
+        // parse current translate
+        var m=cr.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/);
+        ox=m?parseFloat(m[1]):0;
+        oy=m?parseFloat(m[2]):0;
+        bar.setPointerCapture(e.pointerId);
+      });
+      bar.addEventListener('pointermove',function(e){
+        if(!dragging) return;
+        var nx=ox+(e.clientX-sx);
+        var ny=oy+(e.clientY-sy);
+        // clamp to viewport
+        var maxX=window.innerWidth/2-frame.offsetWidth/2-20;
+        var maxY=window.innerHeight/2-frame.offsetHeight/2-20;
+        nx=Math.max(-maxX,Math.min(maxX,nx));
+        ny=Math.max(-maxY,Math.min(maxY,ny));
+        frame.style.transform='translate('+nx+'px,'+ny+'px)';
+      });
+      function endDrag(){
+        if(!dragging) return;
+        dragging=false;
+        modal.classList.remove('dragging');
+      }
+      bar.addEventListener('pointerup',endDrag);
+      bar.addEventListener('pointercancel',endDrag);
+    }
+  })();
 
   // lightbox — click a now image to view at full size
   var lb = document.getElementById('lb');
@@ -1231,9 +1412,15 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       return (pb[0]-pa[0]) || (pb[1]-pa[1]) || (pb[2]-pa[2]);
     }).forEach(function(n,i){
       var el = document.createElement('a');
-      el.href = n.page; el.className = 'note rv'; el.style.transitionDelay = (i*90) + 'ms';
-      el.innerHTML = '<span class="date">' + n.date + '</span><h3>' + n.title + '</h3><p>' + n.summary + '</p>' +
-        '<span class="more">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
+      el.href = n.page; el.className = 'win note'; el.style.transitionDelay = (i*90) + 'ms';
+      el.style.flex='0 0 320px';
+      el.innerHTML = '<div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span><span class="win-title">'+n.title+'</span><span class="win-open">READ →</span></div>' +
+        '<div class="win-body" style="padding:clamp(20px,3vw,28px)">' +
+        '<span class="date" style="font-size:10px">'+n.date+'</span>' +
+        '<h3 style="font-size:18px;margin-top:10px;line-height:1.4">'+n.title+'</h3>' +
+        '<p style="font-size:13px;margin-top:10px;line-height:1.7">'+n.summary+'</p>' +
+        '<span class="more" style="margin-top:14px;font-size:11px">阅读 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>' +
+        '</div>';
       notesList.appendChild(el); nIO.observe(el);
     });
   }
@@ -1375,6 +1562,78 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   });
 })();
 
+// ---- Nav active section indicator ----
+(function(){
+  var sections=document.querySelectorAll('section[id], header[id]');
+  var navLinks=document.querySelectorAll('.nav-links a');
+  if(!sections.length||!navLinks.length) return;
+  var sectionMap={};
+  navLinks.forEach(function(link){
+    var href=link.getAttribute('href');
+    if(href&&href.charAt(0)==='#'){
+      sectionMap[href.slice(1)]=link;
+    }
+  });
+  function update(){
+    var y=window.scrollY+120;
+    var current=null;
+    sections.forEach(function(s){
+      if(s.offsetTop<=y) current=s.id;
+    });
+    navLinks.forEach(function(link){
+      link.style.color='';
+    });
+    if(current&&sectionMap[current]){
+      sectionMap[current].style.color='var(--accent)';
+    }
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+// ---- Hero parallax + magnetic buttons ----
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch='ontouchstart' in window||navigator.maxTouchPoints>0;
+  if(reduce||isTouch) return;
+
+  var portrait=document.querySelector('.portrait');
+  var heroCopy=document.querySelector('.hero-copy');
+  var hero=document.querySelector('.hero');
+  if(!portrait||!hero) return;
+
+  var tx=0, ty=0, cx=0, cy=0, raf=null;
+  function tick(){
+    tx+=(cx-tx)*.08; ty+=(cy-ty)*.08;
+    if(portrait) portrait.style.transform='translate('+tx*0.5+'px,'+ty*0.5+'px)';
+    if(heroCopy) heroCopy.style.transform='translate('+tx*0.2+'px,'+ty*0.2+'px)';
+    raf=requestAnimationFrame(tick);
+  }
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    cx=((e.clientX-r.left)/r.width-.5)*2;
+    cy=((e.clientY-r.top)/r.height-.5)*2;
+    if(!raf) raf=requestAnimationFrame(tick);
+  }, {passive:true});
+  hero.addEventListener('mouseleave',function(){
+    cx=0; cy=0;
+  });
+  raf=requestAnimationFrame(tick);
+
+  // Magnetic buttons — social links
+  document.querySelectorAll('.socials a, .socials button').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      var x=e.clientX-r.left-r.width/2;
+      var y=e.clientY-r.top-r.height/2;
+      btn.style.transform='translate('+x*.15+'px,'+y*.2+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){
+      btn.style.transform='';
+    });
+  });
+})();
+
 // ---- Content & Visuals showcase (account selector + featured videos) ----
 // Social accounts: cards link out to each profile.
 (function(){
@@ -1386,11 +1645,17 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     {id:'ambition', name:'野心互联工作室', avatar:'assets/avatar-ambition.webp', platform:'抖音', profileUrl:'https://v.douyin.com/1qeGOojqjSE/', desc:'个体成长及健康内容频道。', followers:'87K'}
   ];
   accountsEl.innerHTML = ACCOUNTS.map(function(a){
-    return '<a class="cview-account" href="'+a.profileUrl+'" target="_blank" rel="noopener noreferrer" aria-label="'+a.name+' 抖音主页">' +
-      '<span class="cview-avatar"><img loading="lazy" src="'+a.avatar+'" alt="'+a.name+'"></span>' +
-      '<span class="cview-acc-txt"><span class="cview-acc-name">'+a.name+'</span>' +
-      '<span class="cview-acc-desc">'+a.desc+'</span>' +
-      '<span class="cview-acc-meta">'+a.platform + (a.followers ? ' · '+a.followers : '')+' ↗</span></span></a>';
+    return '<a class="win cview-account" href="'+a.profileUrl+'" target="_blank" rel="noopener noreferrer" aria-label="'+a.name+' 抖音主页">' +
+      '<div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>' +
+      '<span class="win-title">'+a.name+'</span>' +
+      '<span class="win-state live">'+a.platform+'</span></div>' +
+      '<div class="win-body" style="padding:18px;flex-direction:row;gap:14px;align-items:flex-start">' +
+      '<span class="cview-avatar" style="flex-shrink:0"><img loading="lazy" src="'+a.avatar+'" alt="'+a.name+'"></span>' +
+      '<span class="cview-acc-txt" style="min-width:0">' +
+      '<span class="cview-acc-name" style="font-size:14px;display:block">'+a.name+(a.followers?' <span style="font-size:10px;color:var(--accent);font-weight:500">'+a.followers+'</span>':'')+'</span>' +
+      '<span class="cview-acc-desc" style="font-size:12px;display:block;margin-top:4px">'+a.desc+'</span>' +
+      '<span class="cview-acc-meta" style="font-size:9px;display:block;margin-top:8px">'+a.platform+' · 点击访问 ↗</span>' +
+      '</span></div></a>';
   }).join('');
 })();
 
