@@ -471,6 +471,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 /* notes hover — title drifts */
 .note h3{transition:transform .35s var(--ease)}
 .note:hover h3{transform:translateX(6px)}
+.note:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.note:active{transform:translateY(-3px) scale(.99)}
 
 /* brand easter egg — one light shift on hover */
 .brand{display:inline-block}
@@ -1466,7 +1468,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   if(isTouch||reduce) return;
   var MAX=2.6;
   function initTilt(){
-    document.querySelectorAll('.win').forEach(function(card){
+    document.querySelectorAll('.win:not(.note)').forEach(function(card){
       if(card.__tiltInit) return;
       card.__tiltInit=true;
       card.classList.add('tilt-ready');
