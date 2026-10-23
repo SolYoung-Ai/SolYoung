@@ -24,8 +24,8 @@
   --lift-active:-6px;
   --parallax:6px;
   --shadow-rest:0 1px 2px rgba(20,15,5,.04),0 4px 12px -8px rgba(20,15,5,.12);
-  --shadow-hover:0 4px 8px rgba(20,15,5,.06),0 24px 48px -16px rgba(232,112,40,.28),0 16px 40px -12px rgba(20,15,5,.28);
-  --lift:translateY(-10px) scale(1.02);
+  --shadow-hover:0 6px 12px rgba(20,15,5,.08),0 32px 64px -20px rgba(232,112,40,.35),0 20px 48px -16px rgba(20,15,5,.32);
+  --lift:translateY(-14px) scale(1.03);
   --font-display:'Archivo','Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
   --font-serif:'Noto Serif SC',Georgia,'Songti SC',serif;
   --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
@@ -545,7 +545,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .cview-wrap .win:nth-child(3){animation-delay:.16s}
 @keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 /* JS-driven tilt (transform set inline); reset when class absent */
-.win.tilt-ready{transition:transform .15s var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid)}
+.win.tilt-ready{transition:transform .3s var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid)}
 }
 
 /* window image parallax on hover + sheen */
@@ -1482,12 +1482,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         cx=px*MAX; cy=-py*MAX;
         if(!raf) raf=requestAnimationFrame(function(){
           raf=null;
-          if(hovering) card.style.transform='perspective(900px) rotateX('+cy.toFixed(2)+'deg) rotateY('+cx.toFixed(2)+'deg) translateY(-10px) scale(1.02)';
+          if(hovering) card.style.transform='perspective(900px) rotateX('+cy.toFixed(2)+'deg) rotateY('+cx.toFixed(2)+'deg) translateY(-14px) scale(1.03)';
         });
       }
       card.addEventListener('pointerenter',function(){
         hovering=true;
-        card.style.transform='perspective(900px) translateY(-10px) scale(1.02)';
+        card.style.transform='perspective(900px) translateY(-14px) scale(1.03)';
       });
       card.addEventListener('pointermove',onMove);
       card.addEventListener('pointerleave',function(){
