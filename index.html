@@ -24,7 +24,8 @@
   --lift-active:-6px;
   --parallax:6px;
   --shadow-rest:0 1px 2px rgba(20,15,5,.04),0 4px 12px -8px rgba(20,15,5,.12);
-  --shadow-hover:0 2px 4px rgba(20,15,5,.05),0 16px 40px -16px rgba(232,112,40,.22),0 8px 24px -12px rgba(20,15,5,.18);
+  --shadow-hover:0 4px 8px rgba(20,15,5,.06),0 24px 48px -16px rgba(232,112,40,.28),0 16px 40px -12px rgba(20,15,5,.28);
+  --lift:translateY(-10px) scale(1.02);
   --font-display:'Archivo','Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
   --font-serif:'Noto Serif SC',Georgia,'Songti SC',serif;
   --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
@@ -509,8 +510,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 /* ============ Window System ============ */
 /* window title bar — applied to cards that look like digital windows */
 .win{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden;transition:transform var(--t-mid) var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid);transform:translateZ(0);will-change:transform;box-shadow:var(--shadow-rest)}
-.win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(var(--lift));box-shadow:var(--shadow-hover)}
-.win:active{transform:translateY(-2px) scale(.995);transition-duration:var(--t-fast)}
+.win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:var(--lift);box-shadow:var(--shadow-hover)}
+.win:active{transform:translateY(-4px) scale(.99);transition-duration:var(--t-fast)}
 /* corner marks — appear on hover */
 .win::before,.win::after{content:"";position:absolute;z-index:4;width:10px;height:10px;pointer-events:none;opacity:0;transition:opacity var(--t-mid);border-color:var(--accent)}
 .win::before{top:6px;left:6px;border-top:1px solid;border-left:1px solid}
@@ -1477,7 +1478,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         cx=px*MAX; cy=-py*MAX;
         if(!raf) raf=requestAnimationFrame(function(){
           raf=null;
-          if(hovering) card.style.transform='perspective(900px) rotateX('+cy.toFixed(2)+'deg) rotateY('+cx.toFixed(2)+'deg) translateY(var(--lift))';
+          if(hovering) card.style.transform='perspective(900px) rotateX('+cy.toFixed(2)+'deg) rotateY('+cx.toFixed(2)+'deg) translateY(-10px) scale(1.02)';
         });
       }
       card.addEventListener('pointerenter',function(){hovering=true;});
