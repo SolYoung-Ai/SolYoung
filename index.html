@@ -473,8 +473,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 /* notes hover — title drifts */
 .note h3{transition:transform .35s var(--ease)}
 .note:hover h3{transform:translateX(6px)}
-.note:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
-.note:active{transform:translateY(-3px) scale(.99)}
+.note:hover{box-shadow:var(--shadow-hover)}
+.note:active{transform:scale(.99)}
 
 /* brand easter egg — one light shift on hover */
 .brand{display:inline-block}
@@ -514,8 +514,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 /* ============ Window System ============ */
 /* window title bar — applied to cards that look like digital windows */
 .win{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden;transition:transform var(--t-mid) var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid);transform:translateZ(0);will-change:transform;box-shadow:var(--shadow-rest)}
-.win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:var(--lift);box-shadow:var(--shadow-hover)}
-.win:active{transform:translateY(-4px) scale(.99);transition-duration:var(--t-fast)}
+.win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-14px) scale(1.03);box-shadow:var(--shadow-hover)}
+.win:active{transform:translateY(-6px) scale(.99);transition-duration:var(--t-fast)}
 /* corner marks — appear on hover */
 .win::before,.win::after{content:"";position:absolute;z-index:4;width:10px;height:10px;pointer-events:none;opacity:0;transition:opacity var(--t-mid);border-color:var(--accent)}
 .win::before{top:6px;left:6px;border-top:1px solid;border-left:1px solid}
