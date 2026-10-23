@@ -23,6 +23,8 @@
   --lift:-4px;
   --lift-active:-6px;
   --parallax:6px;
+  --shadow-rest:0 1px 2px rgba(20,15,5,.04),0 4px 12px -8px rgba(20,15,5,.12);
+  --shadow-hover:0 2px 4px rgba(20,15,5,.05),0 16px 40px -16px rgba(232,112,40,.22),0 8px 24px -12px rgba(20,15,5,.18);
   --font-display:'Archivo','Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
   --font-serif:'Noto Serif SC',Georgia,'Songti SC',serif;
   --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
@@ -402,6 +404,7 @@ section{position:relative}
 .socials{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:44px}
 .socials a,.socials button{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.06em;border:1px solid var(--line);border-radius:100px;padding:12px 24px;transition:all .3s}
 .socials a:hover,.socials button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.socials a:active,.socials button:active{transform:translateY(0) scale(.97)}
 .socials svg{width:16px;height:16px}
 .socials button img{width:16px;height:16px;border-radius:4px;display:inline-block}
 
@@ -500,9 +503,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
 /* ============ Window System ============ */
 /* window title bar — applied to cards that look like digital windows */
-.win{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden;transition:transform var(--t-mid) var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid);transform:translateZ(0);will-change:transform}
-.win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(var(--lift));box-shadow:var(--shadow)}
-.win:active{transform:translateY(-2px);transition-duration:var(--t-fast)}
+.win{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden;transition:transform var(--t-mid) var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid);transform:translateZ(0);will-change:transform;box-shadow:var(--shadow-rest)}
+.win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(var(--lift));box-shadow:var(--shadow-hover)}
+.win:active{transform:translateY(-2px) scale(.995);transition-duration:var(--t-fast)}
+/* corner marks — appear on hover */
+.win::before,.win::after{content:"";position:absolute;z-index:4;width:10px;height:10px;pointer-events:none;opacity:0;transition:opacity var(--t-mid);border-color:var(--accent)}
+.win::before{top:6px;left:6px;border-top:1px solid;border-left:1px solid}
+.win::after{bottom:6px;right:6px;border-bottom:1px solid;border-right:1px solid}
+.win:hover::before,.win:hover::after{opacity:1}
 .win-bar{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--line-soft);background:color-mix(in srgb,var(--card) 92%,var(--ink) 8%);flex-shrink:0;user-select:none}
 .win-dots{display:flex;gap:5px;flex-shrink:0}
 .win-dots i{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);opacity:.5;transition:all var(--t-fast);display:block}
@@ -521,12 +529,21 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .win-row{display:contents}
 @media(hover:hover){
   .cview-wrap:has(.win:hover) .win:not(:hover){transform:translateY(2px);opacity:.85}
+/* stagger social cards in */
+.cview-wrap .win{animation:cardIn .7s var(--ease-out) both}
+.cview-wrap .win:nth-child(2){animation-delay:.08s}
+.cview-wrap .win:nth-child(3){animation-delay:.16s}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+/* JS-driven tilt (transform set inline); reset when class absent */
+.win.tilt-ready{transition:transform .15s var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid)}
 }
 
-/* window image parallax on hover */
+/* window image parallax on hover + sheen */
 .win-img{position:relative;overflow:hidden}
 .win-img img{transition:transform var(--t-slow) var(--ease-out);will-change:transform}
 .win:hover .win-img img{transform:scale(1.05)}
+.win-img::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.14) 48%,rgba(255,255,255,.05) 52%,transparent 70%);transform:translateX(-120%);transition:transform .9s var(--ease-out);pointer-events:none;z-index:2}
+.win:hover .win-img::after{transform:translateX(120%)}
 
 /* window open hint */
 .win-open{font-family:var(--font-display);font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity var(--t-fast),transform var(--t-fast) var(--ease-out);flex-shrink:0}
@@ -614,6 +631,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .quicknav{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,20px)}
 .qn{display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);border-radius:10px;padding:clamp(18px,2.4vw,26px);background:transparent;transition:border-color .3s var(--ease),transform .3s var(--ease),background .3s var(--ease)}
 .qn:hover{border-color:var(--accent);transform:translateY(-3px)}
+.qn:active{transform:translateY(-1px) scale(.99)}
 .qn-num{font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-faint)}
 .qn-name{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,2vw,22px);color:var(--ink)}
 .qn-name .qn-en{color:var(--accent);margin-left:7px;font-weight:500;font-size:.78em;letter-spacing:.04em}
@@ -791,7 +809,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
     <div class="proj-group-title" data-i18n="digi-title" style="margin-top:clamp(36px,5vw,56px)">数字产品 <span class="en">DIGITAL PRODUCTS</span></div>
 
-    <div class="win studio-entry rv" style="margin-top:0">
+    <div class="win studio-entry rv rv-d1" style="margin-top:0">
       <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
         <span class="win-title">SolHub</span>
         <span class="win-state live">LIVE</span>
@@ -806,7 +824,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       </a>
     </div>
 
-    <div class="win studio-entry rv" style="margin-top:16px">
+    <div class="win studio-entry rv rv-d2" style="margin-top:16px">
       <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
         <span class="win-title">SolYoung Studio</span>
         <span class="win-state live">LIVE</span>
@@ -834,7 +852,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     </a>
     -->
 
-    <div class="win gh-card rv" style="margin-top:16px">
+    <div class="win gh-card rv rv-d3" style="margin-top:16px">
       <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
         <span class="win-title">GitHub Activity</span>
         <span class="win-state">@SolYoung-Ai</span>
@@ -1436,6 +1454,61 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       .then(function(d){ renderNotes(d.filter(function(x){ return x.published; })); })
       .catch(function(){ notesList.innerHTML = '<p class="muted">文章需要在线访问加载。</p>'; });
   }
+})();
+// ---- Card tilt (desktop, pointer, reduced-motion aware) ----
+(function(){
+  var isTouch=('ontouchstart' in window)||(navigator.maxTouchPoints&&navigator.maxTouchPoints>0);
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(isTouch||reduce) return;
+  var MAX=2.6;
+  function initTilt(){
+    document.querySelectorAll('.win').forEach(function(card){
+      if(card.__tiltInit) return;
+      card.__tiltInit=true;
+      card.classList.add('tilt-ready');
+      var raf=null,cx=0,cy=0,hovering=false;
+      function onMove(e){
+        var r=card.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-0.5;
+        var py=(e.clientY-r.top)/r.height-0.5;
+        cx=px*MAX; cy=-py*MAX;
+        if(!raf) raf=requestAnimationFrame(function(){
+          raf=null;
+          if(hovering) card.style.transform='perspective(900px) rotateX('+cy.toFixed(2)+'deg) rotateY('+cx.toFixed(2)+'deg) translateY(var(--lift))';
+        });
+      }
+      card.addEventListener('pointerenter',function(){hovering=true;});
+      card.addEventListener('pointermove',onMove);
+      card.addEventListener('pointerleave',function(){
+        hovering=false;
+        if(raf){cancelAnimationFrame(raf);raf=null;}
+        card.style.transform='';
+      });
+    });
+  }
+  initTilt();
+  setTimeout(initTilt,0); // catch JS-rendered cards
+})();
+// ---- Easter egg: click logo 5 times → console message + subtle badge ----
+(function(){
+  var logo=document.querySelector('.brand');
+  if(!logo) return;
+  var n=0,t;
+  logo.style.cursor='pointer';
+  logo.addEventListener('click',function(){
+    n++;clearTimeout(t);
+    t=setTimeout(function(){n=0;},1200);
+    if(n>=5){
+      n=0;
+      console.log('%c🎮 欢迎来到 SolYoung 的世界。把人生，当成一场游戏来经营。','color:#E87028;font-size:14px;font-weight:bold');
+      var badge=document.createElement('div');
+      badge.textContent='PLAYER 1';
+      badge.style.cssText='position:fixed;bottom:24px;left:24px;z-index:300;font-family:Archivo,sans-serif;font-size:10px;letter-spacing:.18em;font-weight:700;color:#E87028;border:1px solid #E87028;padding:6px 12px;border-radius:2px;background:rgba(250,247,240,.9);backdrop-filter:blur(6px);opacity:0;transition:opacity .4s,transform .4s;transform:translateY(8px)';
+      document.body.appendChild(badge);
+      requestAnimationFrame(function(){badge.style.opacity='1';badge.style.transform='none';});
+      setTimeout(function(){badge.style.opacity='0';badge.style.transform='translateY(8px)';setTimeout(function(){badge.remove();},500);},2600);
+    }
+  });
 })();
 // ---- ARCHIVE ENTRY intro (brand entry interaction) ----
 (function(){
