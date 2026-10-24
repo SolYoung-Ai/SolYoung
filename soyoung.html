@@ -516,6 +516,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .win{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden;transition:transform var(--t-mid) var(--ease-out),box-shadow var(--t-mid),border-color var(--t-mid);transform:translateZ(0);will-change:transform;box-shadow:var(--shadow-rest)}
 .win:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-14px) scale(1.03);box-shadow:var(--shadow-hover)}
 .win:active{transform:translateY(-6px) scale(.99);transition-duration:var(--t-fast)}
+/* 数字产品区跳转卡：只保留微微抽拉感（小幅上浮，无放大无倾斜，阴影更轻） */
+.studio-entry:hover,.gh-card:hover{transform:translateY(-3px);box-shadow:0 4px 10px -6px rgba(20,15,5,.2),0 12px 24px -12px rgba(232,112,40,.28)}
 /* corner marks — appear on hover */
 .win::before,.win::after{content:"";position:absolute;z-index:4;width:10px;height:10px;pointer-events:none;opacity:0;transition:opacity var(--t-mid);border-color:var(--accent)}
 .win::before{top:6px;left:6px;border-top:1px solid;border-left:1px solid}
@@ -1470,7 +1472,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   if(isTouch||reduce) return;
   var MAX=2.6;
   function initTilt(){
-    document.querySelectorAll('.win:not(.note)').forEach(function(card){
+    document.querySelectorAll('.win:not(.note):not(.studio-entry):not(.gh-card)').forEach(function(card){
       if(card.__tiltInit) return;
       card.__tiltInit=true;
       card.classList.add('tilt-ready');
