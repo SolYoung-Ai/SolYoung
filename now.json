@@ -1,5 +1,68 @@
 [
   {
+    "id": "major-2026-10-24-1215-fa21d3",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：社交卡CSS纯浮起14px+思考卡去除上浮避免标题被裁剪",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-ef9837",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：加大卡片悬停浮起幅度 14px+3%放大+深阴影",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-3f03cb",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：SolYoung卡排首位+修复悬停浮起即时生效",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-068d8d",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：SolYoung社交卡新增X(twitter)跳转入口",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-193472",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：卡片悬停抽出来效果 加大浮起与放大",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-c2d95d",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：主标题字母悬停弹性跳动",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-8f7e1e",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：卡片动效精细化 角标/光泽/3D倾斜/错峰入场/彩蛋",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-5c92bc",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：品牌Slogan更新 把人生当成一场游戏来经营",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-89cc23",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：数字档案室2.0 项目窗口系统+整站动效升级",
+    "published": true
+  },
+  {
     "id": "manual-202610232252",
     "date": "2026-10-23T22:52:24+08:00",
     "type": "build",
