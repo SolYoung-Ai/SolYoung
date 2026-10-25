@@ -1,5 +1,82 @@
 [
   {
+    "id": "major-2026-10-25-2059-bb7e53",
+    "date": "2026-10-25T20:59:57+08:00",
+    "type": "build",
+    "content": "主站：NOW 页顶部导航新增「X 实时推文」跳转按钮",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-2055-a7130c",
+    "date": "2026-10-25T20:55:41+08:00",
+    "type": "build",
+    "content": "主站：顶部 X 推广条改为每次访问都显示，关闭仅对当前页面生效",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1948-b93419",
+    "date": "2026-10-25T19:48:01+08:00",
+    "type": "build",
+    "content": "主站：移除页脚访问量统计，页面更简洁",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1926-cd63fc",
+    "date": "2026-10-25T19:26:13+08:00",
+    "type": "build",
+    "content": "主站：顶部新增 X 推广条（黑底 Twitter 风），关注 @SolYoungA 实时记录开发过程",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-25-xinsight",
+    "date": "2026-10-25T18:20:46+08:00",
+    "type": "BUILD",
+    "content": "Xinsight 上新：X 账号运营数据体检工具 —— 本地导入 CSV、透明计算，总览/内容/趋势/发帖/诊断/报告/数据七模块，站点 x.insight.solyoung.top",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1737-5dbea2",
+    "date": "2026-10-25T17:37:51+08:00",
+    "type": "build",
+    "content": "SolHub：收录 Xinsight、SolClip、OFX Atlas 三个自研产品为已核验产品",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1427-9b2864",
+    "date": "2026-10-25T14:27:37+08:00",
+    "type": "build",
+    "content": "Studio：首页重构 —— Selected Works 改为 SolHub 收录入口，主推产品外链跳转",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-25-verity2",
+    "date": "2026-10-25T02:36:23+08:00",
+    "type": "BUILD",
+    "content": "Verity 2.0 上线：深色模式、统一测试卡片与作答流程，新增财务自由规划器（12 模块引擎 + 7 步向导 + ECharts 资产曲线）",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-25-solclip",
+    "date": "2026-10-25T01:10:33+08:00",
+    "type": "BUILD",
+    "content": "SolClip 上新（原 ClipText）：多平台短视频解析与文案提取，品牌更名 SolClip，支持抖音/B 站，一键提取口播文案，默认公网后端开箱即用",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1438-ec2feb",
+    "date": "2026-10-24T14:38:17+08:00",
+    "type": "build",
+    "content": "主站：卡片悬停动效统一为微微抽拉感（3px 上浮），去除 14px 放大与 3D 倾斜（社交媒体/数字产品/思考卡）",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-22-ofxatlas",
+    "date": "2026-10-22T12:04:05+08:00",
+    "type": "BUILD",
+    "content": "OFX Atlas 上新：OFX 插件兼容性数据库与工具站，收录 35+ 款插件，全站中英双语 + 深色模式",
+    "published": true
+  },
+  {
     "id": "major-2026-10-24-1215-fa21d3",
     "date": "2026-10-24T12:15:14+08:00",
     "type": "build",
