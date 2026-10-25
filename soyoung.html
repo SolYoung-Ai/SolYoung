@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="light">
 <head>
-<script>if(localStorage.getItem('xbar-closed')==='1'){document.documentElement.className+=' xbar-closed'}</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SolYoung — 把人生，当成一场游戏来经营</title>
@@ -1049,23 +1048,17 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     syncIcons();
   });
 
-  // X promo bar — dismiss and remember
+  // X promo bar — always show on every visit; close only hides for the current view
   (function(){
     var bar = document.getElementById('xbar');
     var closeBtn = document.getElementById('xbarClose');
     if(!bar) return;
-    if(localStorage.getItem('xbar-closed') === '1'){
-      bar.classList.add('hide');
-      document.documentElement.classList.add('xbar-closed');
-    } else {
-      document.body.classList.add('xbar-open');
-    }
+    document.body.classList.add('xbar-open');
     if(closeBtn){
       closeBtn.addEventListener('click', function(){
         bar.classList.add('hide');
         document.body.classList.remove('xbar-open');
         document.documentElement.classList.add('xbar-closed');
-        localStorage.setItem('xbar-closed','1');
       });
     }
   })();

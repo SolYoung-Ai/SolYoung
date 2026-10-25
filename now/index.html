@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<script>if(localStorage.getItem('xbar-closed')==='1'){document.documentElement.className+=' xbar-closed'}</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOW — SolYoung</title>
@@ -104,10 +103,9 @@ html.xbar-closed .xbar{display:none}
   var bar=document.getElementById('xbar');
   var closeBtn=document.getElementById('xbarClose');
   if(!bar)return;
-  if(localStorage.getItem('xbar-closed')==='1'){bar.style.display='none';return;}
   if(closeBtn)closeBtn.addEventListener('click',function(){
     bar.style.display='none';
-    localStorage.setItem('xbar-closed','1');
+    document.documentElement.classList.add('xbar-closed');
   });
 })();
 </script>
