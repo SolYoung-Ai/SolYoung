@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script>if(localStorage.getItem('xbar-closed')==='1'){document.documentElement.className+=' xbar-closed'}</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOW — SolYoung</title>
@@ -25,7 +26,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .container{max-width:760px;margin:0 auto;padding:0 24px}
-.hd{position:sticky;top:0;z-index:50;background:rgba(244,240,231,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{position:sticky;top:36px;z-index:50;background:rgba(244,240,231,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:top .4s var(--ease)}
+html.xbar-closed .hd{top:0}
 .hd-in{display:flex;align-items:center;justify-content:space-between;height:60px}
 .brand{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-.01em}
 .brand .dot{color:var(--accent)}
@@ -67,11 +69,48 @@ h1 .accent{color:var(--accent)}
 .ft .slogan{font-family:var(--font-serif);font-size:15px;color:var(--ink-soft);margin-bottom:10px}
 .ft .muted{font-size:12px;color:var(--ink-faint)}
 .fail{color:var(--ink-faint);font-size:13px;padding:24px 4px}
+/* X promo bar */
+.xbar{position:fixed;top:0;left:0;right:0;z-index:60;background:#0f1419;color:#e7e9ea;font-size:12.5px;transition:transform .4s var(--ease),opacity .3s}
+.xbar.hide{transform:translateY(-100%);opacity:0;pointer-events:none}
+.xbar-inner{max-width:760px;margin:0 auto;padding:0 24px;height:36px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.xbar-link{display:flex;align-items:center;gap:8px;color:#e7e9ea;text-decoration:none;flex:1;min-width:0;overflow:hidden}
+.xbar-logo{flex-shrink:0;color:#1d9bf0}
+.xbar-avatar{width:20px;height:20px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,.15)}
+.xbar-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.85}
+.xbar-follow{flex-shrink:0;color:#1d9bf0;font-weight:600;white-space:nowrap}
+.xbar-close{flex-shrink:0;background:none;border:none;color:#71767b;font-size:18px;cursor:pointer;padding:2px 6px;line-height:1}
+html:not(.xbar-closed) .hd{top:36px}
+html.xbar-closed .xbar{display:none}
+@media(max-width:600px){.xbar-text,.xbar-follow{display:none}}
 @media(max-width:720px){.hero{padding:56px 0 0}.now-body{font-size:15px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.now-item{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+
+<div class="xbar" id="xbar">
+  <div class="xbar-inner">
+    <a href="https://x.com/SolYoungA" target="_blank" rel="noopener" class="xbar-link">
+      <svg class="xbar-logo" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <img class="xbar-avatar" src="../assets/avatar.webp" alt="@SolYoungA" width="20" height="20">
+      <span class="xbar-text">在 X 上关注 @SolYoungA，实时记录开发过程</span>
+      <span class="xbar-follow">关注 →</span>
+    </a>
+    <button class="xbar-close" id="xbarClose" aria-label="关闭">&times;</button>
+  </div>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('xbar');
+  var closeBtn=document.getElementById('xbarClose');
+  if(!bar)return;
+  if(localStorage.getItem('xbar-closed')==='1'){bar.style.display='none';return;}
+  if(closeBtn)closeBtn.addEventListener('click',function(){
+    bar.style.display='none';
+    localStorage.setItem('xbar-closed','1');
+  });
+})();
+</script>
 
 <header class="hd">
   <div class="container hd-in">
