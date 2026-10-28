@@ -705,17 +705,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   .archive-intro{transition:opacity .3s ease}
 }
 .portrait-wrap{cursor:pointer}
-
-/* ============ Pixel cursor (custom) ============ */
-html.pxc-active,html.pxc-active *{cursor:none!important}
-.pxc{position:fixed;left:0;top:0;z-index:9999999;pointer-events:none;opacity:0;will-change:transform}
-.pxc svg{position:absolute;left:0;top:0;width:22px;height:22px;max-width:none;shape-rendering:crispEdges;display:block;transition:transform .12s cubic-bezier(.22,1,.36,1),opacity .15s}
-.pxc .pxc-arrow{fill:var(--ink);stroke:var(--accent);stroke-width:1}
-.pxc .pxc-hand{fill:var(--ink);stroke:var(--accent);stroke-width:1;opacity:0}
-.pxc.is-hand .pxc-arrow{opacity:0}
-.pxc.is-hand .pxc-hand{opacity:1}
-.pxc.is-down svg{transform:scale(.8)}
-
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 </head>
@@ -1860,38 +1849,5 @@ html.pxc-active,html.pxc-active *{cursor:none!important}
 // ---- SolYoung Studio / SolHub entries are static, URLs hardcoded in HTML ----
 
 </script>
-
-
-<script>
-// ---- pixel cursor: follow + hover hand + click squash ----
-(function(){
-  if(!window.matchMedia) return;
-  if(!window.matchMedia('(pointer: fine)').matches) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var cur=document.createElement('div');
-  cur.className='pxc';
-  cur.innerHTML='<svg class="pxc-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 0 L16 5.5 L10 7.5 L13.5 15 L10 16.5 L6.5 9 L2 12 Z"/></svg>'
-    +'<svg class="pxc-hand" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 7 V3 H7 V7 H9 V1 H11 V7 H13 V2.5 H15 V9 C15 11.8 13 15.5 9.5 15.5 H7 C5 15.5 4 14 3.8 12 L3.6 10.5 C3.5 9.3 4 8.2 5 7.6 Z"/></svg>';
-  document.body.appendChild(cur);
-  var x=0,y=0,tx=0,ty=0,on=false;
-  function move(){
-    x+=(tx-x)*0.42; y+=(ty-y)*0.42;
-    cur.style.transform='translate3d('+x+'px,'+y+'px,0)';
-    requestAnimationFrame(move);
-  }
-  function show(){ if(!on){x=tx;y=ty;on=true;cur.style.opacity='1';} }
-  document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;show();});
-  document.documentElement.addEventListener('mouseleave',function(){on=false;cur.style.opacity='0';});
-  document.documentElement.addEventListener('mouseenter',function(e){tx=e.clientX;ty=e.clientY;show();});
-  requestAnimationFrame(move);
-  document.documentElement.classList.add('pxc-active');
-  var sel='a,button,[role="button"],input,textarea,select,label,[onclick]';
-  document.addEventListener('mouseover',function(e){ if(e.target&&e.target.closest&&e.target.closest(sel)) cur.classList.add('is-hand'); });
-  document.addEventListener('mouseout',function(e){ if(e.target&&e.target.closest&&e.target.closest(sel)) cur.classList.remove('is-hand'); });
-  document.addEventListener('mousedown',function(){cur.classList.add('is-down');});
-  document.addEventListener('mouseup',function(){cur.classList.remove('is-down');});
-})();
-</script>
-
 </body>
 </html>
