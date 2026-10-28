@@ -709,7 +709,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 /* ============ Pixel cursor (custom) ============ */
 html.pxc-active,html.pxc-active *{cursor:none!important}
 .pxc{position:fixed;left:0;top:0;z-index:9999999;pointer-events:none;opacity:0;will-change:transform}
-.pxc svg{position:absolute;left:0;top:0;width:22px;height:22px;shape-rendering:crispEdges;display:block;transition:transform .12s cubic-bezier(.22,1,.36,1),opacity .15s}
+.pxc svg{position:absolute;left:0;top:0;width:22px;height:22px;max-width:none;shape-rendering:crispEdges;display:block;transition:transform .12s cubic-bezier(.22,1,.36,1),opacity .15s}
 .pxc .pxc-arrow{fill:var(--ink);stroke:var(--accent);stroke-width:1}
 .pxc .pxc-hand{fill:var(--ink);stroke:var(--accent);stroke-width:1;opacity:0}
 .pxc.is-hand .pxc-arrow{opacity:0}
