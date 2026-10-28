@@ -1,5 +1,21 @@
 [
   {
+    "id": "major-2026-10-29-0203-bff1b5",
+    "date": "2026-10-29T02:03:50+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上线邮箱账号体系——支持邮箱注册/登录，登录后右上角头像进入个人中心，可编辑、删除自己收录的产品，投稿自动归到个人名下；未登录仍保留邮件投稿通道，登录状态保持 30 天",
+    "content_en": "SolHub: email accounts are live — sign up / sign in with email, then open your profile from the avatar to edit or remove your listed products; submissions are tied to your account automatically, guest email submissions still work, and sessions last 30 days",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-29-0203-a547fd",
+    "date": "2026-10-29T02:03:50+08:00",
+    "type": "BUILD",
+    "content": "主站：卡片标题栏去掉三个纯装饰小圆点，标题区更干净",
+    "content_en": "Main site: removed the three decorative dots from card title bars for a cleaner heading area",
+    "published": true
+  },
+  {
     "id": "major-2026-10-25-2059-bb7e53",
     "date": "2026-10-25T20:59:57+08:00",
     "type": "build",
