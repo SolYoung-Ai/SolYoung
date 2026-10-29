@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-10-29-1200-48b8e2",
+    "date": "2026-10-29T12:03:30+08:00",
+    "type": "BUILD",
+    "content": "SolHub：部署链路迁移过渡——后端与前端回退地址临时切换到 workers.dev，主域名访问异常时服务仍可正常使用，待 DNS 迁移完成后恢复自定义域名",
+    "content_en": "SolHub: deployment migration transition — backend and frontend fallback temporarily switched to workers.dev, so the service stays reachable even if the main domain has issues; the custom domain will be restored after the DNS migration completes",
+    "published": true
+  },
+  {
     "id": "major-2026-10-29-0203-bff1b5",
     "date": "2026-10-29T02:03:50+08:00",
     "type": "BUILD",
