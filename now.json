@@ -1,5 +1,37 @@
 [
   {
+    "id": "major-2026-10-30-1350-88277d",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：登录体验重做——上线独立登录页（中英双语，支持登录后跳回原页面、密码随时可见切换），登录方式统一为邮箱账号并移除 GitHub 登录入口；登录服务同步迁移到自有域名，登录更稳定",
+    "content_en": "SolHub: login rebuilt — a dedicated sign-in page (zh/en) with redirect-back after login and a show/hide password toggle; sign-in is now email-only and the GitHub login entry is gone; the auth service also moved to its own domain for a more stable login",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-30-1350-5ccf95",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：个人主页改版为 X 风格——顶部封面横幅、点击即可上传的大头像（自动裁剪压缩到 256px），昵称、简介、位置、个人网站都能自己改；页头头像新增下拉菜单，直达「我的账户 / 退出登录」",
+    "content_en": "SolHub: profile page redesigned in X style — cover banner, click-to-upload large avatar (auto-cropped to 256px), and editable name, bio, location and website; the header avatar now opens a dropdown for My account / Log out",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-30-1350-7dd5c8",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：投稿流程升级——投稿页新增登录引导横幅与收录标准自查，登录后可一键发布；社区投稿改为自动发布，提交后即刻上线，不再需要人工审核",
+    "content_en": "SolHub: submission flow upgraded — the submit page now has a sign-in banner and a listing-criteria checklist, with one-click publishing once signed in; community submissions auto-publish and go live immediately without manual review",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-30-1350-6fafe9",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：修复社区内容中的中文乱码（后端读取数据统一按 UTF-8 解码），并修复小屏设备上登录弹窗邮箱输入框被裁切、无法填写的问题",
+    "content_en": "SolHub: fixed garbled Chinese text in community content (backend now decodes data as UTF-8), and fixed the email field being clipped and unusable in the login dialog on short screens",
+    "published": true
+  },
+  {
     "id": "major-2026-10-29-1200-48b8e2",
     "date": "2026-10-29T12:03:30+08:00",
     "type": "BUILD",
