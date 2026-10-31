@@ -127,7 +127,7 @@ html.xbar-closed .nav{top:0}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--accent);transition:width .35s var(--ease)}
 .nav-links a:hover::after{width:100%}
 .nav-right{display:flex;align-items:center;gap:14px}
-.theme-btn{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--ink-soft);transition:all .3s}
+.theme-btn{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--bg);color:var(--ink-soft);transition:all .3s}
 .lang-btn{font-family:var(--font-display);font-size:11px;letter-spacing:.05em;color:var(--ink-soft)}
 .theme-btn:hover{color:var(--accent);border-color:var(--accent)}
 .theme-btn svg{width:15px;height:15px}
@@ -175,6 +175,47 @@ html.xbar-closed .nav{top:0}
 
 /* hero portrait */
 .hero-visual{position:relative}
+
+/* ============ Hero badge — 悬挂工牌（物理绳索） ============ */
+:root{--strap:#3B352B;--strap-hi:rgba(255,255,255,.22);--holder:rgba(252,250,245,.93);--bw:404px}
+:root[data-theme="dark"]{--strap:#79705F;--strap-hi:rgba(255,255,255,.13);--holder:rgba(45,40,33,.95)}
+.badge-stage{position:relative;width:100%;max-width:var(--bw);margin:0 auto;height:512px;transform:translateX(-14px);pointer-events:none;--rise:430px;--anch:76px}
+.badge-ropes{position:absolute;left:-260px;top:-760px;width:920px;height:1400px;max-width:none;overflow:visible;pointer-events:none}
+.badge-rope{fill:none;stroke:var(--strap);stroke-width:12;stroke-linecap:round}
+.badge-rope-hi{fill:none;stroke:var(--strap-hi);stroke-width:1.8;stroke-linecap:round}
+.badge-card{position:absolute;left:0;top:0;width:100%;pointer-events:auto;cursor:grab;touch-action:pan-y;
+  will-change:transform;transform-origin:50% 50%;opacity:0;animation:badgeIn .9s var(--ease) .25s forwards;
+  background:linear-gradient(158deg,var(--holder),color-mix(in srgb,var(--bg-soft) 94%,transparent));
+  border:1px solid var(--line);border-radius:18px;padding:13px;
+  box-shadow:0 1px 1px rgba(20,15,5,.05),0 7px 14px -9px rgba(20,15,5,.16),5px 28px 52px -26px rgba(20,15,5,.3),9px 58px 104px -48px rgba(20,15,5,.32),inset 0 1px 0 rgba(255,255,255,.6);
+  transition:box-shadow .5s var(--ease)}
+@keyframes badgeIn{from{opacity:0}to{opacity:1}}
+.badge-card:active{cursor:grabbing}
+.badge-card:hover{box-shadow:0 1px 1px rgba(20,15,5,.06),0 9px 18px -9px rgba(20,15,5,.2),6px 34px 58px -26px rgba(20,15,5,.36),11px 68px 116px -48px rgba(20,15,5,.36),inset 0 1px 0 rgba(255,255,255,.6)}
+:root[data-theme="dark"] .badge-card{box-shadow:0 1px 1px rgba(0,0,0,.4),0 6px 12px -8px rgba(0,0,0,.5),8px 30px 56px -26px rgba(0,0,0,.6),12px 56px 96px -44px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05)}
+:root[data-theme="dark"] .badge-card:hover{box-shadow:0 1px 1px rgba(0,0,0,.45),0 8px 16px -8px rgba(0,0,0,.55),10px 36px 62px -26px rgba(0,0,0,.66),16px 64px 108px -44px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05)}
+.badge-face{position:relative;border-radius:10px;background:var(--card);border:1px solid var(--line-soft,rgba(31,27,22,.08));padding:19px 19px 21px}
+.badge-id{display:flex;align-items:baseline;gap:10px;font-family:var(--font-display);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:19px}
+.badge-id b{color:var(--accent);font-weight:700;letter-spacing:.16em;position:relative;padding-left:11px}
+.badge-id b::before{content:"";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.5;transform:translateY(-50%)}
+.badge-photo{position:relative}
+.badge-photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-soft);filter:saturate(.96) contrast(1.02);transition:transform 1.3s var(--ease),filter .5s}
+.badge-photo::after{content:"";position:absolute;inset:-12px;border:1px solid var(--accent);opacity:.5;border-radius:calc(var(--radius) + 6px);pointer-events:none;transition:opacity .5s var(--ease)}
+.badge-card:hover .badge-photo::after{opacity:.85}
+.badge-card:hover .badge-photo img{transform:scale(1.015);filter:saturate(1.02) contrast(1.04)}
+.badge-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:17px}
+.badge-name{font-family:var(--font-serif);font-size:33px;line-height:1;letter-spacing:-.01em;color:var(--ink);font-weight:600}
+.badge-name em{font-style:normal;color:var(--accent)}
+.badge-status{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:8px;letter-spacing:.18em;color:var(--accent);font-weight:700;padding-bottom:3px}
+.badge-status i{width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}
+@media(max-width:960px){
+  .badge-stage{--bw:272px;--rise:188px;--anch:58px;height:392px;transform:none}
+  .badge-face{padding:12px 12px 14px}
+  .badge-name{font-size:23px}
+  .badge-id{font-size:7px;margin-bottom:12px;gap:8px}
+  .badge-foot{margin-top:13px}
+}
+
 .portrait-wrap{position:relative;animation:fadeup 1.2s var(--ease) .3s both}
 @keyframes fadeup{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 .portrait{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--bg-soft)}
@@ -601,8 +642,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 
 /* ============ Responsive ============ */
 @media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:50px}
-  .hero-visual{max-width:440px;margin:0 auto}
+  .hero-grid{grid-template-columns:1fr;gap:78px}
+  .hero-visual{max-width:440px;margin:0 auto;width:100%}
   .exp-feature{grid-template-columns:1fr}
   .notes{gap:16px}
   .about-grid{grid-template-columns:1fr;gap:40px}
@@ -630,6 +671,32 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   .scroll-hint{display:none}
   .portrait-tag{top:-10px;right:-10px}
   .portrait-meta{left:-10px;bottom:-10px}
+}
+
+/* ============ Mobile hero — 工牌挂到右侧 ============ */
+@media(max-width:720px){
+  .hero{min-height:auto;padding-top:110px;padding-bottom:150px}
+  .hero-grid{position:relative;display:block}
+  .hero-visual{position:absolute;top:112px;right:6px;width:146px;max-width:none;margin:0}
+  .badge-stage{--bw:146px;--rise:122px;--anch:40px;height:auto;margin:0;transform:none}
+  .badge-card{padding:9px;border-radius:14px;box-shadow:0 1px 1px rgba(20,15,5,.05),0 4px 8px -6px rgba(20,15,5,.2),6px 18px 34px -18px rgba(20,15,5,.42),10px 30px 54px -26px rgba(20,15,5,.3),inset 0 1px 0 rgba(255,255,255,.6)}
+  .badge-face{padding:9px 9px 11px;border-radius:8px}
+  .badge-photo::after{inset:-8px;border-radius:calc(var(--radius) + 4px)}
+  .badge-id{font-size:6px;letter-spacing:.14em;margin-bottom:9px;gap:6px}
+  .badge-id b{padding-left:8px;letter-spacing:.1em}
+  .badge-id b::before{width:3px;height:3px}
+  .badge-foot{margin-top:9px;gap:6px}
+  .badge-name{font-size:17px;letter-spacing:-.02em}
+  .badge-status{font-size:6px;letter-spacing:.1em;gap:4px;padding-bottom:2px}
+  .badge-status i{width:4px;height:4px;box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 16%,transparent)}
+  .badge-rope{stroke-width:7}
+  .badge-rope-hi{stroke-width:1.1;opacity:.55}
+  /* 文案给工牌让出右侧空间 */
+  .hero-index{font-size:9px;letter-spacing:.2em;margin-bottom:20px;padding-right:150px;line-height:1.7}
+  .hero-tags{padding-right:150px;gap:8px 14px;margin-top:22px}
+  .hero-tags span{font-size:11px;letter-spacing:.14em;padding-left:13px}
+  .hero-tags span::before{width:5px;height:5px}
+  .hero-slogan{font-size:16px;margin-top:16px;padding-right:150px;line-height:1.6;text-wrap:balance}
 }
 /* mobile comfort mode — toggled by comfort-btn */
 @media(max-width:720px){
@@ -791,10 +858,24 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <p class="hero-slogan rv in rv-d3" data-i18n="hero-slogan">把人生，当成一场游戏来经营。</p>
     </div>
     <div class="hero-visual">
-      <div class="portrait-wrap">
-        <div class="portrait-frame"></div>
-        <div class="portrait">
-          <img src="assets/avatar.webp" alt="SolYoung 肖像" width="1080" height="1080" fetchpriority="high" srcset="assets/avatar-480.webp 480w, assets/avatar-720.webp 720w, assets/avatar.webp 1080w" sizes="(min-width:768px) 480px, 92vw">
+      <div class="badge-stage" id="badgeStage">
+        <svg class="badge-ropes" id="badgeRopes" viewBox="-260 -760 920 1400" aria-hidden="true" focusable="false">
+          <path class="badge-rope" id="ropeL" d=""></path>
+          <path class="badge-rope" id="ropeR" d=""></path>
+          <path class="badge-rope-hi" id="ropeHiL" d=""></path>
+          <path class="badge-rope-hi" id="ropeHiR" d=""></path>
+        </svg>
+        <div class="badge-card" id="badgeCard" role="img" aria-label="SolYoung 玩家档案工牌，可拖拽">
+          <div class="badge-face">
+            <div class="badge-id"><span>PLAYER ID</span><b data-i18n="badge-label">玩家档案</b></div>
+            <div class="badge-photo">
+              <img src="assets/avatar-480.webp" alt="SolYoung" width="342" height="342" fetchpriority="high">
+            </div>
+            <div class="badge-foot">
+              <div class="badge-name">Sol<em>.</em>Young</div>
+              <div class="badge-status"><i></i><span>ONLINE</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1094,6 +1175,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     'hero-tag3': {zh:'创作', en:'Creating'},
     'hero-tag4': {zh:'实验', en:'Experimenting'},
     'hero-slogan': {zh:'把人生，当成一场游戏来经营。', en:'Playing life as a management game.'},
+    'badge-label': {zh:'玩家档案', en:'Player file'},
     'qn-works': {zh:'作品<span class="qn-en">Works</span>', en:'Works'},
     'qn-now': {zh:'此刻<span class="qn-en">Now</span>', en:'Now'},
     'qn-thoughts': {zh:'思考<span class="qn-en">Thoughts</span>', en:'Thoughts'},
@@ -1845,6 +1927,311 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 })();
 
 
+
+// ---- Hero badge：悬挂工牌（Verlet 质点绳索 + 刚体卡片 + 鼠标风力） ----
+(function(){
+  var stage = document.getElementById('badgeStage');
+  var card = document.getElementById('badgeCard');
+  if(!stage || !card) return;
+  var ropesEl = document.getElementById('badgeRopes');
+  var ropeL = document.getElementById('ropeL');
+  var ropeR = document.getElementById('ropeR');
+  var hiL = document.getElementById('ropeHiL');
+  var hiR = document.getElementById('ropeHiR');
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var W = 0, H = 0;            // 卡片尺寸
+  var halfSeat = 0;            // 挂点距卡片中线的水平距离
+  var ANCH = 96, RISE = 430;   // 锚点：相对中线的水平偏移 / 在卡片顶边上方的距离
+  var SLACK = 1.055;           // 绳长松弛系数（>1 才有下垂与摆动余量）
+  var G = 2400;                // 重力 px/s²
+  var WIND = 1000;             // 悬停时的风力 px/s²（只有指针落在工牌上才启用）
+  var DAMP = 0.988;            // 每子步速度阻尼
+  var SEGS = 15;               // 每条绳的段数
+
+  var ropeA = [], ropeB = [], bottom = null, pts = [];
+  var segLen = 0, triLen = 0;
+
+  var wind = 0, windTarget = 0, pointerX = null, hover = false;
+  var dragging = false, dragDX = 0, dragDY = 0, dragBase = null, startX = 0, startY = 0;
+  var curH = 0, ready = false, stageMidX = 0, cardMidX = 0;
+  var scrollPrev = 0, sv = 0, scrollWind = 0, inertY = 0;   // 滚动惯性
+  var IDLE = 48;                                  // 无交互时的微风：只做轻微摆动
+
+  function mk(x, y, pin, w){ return {x:x, y:y, px:x, py:y, pin:!!pin, w:w||1}; }
+
+  function build(){
+    W = card.offsetWidth;
+    H = card.offsetHeight;
+    if(!W || !H) return;
+    // 锚点/绳长由 CSS 变量按断点控制（--rise 绳长、--anch 挂点半距）
+    var cs = window.getComputedStyle(stage);
+    var rv = parseFloat(cs.getPropertyValue('--rise'));
+    var av = parseFloat(cs.getPropertyValue('--anch'));
+    RISE = rv > 0 ? rv : 430;
+    ANCH = av > 0 ? av : 76;
+    halfSeat = Math.round(W * 0.245);
+
+    var cx = W / 2, topY = 0;
+    var axL = cx - ANCH, axR = cx + ANCH, ay = -RISE;
+    var lx = cx - halfSeat, rx = cx + halfSeat;
+
+    var straight = Math.sqrt((lx - axL) * (lx - axL) + RISE * RISE);
+    var total = straight * SLACK;
+    segLen = total / SEGS;
+
+    ropeA = []; ropeB = [];
+    for(var i = 0; i <= SEGS; i++){
+      var t = i / SEGS;
+      if(i === 0){
+        ropeA.push(mk(axL, ay, true, 0));
+        ropeB.push(mk(axR, ay, true, 0));
+      } else if(i === SEGS){
+        ropeA.push(mk(lx, topY));
+        ropeB.push(mk(rx, topY));
+      } else {
+        ropeA.push(mk(axL + (lx - axL) * t, ay + (topY - ay) * t));
+        ropeB.push(mk(axR + (rx - axR) * t, ay + (topY - ay) * t));
+      }
+    }
+    // 松弛量分摊成下垂弧，初始就带一点自然弯曲
+    var sag = (total - straight) * 0.55;
+    for(var k = 1; k < SEGS; k++){
+      var f = Math.sin(Math.PI * (k / SEGS)) * sag;
+      ropeA[k].y += f; ropeA[k].py += f;
+      ropeB[k].y += f; ropeB[k].py += f;
+    }
+
+    bottom = mk(cx, H, false, 1.4);
+    triLen = Math.sqrt(halfSeat * halfSeat + H * H);
+    // 标记"卡片本体"的三个质点：风直接吃在卡片上，绳子跟着被带弯
+    ropeA[SEGS].card = ropeB[SEGS].card = bottom.card = true;
+    pts = ropeA.concat(ropeB, [bottom]);
+
+    // 预松弛：先把约束收敛到位，再归零速度，避免首帧跳动
+    for(var it = 0; it < 70; it++) solve();
+    for(var q = 0; q < pts.length; q++){ pts[q].px = pts[q].x; pts[q].py = pts[q].y; }
+
+    curH = H;
+    stage.style.height = Math.round(H + (W < 220 ? 14 : 48)) + 'px';
+    fadeTop();
+    measure();
+    render();
+    scrollPrev = window.scrollY; sv = 0; scrollWind = 0; inertY = 0;
+    ready = true;
+  }
+
+  // 绳索顶端渐隐：让绳子看起来是从上方垂下来，而不是凭空断掉
+  // SVG 盒顶 = 卡片顶部上移 760px，故局部坐标 y = 760 - 锚点高度
+  function fadeTop(){
+    if(!ropesEl) return;
+    var top = 760 - RISE;
+    var f0 = top + 4;
+    var f1 = f0 + Math.max(56, RISE * 0.45);
+    var g = 'linear-gradient(to bottom,transparent ' + Math.round(f0) + 'px,#000 ' + Math.round(f1) + 'px)';
+    ropesEl.style.webkitMaskImage = g;
+    ropesEl.style.maskImage = g;
+  }
+
+  function link(a, b, rest, stiff){
+    var dx = b.x - a.x, dy = b.y - a.y;
+    var d = Math.sqrt(dx * dx + dy * dy) || 1e-6;
+    var wa = a.pin ? 0 : a.w, wb = b.pin ? 0 : b.w;
+    var sum = wa + wb;
+    if(sum <= 0) return;
+    var corr = (d - rest) / d * (stiff === undefined ? 1 : stiff) / sum;
+    if(wa){ a.x += dx * corr * wa; a.y += dy * corr * wa; }
+    if(wb){ b.x -= dx * corr * wb; b.y -= dy * corr * wb; }
+  }
+
+  function solve(){
+    for(var i = 0; i < SEGS; i++){
+      link(ropeA[i], ropeA[i + 1], segLen);
+      link(ropeB[i], ropeB[i + 1], segLen);
+    }
+    // 卡片刚性三角：上挂点两点 + 底边中点
+    link(ropeA[SEGS], ropeB[SEGS], halfSeat * 2);
+    link(ropeA[SEGS], bottom, triLen);
+    link(ropeB[SEGS], bottom, triLen);
+  }
+
+  function integrate(){
+    var h = 1 / 120;
+    var h2 = h * h;
+    for(var s = 0; s < 2; s++){
+      for(var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        if(p.pin) continue;
+        if(dragging) continue;          // 拖拽中位置交给指针
+        var vx = (p.x - p.px) * DAMP;
+        var vy = (p.y - p.py) * DAMP;
+        p.px = p.x; p.py = p.y;
+        var fx = p.card ? wind * 3.4 + scrollWind * 1.6 : wind * 0.55;   // 卡片吃大部分风，绳子只做跟随
+        p.x += vx + fx * h2;
+        p.y += vy + (G + inertY) * h2;
+      }
+    }
+  }
+
+  function r1(n){ return Math.round(n * 10) / 10; }
+
+  function pathD(list){
+    var d = 'M' + r1(list[0].x) + ' ' + r1(list[0].y);
+    for(var i = 0; i < list.length - 1; i++){
+      var p0 = list[i - 1] || list[i];
+      var p1 = list[i], p2 = list[i + 1];
+      var p3 = list[i + 2] || p2;
+      var c1x = (p2.x - p0.x) / 6, c1y = (p2.y - p0.y) / 6;
+      var c2x = (p3.x - p1.x) / 6, c2y = (p3.y - p1.y) / 6;
+      var seg = Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y)) * 0.5;
+      var len1 = Math.sqrt(c1x * c1x + c1y * c1y);
+      if(len1 > seg){ c1x *= seg / len1; c1y *= seg / len1; }
+      var len2 = Math.sqrt(c2x * c2x + c2y * c2y);
+      if(len2 > seg){ c2x *= seg / len2; c2y *= seg / len2; }
+      c1x += p1.x; c1y += p1.y; c2x += p2.x; c2y += p2.y;
+      d += 'C' + r1(c1x) + ' ' + r1(c1y) + ' ' + r1(c2x) + ' ' + r1(c2y) + ' ' + r1(p2.x) + ' ' + r1(p2.y);
+    }
+    return d;
+  }
+
+  function render(){
+    var a = ropeA[SEGS], b = ropeB[SEGS];
+    var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+    var ang = Math.atan2(b.y - a.y, b.x - a.x);
+    var cx = mx - Math.sin(ang) * H / 2;
+    var cy = my + Math.cos(ang) * H / 2;
+    card.style.transform = 'translate3d(' + r1(cx - W / 2) + 'px,' + r1(cy - H / 2) + 'px,0) rotate(' + (ang * 180 / Math.PI).toFixed(2) + 'deg)';
+    cardMidX = stageMidX + (cx - W / 2);
+
+    var dA = pathD(ropeA), dB = pathD(ropeB);
+    ropeL.setAttribute('d', dA);
+    ropeR.setAttribute('d', dB);
+    hiL.setAttribute('d', dA);
+    hiR.setAttribute('d', dB);
+  }
+
+  function measure(){
+    var r = stage.getBoundingClientRect();
+    stageMidX = r.left + r.width / 2;
+  }
+
+  function frame(){
+    requestAnimationFrame(frame);
+    if(!ready) return;
+
+    var now = Date.now();
+
+    // 滚动惯性：绳子把卡片吊住了，纵向几乎动不了，所以把滚动速度的"突变"
+    // 换算成横向冲击——开始滚时甩出去，停下时回弹，匀速滚动时归零
+    var sy = window.scrollY;
+    var rawV = (sy - scrollPrev) * 60;      // px/s（按 60fps 估计）
+    scrollPrev = sy;
+    var sAcc = (rawV - sv) * 60;            // px/s²：开始滚为正，停下为负
+    sv = rawV;
+    var swT = -sAcc * 0.024 - rawV * 0.26;   // 加速度=甩动，速度=匀速滚动时的轻微跟随
+    if(swT > 1200) swT = 1200; else if(swT < -1200) swT = -1200;
+    scrollWind += (swT - scrollWind) * 0.5;
+    // 纵向只留一点牵引感（绳子接近绷直，位移很小）
+    var iT = -sAcc * 0.004;
+    if(iT > 320) iT = 320; else if(iT < -320) iT = -320;
+    inertY += (iT - inertY) * 0.3;
+
+    if(hover && pointerX !== null && !dragging){
+      // 指针落在工牌上：方向 = 指针相对卡片中心的偏移，越靠边推力越明显
+      var nd = (pointerX - cardMidX) / (W * 0.55);
+      nd = nd < -1 ? -1 : (nd > 1 ? 1 : nd);
+      windTarget = nd * WIND;
+    } else {
+      // 指针在别处：只剩空气里的一点点流动
+      windTarget = Math.sin(now * 0.00072) * IDLE + Math.sin(now * 0.0021 + 1.3) * IDLE * 0.3;
+    }
+    wind += (windTarget - wind) * (hover ? 0.15 : 0.09);
+
+    if(dragging && dragBase){
+      for(var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        if(p.pin) continue;
+        p.px = p.x; p.py = p.y;
+        p.x = dragBase[i].x + dragDX;
+        p.y = dragBase[i].y + dragDY;
+      }
+    } else {
+      integrate();
+    }
+    for(var k = 0; k < 12; k++) solve();
+    render();
+  }
+
+  window.addEventListener('pointermove', function(e){
+    if(e.pointerType === 'touch') return;
+    pointerX = e.clientX;
+  }, {passive:true});
+
+  // 只有指针真的落在工牌上才进入"强交互"状态
+  card.addEventListener('pointerenter', function(e){
+    hover = true;
+    if(e.clientX !== undefined) pointerX = e.clientX;
+  });
+  card.addEventListener('pointerleave', function(){ hover = false; });
+
+  window.addEventListener('pointerleave', function(){ pointerX = null; }, {passive:true});
+
+  card.addEventListener('pointerdown', function(e){
+    if(reduce) return;
+    dragging = true;
+    startX = e.clientX; startY = e.clientY;
+    dragDX = 0; dragDY = 0;
+    dragBase = pts.map(function(p){ return {x:p.x, y:p.y}; });
+    if(card.setPointerCapture) card.setPointerCapture(e.pointerId);
+  });
+
+  card.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    // 位移按阻尼缩放并限幅，避免绳子被拉死导致卡片翻转过猛
+    var dx = (e.clientX - startX) * 0.78;
+    var dy = (e.clientY - startY) * 0.5;
+    dragDX = dx < -150 ? -150 : (dx > 150 ? 150 : dx);
+    dragDY = dy < -90 ? -90 : (dy > 90 ? 90 : dy);
+  });
+
+  function endDrag(){ dragging = false; dragBase = null; }
+  card.addEventListener('pointerup', endDrag);
+  card.addEventListener('pointercancel', endDrag);
+  card.addEventListener('lostpointercapture', endDrag);
+
+  // 卡片可用键盘左右推动，保留可访问性
+  card.tabIndex = 0;
+  card.addEventListener('keydown', function(e){
+    if(reduce) return;
+    if(e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
+      e.preventDefault();
+      var sgn = e.key === 'ArrowLeft' ? -1 : 1;
+      for(var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        if(p.pin) continue;
+        p.px = p.x - sgn * 4; p.py = p.y;
+      }
+    }
+  });
+
+  var rt = 0;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ build(); }, 160);
+  }, {passive:true});
+
+  window.addEventListener('scroll', function(){ measure(); }, {passive:true});
+
+  window.addEventListener('load', function(){
+    if(ready && Math.abs(card.offsetHeight - curH) > 4) build();
+  });
+
+  build();
+  if(!reduce){
+    requestAnimationFrame(frame);
+  }
+})();
 
 // ---- SolYoung Studio / SolHub entries are static, URLs hardcoded in HTML ----
 
