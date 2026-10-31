@@ -1,5 +1,29 @@
 [
   {
+    "id": "major-2026-10-31-1203-1b7dd7",
+    "date": "2026-10-31T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上线「世界」社交动态——可以发帖（可附链接）、点赞、评论、分享（复制直达链接）和关注他人，时间线分「最新」与「关注」两条流；站内导航新增「世界」入口，社区从「看作品」变成「聊作品」",
+    "content_en": "SolHub: the World social feed is live — post (with an optional link), like, comment, share via a direct link, and follow other makers, with Latest and Following timelines; a new World entry sits in the site nav, turning the community from browsing products into talking about them",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-31-1203-397e73",
+    "date": "2026-10-31T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：「世界」页升级为 X 式布局——顶栏固定，左上角圆角「+」随手发帖，弹出的居中编辑器支持 ⌘/Ctrl+Enter 直接发布，右侧显示当前账号；点头像或 @用户名即可打开对方公开主页，含封面、简介、位置、网站、加入时间、关注/粉丝/产品数，可一键关注，并在「动态 / 产品」之间切换翻看其作品",
+    "content_en": "SolHub: World redesigned in X style — a sticky top bar with a round + button for quick posting, a centered composer that publishes with Cmd/Ctrl+Enter, and your account chip on the right; tapping any avatar or @handle opens that maker's public profile with cover, bio, location, website, join date, following/follower/product counts, a follow button, and Posts / Products tabs",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-31-1203-509d55",
+    "date": "2026-10-31T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：修正站点 Logo 过大、撑满头部与页脚的问题，统一缩到 28px，顶部导航与页脚更清爽",
+    "content_en": "SolHub: fixed the oversized logo that filled the header and footer — it now sits at 28px, making the top bar and footer noticeably cleaner",
+    "published": true
+  },
+  {
     "id": "major-2026-10-30-1350-88277d",
     "date": "2026-10-30T13:50:26+08:00",
     "type": "BUILD",
