@@ -1,0 +1,1540 @@
+[
+  {
+    "id": "major-2026-11-05-1202-035dbc",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "主站：「思考」正式改名为「博客」，并拆出独立博客页 /blog/——顶部可按「创作 / AI / 记录」筛选，显示文章总数与开始写作的年份，支持中英切换，页尾引导去 X 追更；旧地址 /thoughts/ 依然可用，会自动跳到新页面。",
+    "content_en": "Main site: Thoughts is now Blog, with a standalone page at /blog/ — filter by Making / AI / Notes, see the post count and the year writing began, switch between Chinese and English, and follow updates on X; old /thoughts/ links still work and redirect.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-f8a569",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "SolHub：每位创作者有了独立分享页——/u/<handle> 以及更短的 /@handle 都能直接打开，页面不带全站侧栏，分享出去就是一张干净的个人名片，浏览器标签也会显示创作者名字。",
+    "content_en": "SolHub: every creator now has a standalone share page at /u/<handle>, also reachable via the shorter /@handle. It drops the site-wide sidebar, so a shared link reads like a clean personal card, and the browser tab shows the creator's name.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-b3fd56",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上线全球创作者招募页 /join/（地球仪加代码元素的视觉，可一键生成招募分享卡），关于页与页脚都加了入口，创作者名录右栏也放了招募卡片；顺手修了窄屏下代码块把页面撑出横向滚动的问题。",
+    "content_en": "SolHub: a global creator recruiting page launched at /join/ (globe and code visuals, one-click recruiter share card), linked from the About page, the footer and the Creators directory sidebar; also fixed the code block that pushed the page into horizontal scroll on narrow screens.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-85844f",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "SolHub：提交产品就能自动点亮黄 V——邮箱已验证的用户上传自己的产品后自动获得认证，不必再等人工审核；「我」的页面名字旁也会显示；徽章换成锯齿印章加白勾的形状，更像认证而不是普通标签。",
+    "content_en": "SolHub: submitting a product now lights up the gold V automatically — once your email is verified, uploading your product gets you verified without waiting for manual review; the badge also shows next to your name on the Me page, and the mark became a serrated seal with a white check so it reads as verification rather than a plain tag.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-57d4bf",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "主站：「关于我」抽屉整体换成白底黑字，之前对比度太低、字看不清；里面的 SolHub 卡片也改白底并做成整卡可点，点哪都能进 SolHub；关闭按钮缩小居中，去掉了占位的大标题，还加了中英切换。",
+    "content_en": "Main site: the About drawer now uses dark text on white — the old version had too little contrast to read; the SolHub card inside is white too and fully clickable, the close button is smaller and centered, the oversized title is gone, and a Chinese/English toggle was added.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-07f766",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "主站：开屏左上角只保留「关于我」，与右上角菜单齐平；工牌上补了一句定位语「内容创作｜Ai实践｜个人项目」，首页自我介绍行也收成一句；开屏的姓名每个字母会跟着鼠标轻轻弹动。",
+    "content_en": "Main site: the splash top-left now keeps only About, aligned with the menu on the right; the badge gained a positioning line (Content creation | AI in practice | Personal projects), the homepage intro shrank to a single line, and each letter of the name gently bounces with the cursor.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-37cd50",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "主站：点导航栏的 SolYoung 可以回到开屏——不刷新页面，开屏原样复原，工牌物理重新启动；顶部导航里的「思考」也同步改成了「博客」。",
+    "content_en": "Main site: clicking SolYoung in the nav returns you to the splash without a page reload, restoring it as-is and restarting the badge physics; the nav item Thoughts was renamed Blog as well.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-bb89bc",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "主站：社交入口新增 YouTube，排在 X 之后；站内三处定位文案统一成同一句话，不再各说各的。",
+    "content_en": "Main site: YouTube joined the social links after X, and the three separate positioning lines across the site were unified into one consistent sentence.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-05-1202-e5e390",
+    "date": "2026-11-05T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "SolHub：产品图标缺失时会用兜底样式显示，不再出现破图；产品目录的自动同步也加了防覆盖保护，手工整理的条目不会被同步任务冲掉。",
+    "content_en": "SolHub: missing product icons now fall back to a placeholder instead of a broken image, and the catalog auto-sync is guarded against overwriting hand-curated entries.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-8cc4f4",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "主站：新增开屏动画——悬挂工牌加巨型 Sol Young 姓名，工牌是一套真正的单摆物理（抓哪拽哪、可拽着转身、四个角各有不同手感、松手回弹），首页工牌也换成同款物理并加了悬停微风；开屏里还加了「快速了解」抽屉，一眼看完关于我",
+    "content_en": "Main site: a new splash screen with a hanging ID badge and an oversized Sol Young wordmark. The badge runs a real pendulum simulation — grab it anywhere to drag, twist it by the corner, each corner has its own feel, and it swings back on release. The homepage badge now shares the same physics plus a hover breeze, and the splash adds a Quick intro drawer.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-1851ff",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：「世界」改版为「创作者名录」——发帖功能整体下线，站点收敛成「产品 + 创作者」两个入口；名录显示头像、简介、站点与作品数，支持「全部 / 已认证 / 有作品」筛选与搜索，有作品和已认证的人排在前面",
+    "content_en": "SolHub: World became a Creators directory — posting is retired and the site now has two clear entries: products and creators. Each card shows avatar, bio, site and product count, with All / Verified / Has products filters and search, ranking active and verified creators first.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-1b2405",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：头像加载重构——头像改为可缓存的短链接并从主数据外置，/world 与 /search 接口响应体积缩小 50~100 倍，名录页打开明显变快；同时给创作者名录加分页与缓存，定时任务自动清理过期头像",
+    "content_en": "SolHub: avatars reworked into cacheable short links stored outside the main records, shrinking /world and /search responses by 50–100×; the creators directory gained paging and caching, with a cron job cleaning stale avatar keys.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-e79bf4",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：手机端一批修复——输入框统一 16px 不再被 iOS 聚焦放大，搜索框右侧按钮不再被挤出屏幕，创作者名录的 @handle 换到第二行、名字不再被截断，登录请求也不再被浏览器跨域策略拦截",
+    "content_en": "SolHub: a batch of mobile fixes — 16px inputs so iOS no longer zooms on focus, search buttons no longer pushed off-screen, creator handles moved to a second line so names stop truncating, and auth requests no longer blocked by cross-origin policy.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-0229ac",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：数据每天自动快照到 kv_backup，误删、误改可以回滚找回",
+    "content_en": "SolHub: automatic daily snapshots into kv_backup, so accidental deletions and edits can be rolled back.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-b8d4d3",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：首页搜索改为跳转到产品页并当场展示搜索结果（?q= 关键词），不再随机直接进单个产品",
+    "content_en": "SolHub: homepage search now lands on the products page with results shown inline (?q= keyword) instead of jumping straight into a single random product.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-07f7ad",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：首页副标题改成打字机逐字输出（带光标），速度调快约 2.5 倍，打开基本就读完了；SEO 全文与无 JS 环境仍保留完整文案",
+    "content_en": "SolHub: the hero subtitle now types itself out with a cursor, about 2.5× faster than the first pass; the full text is still there for SEO and no-JS visitors.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-932060",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：认证标识重做——用户认证统一为橙色线描圆徽（弧度修正为正圆），产品卡片改用绿色 Verified 徽章，人与产品一眼分得清",
+    "content_en": "SolHub: verification badges redesigned — user verification is a single orange outline circle (now a true circle), while product cards use a green Verified badge so people and products read differently at a glance.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-5b5389",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：站点评测问题集中修复——canonical 域名指向错误、sitemap 混入私有页、产品页 URL 注入、主页 404 死循环、社区与图标体积过大",
+    "content_en": "SolHub: a sweep of site-audit fixes — wrong canonical domain, private pages leaking into the sitemap, URL injection on product pages, a homepage 404 loop, and oversized community assets and icons.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-04-1202-cdeb1f",
+    "date": "2026-11-04T12:02:43+08:00",
+    "type": "BUILD",
+    "content": "SolHub：页脚瘦身成一行「版权 + 关于」下拉（手机与桌面统一，隐私说明、提交、GitHub、核验入口收进菜单）；个人主页新增一键分享按钮，复制自己的公开主页链接",
+    "content_en": "SolHub: the footer collapsed into one line — copyright plus an About dropdown, unified on mobile and desktop, with privacy, submit, GitHub and verification links tucked inside. Profiles also gained a one-tap share button that copies your public profile URL.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-03-1341-47c56a",
+    "date": "2026-11-03T13:41:46+08:00",
+    "type": "BUILD",
+    "content": "SolHub：登录服务整体迁移到国内节点（CloudBase 上海）——国内访问登录不再超时，个人主页卡死、跨境链路抖动导致的登录失败一并修复",
+    "content_en": "SolHub: migrated the auth service to a China-region node (CloudBase Shanghai) — logins no longer time out from mainland China, and profile-page freezes and login failures from cross-border network jitter are fixed",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-03-1341-0effaf",
+    "date": "2026-11-03T13:41:46+08:00",
+    "type": "BUILD",
+    "content": "SolHub：移动端登录适配——iOS Safari 等浏览器拦截跨站 Cookie 导致无法登录的问题，已改用令牌方式登录，移动端注册、登录、退出全链路修复",
+    "content_en": "SolHub: mobile sign-in fixes — where iOS Safari and other browsers blocked cross-site cookies, sign-in now uses token-based auth; the full register / login / logout flow on mobile is repaired",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-03-1341-270819",
+    "date": "2026-11-03T13:41:46+08:00",
+    "type": "BUILD",
+    "content": "SolHub：全站网络请求补齐超时与自动重试，弱网环境下页面加载与操作更稳定",
+    "content_en": "SolHub: all network requests now have proper timeouts and automatic retries, so the site behaves more reliably on weak connections",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-a36af6",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "SolHub：账号体系升级为邮箱验证码——注册、改邮箱、找回密码全都要收验证码（已打通阿里云 DirectMail 真实发信通道）；对外身份从邮箱改为用户名 @handle，邮箱则改为本人自主决定是否公开，主页上还会带「已验证」标识",
+    "content_en": "SolHub: accounts now run on email verification codes — sign-up, email changes and password recovery all require one (real sending via Alibaba Cloud DirectMail). Your public identity is now a @handle instead of your email, and the email is only shown when you choose to, with a verified badge",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-24fe3d",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "SolHub：导航换成 X 式结构——桌面端左侧三档栏、手机端底部标签栏（发现 / 榜单 / 世界 / 我），下掉独立工具页；「世界」页新增 X 式搜人搜帖，注册开发者与全部帖子都能在服务端一次搜到",
+    "content_en": "SolHub: navigation reworked X-style — a three-tier left rail on desktop and a bottom tab bar on mobile (Discover / Charts / World / Me), with the separate tools page retired. World gains X-style people and post search, querying all registered developers and posts server-side in one go",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-528f6c",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上线管理后台（/guanli）——用户封禁与认证、帖子审核、产品认证可一站处理并带口令锁；同时新产品会自动播报到「世界」，每天还会推一条产品精选",
+    "content_en": "SolHub: a new admin console (/guanli) for bans and verification, post moderation and product certification, protected by a passcode. New products are now auto-announced in World, with a daily featured-product digest",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-3fcadd",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "SolHub：个人主页可以展示「我拥有的产品」——认领产品目录里的作品或社区投稿都会出现在主页与「我的产品」，另新增联系方式栏；不存在的账号直接返回 404，不再生成空白主页",
+    "content_en": "SolHub: profiles can now showcase the products you own — claimed catalog entries and community submissions both appear on your profile and in My Products, plus a new contact row. Nonexistent accounts now return 404 instead of a blank ghost profile",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-74923f",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "SolHub：一批稳定性与安全修复——登录/注册加入限流并做了 SSRF 防护；改密码不再把头像和简介一起覆盖掉；修掉「刚改完资料却显示旧值」的缓存问题，以及手机端世界页标签栏横向溢出、铅笔按钮被裁切",
+    "content_en": "SolHub: a round of stability and security fixes — rate limiting on sign-in/sign-up and SSRF protection; changing your password no longer wipes your avatar and bio; fixed the stale-value cache after profile edits, plus mobile overflow in the World tab bar and a clipped compose button",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-cd8e47",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "OFX Atlas：站点重新定位为「剪映用户的 OFX 插件库」，一次性上新 12 款免费 / 开源 OFX 插件",
+    "content_en": "OFX Atlas: repositioned as the OFX plugin library for CapCut users, launching 12 free and open-source OFX plugins at once",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-cf470e",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "ClipText：转写后端切换到自建实例，默认走 base 模型，并适配免费实例的冷启动与真实转写耗时，出稿更快更稳",
+    "content_en": "ClipText: transcription moved to a self-hosted backend, defaulting to the base model and tuned for cold starts and real-world latency on free instances — faster and steadier output",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-95f7f6",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "Media Parser：默认以纯 API 模式启动，修掉前端解析被 401 拦住的问题；语音转写统一输出简体中文并支持 tiny / base 模型切换，另加预热端点缩短首次等待",
+    "content_en": "Media Parser: now boots in pure-API mode, fixing 401s that blocked front-end parsing; transcription outputs Simplified Chinese consistently, supports tiny/base model switching, and a warm-up endpoint shortens first-run waits",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-02-1203-81cdfe",
+    "date": "2026-11-02T12:03:31+08:00",
+    "type": "BUILD",
+    "content": "CamSim：校准页面数据、提升准确性，并重做首页与新手向导的交互体验",
+    "content_en": "CamSim: tightened page data for accuracy and reworked the home page and onboarding wizard experience",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-ecf707",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：「世界」社区整体换装——采用白底画布主题配橙色签名，信息流改为 X 式通栏排版（1px 分隔线、最新/关注等宽标签、单行帖头、干净的 @用户名），发帖图标换成铅笔，深色主题同步更新，更像一个真正的社交平台",
+    "content_en": "SolHub: World gets a full visual refresh — white-canvas theme with an orange signature, X-style edge-to-edge timeline (1px dividers, equal-width Latest/Following tabs, single-line post header, clean @handle), and a pencil compose icon; dark theme synced for a true social-platform feel",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-e8d7c4",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：官方账号 @solhub 正式入驻「世界」，会自动播报产品上新与更新日志，头像旁带官方认证徽章",
+    "content_en": "SolHub: the official account @solhub has landed in World — it automatically posts product launches and changelogs, complete with a verified badge",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-32bb77",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "ClipText：口播提取升级为三段式链路，绕开视频平台对服务器直接下载的拦截，提取成功率更高",
+    "content_en": "ClipText: transcript extraction upgraded to a three-stage pipeline that bypasses video platforms' server-side download blocking, improving success rates",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-236762",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "主站：首屏头像卡变成了一枚悬挂工牌——V 形挂绳 + 金属扣 + 透明证卡套，鼠标悬停会随风轻摆、滚动时有惯性晃动，还修掉了吊绳每段末端的回勾，绳子不再一节一节",
+    "content_en": "Homepage: the hero avatar card is now a hanging ID badge — V-shaped lanyard with a metal clip and transparent card sleeve; it sways in the breeze on hover and swings with inertia on scroll, and the kinks at the end of each lanyard segment are fixed",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-4038a4",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "Media Parser：修复口播无法转写的问题——固定 Python 3.11 以正确安装 faster-whisper，并按域名匹配 Referer",
+    "content_en": "Media Parser: fixed failed transcriptions — pinned Python 3.11 so faster-whisper installs correctly, with domain-matched Referer headers",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-89685e",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：链接体验修复——填写的个人网址会自动补全 https:// 并跳转到真实站点，投稿产品改为新标签页打开，不再出现站内 404",
+    "content_en": "SolHub: link fixes — user-entered website URLs now get https:// prepended and open the real site, and submitted product links open in a new tab instead of a 404 page",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-8fb538",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "主站：站点 favicon 换成个人头像，浏览器标签页更有辨识度",
+    "content_en": "Homepage: the site favicon is now the personal avatar, easier to spot in browser tabs",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-01-1201-ef156c",
+    "date": "2026-11-01T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：关于页文案重写，移除了 Roadmap 与已知限制章节；头部去掉冗余的投稿按钮；X Account Insight 的产品 Logo 换上新版设计",
+    "content_en": "SolHub: About page copy rewritten (Roadmap and known-limits section removed), the redundant submit button dropped from the header, and the X Account Insight logo updated to the new design",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-31-1203-1b7dd7",
+    "date": "2026-10-31T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上线「世界」社交动态——可以发帖（可附链接）、点赞、评论、分享（复制直达链接）和关注他人，时间线分「最新」与「关注」两条流；站内导航新增「世界」入口，社区从「看作品」变成「聊作品」",
+    "content_en": "SolHub: the World social feed is live — post (with an optional link), like, comment, share via a direct link, and follow other makers, with Latest and Following timelines; a new World entry sits in the site nav, turning the community from browsing products into talking about them",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-31-1203-397e73",
+    "date": "2026-10-31T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：「世界」页升级为 X 式布局——顶栏固定，左上角圆角「+」随手发帖，弹出的居中编辑器支持 ⌘/Ctrl+Enter 直接发布，右侧显示当前账号；点头像或 @用户名即可打开对方公开主页，含封面、简介、位置、网站、加入时间、关注/粉丝/产品数，可一键关注，并在「动态 / 产品」之间切换翻看其作品",
+    "content_en": "SolHub: World redesigned in X style — a sticky top bar with a round + button for quick posting, a centered composer that publishes with Cmd/Ctrl+Enter, and your account chip on the right; tapping any avatar or @handle opens that maker's public profile with cover, bio, location, website, join date, following/follower/product counts, a follow button, and Posts / Products tabs",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-31-1203-509d55",
+    "date": "2026-10-31T12:03:13+08:00",
+    "type": "BUILD",
+    "content": "SolHub：修正站点 Logo 过大、撑满头部与页脚的问题，统一缩到 28px，顶部导航与页脚更清爽",
+    "content_en": "SolHub: fixed the oversized logo that filled the header and footer — it now sits at 28px, making the top bar and footer noticeably cleaner",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-30-1350-88277d",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：登录体验重做——上线独立登录页（中英双语，支持登录后跳回原页面、密码随时可见切换），登录方式统一为邮箱账号并移除 GitHub 登录入口；登录服务同步迁移到自有域名，登录更稳定",
+    "content_en": "SolHub: login rebuilt — a dedicated sign-in page (zh/en) with redirect-back after login and a show/hide password toggle; sign-in is now email-only and the GitHub login entry is gone; the auth service also moved to its own domain for a more stable login",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-30-1350-5ccf95",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：个人主页改版为 X 风格——顶部封面横幅、点击即可上传的大头像（自动裁剪压缩到 256px），昵称、简介、位置、个人网站都能自己改；页头头像新增下拉菜单，直达「我的账户 / 退出登录」",
+    "content_en": "SolHub: profile page redesigned in X style — cover banner, click-to-upload large avatar (auto-cropped to 256px), and editable name, bio, location and website; the header avatar now opens a dropdown for My account / Log out",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-30-1350-7dd5c8",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：投稿流程升级——投稿页新增登录引导横幅与收录标准自查，登录后可一键发布；社区投稿改为自动发布，提交后即刻上线，不再需要人工审核",
+    "content_en": "SolHub: submission flow upgraded — the submit page now has a sign-in banner and a listing-criteria checklist, with one-click publishing once signed in; community submissions auto-publish and go live immediately without manual review",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-30-1350-6fafe9",
+    "date": "2026-10-30T13:50:26+08:00",
+    "type": "BUILD",
+    "content": "SolHub：修复社区内容中的中文乱码（后端读取数据统一按 UTF-8 解码），并修复小屏设备上登录弹窗邮箱输入框被裁切、无法填写的问题",
+    "content_en": "SolHub: fixed garbled Chinese text in community content (backend now decodes data as UTF-8), and fixed the email field being clipped and unusable in the login dialog on short screens",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-29-1200-48b8e2",
+    "date": "2026-10-29T12:03:30+08:00",
+    "type": "BUILD",
+    "content": "SolHub：部署链路迁移过渡——后端与前端回退地址临时切换到 workers.dev，主域名访问异常时服务仍可正常使用，待 DNS 迁移完成后恢复自定义域名",
+    "content_en": "SolHub: deployment migration transition — backend and frontend fallback temporarily switched to workers.dev, so the service stays reachable even if the main domain has issues; the custom domain will be restored after the DNS migration completes",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-29-0203-bff1b5",
+    "date": "2026-10-29T02:03:50+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上线邮箱账号体系——支持邮箱注册/登录，登录后右上角头像进入个人中心，可编辑、删除自己收录的产品，投稿自动归到个人名下；未登录仍保留邮件投稿通道，登录状态保持 30 天",
+    "content_en": "SolHub: email accounts are live — sign up / sign in with email, then open your profile from the avatar to edit or remove your listed products; submissions are tied to your account automatically, guest email submissions still work, and sessions last 30 days",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-29-0203-a547fd",
+    "date": "2026-10-29T02:03:50+08:00",
+    "type": "BUILD",
+    "content": "主站：卡片标题栏去掉三个纯装饰小圆点，标题区更干净",
+    "content_en": "Main site: removed the three decorative dots from card title bars for a cleaner heading area",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-2059-bb7e53",
+    "date": "2026-10-25T20:59:57+08:00",
+    "type": "build",
+    "content": "主站：NOW 页顶部导航新增「X 实时推文」跳转按钮",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-2055-a7130c",
+    "date": "2026-10-25T20:55:41+08:00",
+    "type": "build",
+    "content": "主站：顶部 X 推广条改为每次访问都显示，关闭仅对当前页面生效",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1948-b93419",
+    "date": "2026-10-25T19:48:01+08:00",
+    "type": "build",
+    "content": "主站：移除页脚访问量统计，页面更简洁",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1926-cd63fc",
+    "date": "2026-10-25T19:26:13+08:00",
+    "type": "build",
+    "content": "主站：顶部新增 X 推广条（黑底 Twitter 风），关注 @SolYoungA 实时记录开发过程",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-25-xinsight",
+    "date": "2026-10-25T18:20:46+08:00",
+    "type": "BUILD",
+    "content": "Xinsight 上新：X 账号运营数据体检工具 —— 本地导入 CSV、透明计算，总览/内容/趋势/发帖/诊断/报告/数据七模块，站点 x.insight.solyoung.top",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1737-5dbea2",
+    "date": "2026-10-25T17:37:51+08:00",
+    "type": "build",
+    "content": "SolHub：收录 Xinsight、SolClip、OFX Atlas 三个自研产品为已核验产品",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-25-1427-9b2864",
+    "date": "2026-10-25T14:27:37+08:00",
+    "type": "build",
+    "content": "Studio：首页重构 —— Selected Works 改为 SolHub 收录入口，主推产品外链跳转",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-25-verity2",
+    "date": "2026-10-25T02:36:23+08:00",
+    "type": "BUILD",
+    "content": "Verity 2.0 上线：深色模式、统一测试卡片与作答流程，新增财务自由规划器（12 模块引擎 + 7 步向导 + ECharts 资产曲线）",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-25-solclip",
+    "date": "2026-10-25T01:10:33+08:00",
+    "type": "BUILD",
+    "content": "SolClip 上新（原 ClipText）：多平台短视频解析与文案提取，品牌更名 SolClip，支持抖音/B 站，一键提取口播文案，默认公网后端开箱即用",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1438-ec2feb",
+    "date": "2026-10-24T14:38:17+08:00",
+    "type": "build",
+    "content": "主站：卡片悬停动效统一为微微抽拉感（3px 上浮），去除 14px 放大与 3D 倾斜（社交媒体/数字产品/思考卡）",
+    "published": true
+  },
+  {
+    "id": "release-2026-10-22-ofxatlas",
+    "date": "2026-10-22T12:04:05+08:00",
+    "type": "BUILD",
+    "content": "OFX Atlas 上新：OFX 插件兼容性数据库与工具站，收录 35+ 款插件，全站中英双语 + 深色模式",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-fa21d3",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：社交卡CSS纯浮起14px+思考卡去除上浮避免标题被裁剪",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-ef9837",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：加大卡片悬停浮起幅度 14px+3%放大+深阴影",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-3f03cb",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：SolYoung卡排首位+修复悬停浮起即时生效",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-068d8d",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：SolYoung社交卡新增X(twitter)跳转入口",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-193472",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：卡片悬停抽出来效果 加大浮起与放大",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-c2d95d",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：主标题字母悬停弹性跳动",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-8f7e1e",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：卡片动效精细化 角标/光泽/3D倾斜/错峰入场/彩蛋",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-5c92bc",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：品牌Slogan更新 把人生当成一场游戏来经营",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-24-1215-89cc23",
+    "date": "2026-10-24T12:15:14+08:00",
+    "type": "build",
+    "content": "主站：数字档案室2.0 项目窗口系统+整站动效升级",
+    "published": true
+  },
+  {
+    "id": "manual-202610232252",
+    "date": "2026-10-23T22:52:24+08:00",
+    "type": "build",
+    "content": "主站：主标题「SolYoung」每个字母支持悬停弹性跳动，奇偶字母左右交错倾斜",
+    "published": true
+  },
+  {
+    "id": "manual-202610231834",
+    "date": "2026-10-23T18:34:39+08:00",
+    "type": "build",
+    "content": "主站：卡片交互精细化，新增悬停3D倾斜、边角标记、光泽扫过、分层阴影与错峰入场，藏了一个小彩蛋",
+    "published": true
+  },
+  {
+    "id": "manual-202610231656",
+    "date": "2026-10-23T16:56:57+08:00",
+    "type": "build",
+    "content": "主站：品牌Slogan更新，核心理念变为「把人生，当成一场游戏来经营」，首页首屏与关于我同步更新",
+    "published": true
+  },
+  {
+    "id": "manual-202610231606",
+    "date": "2026-10-23T16:06:32+08:00",
+    "type": "build",
+    "content": "主站：数字档案室2.0，项目卡片升级为窗口系统，新增窗口展开、Hero视差、磁吸按钮、滚动导航高亮",
+    "published": true
+  },
+  {
+    "id": "manual-202610221143",
+    "date": "2026-10-22T11:43:09+08:00",
+    "type": "build",
+    "content": "主站：修复首页 scroll hint 文字与竖线/箭头不对齐",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-22-1139-82438e",
+    "date": "2026-10-22T11:39:17+08:00",
+    "type": "build",
+    "content": "主站：移除首页 hero 副标题",
+    "published": true
+  },
+  {
+    "time": "2026-10-21 15:10",
+    "text": "移除首页 hero 副标题「一个把想法变成作品的人」"
+  },
+  {
+    "id": "major-2026-10-21-1028-f9f745",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：暂时隐藏主站农场入口卡片，代码保留待后续优化",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-3e3d72",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场相机跟随系统：世界扩大到30x20网格、视口跟随角色、边缘clamp、点击坐标正确映射",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-9e9718",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场美术升级：招牌嵌入建筑SVG、人物双帧走路动画、像素图标工具栏、草地纹理装饰",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-1adc6f",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场完整成品：A*寻路绕建筑、三作物、音效、背包、商店、localStorage v2存档",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-68d1cd",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场重构为完整可玩像素农场：网格移动+碰撞+翻土播种浇水收获+商店+localStorage存档",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-f55aa6",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场小人重画为棕发灰短袖短裤背包，减速走路，主屋门走近自动滑开，木牌门牌融合",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-cf8634",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场页加像素小人跟随点击移动，建筑挂像素招牌，走到建筑自动跳转",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-a9a83a",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场页改为真星露谷像素风背景图，主站入口缩略图同步替换",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-06c776",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：农场页改为星露谷像素风，绿色草地+红屋顶+作物田",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-a1a30f",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：作品区新增「我的农场」项目地图，二级页 farm/ 可点击建筑跳转各项目",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-8f9e77",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：工作室与社区入口切换为独立子域名 studio.solyoung.top / solhub.solyoung.top",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-561a6a",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：小红书 logo 红方块内放小红书三字，缩小字号适配",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-45ef08",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：小红书 logo 改为单字薯，避免三字溢出红方块",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-06888f",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：手机端联系区社交按钮改为两行排列，logo 放大",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-d29378",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：作品区新增 GitHub 贡献热力图卡片",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-27e840",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：联系区新增 GitHub 跳转按钮",
+    "published": true
+  },
+  {
+    "id": "major-2026-10-21-1028-044f6e",
+    "date": "2026-10-21T10:28:06+08:00",
+    "type": "build",
+    "content": "主站：社交媒体卡片抖音文字替换为 logo 图标",
+    "published": true
+  },
+  {
+    "id": "u-2026-10-17-studio-solhub-title",
+    "date": "2026-10-17T15:35:00+08:00",
+    "type": "studio",
+    "content": "SolHub 通栏标题改为「SolHub」品牌名。",
+    "published": true
+  },
+  {
+    "id": "u-2026-10-17-studio-solhub-logo-transparent",
+    "date": "2026-10-17T15:30:00+08:00",
+    "type": "studio",
+    "content": "SolHub 通栏 logo 改为透明底，去掉白色方块与边框，适配浅色背景。",
+    "published": true
+  },
+  {
+    "id": "u-2026-10-17-studio-solhub-promo",
+    "date": "2026-10-17T15:15:00+08:00",
+    "type": "studio",
+    "content": "首页加入 SolHub 社区推广：服务卡 A 交付项新增「官方收录+专属印记+排行榜」，流程区下方新增 SolHub 通栏 banner。",
+    "published": true
+  },
+  {
+    "id": "u-2026-10-17-studio-rm-videolab",
+    "date": "2026-10-17T10:00:00+08:00",
+    "type": "studio",
+    "content": "下线 VideoLAB 自动剪辑工作台（已从主站删除），同步移除 Studio 首页案例与产品页入口。",
+    "published": true
+  },
+  {
+    "id": "u-2026-10-16-studio-rm-viewport-toggle",
+    "date": "2026-10-16T23:15:00+08:00",
+    "type": "studio",
+    "content": "移除顶栏手机/桌面视图切换按钮，移动端由浏览器自适应。",
+    "published": true
+  },
+  {
+    "id": "u-2026-10-16-studio-mobile-fix",
+    "date": "2026-10-16T23:05:00+08:00",
+    "type": "studio",
+    "content": "Studio 手机端适配优化：全局禁止横向溢出，Hero 标题/副标题在手机端字号与字距缩小，CTA 按钮改为全宽堆叠，避免裁切与挤压。",
+    "published": true
+  },
+  {
+    "id": "build-mobile-polish",
+    "date": "2026-10-16T19:35",
+    "type": "BUILD",
+    "published": true,
+    "content": "移动端适配优化：缩小section上下间距、container左右边距18px；社交媒体卡和数字产品卡在小屏下缩小padding、字号、logo尺寸，避免溢出裁切。",
+    "content_en": "Mobile polish: reduced section spacing and container padding; shrank social account cards and digital product cards on small screens to prevent overflow and clipping."
+  },
+  {
+    "id": "u-2026-10-16-studio-home-reduce",
+    "date": "2026-10-16T22:45:00+08:00",
+    "type": "studio",
+    "content": "Studio 首页信息密度精简：Hero 副标题缩成一行，服务卡从 6 栏砍到 2 栏，案例区改为横向滑动卡片，流程区改为横向流程图；更新日志页改为只记录本站改动，不再同步主站。",
+    "published": true
+  },
+  {
+    "id": "build-social-cards",
+    "date": "2026-10-16T19:20",
+    "type": "BUILD",
+    "published": true,
+    "content": "社交媒体区重构：删掉精选视频网格，三个账号改为横排卡片，点击直接跳转抖音主页。",
+    "content_en": "Restructured the Social section: removed the featured video grid, replaced with three horizontal account cards that link directly to Douyin profiles."
+  },
+  {
+    "time": "2026-10-16 19:19",
+    "text": "SolHub: 提交后端切换为 GitHub Issues 模式（免 CORS，免费），社区列表从 GitHub API 读取"
+  },
+  {
+    "id": "2026-10-16-solhub-submit-timeout",
+    "date": "2026-10-16",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub：修复提交按钮一直转圈无反馈的问题——CloudBase SDK 初始化加 10 秒超时，提交流程加异常兜底，网络异常时不再无限 loading。",
+    "images": []
+  },
+  {
+    "id": "2026-10-16-solhub-toolbar-fix",
+    "date": "2026-10-16",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub：修复首页副标题 HTML 换行被转义成纯文本显示的问题；语言/深浅色/手机视口三个切换按钮从左上角移到导航栏右上角靠边位置。",
+    "images": []
+  },
+  {
+    "id": "build-works-fix",
+    "date": "2026-10-16T19:00",
+    "type": "BUILD",
+    "published": true,
+    "content": "微调：SolHub S 图标重新裁切居中；Studio 字标缩小字号避免切边；SolHub 简介改为开放社区定位（可提交工具）。",
+    "content_en": "Polish: re-cropped the SolHub S mark; shrank the Studio wordmark so it no longer clips; rewrote the SolHub blurb to reflect an open community where anyone can submit tools."
+  },
+  {
+    "id": "2026-10-16-solhub-i18n",
+    "date": "2026-10-16",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub 上线中英双语：导航左上角新增中英翻译 / 深浅色 / 手机电脑视口三个切换按钮，全站文案（含 16 个工具、榜单、提交页、详情页）全局翻译无遗漏；英文版生成 /en/ 前缀静态页面，深色主题与 430px 手机视口模拟已可用。",
+    "images": []
+  },
+  {
+    "id": "build-works-logos",
+    "date": "2026-10-16T18:50",
+    "type": "BUILD",
+    "published": true,
+    "content": "作品区加「数字产品」组标题；SolHub 换成新版 S 图标；Studio logo 改为 SOLYOUNG./STUDIO 字标，STUDIO 用橙色。",
+    "content_en": "Added a \"Digital Products\" group title; swapped SolHub to the new S mark; Studio logo is now a SOLYOUNG./STUDIO wordmark with STUDIO in accent orange."
+  },
+  {
+    "id": "build-works-restructure",
+    "date": "2026-10-16T18:40",
+    "type": "BUILD",
+    "published": true,
+    "content": "作品区重构：「影像与内容」改名「社交媒体」；删除独立产品列表；底部改为两张通栏入口——SolHub 数字工具社区（带 logo）与 SolYoung Studio 数字服务工作室（字母 logo）。",
+    "content_en": "Works section restructured: \"Content & Visuals\" renamed to \"Social\"; removed the standalone products list; bottom now has two entries — SolHub (digital tools hub, with logo) and SolYoung Studio (digital services, lettermark)."
+  },
+  {
+    "id": "2026-10-16-solhub-community",
+    "date": "2026-10-16T16:50",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub 社区提交上线：任何人可提交产品/工具，提交即自动公开；支持托管自包含 HTML 工具在沙箱内运行；接入腾讯云 CloudBase 实时数据库；移除全部演示产品，榜单仅保留真实可访问站点。",
+    "images": []
+  },
+  {
+    "id": "2026-10-16-solhub-launch",
+    "date": "2026-10-16T12:49",
+    "type": "BUILD",
+    "published": true,
+    "content": "SolHub 上线：https://solyoung.top/solhub/ —— 独立产品发现平台与在线工具箱。16 个免费工具（JSON 格式化、Base64、UUID、密码、二维码、图片压缩等）全部在浏览器本地运行；产品榜单规则透明、核验状态真实；提交页已开放，欢迎把自己的产品提交进来。与 SolYoung Studio 同一设计语言。",
+    "images": []
+  },
+  {
+    "id": "2026-10-16-studio-nav-community",
+    "date": "2026-10-16T11:30",
+    "type": "BUILD",
+    "content": "SolYoung Studio 右上角导航在「产品」后新增「社区」，新窗口跳转 https://solyoung.top/solhub/。",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": "2026-10-16-studio-cases-title",
+    "date": "2026-10-16T11:00",
+    "type": "BUILD",
+    "content": "SolYoung Studio 案例区大标题改为「这些不是概念，它们已经在浏览器里跑着。」",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": "build-remove-capmap",
+    "date": "2026-10-16T11:00",
+    "type": "BUILD",
+    "published": true,
+    "content": "移除「关于我」下方的能力关系图模块，相关样式与脚本一并清理。",
+    "content_en": "Removed the Capability Map section below About; related styles and scripts cleaned up."
+  },
+  {
+    "id": "2026-10-16-studio-hero-copy",
+    "date": "2026-10-16T10:30",
+    "type": "BUILD",
+    "content": "SolYoung Studio Hero 主标题改为「把你的主意，变成可以使用的解决方案。」",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": "build-capmap-wid",
+    "date": "2026-10-15T18:30",
+    "type": "BUILD",
+    "published": true,
+    "content": "能力图作品卡片加宽（220px），不再挤成窄条；AI 实践去掉 SolYoung 抖音入口，只留四个产品。",
+    "content_en": "Widened cap-map work cards to 220px so text no longer squeezes; removed the SolYoung Douyin entry from AI Practice, keeping only the four products."
+  },
+  {
+    "id": "build-capmap-mobile",
+    "date": "2026-10-15T18:20",
+    "type": "BUILD",
+    "published": true,
+    "content": "能力图修复：删除引导句；修复移动端节点列表名显示 undefined 的问题。",
+    "content_en": "Cap map fix: removed the intro line; fixed mobile node list showing undefined names."
+  },
+  {
+    "id": "build-capmap-acc",
+    "date": "2026-10-15T18:10",
+    "type": "BUILD",
+    "published": true,
+    "content": "能力关系图微调：去掉节点圆内英文小字；影像创作改为展示「楊十八呀」抖音账号，AI 实践改为四个产品+SolYoung 抖音，内容创作改为展示 SolYoung 与野心互联工作室两个账号。",
+    "content_en": "Cap map tweaks: removed English sub-labels inside nodes; Visuals now links to the 楊十八呀 Douyin account, AI Practice now shows the four products + SolYoung Douyin, Content Writing shows SolYoung and Ambition accounts."
+  },
+  {
+    "id": "2026-10-15-studio-qr-crop",
+    "date": "2026-10-15T23:00",
+    "type": "BUILD",
+    "content": "SolYoung Studio 联系区微信二维码裁切为纯二维码本身，去掉头像、昵称与底部「扫码添加」文字。",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": "build-capmap",
+    "date": "2026-10-15T17:30",
+    "type": "BUILD",
+    "published": true,
+    "content": "关于我下方新增「能力关系图」：\n· 中心节点「把想法变成作品」连接五个能力节点（影像创作 / AI 实践 / 网站与产品 / 内容创作 / 推进与迭代）。\n· 点击节点在下方展开真实作品与链接，悬停高亮关联线，移动端切换为可点列表。",
+    "content_en": "Added a Capability Map below About:\n· A central node \"Ideas into Reality\" connects five skills (Visuals / AI / Web & products / Content / Shipping & iterating).\n· Click a node to open real works and links below; hover highlights the connected line; on mobile it becomes a tap list."
+  },
+  {
+    "id": "build-i18n-full",
+    "date": "2026-10-15T16:40",
+    "type": "BUILD",
+    "published": true,
+    "content": "全站双语补齐：\n· 此刻 60+ 条动态全部配上英文，切 EN 即显示英文。\n· 思考列表与两篇正文（个人品牌、创作充实感）全部双语，跟随首页语言切换。",
+    "content_en": "Full-site bilingual complete:\n· All 60+ \"Now\" updates now have English; switch to EN to read them in English.\n· The Thoughts list and both articles (personal brand; fulfillment of creating) are fully bilingual and follow the homepage language toggle."
+  },
+  {
+    "id": "2026-10-15-studio-i18n",
+    "date": "2026-10-15T22:10",
+    "type": "BUILD",
+    "content": "SolYoung Studio 全站中英双语：\n\n· 左上角 EN/中 切换现在覆盖导航、Hero、服务卡、案例、合作流程、咨询表单、联系页、FAQ、合作前请了解、隐私、服务条款与全部作品页。\n· 说明页清理老商城残留（二维码收款 / 人工核验 / 邀请码），改为与当前业务一致的版本。\n· 案例区补上 SolYoung 主站首页真实截图。",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": "2026-10-15-studio-polish",
+    "date": "2026-10-15T16:30",
+    "type": "BUILD",
+    "content": "SolYoung Studio 首页精简：\n\n· 删除首页分区导航条、需求方向卡片区、为什么合作区块、价格范围区块、首页 FAQ 区块与最近更新区，信息层级更直接。\n· 顶部导航「购买说明」改为「联系我」，直达 /contact。\n· 案例区「SolYoung 个人网站」补上主站首页真实截图。\n· 咨询表单：品牌合作新增「网站广告位展示」选项，期望完成时间改为一周内起；选品牌合作时「当前进度」切换为「品牌方类型」。\n· 首页底部联系条补上微信二维码。",
+    "published": true,
+    "images": [],
+    "content_en": "SolYoung Studio homepage streamlined:\n\n· Removed the section nav bar, needs-direction cards, \"why work with us\" block, pricing block, homepage FAQ, and recent-updates section; the information hierarchy is now more direct.\n· Top nav \"Pricing\" renamed \"Contact Me\", linking straight to /contact.\n· Case study \"SolYoung personal site\" now uses a real screenshot of the homepage.\n· Inquiry form: brand collaborations gained a \"website ad-space\" option; expected timeline changed to within one week; when brand collaboration is selected, \"current progress\" switches to \"brand type\".\n· Added a WeChat QR code to the contact bar at the page bottom."
+  },
+  {
+    "id": "2026-10-15-studio-relaunch",
+    "date": "2026-10-15T14:00",
+    "type": "BUILD",
+    "content": "SolYoung Studio 首页商业升级：\n\n· 首页重构为 9 屏转化结构：首屏定位、需求入口、服务详情、真实自研案例、为什么合作、合作流程、价格范围、FAQ、动态咨询表单。\n· 服务收敛为两项主打：AI 个人网站与数字空间搭建、品牌与商业合作；下线轻量数字产品服务。\n· 新增首屏分区导航，可一键跳转各板块；案例区以 SolYoung 主站、My.OS、Verity、CamSim、VideoLAB 等自研项目为主，不包装成客户案例。\n· 咨询表单按服务类型动态切换问题与成果选项，提交走邮件/复制摘要，不假装后端提交。\n· 购买须知、常见问题、隐私说明、服务条款同步新服务结构。",
+    "published": true,
+    "images": [],
+    "content_en": "SolYoung Studio homepage commercial upgrade:\n\n· Rebuilt the homepage into a 9-screen conversion flow: above-the-fold positioning, needs entry, service details, real self-built case studies, why work with us, process, pricing, FAQ, and a dynamic inquiry form.\n· Services narrowed to two main offerings: AI personal sites & digital spaces, and brand/business collaborations; lighterweight digital-product services were retired.\n· Added an above-the-fold section nav for one-click jumping; case studies center on self-built projects like the SolYoung main site, My.OS, Verity, CamSim, and VideoLAB, not packaged as client work.\n· The inquiry form swaps questions and options by service type; submission goes via email/copied summary — no fake backend submit."
+  },
+  {
+    "id": "2026-10-15-cover-crop",
+    "date": "2026-10-15T13:40",
+    "type": "BUILD",
+    "content": "SolYoung 前两条视频封面居中裁成 3:4，去掉顶部黑边。",
+    "published": true,
+    "images": [],
+    "content_en": "Re-cropped the first two SolYoung video covers to 3:4 (centered), removing the black bars at the top."
+  },
+  {
+    "id": "2026-10-15-content-polish",
+    "date": "2026-10-15T13:25",
+    "type": "BUILD",
+    "content": "「影像与内容」微调上线：\n\n· 视频卡片一排固定 3 列展示，封面框自适应缩小。\n· 去掉模块介绍文案；三个账号简介更新为各自定位。\n· 修复真实视频卡片误显示「示例」角标的问题。\n· 移除「关于我」下方重复的社交媒体账号列表（已整合进影像与内容区）。",
+    "published": true,
+    "images": [],
+    "content_en": "Tuning the Content & Visuals section:\n\n· Videos now show three per row, covers auto-scaling.\n· Removed the module intro line; updated each account's short bio.\n· Fixed the stray 'Sample' badge on already-published cards.\n· Removed the duplicate social account list under About (now integrated into Content & Visuals)."
+  },
+  {
+    "id": "2026-10-15-content-accounts",
+    "date": "2026-10-15T12:55",
+    "type": "BUILD",
+    "content": "「影像与视频」升级为「影像与内容 CONTENT & VISUALS」账号选择模块：\n\n· 作品页内新增账号选择双栏：楊十八呀 / SolYoung / 野心互联工作室，点账号即切到该账号精选视频。\n· 三账号共 9 条真实抖音视频已上线，配真实封面，点卡片跳转原视频页（新标签页）。\n· 移动端账号改为横向标签栏；数据集中在一处，后续改数据即可增删作品。",
+    "published": true,
+    "images": [],
+    "content_en": "The old 'Video & Visuals' section is now the 'CONTENT & VISUALS' account-switcher module:\n\n· A two-column account picker on the works page: 楊十八呀 / SolYoung / 野心互联工作室 — click an account to see its featured videos.\n· 9 real Douyin videos across the three accounts are live with real covers; clicking a card opens the original video in a new tab.\n· On mobile the accounts become a horizontal tab bar; all data lives in one place, so adding or editing works is just editing data."
+  },
+  {
+    "id": "2026-10-14-video-section",
+    "date": "2026-10-14T00:09",
+    "type": "BUILD",
+    "content": "个人网站新增「影像与视频」区：\n\n· 作品页顶部新增 VIDEO & VISUALS，精选抖音/小红书视频作品，含分类筛选（AI 创作 / 数字产品 / 影像短片 / 创作实验 / 创作思考）。\n· 5 条示例条目数据驱动、可替换；无单条链接时按钮跳转创作者主页。\n· 新增 5 张 3:4 占位封面（待替换）。",
+    "published": true,
+    "images": [],
+    "content_en": "Added a 'Video & Visuals' section:\n\n· New VIDEO & VISUALS at the top of the works page, curating selected Douyin/Xiaohongshu videos with category filters (AI creation / digital product / short film / creative experiment / reflection).\n· 5 sample entries, data-driven and swappable; when a single-video link is absent the button links to the creator's profile.\n· Added 5 placeholder 3:4 covers (to be replaced)."
+  },
+  {
+    "id": "2026-10-11-studio-services",
+    "date": "2026-10-11T18:45",
+    "type": "BUILD",
+    "content": "SolYoung Studio 业务升级：\n\n· 新增独立服务页 /services：个人数字空间搭建、AI 数字产品定制、AI 创作工作流梳理，含合作流程、交付边界、FAQ 与项目咨询表单。\n· 首页保留原骨架，新增轻量服务导览；Hero 次按钮改为「聊聊你的想法」。\n· 购买须知、服务条款、隐私说明补充定制项目相关条款。",
+    "published": true,
+    "images": [],
+    "content_en": "SolYoung Studio business upgrade:\n\n· New standalone /services page: personal digital-space setup, AI digital-product customization, AI creative workflow consulting — covering collaboration process, delivery scope, FAQ and a project inquiry form.\n· Homepage keeps its skeleton with a light service overview; the secondary hero button now reads 'Tell me your idea'.\n· Purchase notes, terms and privacy policy extended with custom-project clauses."
+  },
+  {
+    "id": "2026-10-11-studio-tiers",
+    "date": "2026-10-11T00:30",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 作品页分区改为 全部 / 免费 / 付费 / 测试：永久免费工具归免费区，VIDEO LAB 归入测试区，预留付费区。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n\n· Studio works page reorganized into All / Free / Paid / Testing: permanently free tools go to Free, VIDEO LAB to Testing, with a reserved Paid section."
+  },
+  {
+    "id": "2026-10-10-videolab-v341",
+    "date": "2026-10-10T16:50",
+    "type": "BUILD",
+    "content": "VIDEO LAB v34.1：\n\n· 修复工作台 Undo/Redo 历史快照的引用污染（深拷贝），拖拽、裁切、删除、替换、字幕与配音调整均可可靠撤销/重做。\n· 同步推送 GitHub 独立仓库 SolYoung-Ai/Video 与本站 video/ 目录，代码与本地完全一致。",
+    "published": true,
+    "images": [],
+    "content_en": "VIDEO LAB v34.1:\n\n· Fixed reference pollution in Undo/Redo history snapshots (deep copy) — drag, crop, delete, replace, subtitle and dub edits can now be reliably undone/redone.\n· Synced to the standalone GitHub repo SolYoung-Ai/Video and the /video/ directory on this site; code matches local exactly."
+  },
+  {
+    "id": "2026-10-10-visits",
+    "date": "2026-10-10T16:28",
+    "type": "BUILD",
+    "content": "更新：\n\n· 网站底部新增实时访问量统计，任何访客打开都会自动 +1。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n\n· Added a live visit counter in the footer; every visitor who opens the site automatically adds +1."
+  },
+  {
+    "id": "2026-10-10-videolab-rebuild",
+    "date": "2026-10-10T16:20",
+    "type": "BUILD",
+    "content": "VIDEO LAB 专项重构上线（v34）：\n\n· 自动剪辑质量引擎：文案角色识别（Hook/List/Explanation/CTA 等 10 类）驱动镜头节奏；可解释语义匹配（置信度+匹配原因）；前后镜头重复惩罚；4 种剪辑风格（自然/快速/电影感/纪实）真实改变剪辑决策。\n· 成片质量检查：重复素材、冷开场、无匹配场景自动告警并可一键跳转修复。\n· 配音系统：新建流程与工作台均可试听；浏览器合成试听与真实音频分离；单句重新生成不影响其他片段。\n· 工作台：多轨时间轴真实编辑（拖动/裁切/分割/删除/替换）；快捷键全套（Space/S/⌘Z/⌘⇧Z/⌘S/Delete/方向键逐帧/Home/End/M/缩放）并带输入框焦点保护；Undo/Redo 100 步。\n· 字体与审美：6 套可辨识字体（含宋体/楷体）+ 6 种字幕风格预设（编辑式/知识简洁/关键词高亮/电影感/纪实/科技），真实写入项目并影响渲染与导出。\n· 修复：横屏素材竖屏黑边（真实 cover 裁切）、配音重生成后续片段不位移、字体选择器损坏等。\n· 导出：MP4 真实编码（WebCodecs+MP4 Muxer），导出后验证文件大小与时长；SRT 字幕导出；无真实配音时明确标注开发模式。",
+    "published": true,
+    "images": [],
+    "content_en": "VIDEO LAB major rebuild live (v34):\n\n· Auto-edit quality engine: script-role recognition (Hook/List/Explanation/CTA and 10 roles) drives shot rhythm; explainable semantic matching (confidence + reason); repeat-penalty between consecutive shots; 4 edit styles (natural/fast/cinematic/documentary) that actually change editing decisions.\n· Export quality check: repeated footage, cold open, unmatched scenes auto-alert with one-click jump to fix.\n· Dubbing previewable in both new-flow and workbench."
+  },
+  {
+    "id": "2026-10-10-studio-updates-sync",
+    "date": "2026-10-10T15:15",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 更新日志页改为实时读取主站 now 时间线，子产品每次更新自动同步，并按产品分类筛选。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n\n· Studio changelog now reads the main-site now timeline in real time; each sub-product update syncs automatically and can be filtered by product."
+  },
+  {
+    "id": "2026-10-10-updates-filter",
+    "date": "2026-10-10T15:05",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 更新日志页新增按产品筛选，可单独查看某件作品的更新历史。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n\n· Studio changelog now supports filtering by product, so you can view one product's update history alone."
+  },
+  {
+    "id": "2026-10-10-studio-preview",
+    "date": "2026-10-10T14:50",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 商品卡片与详情主视觉改为各工具首页横版预览截图，Logo 缩小为标题旁小图标。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Studio product cards and detail hero now use each tool's homepage wide preview screenshot; logo shrunk to a small icon next to the title."
+  },
+  {
+    "id": "2026-10-10-studio-nav",
+    "date": "2026-10-10T14:10",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 导航去掉与「产品」重复的「资源」入口；各页面补充独立浏览器标题。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Removed the redundant 'Resources' nav entry that duplicated 'Products'; added standalone browser titles to each page."
+  },
+  {
+    "id": "2026-10-10-verity-logo",
+    "date": "2026-10-10T13:56",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 更换 Verity 人格测试产品封面为新版镭射炫彩大脑 Logo。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Switched the Verity personality test cover to the new laser-iridescent brain logo."
+  },
+  {
+    "id": "2026-10-10-studio-img-opt",
+    "date": "2026-10-10T13:45",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 产品封面图压缩：合计约 3.3MB PNG → 48KB WebP（900px），加载更快且 Retina 仍清晰。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Compressed Studio product covers: ~3.3MB PNG to 48KB WebP (900px total); faster loading yet still sharp on Retina."
+  },
+  {
+    "id": "2026-10-10-videolab-domain",
+    "date": "2026-10-10T13:40",
+    "type": "BUILD",
+    "content": "更新：\n\n· VideoLAB自动化剪辑系统上线独立入口 solyoung.top/video/（仍标注测试中）。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· VideoLAB auto-editing system launched at a standalone entry solyoung.top/video/ (still marked in testing)."
+  },
+  {
+    "id": "2026-10-10-studio-wechat",
+    "date": "2026-10-10T12:45",
+    "type": "BUILD",
+    "content": "更新：\n\n· Studio 联系页新增微信号 solyoung-ai 一键复制；中英切换改为图标按钮。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Studio contact page now has one-click copy of WeChat ID solyoung-ai; the language toggle changed to an icon button."
+  },
+  {
+    "id": "2026-10-10-studio-controls",
+    "date": "2026-10-10T12:35",
+    "type": "BUILD",
+    "content": "更新：\n\n· SolYoung Studio 头部新增手机/桌面视图预览与中英双语切换，界面文案可中英切换并记忆选择；移动端默认自适应。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· SolYoung Studio header now has mobile/desktop preview and bilingual toggle; UI copy switches between zh/en and remembers your choice; mobile adapts by default."
+  },
+  {
+    "id": "2026-10-10-studio-real-works",
+    "date": "2026-10-10T12:20",
+    "type": "BUILD",
+    "content": "更新：\n\n· SolYoung Studio 作品区换为真实作品——My.OS、Verity 人格测试、CamSim 相机参数模拟器、VIDEO LAB 自动剪辑工作台，均免费直达主站工具页。\n· 补齐微信客服二维码，人工核验联系方式可直接扫码。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· SolYoung Studio works area now shows real works — My.OS, Verity personality test, CamSim camera parameter simulator, VIDEO LAB auto-editing workbench, all linking straight to the main-site tools for free.\n· Added the WeChat customer-service QR code; human-verified contact info can be scanned directly."
+  },
+  {
+    "id": "2026-10-10-videolab-live",
+    "date": "2026-10-10T12:03",
+    "type": "BUILD",
+    "content": "上线：\n\n· VideoLAB 自动化剪辑系统正式上线（solyoung.top/video/）——文案 + 素材 → 自动成片。粘贴脚本、上传素材，自动拆句理解、匹配画面、生成配音与字幕、搭建时间轴，进入工作台微调后一键导出 MP4。",
+    "published": true,
+    "images": [],
+    "content_en": "Live:\n· VideoLAB auto-editing system officially launched (solyoung.top/video/) — script + footage to finished video. Paste a script, upload footage; it auto-splits sentences, matches visuals, generates voiceover and subtitles, builds the timeline, and after fine-tuning in the workbench exports one-click MP4."
+  },
+  {
+    "id": "2026-10-10-os-entry",
+    "date": "2026-10-10T11:44",
+    "type": "BUILD",
+    "content": "更新：\n\n· My OS 新增小写入口 solyoung.top/os/，自动跳转到工作台（solyoung.top/OS/），两种写法都能打开。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· My OS now has a lowercase entry solyoung.top/os/ that redirects to the workbench (solyoung.top/OS/); both spellings work."
+  },
+  {
+    "id": "2026-10-10-works-to-studio",
+    "date": "2026-10-10T09:43",
+    "type": "BUILD",
+    "content": "更新：\n\n· 作品入口统一改为跳转 SolYoung Studio 商店（solyoung.top/studio/），取消作品二级页面。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Works entries now all jump to the SolYoung Studio studio (solyoung.top/studio/); the standalone works subpage is retired."
+  },
+  {
+    "id": "2026-10-10-btn-icon",
+    "date": "2026-10-10T05:42",
+    "type": "BUILD",
+    "content": "更新：\n\n· 右上角手机按钮改为手机图标样式，点击切换手机/桌面排版，手机模式下按钮高亮。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· The top-right phone button now uses a phone icon; clicking toggles phone/desktop layout, and highlights in phone mode."
+  },
+  {
+    "id": "2026-10-10-studio-launch",
+    "date": "2026-10-10T02:41",
+    "type": "BUILD",
+    "content": "更新：\n\n· 上线 SolYoung Studio 数字作品工作室（solyoung.top/studio/）——把想法变成可以使用的东西。数字工具、创作资源与独立实验都在这里。首批内测邀请码演示商品已上架，完整商品展示、结算与人工核验流程上线（演示模式）。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Launched SolYoung Studio digital-work studio (solyoung.top/studio/) — turning ideas into things you can actually use. Digital tools, creative resources and standalone experiments live here. First batch of beta-invite demo products is listed, with full product display, checkout and human-verification flow live (demo mode)."
+  },
+  {
+    "id": "2026-10-09-thoughts-sort",
+    "date": "2026-10-09T23:40",
+    "type": "BUILD",
+    "content": "修复：\n\n· 思考板块改为按日期真实排序，最新发布的文章排在最前。",
+    "published": true,
+    "images": [],
+    "content_en": "Fix:\n· Thoughts now sort by real date; newest posts appear first."
+  },
+  {
+    "id": "2026-10-09-avatar-fast",
+    "date": "2026-10-09T22:12",
+    "type": "BUILD",
+    "content": "更新：\n\n· 首页头像改用多尺寸按需加载——普通屏秒开小图、高清屏保持清晰大图，加载明显变快。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Homepage avatar now loads multiple sizes on demand — small image opens fast on normal screens, stays crisp on high-DPI; noticeably faster."
+  },
+  {
+    "id": "2026-10-08-videolab",
+    "date": "2026-10-08T22:10",
+    "type": "BUILD",
+    "content": "更新：\n\n· 独立产品区新增 VideoLAB 自动化剪辑系统（测试中）——文案 + 素材 → 自动成片，域名待定。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Added VideoLAB auto-editing system to the independent products area (in testing) — script + footage to finished video; domain TBD."
+  },
+  {
+    "id": "2026-10-08T21:37-think-56azr",
+    "date": "2026-10-08T21:37",
+    "type": "THINK",
+    "content": "如果把人生当成一场游戏，那我现在给自己建一个小农场。而这个网站，就是我现在正在经营的那块农场。\n",
+    "published": true,
+    "images": [],
+    "_pending": false,
+    "content_en": "If life is a game, then I'm building myself a small farm right now. And this website is the farm I'm tending."
+  },
+  {
+    "id": "2026-10-08-countdown-real",
+    "date": "2026-10-08T02:30",
+    "type": "BUILD",
+    "content": "更新：\n\n· 页面底部 100 小时倒计时改为真实世界倒计时——锚定固定起点持续递减，刷新页面不再重置。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· The footer 100-hour countdown is now a real-world timer — anchored to a fixed start and counting down; refreshing the page no longer resets it."
+  },
+  {
+    "id": "2026-10-08-verity-logo-2",
+    "date": "2026-10-08T01:33",
+    "type": "BUILD",
+    "content": "更新：\n\n· Verity人格测试 logo 再换一版——幻彩镭射云朵造型（黑底虹彩，双椭圆镂空），首页图标与 hover 预览已同步。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Verity personality test logo updated again — iridescent laser cloud shape (虹彩 on black, double-ellipse cutout); homepage icon and hover preview synced."
+  },
+  {
+    "id": "2026-10-08-verity-logo",
+    "date": "2026-10-08T01:26",
+    "type": "BUILD",
+    "content": "更新：\n\n· Verity人格测试换上全新 logo（黑底虹彩银杏叶造型），首页图标与 hover 预览同步。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Verity personality test got a new logo (iridescent ginkgo-leaf on black); homepage icon and hover preview synced."
+  },
+  {
+    "id": "2026-10-08-portrait-fix",
+    "date": "2026-10-08T01:15",
+    "type": "BUILD",
+    "content": "修复：\n\n· 移除头像框跳转此刻页的旧逻辑，点击首页头像框现在只直达页面底部邮箱与倒计时。",
+    "published": true,
+    "images": [],
+    "content_en": "Fix:\n· Removed the old avatar-frame jump to the now page; clicking the homepage avatar now goes straight to the email and countdown at the bottom."
+  },
+  {
+    "id": "2026-10-08-portrait-direct-jump",
+    "date": "2026-10-08T01:10",
+    "type": "BUILD",
+    "content": "更新：\n\n· 点击首页画像改为即时直达页面底部，邮箱与 100 小时倒计时同屏显示，不再经过此刻板块。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· Clicking the homepage portrait now jumps straight to the bottom, showing email and 100-hour countdown on the same screen, skipping the now section."
+  },
+  {
+    "id": "2026-10-08-share-card-redesign",
+    "date": "2026-10-08T00:54",
+    "type": "BUILD",
+    "content": "Verity 人格测试分享卡重设计：中文维度标签、条形与文字分列不重叠、竖版/方版双布局优化。",
+    "published": true,
+    "images": [],
+    "content_en": "Verity personality test share-card redesign: Chinese dimension labels, bars and text on separate columns without overlap, optimized for both vertical and square layouts."
+  },
+  {
+    "id": "2026-10-08-verity-rebrand",
+    "date": "2026-10-08T00:46",
+    "type": "BUILD",
+    "content": "更新：\n\n· 快测正式更名为 Verity人格测试，域名换成 solyoung.top/Verity/；\n· 点击首页画像，会平滑滚动到页面底部的邮箱和 100 小时倒计时，同屏可见。",
+    "published": true,
+    "images": [],
+    "content_en": "Updated:\n· The quick test is officially renamed Verity personality test, domain changed to solyoung.top/Verity/;\n· clicking the homepage portrait smoothly scrolls to the email and 100-hour countdown at the bottom, visible on one screen."
+  },
+  {
+    "id": "2026-10-08-favicon-avatar",
+    "date": "2026-10-08T00:35",
+    "type": "BUILD",
+    "content": "品牌细节：\n\n· 网站 favicon（浏览器标签小图标）从字母 S 换成我的头像，小尺寸压缩，清晰不变形。",
+    "published": true,
+    "images": [],
+    "content_en": "Brand details:\n· The site favicon (browser-tab icon) changed from the letter S to my portrait, compressed for small sizes, clear without distortion."
+  },
+  {
+    "id": "2026-10-08-verity-brand",
+    "date": "2026-10-08T00:28",
+    "type": "BUILD",
+    "content": "人格测试站更名「Verity人格测试」并启用新域名 solyoung.top/Verity/：认识自己，不止一个标签。",
+    "published": true,
+    "images": [],
+    "content_en": "The personality test site is renamed 'Verity personality test' with new domain solyoung.top/Verity/: knowing yourself is more than a label."
+  },
+  {
+    "id": "2026-10-08-portrait-email",
+    "date": "2026-10-08T00:28",
+    "type": "BUILD",
+    "content": "交互小更新：\n\n· 点击首页肖像头像，平滑滚动到页面底部的邮箱，并短暂高亮。",
+    "published": true,
+    "images": [],
+    "content_en": "Small interaction update:\n· Clicking the homepage portrait smoothly scrolls to the email at the bottom and briefly highlights it."
+  },
+  {
+    "id": "2026-10-08-avatar-hd",
+    "date": "2026-10-08T00:20",
+    "type": "BUILD",
+    "content": "门面升级：\n\n· 首页肖像头像换成 1080 高清版本，细节与笔触更清晰；\n· 加了 preload 提前加载，高清但首屏仍不拖慢。",
+    "published": true,
+    "images": [],
+    "content_en": "Face-lift:\n· Homepage portrait upgraded to a 1080 high-res version, finer detail and brushwork;\n· added preload — high-res but the first screen isn't slowed."
+  },
+  {
+    "id": "2026-10-08-typeall-2",
+    "date": "2026-10-08T00:10",
+    "type": "BUILD",
+    "content": "「快测 TypeAll」2.0 重构完成：上线 Big Five 大五人格多维测评，连续维度 + 16 型叙事 + 作答质量检测 + 人格签名，认识自己，不止一个标签。solyoung.top/TypeAll/",
+    "published": true,
+    "images": [],
+    "content_en": "'Quick Test TypeAll' 2.0 rebuild complete: launched Big Five multi-dimensional assessment, continuous dimensions + 16-type narrative + answer-quality detection + personality signature. Knowing yourself is more than a label. solyoung.top/TypeAll/"
+  },
+  {
+    "id": "2026-10-08-archive-entry-polish",
+    "date": "2026-10-08T00:05",
+    "type": "BUILD",
+    "content": "微调档案开场：\n\n· 归档后的文字移到档案框下方，不再遮挡照片；\n· 手机端提示改为「长按并拖入档案」，触屏可长按拖拽。",
+    "published": true,
+    "images": [],
+    "content_en": "Polished the archive intro:\n· Archived text moved below the archive frame, no longer covering the photo;\n· mobile hint changed to 'long-press and drag into the archive frame' for touch drag."
+  },
+  {
+    "id": "2026-10-07-archive-entry",
+    "date": "2026-10-07T23:50",
+    "type": "BUILD",
+    "content": "网站更新日志：\n\n· 上线「数字档案入口」开场体验：把头像拖进档案框，即可打开 SolYoung 的档案；\n· 首次访问完整体验，之后每次访问只极短暂浮现、不打扰；\n· 页脚可随时 REPLAY INTRO 重温，也支持减少动态效果与手机触屏操作。",
+    "published": true,
+    "images": [],
+    "content_en": "Site changelog:\n· Launched the 'digital archive entry' intro experience: drag the avatar into the archive frame to open SolYoung's archive;\n· full experience on first visit, afterward it only flashes briefly and doesn't disturb;\n· footer has a REPLAY INTRO to replay anytime; supports reduced-motion and touch."
+  },
+  {
+    "id": "2026-10-07-footer-image-opt",
+    "date": "2026-10-07T23:02",
+    "type": "BUILD",
+    "content": "网站更新日志：\n\n· 页脚 100 小时倒计时移到「记录是为了忘记」正下方、版权信息上方，并换成更稳定的数字字体（手机端显示更清晰）；\n· 全站图片压缩转 WebP 并加懒加载：相机参数模拟器 logo 从 1.6MB 降到约 4KB，首页图片总量从约 2.6MB 降到约 130KB，国内访问加载明显变快。",
+    "published": true,
+    "images": [],
+    "content_en": "Site changelog:\n· Footer 100-hour countdown moved to right below 'We record so we can forget', above the copyright, switched to a more stable numeral font (clearer on mobile);\n· All site images compressed to WebP with lazy loading: camera-simulator logo dropped from 1.6MB to ~4KB, total homepage images from ~2.6MB to ~130KB; noticeably faster in China."
+  },
+  {
+    "id": "2026-10-07-foot-countdown",
+    "date": "2026-10-07T22:47",
+    "type": "BUILD",
+    "content": "网站更新日志：\n\n· 页脚新增 100 小时循环倒计时，精确到秒，归零后自动重新开始；\n· 并附一句说明：每过 100 小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。",
+    "published": true,
+    "images": [],
+    "content_en": "Site changelog:\n· Footer added a 100-hour loop countdown, precise to the second, auto-restarts when it hits zero;\n· with a note: every 100 hours, this site and everything I create keeps changing. Added or removed, always moving toward something better."
+  },
+  {
+    "id": "2026-10-07-lang-toggle",
+    "date": "2026-10-07T22:22",
+    "type": "BUILD",
+    "content": "网站更新日志：\n\n· 右上角新增中英语言切换按钮，整站文案可一键在中英文之间切换；\n· 覆盖导航、首屏、板块标题、独立产品、关于我、联系与页脚；\n· 语言选择会被记住，下次打开保持上次选择。",
+    "published": true,
+    "images": [],
+    "content_en": "Site changelog:\n· Added a zh/en language toggle in the top-right; the whole site's copy switches between Chinese and English with one click;\n· covers nav, hero, section titles, independent products, about, contact and footer;\n· language choice is remembered and kept on next visit."
+  },
+  {
+    "id": "2026-10-04-myos-launch",
+    "date": "2026-10-04T20:05",
+    "type": "BUILD",
+    "content": "MyOS创作系统上线：独立产品新增第三个作品——面向独立创作者的本地优先创作工作台，已可点击访问 solyoung.top/OS/。",
+    "published": true,
+    "images": [],
+    "content_en": "MyOS creation system launched: the third work in independent products — a local-first creation workbench for independent creators, now clickable at solyoung.top/OS/."
+  },
+  {
+    "id": "2026-10-04-update-log",
+    "date": "2026-10-04T17:02",
+    "type": "BUILD",
+    "content": "网站更新日志：\n\n· 移除了「讨论」板块——评论功能因国内网络不可用，整体删除；\n· 作品、关于我标题可点击跳转二级页，新增 works/ 与 about/ 独立页面；\n· 关于我页 SolYoung 主标突出，副句改为下方小字；\n· 首页首屏下方新增一排快捷导航框（作品/此刻/思考/关于我）；\n· 移除右侧章节垂直导航。",
+    "published": true,
+    "images": [],
+    "content_en": "Site changelog:\n· Removed the 'Discussion' section — comments were unusable on China's network, deleted entirely;\n· Works and About titles now link to subpages; added standalone works/ and about/ pages;\n· About page: SolYoung main title emphasized, subtitle moved to small text below;\n· Added a row of quick-nav boxes below the homepage hero (Works/Now/Thoughts/About);\n· Removed the right-side vertical section nav."
+  },
+  {
+    "id": "2026-10-04-update-camsim-logo",
+    "date": "2026-10-04T12:45",
+    "type": "BUILD",
+    "content": "相机参数模拟器换上新的产品 logo。",
+    "published": true,
+    "images": [],
+    "content_en": "The camera parameter simulator got a new product logo."
+  },
+  {
+    "id": "2026-10-04-wrapup",
+    "date": "2026-10-04T03:40",
+    "type": "BUILD",
+    "content": "今日更新收尾：思考板块改为左右滑动并新增全部思考页、此刻标题可一键直达、手机端新增排版适配与单行优化、产品更新为 solyoung.top 新域名，并完成全站数据与链接排查。一切正常，休息。",
+    "published": true,
+    "images": [],
+    "content_en": "Wrapping up today's updates: thoughts section changed to horizontal swipe with a full-thoughts page, now title one-click jump, mobile layout adaptation and single-line optimization, products updated to the new solyoung.top domain, and a full-site data and link check. All good, resting."
+  },
+  {
+    "id": "2026-10-04-build-typeall-domain",
+    "date": "2026-10-04T03:35",
+    "type": "BUILD",
+    "content": "把「快测」收拢到了自己的域名下：solyoung.top/TypeAll/，聚合全网主流性格测试的一站式平台，25 套测试随时测一个。",
+    "published": true,
+    "images": [],
+    "content_en": "Brought the 'Quick Test' under its own domain: solyoung.top/TypeAll/ — a one-stop platform aggregating mainstream personality tests across the web, 25 tests ready to take anytime."
+  },
+  {
+    "id": "2026-10-04-promo-camsim",
+    "date": "2026-10-04T03:30",
+    "type": "BUILD",
+    "content": "把相机参数模拟器做到了自己满意的状态：根据你的使用场景，自动生成一套可以直接执行的摄影参数。\n\n来试试：solyoung.top/CamSim/",
+    "published": true,
+    "images": [
+      "assets/camera-simulator-logo.png"
+    ],
+    "content_en": "Got the camera parameter simulator to a state I'm happy with: based on your shooting scenario, it auto-generates a set of photography parameters you can execute directly.\n\nTry it: solyoung.top/CamSim/"
+  },
+  {
+    "id": "2026-10-04-update-mobile-comfort",
+    "date": "2026-10-04T02:53",
+    "type": "BUILD",
+    "content": "网站新增手机排版适配微标：手机端可一键切换更宽松自然的排版，点击右上角图标即可。",
+    "published": true,
+    "images": [],
+    "content_en": "Added a mobile layout comfort toggle: on mobile you can switch to a looser, more natural layout with one tap on the top-right icon."
+  },
+  {
+    "id": "2026-10-04-update-thoughts",
+    "date": "2026-10-04T02:47",
+    "type": "BUILD",
+    "content": "网站更新：思考板块改为左右滑动，标题可一键进入全部思考页，并新增 VIEW ALL THOUGHTS 引导。",
+    "published": true,
+    "images": [],
+    "content_en": "Site update: thoughts section changed to horizontal swipe, titles link to the full-thoughts page, and added a VIEW ALL THOUGHTS cue."
+  },
+  {
+    "id": "2026-10-04T02:43-life-4o59p",
+    "date": "2026-10-04T02:43",
+    "type": "LIFE",
+    "content": "优化网站，像是在经营自己的菜园",
+    "published": true,
+    "images": [],
+    "_pending": false,
+    "content_en": "Optimizing the website feels like tending my own vegetable garden."
+  },
+  {
+    "id": "2026-10-04-think-nxuex",
+    "date": "2026-10-04",
+    "type": "THINK",
+    "content": "创造让人乐此不疲",
+    "published": true,
+    "images": [],
+    "content_en": "Creation that keeps you coming back."
+  },
+  {
+    "id": "2026-10-03-build-camsim",
+    "date": "2026-10-03",
+    "type": "BUILD",
+    "content": "最近把相机参数模拟器又改了一版。\n\n发现真正麻烦的不是参数本身，而是怎么把摄影师的经验翻译成规则。现在这个交互终于顺手了。",
+    "images": [
+      "assets/camera-simulator-logo.png"
+    ],
+    "published": true,
+    "content_en": "Reworked the camera parameter simulator again recently.\n\nTurns out the hard part isn't the parameters themselves, but translating a photographer's experience into rules. This interaction finally feels right."
+  },
+  {
+    "id": "2026-10-01-test-ai-editing",
+    "date": "2026-10-01",
+    "type": "TEST",
+    "content": "开始重新测试 AI 辅助剪辑。\n暂时不追求效率，先看看它到底能不能改变我的剪辑思路。",
+    "images": [],
+    "published": true,
+    "content_en": "Started retesting AI-assisted editing.\nNot chasing efficiency for now — first seeing whether it can actually change the way I edit."
+  },
+  {
+    "id": "2026-09-27-shoot-nature",
+    "date": "2026-09-27",
+    "type": "SHOOT",
+    "content": "周末出去拍了一组东西。\n走进大自然，慢慢记录身边的风景。",
+    "images": [],
+    "published": true,
+    "content_en": "Went out and shot a set of things over the weekend.\nWalked into nature, slowly recording the scenery around me."
+  },
+  {
+    "id": "2026-09-22-build-typeall",
+    "date": "2026-09-22",
+    "type": "BUILD",
+    "content": "把各种性格测试收拢到了一个站里。\n快测，随时测一个。",
+    "images": [
+      "assets/personality-hub.jpg"
+    ],
+    "published": true,
+    "content_en": "Gathered all kinds of personality tests into one site.\nQuick test — take one anytime."
+  },
+  {
+    "id": "2026-09-15-think-what-remains",
+    "date": "2026-09-15",
+    "type": "THINK",
+    "content": "在一个 AI 可以越来越快帮我们完成事情的时代，一个人真正应该负责的，到底还剩下什么。\n这个问题我还没有答案，所以我继续试。",
+    "images": [],
+    "published": true,
+    "content_en": "In an age where AI can finish things for us faster and faster, what is it that a person is actually still responsible for?\nI don't have an answer yet, so I keep trying."
+  },
+  {
+    "id": "2026-10-16-videolab-v38-provider",
+    "date": "2026-10-16",
+    "type": "DEV",
+    "content": "VIDEO LAB v38：AI/TTS 接入重构完成——支持用户自带 OpenAI 兼容 API（DeepSeek/Moonshot/智谱/通义等），设置页新增真实连接测试、错误诊断分型（密钥无效/地址错误/超时/跨域）、能力分级与密钥清除；素材分析接入真实模型（视觉模型可选），密钥仅存浏览器本地。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v38: AI/TTS provider rework — bring-your-own OpenAI-compatible API (DeepSeek/Moonshot/Zhipu/Qwen…), real connection test with error classification, capability badges, key clearing; real media analysis with optional vision model; keys stay local in the browser."
+  },
+  {
+    "id": "2026-10-16-videolab-v43-voiceover",
+    "date": "2026-10-16",
+    "type": "DEV",
+    "content": "VIDEO LAB v43：口播视频自动剪辑上线——上传口播视频/音频后，浏览器本地 Whisper 真实转录（带时间戳，无需服务器），自动按语义段剪辑、生成字幕、保留原声；可混入 B-roll 素材；导出 MP4 真实包含音轨（AAC 48kHz）。支持本地 Whisper（免费）/ 自带转录 API / 粘贴 SRT 三种来源。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v43: voiceover auto-cut — upload your talking video/audio, transcribe locally in the browser with Whisper (real timestamps, zero server), auto-cut by semantic segments, subtitle, keep the original audio, optional B-roll; exported MP4 carries a real AAC 48kHz audio track. Sources: local Whisper (free) / your transcription API / pasted SRT."
+  },
+  {
+    "id": "2026-10-16-videolab-v44-preproduction",
+    "date": "2026-10-16",
+    "type": "DEV",
+    "content": "VIDEO LAB v44：产品转型为 AI 分镜与拍摄工作台（AI Video Pre-production Studio）——项目中心（9 类项目、复制/搜索/删除）、脚本工作台（段落化编辑、语速时长估算）、分镜编辑器（卡片/表格双视图、拖拽+上下移动排序、15 项镜头字段、参考图 Blob 本地存储、按状态筛选）、拍摄执行板（场景/道具/人物自动归类、任务清单、真实进度）、AI 创作助手（用户自带 OpenAI 兼容 API，结构化 JSON 输出经校验后预览确认才合并/替换，含分镜生成/画面优化/查漏/风格建议/中英视频提示词工具）、真实导出（Markdown/CSV/JSON 备份与导入恢复/中文正确可打印 PDF，pdf-lib 渲染）。全部浏览器本地 IndexedDB 存储，密钥仅存本地，零服务器。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v44: now an AI Pre-production Studio — Projects center (9 types, copy/search/delete), Script workspace (paragraph editing, WPM duration estimate), Storyboard editor (card/table views, drag + move buttons, 15 shot fields, reference-image blobs in IndexedDB, state filter), Production board (auto scene/prop/cast lists, tasks, real progress), AI Assistant (bring-your-own OpenAI-compatible API; structured JSON validated, previewed and confirmed before merge/replace; storyboard draft, visual polish, gap check, style advice, CN/EN video prompts), real exports (Markdown/CSV/JSON backup+restore/Chinese-safe print PDF via pdf-lib). Everything local in the browser (IndexedDB), keys stay local, zero server."
+  },
+  {
+    "id": "2026-10-17-videolab-v55-ai-fix",
+    "date": "2026-10-17",
+    "type": "DEV",
+    "content": "VIDEO LAB v55：修复 AI 生成链路三个真实 bug——①已配置 API 用户点击“生成分镜方案”无反应（aiassist 把 config() 当属性读，永远误报“尚未配置”）；②chatJSON 未导出导致请求中断；③错误分型参数顺序错误，API Key 无效等真实错误无法正确显示。现错误信息精确区分鉴权/地址/参数/限流/网络问题；生成→结构化校验→预览确认→合并/替换全链路本地验证通过。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v55: fixed three real bugs in the AI generation path — 1) the Generate button did nothing for users who had configured an API (aiassist read config() as a property, always mis-reporting 'not configured'); 2) chatJSON wasn't exported, breaking the request; 3) error classification args were swapped so real auth failures couldn't display. Now errors distinguish auth/endpoint/bad-request/rate-limit/network; the full chain generate -> validate -> preview -> merge/replace is verified locally."
+  },
+  {
+    "id": "2026-10-17-videolab-v56-dark-cinema",
+    "date": "2026-10-17",
+    "type": "DEV",
+    "content": "VIDEO LAB v56：视觉重构为深色电影工作台——炭黑底色 + 深橙强调，达芬奇/Premiere 级创作软件质感。重构项目中心卡片（类型图标封面、Talking head 双语标签、镜头数徽标、hover 抬升）、分镜编辑器（镜头卡编号块与状态 chips、空状态插画引导 + 一键新建镜头）、顶部工具栏（类型+页面面包屑、保存状态徽标、撤销/重做/导出主次分明）；修复弹窗类名错位导致样式失效的问题；表格/设置/导出/拍摄板/提示条全页深色化，支持系统减少动效。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB v56: dark cinema workstation — charcoal base + deep orange accent, DaVinci/Premiere-grade craft feel. Rebuilt project cards (type glyph cover, bilingual label, shot-count badge, hover lift), storyboard (shot number block & state chips, illustrated empty state with one-click New Shot), topbar (type+page breadcrumb, save-state badge, clear undo/redo/export hierarchy); fixed modal class mismatch that broke dialog styling; full-page dark theme for table/settings/export/production/toasts, respects reduced-motion."
+  },
+  {
+    "id": "2026-10-17-videolab-removed",
+    "date": "2026-10-17",
+    "type": "DEV",
+    "content": "VIDEO LAB 已下线移除：产品与独立仓库不再维护，视频目录已从本站删除。",
+    "images": [],
+    "published": true,
+    "content_en": "VIDEO LAB removed: product and its repository are no longer maintained; the video directory has been removed from this site."
+  }
+]

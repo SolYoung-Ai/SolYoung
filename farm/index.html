@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>SolYoung Farm</title>
+<style>
+:root{
+  --grass:#6a9e3f; --grass-d:#5a8c35; --grass-l:#7bb34a;
+  --dirt:#8b6f47; --dirt-wet:#5a452a;
+  --wood:#8b5a2a; --wood-d:#5a3a1a; --wood-l:#b8874a;
+  --panel:#3a2a1a; --gold:#ffd97a; --accent:#E87028;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#2a4a2a;color:#fff;font-family:"Courier New",monospace;min-height:100%;touch-action:manipulation;overflow:hidden}
+.wrap{max-width:960px;margin:0 auto;padding:10px;height:100vh;display:flex;flex-direction:column}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.topbar h1{font-size:15px;text-shadow:2px 2px 0 #000;letter-spacing:2px}
+.topbar .back{color:#fff;opacity:.7;text-decoration:none;font-size:12px}
+.topbar .back:hover{color:var(--gold)}
+.status{display:flex;gap:12px;font-size:12px;background:var(--panel);padding:5px 10px;border:2px solid var(--wood-d);border-radius:4px}
+.status b{color:var(--gold)}
+
+.viewport{position:relative;width:100%;flex:1;min-height:0;background:var(--grass);border:4px solid var(--wood-d);box-shadow:0 0 0 3px var(--wood),0 6px 0 3px rgba(0,0,0,.3);overflow:hidden;image-rendering:pixelated;cursor:pointer}
+.world{position:absolute;left:0;top:0;transform-origin:0 0;image-rendering:pixelated}
+
+.tile{position:absolute}
+.tile.path{background:#b8a070}
+.tile.tilled{background:var(--dirt)}
+.tile.wet{background:var(--dirt-wet)}
+
+.decor{position:absolute;image-rendering:pixelated;pointer-events:none}
+.decor svg{display:block;width:100%;height:100%}
+
+.building{position:absolute;image-rendering:pixelated;cursor:pointer}
+.building svg{display:block;width:100%;height:100%;image-rendering:pixelated}
+
+.player{position:absolute;z-index:50;transform:translate(-50%,-80%);pointer-events:none}
+.player svg{width:100%;height:100%;image-rendering:pixelated}
+.player.flip svg{transform:scaleX(-1)}
+.player .frame2{display:none}
+.player.walking .frame1{display:none}
+.player.walking .frame2{display:block}
+
+.toolbar{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;background:var(--panel);padding:8px;border:2px solid var(--wood-d);border-radius:4px;align-items:center}
+.tool{width:44px;height:44px;background:var(--wood);border:2px solid var(--wood-d);border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;transition:transform .1s}
+.tool:hover{transform:translateY(-2px)}
+.tool.active{background:var(--accent);border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.tool svg{width:22px;height:22px;image-rendering:pixelated}
+.tool .count{position:absolute;right:1px;bottom:1px;background:#000;color:var(--gold);font-size:8px;padding:0 2px;border-radius:2px}
+.spacer{flex:1}
+.btn{background:var(--wood);color:#fff;border:2px solid var(--wood-d);padding:7px 12px;cursor:pointer;font-family:inherit;font-size:11px;border-radius:3px}
+.btn:hover{background:var(--accent)}
+.btn.gold{background:var(--gold);color:var(--ink)}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100;padding:12px}
+.modal.show{display:flex}
+.panel{background:var(--panel);border:3px solid var(--wood-d);border-radius:6px;padding:18px;max-width:400px;width:100%;max-height:80vh;overflow:auto}
+.panel h2{font-size:15px;margin-bottom:10px;color:var(--gold)}
+.panel .row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px dashed #5a4a2a;font-size:12px}
+.panel .row:last-child{border:none}
+.panel .actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end}
+.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#000;color:var(--gold);padding:7px 14px;border:2px solid var(--accent);font-size:12px;z-index:99;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+.tip{margin-top:6px;font-size:10px;color:#cfe3c9;opacity:.8;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <h1>★ SolYoung Farm</h1>
+    <div class="status">
+      <span>Day <b id="ui-day">1</b></span>
+      <span>Gold <b id="ui-gold">50</b></span>
+    </div>
+    <a class="back" href="/">← 网站</a>
+  </div>
+
+  <div class="viewport" id="viewport">
+    <div class="world" id="world"></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="tool active" data-tool="hand">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="5" y="4" width="6" height="8" fill="#f0c8a0"/><rect x="4" y="6" width="2" height="4" fill="#f0c8a0"/><rect x="11" y="6" width="2" height="4" fill="#f0c8a0"/></svg>
+    </div>
+    <div class="tool" data-tool="hoe">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="7" y="2" width="2" height="12" fill="#8b5a2a"/><rect x="4" y="2" width="8" height="3" fill="#9a9a9a"/></svg>
+    </div>
+    <div class="tool" data-tool="seed-radish">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="6" y="8" width="4" height="6" fill="#c0392b"/><rect x="6" y="5" width="4" height="3" fill="#4d7a30"/></svg>
+      <span class="count" id="cnt-radish-seed">3</span>
+    </div>
+    <div class="tool" data-tool="seed-tomato">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><circle cx="8" cy="9" r="4" fill="#e87028"/><rect x="7" y="4" width="2" height="3" fill="#4d7a30"/></svg>
+      <span class="count" id="cnt-tomato-seed">2</span>
+    </div>
+    <div class="tool" data-tool="seed-berry">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><circle cx="8" cy="9" r="4" fill="#d6487a"/><rect x="7" y="4" width="2" height="2" fill="#4d7a30"/></svg>
+      <span class="count" id="cnt-berry-seed">1</span>
+    </div>
+    <div class="tool" data-tool="water">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="5" y="6" width="6" height="7" fill="#4a6b8a"/><rect x="6" y="3" width="4" height="3" fill="#4a6b8a"/><circle cx="12" cy="10" r="1" fill="#a8d8ea"/></svg>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn" id="btn-bag">背包</button>
+    <button class="btn" id="btn-day">结束今日</button>
+    <button class="btn gold" id="btn-reset">重置</button>
+  </div>
+  <p class="tip">点地面走路 · 选种子后点翻好的地播种 · 浇水后点"结束今日"生长</p>
+
+  <div class="modal" id="modal">
+    <div class="panel">
+      <h2 id="m-title"></h2>
+      <div id="m-body"></div>
+      <div class="actions">
+        <button class="btn" id="m-close">关闭</button>
+        <button class="btn gold" id="m-action" style="display:none"></button>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+const SAVE='solyoung_farm_v2';
+const TILE=32;
+const COLS=30, ROWS=20;
+const WORLD_W=COLS*TILE, WORLD_H=ROWS*TILE;
+
+// farm plots area (bigger)
+const FARM={x0:8,x1:21,y0:13,y1:18};
+
+// obstacles: buildings
+const OBSTACLES=[
+  {x0:5,x1:10,y0:4,y1:8, spot:'house'},    // main house
+  {x0:13,x1:17,y0:4,y1:8, spot:'market'},  // market
+  {x0:20,x1:25,y0:4,y1:8, spot:'studio'},   // studio
+];
+
+const CROPS={
+  radish:{name:'萝卜',days:3,sell:15,color:'#c0392b'},
+  tomato:{name:'番茄',days:5,sell:35,color:'#e87028'},
+  berry:{name:'草莓',days:7,sell:60,color:'#d6487a'},
+};
+
+let state, currentTool='hand', path=[];
+const player={x:15,y:11};
+const camera={x:0,y:0};
+
+const viewport=document.getElementById('viewport');
+const world=document.getElementById('world');
+world.style.width=WORLD_W+'px';
+world.style.height=WORLD_H+'px';
+
+function defaultState(){
+  const plots={};
+  for(let y=FARM.y0;y<=FARM.y1;y++)for(let x=FARM.x0;x<=FARM.x1;x++)
+    plots[x+','+y]={tilled:false,watered:false,crop:null,growth:0};
+  return {day:1,gold:50,seeds:{radish:3,tomato:2,berry:1},bag:{radish:0,tomato:0,berry:0},plots};
+}
+function load(){
+  try{const r=localStorage.getItem(SAVE);if(r){state=JSON.parse(r);if(state.plots)return;}}catch(e){}
+  state=defaultState();save();
+}
+function save(){try{localStorage.setItem(SAVE,JSON.stringify(state));}catch(e){}}
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1600);}
+function beep(f){try{const a=new (window.AudioContext||window.webkitAudioContext)();const o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.connect(g);g.connect(a.destination);o.start();g.gain.value=.05;o.stop(a.currentTime+.1);}catch(e){}}
+
+function updateUI(){
+  document.getElementById('ui-day').textContent=state.day;
+  document.getElementById('ui-gold').textContent=state.gold;
+  document.getElementById('cnt-radish-seed').textContent=state.seeds.radish;
+  document.getElementById('cnt-tomato-seed').textContent=state.seeds.tomato;
+  document.getElementById('cnt-berry-seed').textContent=state.seeds.berry;
+}
+
+// build static world: paths, buildings, decorations
+function buildWorld(){
+  // horizontal path in front of buildings
+  addPath(3,10,26,1);
+  // vertical path to farm
+  addPath(14,11,1,2);
+  // buildings
+  addBuilding(OBSTACLES[0],houseSVG());
+  addBuilding(OBSTACLES[1],marketSVG());
+  addBuilding(OBSTACLES[2],studioSVG());
+  // trees around edges
+  for(let i=0;i<8;i++){
+    addDecor(1+i*3,1,treeSVG());
+    addDecor(1+i*3,19,treeSVG());
+  }
+  for(let i=0;i<5;i++){
+    addDecor(1,3+i*3,treeSVG());
+    addDecor(28,3+i*3,treeSVG());
+  }
+  // player
+  const pe=document.createElement('div');
+  pe.className='player';
+  pe.id='player';
+  pe.innerHTML=`<svg class="frame1" viewBox="0 0 16 22" shape-rendering="crispEdges">
+    <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
+    <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
+    <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
+    <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
+    <rect x="6" y="5" width="1" height="1" fill="#000"/>
+    <rect x="10" y="5" width="1" height="1" fill="#000"/>
+    <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
+    <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
+    <rect x="5" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="10" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="5" y="21" width="2" height="1" fill="#2d1f0e"/>
+    <rect x="10" y="21" width="2" height="1" fill="#2d1f0e"/>
+  </svg><svg class="frame2" viewBox="0 0 16 22" shape-rendering="crispEdges">
+    <rect x="1" y="8" width="3" height="7" fill="#3a4a5a"/>
+    <rect x="4" y="0" width="9" height="3" fill="#5a3a20"/>
+    <rect x="3" y="2" width="11" height="2" fill="#5a3a20"/>
+    <rect x="4" y="4" width="9" height="5" fill="#f0c8a0"/>
+    <rect x="6" y="5" width="1" height="1" fill="#000"/>
+    <rect x="10" y="5" width="1" height="1" fill="#000"/>
+    <rect x="4" y="9" width="9" height="6" fill="#8a8a8a"/>
+    <rect x="2" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="13" y="9" width="2" height="4" fill="#f0c8a0"/>
+    <rect x="4" y="15" width="9" height="3" fill="#2d1f0e"/>
+    <rect x="4" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="11" y="18" width="2" height="3" fill="#f0c8a0"/>
+    <rect x="4" y="21" width="2" height="1" fill="#2d1f0e"/>
+    <rect x="11" y="21" width="2" height="1" fill="#2d1f0e"/>
+  </svg>`;
+  world.appendChild(pe);
+}
+
+function addPath(gx,gy,gw,gh){
+  const el=document.createElement('div');
+  el.className='tile path';
+  el.style.left=(gx*TILE)+'px';el.style.top=(gy*TILE)+'px';
+  el.style.width=(gw*TILE)+'px';el.style.height=(gh*TILE)+'px';
+  world.appendChild(el);
+}
+function addDecor(gx,gy,svg){
+  const el=document.createElement('div');
+  el.className='decor';
+  el.style.left=(gx*TILE)+'px';el.style.top=(gy*TILE)+'px';
+  el.style.width=(TILE*1.2)+'px';el.style.height=(TILE*1.5)+'px';
+  el.innerHTML=svg;
+  world.appendChild(el);
+}
+function addBuilding(obs,svg){
+  const el=document.createElement('div');
+  el.className='building';
+  el.dataset.spot=obs.spot;
+  const w=(obs.x1-obs.x0+1)*TILE;
+  const h=(obs.y1-obs.y0+1)*TILE;
+  el.style.left=(obs.x0*TILE)+'px';el.style.top=(obs.y0*TILE)+'px';
+  el.style.width=w+'px';el.style.height=h+'px';
+  el.innerHTML=svg;
+  world.appendChild(el);
+}
+
+function treeSVG(){
+  return `<svg viewBox="0 0 40 50" shape-rendering="crispEdges">
+    <rect x="17" y="35" width="6" height="12" fill="#5a3a1a"/>
+    <rect x="8" y="18" width="24" height="20" fill="#3a6b2a"/>
+    <rect x="12" y="8" width="16" height="14" fill="#4d7a30"/>
+  </svg>`;
+}
+function houseSVG(){
+  return `<svg viewBox="0 0 200 150" shape-rendering="crispEdges">
+    <rect x="30" y="55" width="140" height="85" fill="#e8d4a8" stroke="#8b5a2a" stroke-width="2"/>
+    <line x1="30" y1="75" x2="170" y2="75" stroke="#c9b088" stroke-width="1"/>
+    <line x1="30" y1="95" x2="170" y2="95" stroke="#c9b088" stroke-width="1"/>
+    <line x1="30" y1="115" x2="170" y2="115" stroke="#c9b088" stroke-width="1"/>
+    <polygon points="20,60 100,12 180,60" fill="#b83a2a" stroke="#7a2015" stroke-width="2"/>
+    <line x1="35" y1="48" x2="165" y2="48" stroke="#9a2a1a" stroke-width="1"/>
+    <line x1="50" y1="36" x2="150" y2="36" stroke="#9a2a1a" stroke-width="1"/>
+    <rect x="140" y="20" width="14" height="25" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="1"/>
+    <rect x="88" y="100" width="28" height="40" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+    <circle cx="110" cy="122" r="2" fill="#ffd97a"/>
+    <rect x="84" y="140" width="36" height="6" fill="#b8a070"/>
+    <rect x="45" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <rect x="131" y="80" width="24" height="22" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <line x1="57" y1="80" x2="57" y2="102" stroke="#5a3a1a" stroke-width="1"/>
+    <line x1="143" y1="80" x2="143" y2="102" stroke="#5a3a1a" stroke-width="1"/>
+    <rect x="68" y="78" width="64" height="16" fill="#8b5a2a" stroke="#5a3a1a" stroke-width="2"/>
+    <text x="100" y="90" font-family="Courier New,monospace" font-size="9" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">SOLYOUNG.TOP</text>
+  </svg>`;
+}
+function marketSVG(){
+  return `<svg viewBox="0 0 160 130" shape-rendering="crispEdges">
+    <rect x="20" y="55" width="120" height="65" fill="#c9a06a" stroke="#6b4f2a" stroke-width="2"/>
+    <rect x="30" y="85" width="100" height="25" fill="#8b5a2a"/>
+    <rect x="15" y="35" width="130" height="20" fill="#c0392b"/>
+    <rect x="15" y="35" width="22" height="20" fill="#fff"/>
+    <rect x="59" y="35" width="22" height="20" fill="#fff"/>
+    <rect x="103" y="35" width="22" height="20" fill="#fff"/>
+    <rect x="20" y="55" width="4" height="10" fill="#5a3a1a"/>
+    <rect x="136" y="55" width="4" height="10" fill="#5a3a1a"/>
+    <rect x="40" y="78" width="12" height="8" fill="#c0392b"/>
+    <rect x="60" y="78" width="12" height="8" fill="#e87028"/>
+    <rect x="80" y="78" width="12" height="8" fill="#d6487a"/>
+    <rect x="40" y="108" width="80" height="14" fill="#5a3a1a"/>
+    <text x="80" y="118" font-family="Courier New,monospace" font-size="8" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="1">DIGITAL MARKET</text>
+  </svg>`;
+}
+function studioSVG(){
+  return `<svg viewBox="0 0 200 150" shape-rendering="crispEdges">
+    <rect x="30" y="65" width="140" height="75" fill="#d4a76a" stroke="#5a3a1a" stroke-width="2"/>
+    <line x1="30" y1="85" x2="170" y2="85" stroke="#b8956a" stroke-width="1"/>
+    <line x1="30" y1="105" x2="170" y2="105" stroke="#b8956a" stroke-width="1"/>
+    <polygon points="25,70 100,25 175,70" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+    <rect x="82" y="100" width="36" height="40" fill="#2d1f0e"/>
+    <rect x="86" y="104" width="28" height="36" fill="#4a6b8a"/>
+    <rect x="45" y="85" width="22" height="20" fill="#a8d8ea" stroke="#5a3a1a" stroke-width="2"/>
+    <rect x="68" y="82" width="64" height="16" fill="#5a3a1a" stroke="#3a2a1a" stroke-width="2"/>
+    <text x="100" y="94" font-family="Courier New,monospace" font-size="10" font-weight="bold" fill="#ffd97a" text-anchor="middle" letter-spacing="2">STUDIO</text>
+  </svg>`;
+}
+
+function renderPlots(){
+  world.querySelectorAll('.tile[data-plot]').forEach(e=>e.remove());
+  for(const k in state.plots){
+    const p=state.plots[k],[gx,gy]=k.split(',').map(Number);
+    const el=document.createElement('div');
+    el.className='tile'+(p.tilled?(p.wet?' wet':' tilled'):'');
+    el.dataset.plot=k;
+    el.style.left=(gx*TILE)+'px';el.style.top=(gy*TILE)+'px';
+    el.style.width=TILE+'px';el.style.height=TILE+'px';
+    if(p.crop){
+      const c=CROPS[p.crop];const stage=p.growth;
+      const sz=stage<2?10:stage<4?18:26;
+      const col=stage<2?'#4d7a30':stage<4?'#3a6b2a':c.color;
+      el.innerHTML=`<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:${sz}px;height:${sz}px;background:${col};border-radius:${sz<15?2:5}px;border:2px solid rgba(0,0,0,.3)"></div>`;
+    }
+    world.appendChild(el);
+  }
+}
+
+function inObstacle(x,y){for(const o of OBSTACLES)if(x>=o.x0&&x<=o.x1&&y>=o.y0&&y<=o.y1)return true;return false;}
+
+function findPath(sx,sy,tx,ty){
+  if(inObstacle(tx,ty)||tx<0||tx>=COLS||ty<0||ty>=ROWS)return null;
+  const open=[{x:sx,y:sy,path:[]}],closed=new Set();
+  while(open.length){
+    open.sort((a,b)=>Math.abs(a.x-tx)+Math.abs(a.y-ty)-(Math.abs(b.x-tx)+Math.abs(b.y-ty)));
+    const cur=open.shift();const key=cur.x+','+cur.y;
+    if(closed.has(key))continue;closed.add(key);
+    if(cur.x===tx&&cur.y===ty)return cur.path.slice(1);
+    for(const[dx,dy]of[[0,1],[0,-1],[1,0],[-1,0]]){
+      const nx=cur.x+dx,ny=cur.y+dy;
+      if(nx<0||nx>=COLS||ny<0||ny>=ROWS||inObstacle(nx,ny))continue;
+      open.push({x:nx,y:ny,path:[...cur.path,{x:nx,y:ny}]});
+    }
+  }
+  return null;
+}
+
+const playerEl=document.getElementById('player');
+function renderPlayer(){
+  playerEl.style.left=(player.x*TILE+TILE/2)+'px';
+  playerEl.style.top=(player.y*TILE+TILE/2)+'px';
+}
+
+function updateCamera(){
+  const vw=viewport.clientWidth, vh=viewport.clientHeight;
+  let tx=player.x*TILE+TILE/2 - vw/2;
+  let ty=player.y*TILE+TILE/2 - vh/2;
+  tx=Math.max(0,Math.min(tx,WORLD_W-vw));
+  ty=Math.max(0,Math.min(ty,WORLD_H-vh));
+  camera.x=tx;camera.y=ty;
+  world.style.transform=`translate(${-tx}px,${-ty}px)`;
+}
+
+let lastT=performance.now();
+function loop(t){
+  const dt=(t-lastT)/1000;lastT=t;
+  if(path.length){
+    const nxt=path[0];
+    const dx=nxt.x-player.x,dy=nxt.y-player.y;
+    const d=Math.sqrt(dx*dx+dy*dy);
+    const speed=5;
+    if(d<.05){path.shift();if(!path.length){playerEl.classList.remove('walking');onArrive();}}
+    else{
+      player.x+=dx/d*speed*dt;player.y+=dy/d*speed*dt;
+      if(Math.abs(dx)>0.05)playerEl.classList.toggle('flip',dx<0);
+    }
+    renderPlayer();
+  }
+  updateCamera();
+  requestAnimationFrame(loop);
+}
+
+function goTo(tx,ty){
+  const sx=Math.round(player.x),sy=Math.round(player.y);
+  const p=findPath(sx,sy,tx,ty);
+  if(!p){toast('走不过去');return;}
+  path=p;playerEl.classList.add('walking');
+}
+
+function onArrive(){
+  const gx=Math.round(player.x),gy=Math.round(player.y);
+  const p=state.plots[gx+','+gy];
+  if(p)doTool(p,gx+','+gy);
+  // building interaction: if near building front
+  for(const o of OBSTACLES){
+    if(gy===o.y1+1 && gx>=o.x0 && gx<=o.x1){
+      if(o.spot==='house')openHouse();
+      else if(o.spot==='market')openMarket();
+      else if(o.spot==='studio')openStudio();
+    }
+  }
+}
+
+function doTool(p,key){
+  if(currentTool==='hoe'){
+    if(!p.tilled){p.tilled=true;beep(200);toast('翻好了');save();renderPlots();}
+  }else if(currentTool.startsWith('seed-')){
+    const type=currentTool.slice(5);
+    if(!p.tilled){toast('先翻土');return;}
+    if(p.crop){toast('这里有作物');return;}
+    if(state.seeds[type]<=0){toast('没种子了');return;}
+    state.seeds[type]--;p.crop=type;p.growth=0;p.watered=false;
+    beep(400);toast('种下了'+CROPS[type].name);save();updateUI();renderPlots();
+  }else if(currentTool==='water'){
+    if(!p.crop){toast('没作物');return;}
+    p.watered=true;beep(600);toast('浇过水');save();renderPlots();
+  }else if(currentTool==='hand'){
+    if(p.crop&&p.growth>=CROPS[p.crop].days){
+      state.bag[p.crop]++;p.crop=null;p.tilled=false;p.watered=false;p.growth=0;
+      beep(800);toast('收获了'+CROPS[p.crop].name);save();updateUI();renderPlots();
+    }
+  }
+}
+
+viewport.addEventListener('click',e=>{
+  if(e.target.closest('.building'))return;
+  const r=viewport.getBoundingClientRect();
+  const wx=e.clientX-r.left+camera.x;
+  const wy=e.clientY-r.top+camera.y;
+  const gx=Math.floor(wx/TILE);
+  const gy=Math.floor(wy/TILE);
+  goTo(gx,gy);
+});
+
+document.querySelectorAll('.tool').forEach(el=>{
+  el.addEventListener('click',e=>{
+    e.stopPropagation();
+    document.querySelectorAll('.tool').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');currentTool=el.dataset.tool;
+  });
+});
+
+document.getElementById('btn-day').addEventListener('click',()=>{
+  state.day++;
+  for(const k in state.plots){const p=state.plots[k];if(p.crop&&p.watered&&p.growth<CROPS[p.crop].days){p.growth++;p.watered=false;}}
+  save();updateUI();renderPlots();beep(300);toast('第 '+state.day+' 天');
+});
+
+document.getElementById('btn-reset').addEventListener('click',()=>{
+  if(confirm('清空存档重新开始？')){state=defaultState();save();updateUI();renderPlots();toast('新开始');}
+});
+
+const modal=document.getElementById('modal');
+function openModal(title,body,actionText,actionFn){
+  document.getElementById('m-title').textContent=title;
+  document.getElementById('m-body').innerHTML=body;
+  const act=document.getElementById('m-action');
+  if(actionText){act.style.display='inline-block';act.textContent=actionText;act.onclick=actionFn;}
+  else act.style.display='none';
+  modal.classList.add('show');
+}
+document.getElementById('m-close').addEventListener('click',()=>modal.classList.remove('show'));
+
+function openHouse(){openModal('主屋 · SolYoung','<p style="line-height:1.7;font-size:13px">我的个人主页，记录创作与实践。</p>','访问 solyoung.top',()=>location.href='/');}
+function openStudio(){openModal('Studio · 数字服务工作室','<p style="line-height:1.7;font-size:13px">视频创作、AI 实践、数字产品定制。</p>','访问 studio.solyoung.top',()=>window.open('https://studio.solyoung.top/','_blank'));}
+function openMarket(){
+  openModal('Digital Market',
+    `<div class="row"><span>萝卜种子 (5金)</span><button class="btn" onclick="buy('radish',5)">买</button></div>
+     <div class="row"><span>番茄种子 (10金)</span><button class="btn" onclick="buy('tomato',10)">买</button></div>
+     <div class="row"><span>草莓种子 (18金)</span><button class="btn" onclick="buy('berry',18)">买</button></div>
+     <div class="row"><span>出售萝卜 (15金)</span><button class="btn" onclick="sell('radish',15)">卖</button></div>
+     <div class="row"><span>出售番茄 (35金)</span><button class="btn" onclick="sell('tomato',35)">卖</button></div>
+     <div class="row"><span>出售草莓 (60金)</span><button class="btn" onclick="sell('berry',60)">卖</button></div>`);
+}
+window.buy=(t,c)=>{if(state.gold<c){toast('金币不够');return;}state.gold-=c;state.seeds[t]++;save();updateUI();beep(500);toast('买了'+CROPS[t].name+'种子');};
+window.sell=(t,p)=>{if(state.bag[t]<=0){toast('没有'+CROPS[t].name);return;}state.bag[t]--;state.gold+=p;save();updateUI();beep(700);toast('卖了'+p+'金');};
+
+document.getElementById('btn-bag').addEventListener('click',()=>{
+  openModal('背包',
+    `<div class="row"><span>萝卜</span><span>${state.bag.radish}</span></div>
+     <div class="row"><span>番茄</span><span>${state.bag.tomato}</span></div>
+     <div class="row"><span>草莓</span><span>${state.bag.berry}</span></div>
+     <div class="row"><span>金币</span><span>${state.gold}</span></div>`);
+});
+
+load();buildWorld();updateUI();renderPlots();renderPlayer();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
