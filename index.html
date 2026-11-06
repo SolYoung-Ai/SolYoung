@@ -998,6 +998,92 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     mask-image:linear-gradient(to bottom,transparent 0,#000 52px)}
 }
 
+
+/* ============ Home Projects carousel (hp-*) ============ */
+.hp-wrap{--hp-ease:cubic-bezier(.22,1,.36,1);--hp-frame:#FFFFFF;--hp-bar:#F1F1EF;margin-top:2px}
+:root[data-theme="dark"] .hp-wrap{--hp-frame:#232323;--hp-bar:#2B2B2B}
+.hp-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.hp-kicker{font-family:var(--font-display);font-size:10.5px;font-weight:600;letter-spacing:.26em;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.hp-kicker::before{content:"";width:26px;height:1px;background:var(--accent)}
+.hp-hint{font-family:var(--font-display);font-size:10.5px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.hp-hint svg{width:20px;height:11px;opacity:.65}
+.hp-viewport{overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.hp-viewport.dragging{cursor:grabbing}
+.hp-track{display:flex;gap:22px;will-change:transform;transition:transform .8s var(--hp-ease)}
+.hp-track.dragging{transition:none}
+.hp-slide{flex:0 0 calc(100% - 88px);min-width:0}
+.hp-card{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 4px rgba(27,27,25,.04),0 30px 60px -38px rgba(27,27,25,.32);overflow:hidden;min-height:clamp(400px,36vw,480px)}
+:root[data-theme="dark"] .hp-card{box-shadow:0 2px 4px rgba(0,0,0,.3),0 30px 60px -38px rgba(0,0,0,.75)}
+.hp-shot{padding:clamp(18px,2.2vw,30px);display:flex;align-items:center;background:linear-gradient(155deg,var(--bg-soft),transparent 72%)}
+.hp-browser{width:100%;background:var(--hp-frame);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 16px 38px -22px rgba(0,0,0,.35)}
+.hp-bar{height:34px;background:var(--hp-bar);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 12px}
+.hp-dots{display:flex;gap:5px;flex:0 0 auto}
+.hp-dots i{width:8px;height:8px;border-radius:50%;background:#D8D8D4}
+.hp-dots i:nth-child(2){background:#C8C8C4}
+.hp-dots i:nth-child(3){background:#BEBEB9}
+:root[data-theme="dark"] .hp-dots i{background:#4A4A4A}
+:root[data-theme="dark"] .hp-dots i:nth-child(2){background:#3E3E3E}
+:root[data-theme="dark"] .hp-dots i:nth-child(3){background:#353535}
+.hp-url{margin:auto;display:flex;align-items:center;gap:6px;font:500 10.5px/1 var(--font-display);color:var(--ink-soft);background:var(--bg-soft);border:1px solid var(--line);border-radius:20px;padding:5px 14px;letter-spacing:.02em;white-space:nowrap;max-width:60%;overflow:hidden;text-overflow:ellipsis}
+.hp-url svg{width:9px;height:9px;flex:0 0 auto;opacity:.65}
+.hp-bar-sp{flex:0 0 auto;width:32px}
+.hp-img{aspect-ratio:16/10;overflow:hidden;background:#fff}
+.hp-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.hp-shot-note{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding:0 2px;font:500 9.5px/1 var(--font-display);letter-spacing:.16em;color:var(--ink-faint);text-transform:uppercase}
+.hp-shot-note .live{display:inline-flex;align-items:center;gap:6px;color:var(--accent)}
+.hp-shot-note .live i{width:5px;height:5px;border-radius:50%;background:var(--accent);display:block}
+.hp-info{padding:clamp(26px,3vw,46px);display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.hp-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hp-no{font:700 12px/1 var(--font-display);color:var(--accent);letter-spacing:.1em}
+.hp-kind{font:600 10px/1 var(--font-display);letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase}
+.hp-name{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,4vw,52px);letter-spacing:-.04em;margin:24px 0 0;line-height:1.04;overflow-wrap:anywhere}
+.hp-subname{font:500 11px/1 var(--font-display);letter-spacing:.22em;color:var(--ink-faint);margin-top:11px;text-transform:uppercase}
+.hp-rule{height:1px;background:var(--line);margin:24px 0}
+.hp-desc{font-size:14px;line-height:1.95;color:var(--ink-soft);margin:0;max-width:40ch}
+.hp-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.hp-tag{font:500 10.5px/1 var(--font-body);color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:7px 12px;white-space:nowrap}
+.hp-foot{margin-top:auto;padding-top:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hp-go{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;border-radius:30px;padding:13px 22px;font:600 12px/1 var(--font-display);letter-spacing:.08em;transition:filter .25s,gap .25s,transform .25s}
+.hp-go:hover{filter:brightness(1.08);gap:18px;transform:translateY(-2px)}
+.hp-go b{font-size:14px;font-weight:500}
+.hp-domain{font:500 10.5px/1 var(--font-display);color:var(--ink-faint);letter-spacing:.03em}
+.hp-controls{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:26px}
+.hp-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.hp-tab{background:none;border:1px solid var(--line);border-radius:30px;padding:9px 16px;font:600 11px/1 var(--font-display);letter-spacing:.05em;color:var(--ink-soft);display:inline-flex;align-items:center;gap:9px;transition:all .25s}
+.hp-tab b{color:var(--ink-faint);font-size:10px;transition:color .25s}
+.hp-tab:hover{border-color:var(--accent);color:var(--accent)}
+.hp-tab.on{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.hp-tab.on b{color:var(--accent)}
+.hp-nav{display:flex;align-items:center;gap:10px}
+.hp-count{font:600 11px/1 var(--font-display);letter-spacing:.1em;color:var(--ink-faint);margin-right:8px;white-space:nowrap}
+.hp-count b{color:var(--ink);font-weight:700}
+.hp-arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-family:var(--font-display);font-size:17px;line-height:1;color:var(--ink-soft);transition:all .25s}
+.hp-arrow:hover:not(:disabled){border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hp-arrow:disabled{opacity:.32;cursor:default}
+.hp-progress{height:2px;background:var(--line);margin-top:24px;border-radius:2px;overflow:hidden}
+.hp-progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .8s var(--hp-ease)}
+@media(max-width:960px){
+  .hp-slide{flex:0 0 calc(100% - 48px)}
+  .hp-card{grid-template-columns:1fr;min-height:0}
+  .hp-shot{padding:clamp(16px,3vw,26px)}
+  .hp-info{border-left:0;border-top:1px solid var(--line);padding:clamp(24px,4vw,36px)}
+  .hp-name{margin-top:20px}
+  .hp-rule{margin:20px 0}
+  .hp-foot{padding-top:24px}
+}
+@media(max-width:620px){
+  .hp-slide{flex:0 0 calc(100% - 24px)}
+  .hp-track{gap:12px}
+  .hp-hint{display:none}
+  .hp-bar-sp{display:none}
+  .hp-url{max-width:70%}
+  .hp-name{font-size:clamp(28px,8.5vw,40px)}
+  .hp-controls{gap:14px}
+  .hp-tab{padding:8px 12px;font-size:10px}
+  .hp-arrow{width:38px;height:38px}
+  .hp-count{margin-right:4px}
+}
+
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 </head>
@@ -1267,41 +1353,23 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
       <span class="sec-num">01</span>
     </div>
 
-    <div class="proj-group rv">
-      <div class="proj-group-title" data-i18n="cview-title">社交媒体 <span class="en">SOCIAL</span></div>
-      <div class="cview-wrap" id="cviewAccounts"></div>
-    </div>
-
-    <div class="proj-group-title" data-i18n="digi-title" style="margin-top:clamp(36px,5vw,56px)">数字产品 <span class="en">DIGITAL PRODUCTS</span></div>
-
-    <div class="win studio-entry rv rv-d1" style="margin-top:0">
-      <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
-        <span class="win-title">SolHub</span>
-        <span class="win-state live">LIVE</span>
-        <span class="win-open">OPEN ↗</span>
+    <div class="hp-wrap" id="hpWrap">
+      <div class="hp-top">
+        <div class="hp-kicker">SELECTED PROJECTS · 02</div>
+        <div class="hp-hint"><svg viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5.5h18M5 1.5 1 5.5l4 4M15 1.5l4 4-4 4"/></svg><span id="hpHintText">左右拖动 · 滑动浏览</span></div>
       </div>
-      <a class="studio-link" href="https://solhub.solyoung.top/" target="_blank" rel="noopener" aria-label="SolHub 数字工具社区，点击进入" style="flex:1">
-        <span class="studio-logo studio-logo-plain"><img loading="lazy" src="assets/solhub-logo.png" alt="SolHub logo"></span>
-        <span class="studio-mid">
-          <span class="studio-brand"><span class="studio-name">SolHub</span><span class="studio-cn" data-i18n="solhub-cn">数字工具社区</span></span>
-          <p class="studio-desc" data-i18n="solhub-desc">收录自研的数字产品与免费在线工具，也欢迎提交你的作品。</p>
-        </span>
-      </a>
-    </div>
-
-    <div class="win studio-entry rv rv-d2" style="margin-top:16px">
-      <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
-        <span class="win-title">SolYoung Studio</span>
-        <span class="win-state live">LIVE</span>
-        <span class="win-open">OPEN ↗</span>
+      <div class="hp-viewport" id="hpViewport">
+        <div class="hp-track" id="hpTrack"></div>
       </div>
-      <a class="studio-link" href="https://studio.solyoung.top/" target="_blank" rel="noopener" aria-label="SolYoung Studio 数字服务工作室，点击进入" style="flex:1">
-        <span class="studio-logo studio-logo-plain"><img loading="lazy" src="assets/studio-logo.png" alt="SolYoung Studio logo"></span>
-        <span class="studio-mid">
-          <span class="studio-brand"><span class="studio-name">SolYoung Studio</span><span class="studio-cn" data-i18n="studio-cn">数字服务工作室</span></span>
-          <p class="studio-desc" data-i18n="studio-desc">提供数字产品定制、网站与工具开发、AI 工作流搭建等服务。想把一个想法做成可用的东西，可以从这里开始。</p>
-        </span>
-      </a>
+      <div class="hp-controls">
+        <div class="hp-tabs" id="hpTabs"></div>
+        <div class="hp-nav">
+          <span class="hp-count"><b id="hpCur">01</b> / 02</span>
+          <button class="hp-arrow" id="hpPrev" type="button" aria-label="上一个项目">&#8592;</button>
+          <button class="hp-arrow" id="hpNext" type="button" aria-label="下一个项目">&#8594;</button>
+        </div>
+      </div>
+      <div class="hp-progress"><span id="hpProg"></span></div>
     </div>
 
     <!-- Farm entry hidden for now, code kept for later
@@ -1316,17 +1384,6 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
       <span class="farm-cta" data-i18n="farm-cta">进入农场 ↗</span>
     </a>
     -->
-
-    <div class="win gh-card rv rv-d3" style="margin-top:16px">
-      <div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span>
-        <span class="win-title">GitHub Activity</span>
-        <span class="win-state">@SolYoung-Ai</span>
-        <span class="win-open">OPEN ↗</span>
-      </div>
-      <a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener" aria-label="GitHub 贡献动态" style="display:block;padding:18px 20px 14px">
-        <img class="gh-chart" loading="lazy" src="https://ghchart.rshah.org/E87028/SolYoung-Ai" alt="SolYoung-Ai GitHub 贡献图" width="1000" height="120">
-      </a>
-    </div>
 
     <a class="now-more rv" href="works/" aria-label="查看全部项目">VIEW ALL PROJECTS <span class="now-more-arr">→</span></a>
 
@@ -1619,6 +1676,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     document.documentElement.setAttribute('data-lang', lang);
     if(window.__renderVideos) window.__renderVideos();
     if(window.__renderNow) window.__renderNow();
+    if(window.__hpRender) window.__hpRender(lang);
   }
   applyLang(currentLang);
   // 顶栏与「关于我」抽屉内的语言按钮共用同一套切换逻辑，状态始终一致
@@ -3335,6 +3393,143 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   });
 })();
 
+</script>
+<script>
+(function(){
+  'use strict';
+  var P = [
+    {domain:'solhub.solyoung.top', url:'https://solhub.solyoung.top/', img:'assets/project-solhub.jpg',
+     zh:{name:'SolHub', sub:'DIGITAL TOOL HUB', kind:'数字产品 · DIGITAL PRODUCT',
+         desc:'收录自研的数字产品与免费在线工具，也欢迎其他独立开发者提交自己的产品。一个用来发现、展示与分享作品的地方。',
+         tags:['工具社区','免费工具','独立开发']},
+     en:{name:'SolHub', sub:'DIGITAL TOOL HUB', kind:'DIGITAL PRODUCT',
+         desc:'A home for my own digital products and free online tools — and an open door for other indie makers to submit theirs. Discover, showcase, share.',
+         tags:['Tool Hub','Free Tools','Indie']}},
+    {domain:'studio.solyoung.top', url:'https://studio.solyoung.top/', img:'assets/project-studio.jpg',
+     zh:{name:'SolYoung Studio', sub:'DIGITAL SERVICE STUDIO', kind:'数字产品 · DIGITAL PRODUCT',
+         desc:'把你的主意，变成可以使用的解决方案。个人网站、数字空间、品牌合作与 AI 工作流，从想法到上线，我自己做完。',
+         tags:['定制开发','网站设计','AI 工作流']},
+     en:{name:'SolYoung Studio', sub:'DIGITAL SERVICE STUDIO', kind:'DIGITAL PRODUCT',
+         desc:'Turning your idea into a usable solution. Personal sites, digital spaces, brand collaborations and AI workflows — from first thought to launch, built end to end.',
+         tags:['Custom Build','Web Design','AI Workflow']}}
+  ];
+  var UI = {
+    hint:{zh:'左右拖动 · 滑动浏览', en:'DRAG TO EXPLORE'},
+    visit:{zh:'访问网站', en:'VISIT SITE'},
+    live:{zh:'已上线', en:'LIVE'},
+    cover:{zh:'网站主页截图', en:'HOMEPAGE PREVIEW'}
+  };
+  var vp=document.getElementById('hpViewport');
+  if(!vp) return;
+  var track=document.getElementById('hpTrack'), tabs=document.getElementById('hpTabs'),
+      cur=document.getElementById('hpCur'), prog=document.getElementById('hpProg'),
+      prev=document.getElementById('hpPrev'), next=document.getElementById('hpNext'),
+      hintText=document.getElementById('hpHintText');
+  var lang=document.documentElement.getAttribute('data-lang')==='en'?'en':'zh';
+  var idx=0, step=0, maxShift=0;
+  function pad(n){return String(n).padStart(2,'0');}
+  function t(k){return UI[k][lang];}
+
+  function slideHTML(p,i){
+    var d=p[lang], no=pad(i+1);
+    var tags=d.tags.map(function(x){return '<span class="hp-tag">'+x+'</span>';}).join('');
+    return '<article class="hp-slide" data-idx="'+i+'">'+
+      '<div class="hp-card">'+
+        '<div class="hp-shot"><div style="width:100%">'+
+          '<div class="hp-browser">'+
+            '<div class="hp-bar"><span class="hp-dots"><i></i><i></i><i></i></span>'+
+              '<span class="hp-url"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="5" width="8" height="6" rx="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg><span>'+p.domain+'</span></span>'+
+              '<span class="hp-bar-sp"></span></div>'+
+            '<div class="hp-img"><img loading="'+(i===0?'eager':'lazy')+'" draggable="false" src="'+p.img+'" alt="'+d.name+' '+t('cover')+'"></div>'+
+          '</div>'+
+          '<div class="hp-shot-note"><span>'+no+' / '+pad(P.length)+' · '+t('cover')+'</span><span class="live"><i></i>'+t('live')+'</span></div>'+
+        '</div></div>'+
+        '<div class="hp-info">'+
+          '<div class="hp-meta"><span class="hp-no">'+no+'</span><span class="hp-kind">'+d.kind+'</span></div>'+
+          '<h2 class="hp-name">'+d.name+'</h2>'+
+          '<div class="hp-subname">'+d.sub+'</div>'+
+          '<div class="hp-rule"></div>'+
+          '<p class="hp-desc">'+d.desc+'</p>'+
+          '<div class="hp-tags">'+tags+'</div>'+
+          '<div class="hp-foot">'+
+            '<a class="hp-go" href="'+p.url+'" target="_blank" rel="noopener noreferrer">'+t('visit')+' <b>↗</b></a>'+
+            '<span class="hp-domain">'+p.domain+'</span>'+
+          '</div>'+
+        '</div>'+
+      '</div></article>';
+  }
+  function render(){
+    track.innerHTML=P.map(slideHTML).join('');
+    tabs.innerHTML=P.map(function(p,i){
+      return '<button class="hp-tab" type="button" data-go="'+i+'"><b>'+pad(i+1)+'</b>'+p[lang].name+'</button>';
+    }).join('');
+    if(hintText) hintText.textContent=t('hint');
+  }
+  function measure(){
+    var slides=track.querySelectorAll('.hp-slide');
+    if(slides.length<2){step=vp.clientWidth;maxShift=0;return;}
+    step=slides[1].offsetLeft-slides[0].offsetLeft;
+    maxShift=Math.max(0,track.scrollWidth-vp.clientWidth);
+  }
+  function base(){return Math.min(idx*step,maxShift);}
+  function updateControls(){
+    cur.textContent=pad(idx+1);
+    prog.style.width=((idx+1)/P.length*100)+'%';
+    prev.disabled=(idx<=0); next.disabled=(idx>=P.length-1);
+    Array.prototype.forEach.call(tabs.children,function(b,i){b.classList.toggle('on',i===idx);});
+  }
+  function apply(){
+    track.classList.remove('dragging');
+    track.style.transform='translate3d('+(-base())+'px,0,0)';
+    updateControls();
+  }
+  function go(n){idx=Math.max(0,Math.min(P.length-1,n));apply();}
+
+  var drag=null, moved=false;
+  vp.addEventListener('pointerdown',function(e){
+    if(e.target.closest('a')||e.target.closest('button')) return;
+    drag={x:e.clientX,base:base(),dx:0}; moved=false;
+    try{vp.setPointerCapture(e.pointerId);}catch(err){}
+    vp.classList.add('dragging'); track.classList.add('dragging');
+  });
+  vp.addEventListener('pointermove',function(e){
+    if(!drag) return;
+    drag.dx=e.clientX-drag.x;
+    if(Math.abs(drag.dx)>8) moved=true;
+    var pos=Math.min(Math.max(drag.base-drag.dx,-16),maxShift+16);
+    track.style.transform='translate3d('+(-pos)+'px,0,0)';
+  });
+  function endDrag(){
+    if(!drag) return;
+    var dx=drag.dx, threshold=Math.min(90,vp.clientWidth*.12);
+    drag=null; vp.classList.remove('dragging');
+    go(idx+(dx<-threshold?1:dx>threshold?-1:0));
+  }
+  vp.addEventListener('pointerup',endDrag);
+  vp.addEventListener('pointercancel',endDrag);
+  vp.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
+  vp.addEventListener('dragstart',function(e){e.preventDefault();});
+  prev.addEventListener('click',function(){go(idx-1);});
+  next.addEventListener('click',function(){go(idx+1);});
+  tabs.addEventListener('click',function(e){
+    var b=e.target.closest('[data-go]'); if(b) go(Number(b.getAttribute('data-go')));
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight') return;
+    var r=vp.getBoundingClientRect();
+    if(r.bottom<0||r.top>window.innerHeight) return;
+    go(idx+(e.key==='ArrowRight'?1:-1));
+  });
+  track.addEventListener('load',function(e){
+    if(e.target&&e.target.tagName==='IMG'){measure();apply();}
+  },true);
+  var rt;
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){measure();apply();},120);});
+  window.addEventListener('load',function(){measure();apply();});
+  window.__hpRender=function(l){lang=l;render();requestAnimationFrame(function(){measure();apply();});};
+  render();
+  requestAnimationFrame(function(){measure();apply();});
+})();
 </script>
 </body>
 </html>
