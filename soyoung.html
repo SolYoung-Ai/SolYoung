@@ -707,17 +707,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .portrait-wrap{cursor:pointer}
 
 /* ============ Home Projects carousel (hp-*) ============ */
+html,body{overscroll-behavior-x:none}
+.hp-viewport::-webkit-scrollbar{display:none}
 .hp-wrap{--hp-ease:cubic-bezier(.22,1,.36,1);margin-top:2px}
 .hp-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
 .hp-kicker{font-family:var(--font-display);font-size:10.5px;font-weight:600;letter-spacing:.26em;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:12px}
 .hp-kicker::before{content:"";width:26px;height:1px;background:var(--accent)}
 .hp-hint{font-family:var(--font-display);font-size:10.5px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .hp-hint svg{width:20px;height:11px;opacity:.65}
-.hp-viewport{overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.hp-viewport{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-behavior:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;cursor:grab;touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none}
 .hp-viewport.dragging{cursor:grabbing}
-.hp-track{display:flex;gap:22px;will-change:transform;transition:transform .8s var(--hp-ease)}
-.hp-track.dragging{transition:none}
-.hp-slide{flex:0 0 calc(100% - 44px);min-width:0}
+.hp-track{display:flex;gap:22px}
+.hp-slide{flex:0 0 100%;min-width:0}
 .hp-card{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 4px rgba(27,27,25,.04),0 30px 60px -38px rgba(27,27,25,.32);overflow:hidden;min-height:clamp(400px,36vw,480px)}
 :root[data-theme="dark"] .hp-card{box-shadow:0 2px 4px rgba(0,0,0,.3),0 30px 60px -38px rgba(0,0,0,.75)}
 .hp-shot{position:relative;overflow:hidden;background:var(--bg-soft)}
@@ -751,9 +752,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .hp-arrow:hover:not(:disabled){border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 .hp-arrow:disabled{opacity:.32;cursor:default}
 .hp-progress{height:2px;background:var(--line);margin-top:24px;border-radius:2px;overflow:hidden}
-.hp-progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .8s var(--hp-ease)}
+.hp-progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .35s var(--hp-ease)}
 @media(max-width:960px){
-  .hp-slide{flex:0 0 calc(100% - 30px)}
+  .hp-slide{flex:0 0 100%}
   .hp-card{grid-template-columns:1fr;min-height:0}
   .hp-shot{aspect-ratio:16/10}
   .hp-info{border-left:0;border-top:1px solid var(--line);padding:clamp(24px,4vw,36px)}
@@ -762,7 +763,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   .hp-foot{padding-top:24px}
 }
 @media(max-width:620px){
-  .hp-slide{flex:0 0 calc(100% - 18px)}
+  .hp-slide{flex:0 0 100%}
   .hp-track{gap:12px}
   .hp-hint{display:none}
   .hp-name{font-size:clamp(28px,8.5vw,40px)}
@@ -1955,64 +1956,103 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     var slides=track.querySelectorAll('.hp-slide');
     if(slides.length<2){step=vp.clientWidth;maxShift=0;return;}
     step=slides[1].offsetLeft-slides[0].offsetLeft;
-    maxShift=Math.max(0,track.scrollWidth-vp.clientWidth);
+    maxShift=Math.max(0,vp.scrollWidth-vp.clientWidth);
   }
-  function base(){return Math.min(idx*step,maxShift);}
+  function base(n){return Math.min(n*step,maxShift);}
+  function clampIdx(n){return Math.max(0,Math.min(P.length-1,n));}
   function updateControls(){
     cur.textContent=pad(idx+1);
     prog.style.width=((idx+1)/P.length*100)+'%';
-    prev.disabled=(idx<=0); next.disabled=(idx>=P.length-1);
+    prev.disabled=(idx<=0);next.disabled=(idx>=P.length-1);
     Array.prototype.forEach.call(tabs.children,function(b,i){b.classList.toggle('on',i===idx);});
   }
-  function apply(){
-    track.classList.remove('dragging');
-    track.style.transform='translate3d('+(-base())+'px,0,0)';
+  function apply(smooth){
+    vp.classList.remove('dragging');
+    if(smooth) vp.scrollTo({left:base(idx),behavior:'smooth'});
+    else vp.scrollLeft=base(idx);
     updateControls();
   }
-  function go(n){idx=Math.max(0,Math.min(P.length-1,n));apply();}
+  function go(n){idx=clampIdx(n);apply(true);}
 
-  var drag=null, moved=false;
+  /* 鼠标 / 触控笔拖拽；触屏与触控板交给浏览器原生横向滚动（跟手、带惯性） */
+  var drag=null,moved=false;
   vp.addEventListener('pointerdown',function(e){
+    if(e.pointerType==='touch') return;
     if(e.target.closest('a')||e.target.closest('button')) return;
-    drag={x:e.clientX,base:base(),dx:0}; moved=false;
+    drag={x:e.clientX,start:vp.scrollLeft,dx:0};moved=false;
     try{vp.setPointerCapture(e.pointerId);}catch(err){}
-    vp.classList.add('dragging'); track.classList.add('dragging');
+    vp.classList.add('dragging');
   });
   vp.addEventListener('pointermove',function(e){
     if(!drag) return;
     drag.dx=e.clientX-drag.x;
     if(Math.abs(drag.dx)>8) moved=true;
-    var pos=Math.min(Math.max(drag.base-drag.dx,-16),maxShift+16);
-    track.style.transform='translate3d('+(-pos)+'px,0,0)';
+    vp.scrollLeft=Math.min(Math.max(drag.start-drag.dx,0),maxShift);
   });
   function endDrag(){
     if(!drag) return;
-    var dx=drag.dx, threshold=Math.min(90,vp.clientWidth*.12);
-    drag=null; vp.classList.remove('dragging');
-    go(idx+(dx<-threshold?1:dx>threshold?-1:0));
+    var dx=drag.dx,threshold=Math.min(90,vp.clientWidth*.12);
+    drag=null;
+    idx=clampIdx(idx+(dx<-threshold?1:dx>threshold?-1:0));
+    apply(true);
   }
   vp.addEventListener('pointerup',endDrag);
   vp.addEventListener('pointercancel',endDrag);
   vp.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
   vp.addEventListener('dragstart',function(e){e.preventDefault();});
 
-  /* 触控板双指横划 / 鼠标横向滚轮：一次手势切一张，不影响页面纵向滚动 */
-  var wAcc=0, wIdle=null, wLocked=false;
+  /* 滚动停止后吸附到整卡（触屏 / 拖拽路径）。滚动全程不拦截，原生手感 */
+  var settle=null,settling=false,wheelActive=false,wAcc=0,wDir=0,wIdle=null;
+  vp.addEventListener('scroll',function(){
+    if(settling||wheelActive) return;
+    clearTimeout(settle);
+    settle=setTimeout(function(){
+      if(drag||wheelActive) return;
+      idx=clampIdx(Math.round(vp.scrollLeft/(step||1)));
+      updateControls();
+      var target=base(idx);
+      if(Math.abs(vp.scrollLeft-target)>2){
+        settling=true;
+        vp.scrollTo({left:target,behavior:'smooth'});
+        setTimeout(function(){settling=false;},420);
+      }
+    },150);
+  },{passive:true});
+
+  /* 触控板双指横划：滚动全程交给浏览器原生处理（跟手、带惯性）；
+     手势结束按累计位移判断翻页意图 —— 轻划即切一张，轻微抖动则吸回原卡。
+     越界方向一律拦截，避免 Chrome 把它变成「侧滑返回/前进」导航。 */
   vp.addEventListener('wheel',function(e){
-    var dx=e.deltaX, dy=e.deltaY;
-    if(e.shiftKey && Math.abs(dy)>Math.abs(dx)){dx=dy;dy=0;}
-    if(Math.abs(dx)<=Math.abs(dy)*1.1 || Math.abs(dx)<1.5) return;
-    if(e.deltaMode===1) dx*=16; else if(e.deltaMode===2) dx*=vp.clientWidth;
-    if(e.cancelable) e.preventDefault();
+    var dx=e.deltaX,dy=e.deltaY;
+    if(e.shiftKey&&Math.abs(dy)>Math.abs(dx)){dx=dy;dy=0;}
+    if(Math.abs(dx)<1.5||Math.abs(dx)<=Math.abs(dy)*1.1) return;
+    var atStart=vp.scrollLeft<=1,atEnd=vp.scrollLeft>=maxShift-1;
+    if((dx<0&&atStart)||(dx>0&&atEnd)){
+      if(e.cancelable) e.preventDefault();
+      return;
+    }
+    wheelActive=true;
+    wAcc+=dx;wDir=dx>0?1:-1;
     clearTimeout(wIdle);
-    wIdle=setTimeout(function(){wAcc=0;wLocked=false;},200);
-    if(wLocked) return;
-    wAcc+=dx;
-    if(Math.abs(wAcc)<34) return;
-    var dir=wAcc>0?1:-1;
-    wAcc=0; wLocked=true;
-    go(idx+dir);
+    wIdle=setTimeout(function(){
+      var travel=Math.abs(wAcc);wAcc=0;wheelActive=false;
+      var here=clampIdx(Math.round(vp.scrollLeft/(step||1)));
+      idx=travel>=45?clampIdx(idx+wDir):here;
+      settling=true;
+      apply(true);
+      setTimeout(function(){settling=false;},480);
+    },170);
   },{passive:false});
+
+  /* 页面级兜底：除真正可横向滚动的容器外，一律吃掉横向 wheel，
+     彻底关闭 macOS Chrome 的「双指侧滑跳转上一页/下一页」手势 */
+  document.addEventListener('wheel',function(e){
+    var dx=e.deltaX,dy=e.deltaY;
+    if(Math.abs(dx)<1.5||Math.abs(dx)<=Math.abs(dy)*1.1) return;
+    var el=e.target;
+    if(el&&el.closest&&el.closest('.hp-viewport,.pj-viewport,.vid-scroll,.notes')) return;
+    if(e.cancelable) e.preventDefault();
+  },{capture:true,passive:false});
 
   prev.addEventListener('click',function(){go(idx-1);});
   next.addEventListener('click',function(){go(idx+1);});
