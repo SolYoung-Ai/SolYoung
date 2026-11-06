@@ -1,5 +1,37 @@
 [
   {
+    "id": "major-2026-11-06-1203-1bf7d1",
+    "date": "2026-11-06T12:03:20+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 全新上线：AI 包装设计平台（solyoung-ai.github.io/LuanSol/）。只需回答「做什么包装、多大、叫什么、喜欢什么风格」，AI 就能自动完成盒型真实几何展开、三套创意方案、文字排版与原创插画，Three.js 3D 预览支持开盖/抽拉/贴曲面，印前检查用大白话提示出血、安全区、DPI 等问题，最后导出毫米级印刷 PDF、SVG、DXF 刀模与 300DPI 图片；不配 API Key 也能用内置引擎走完全流程。",
+    "content_en": "LunaSol launches: an AI packaging design studio. Just answer what to pack, the size, the name and the style — AI handles real dieline geometry, three creative directions, typography and original artwork, with Three.js 3D preview (openable lids, sliding drawers, curved labels), plain-language prepress checks, and print-ready exports: mm-accurate PDF, SVG, DXF dielines and 300DPI images. Works fully offline with the built-in engine.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-06-1203-3a9c02",
+    "date": "2026-11-06T12:03:20+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 接入 CloudBase 国内站：注册登录与云端项目同步正式可用，AI 能力走 DeepSeek 后台代理、无需自己填 Key，老用户的模型配置已自动一次性迁移。",
+    "content_en": "LunaSol is now connected to CloudBase (China): accounts and cloud project sync are live, AI runs through a DeepSeek backend proxy with no key setup, and existing model configs were migrated automatically.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-06-1203-7e45bb",
+    "date": "2026-11-06T12:03:20+08:00",
+    "type": "BUILD",
+    "content": "主站：全站配色去掉暖调、回归纯净白底，博客独立页还原为更简洁的文章列表样式。",
+    "content_en": "Main site: removed the warm tint site-wide for a clean pure-white look, and the blog page is back to a simpler article list.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-06-1203-c2d84f",
+    "date": "2026-11-06T12:03:20+08:00",
+    "type": "BUILD",
+    "content": "SolAPI：正式启用独立域名 solapi.solyoung.top。",
+    "content_en": "SolAPI: production now runs on its own domain solapi.solyoung.top.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-05-1202-035dbc",
     "date": "2026-11-05T12:02:29+08:00",
     "type": "BUILD",
