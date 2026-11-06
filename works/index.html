@@ -63,26 +63,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pj-viewport.dragging{cursor:grabbing}
 .pj-track{display:flex;gap:24px;will-change:transform;transition:transform .8s var(--ease)}
 .pj-track.dragging{transition:none}
-.pj-slide{flex:0 0 calc(100% - 88px);min-width:0}
+.pj-slide{flex:0 0 calc(100% - 44px);min-width:0}
 .pj-card{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:clamp(430px,42vw,530px)}
-.pj-shot{padding:clamp(20px,2.4vw,32px);display:flex;align-items:center;background:linear-gradient(155deg,var(--bg-soft),transparent 70%)}
-.pj-browser{width:100%;background:var(--frame);border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:0 18px 42px -22px rgba(0,0,0,.38)}
-.pj-bar{height:36px;background:var(--bar);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 13px}
-.pj-dots{display:flex;gap:5px;flex:0 0 auto}
-.pj-dots i{width:8px;height:8px;border-radius:50%;background:#D8D8D4}
-.pj-dots i:nth-child(2){background:#C8C8C4}.pj-dots i:nth-child(3){background:#BEBEB9}
-html[data-theme="dark"] .pj-dots i{background:#4A4A4A}
-html[data-theme="dark"] .pj-dots i:nth-child(2){background:#3E3E3E}
-html[data-theme="dark"] .pj-dots i:nth-child(3){background:#353535}
-.pj-url{margin:auto;display:flex;align-items:center;gap:6px;font:500 10.5px/1 var(--font-display);color:var(--ink-soft);background:var(--bg-soft);border:1px solid var(--line);border-radius:20px;padding:5px 14px;letter-spacing:.02em;white-space:nowrap;max-width:60%;overflow:hidden;text-overflow:ellipsis}
-.pj-url svg{width:9px;height:9px;flex:0 0 auto;opacity:.65}
-.pj-bar-sp{flex:0 0 auto;width:34px}
-.pj-img{aspect-ratio:16/10;overflow:hidden;background:#fff}
-.pj-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-.pj-shot-note{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:0 2px;font:500 9.5px/1 var(--font-display);letter-spacing:.16em;color:var(--ink-faint);text-transform:uppercase}
-.pj-shot-note .live{display:inline-flex;align-items:center;gap:6px;color:var(--accent)}
-.pj-shot-note .live i{width:5px;height:5px;border-radius:50%;background:var(--accent);display:block}
-
+.pj-shot{position:relative;overflow:hidden;background:var(--bg-soft)}
+.pj-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
 .pj-info{padding:clamp(28px,3.2vw,52px);display:flex;flex-direction:column;border-left:1px solid var(--line)}
 .pj-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .pj-no{font:700 12px/1 var(--font-display);color:var(--accent);letter-spacing:.1em}
@@ -133,9 +117,9 @@ html[data-theme="dark"] .pj-dots i:nth-child(3){background:#353535}
 /* ---------- responsive ---------- */
 @media(max-width:960px){
   .nav-links{display:none}
-  .pj-slide{flex:0 0 calc(100% - 48px)}
+  .pj-slide{flex:0 0 calc(100% - 30px)}
   .pj-card{grid-template-columns:1fr;min-height:0}
-  .pj-shot{padding:clamp(16px,3vw,26px)}
+  .pj-shot{aspect-ratio:16/10}
   .pj-info{border-left:0;border-top:1px solid var(--line);padding:clamp(24px,4vw,36px)}
   .pj-name{margin-top:20px}
   .pj-rule{margin:20px 0}
@@ -145,10 +129,8 @@ html[data-theme="dark"] .pj-dots i:nth-child(3){background:#353535}
   .container{padding:0 16px}
   .pj-title em{font-size:.4em}
   .pj-ghost{display:none}
-  .pj-slide{flex:0 0 calc(100% - 26px)}
+  .pj-slide{flex:0 0 calc(100% - 18px)}
   .pj-track{gap:12px}
-  .pj-bar-sp{display:none}
-  .pj-url{max-width:70%}
   .pj-name{font-size:clamp(30px,9vw,42px)}
   .pj-controls{gap:14px}
   .pj-hint{order:3;width:100%;justify-content:center}
@@ -201,7 +183,7 @@ html[data-theme="dark"] .pj-dots i:nth-child(3){background:#353535}
     <div class="pj-controls">
       <div class="pj-hint">
         <svg viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 2 6l4 4M38 2l4 4-4 4M2 6h40"/></svg>
-        <span data-i18n="hint">左右拖动 · 滑动浏览</span>
+        <span data-i18n="hint">左右拖动 · 双指滑动</span>
       </div>
       <div class="pj-tabs" id="tabs"></div>
       <div class="pj-nav">
@@ -253,8 +235,7 @@ html[data-theme="dark"] .pj-dots i:nth-child(3){background:#353535}
     kicker:{zh:'SELECTED WORK · 02 PROJECTS',en:'SELECTED WORK · 02 PROJECTS'},
     t1:{zh:'项目',en:'Projects'},t2:{zh:'Projects',en:'/ 02'},
     sub:{zh:'两个正在运行的数字产品。左右滑动，看看它们长什么样。',en:'Two digital products, live and growing. Swipe to take a closer look.'},
-    visit:{zh:'访问网站',en:'VISIT SITE'},hint:{zh:'左右拖动 · 滑动浏览',en:'DRAG TO EXPLORE'},
-    live:{zh:'已上线',en:'LIVE'},cover:{zh:'网站主页截图',en:'HOMEPAGE PREVIEW'},
+    visit:{zh:'访问网站',en:'VISIT SITE'},hint:{zh:'左右拖动 · 双指滑动',en:'DRAG · TWO-FINGER SWIPE'},
     'cta-text':{zh:'这两个都在持续更新。想看我最近在做什么，回主页继续逛。',en:'Both are still growing. Head back home to see what I am building right now.'},
     'cta-go':{zh:'回到主页 ↗',en:'Back home ↗'},
     foot:{zh:'把人生，当成一场游戏来经营。',en:'Playing life as a management game.'}
@@ -278,17 +259,7 @@ html[data-theme="dark"] .pj-dots i:nth-child(3){background:#353535}
     var tags=d.tags.map(function(x){return '<span class="pj-tag">'+x+'</span>';}).join('');
     return '<article class="pj-slide" data-idx="'+i+'">'+
       '<div class="pj-card">'+
-        '<div class="pj-shot">'+
-          '<div style="width:100%">'+
-            '<div class="pj-browser">'+
-              '<div class="pj-bar"><span class="pj-dots"><i></i><i></i><i></i></span>'+
-                '<span class="pj-url"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="5" width="8" height="6" rx="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg><span>'+p.domain+'</span></span>'+
-                '<span class="pj-bar-sp"></span></div>'+
-              '<div class="pj-img"><img loading="'+(i===0?'eager':'lazy')+'" draggable="false" src="'+p.img+'" alt="'+d.name+' '+t('cover')+'"></div>'+
-            '</div>'+
-            '<div class="pj-shot-note"><span>'+no+' / '+pad(PROJECTS.length)+' · '+t('cover')+'</span><span class="live"><i></i>'+t('live')+'</span></div>'+
-          '</div>'+
-        '</div>'+
+        '<div class="pj-shot"><img loading="'+(i===0?'eager':'lazy')+'" draggable="false" src="'+p.img+'" alt="'+d.name+' — '+p.domain+'"></div>'+
         '<div class="pj-info">'+
           '<div class="pj-meta"><span class="pj-no">'+no+'</span><span class="pj-kind">'+d.kind+'</span></div>'+
           '<h2 class="pj-name">'+d.name+'</h2>'+
@@ -355,6 +326,25 @@ html[data-theme="dark"] .pj-dots i:nth-child(3){background:#353535}
   viewport.addEventListener('pointercancel',endDrag);
   viewport.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
   viewport.addEventListener('dragstart',function(e){e.preventDefault();});
+
+  /* 触控板双指横划 / 鼠标横向滚轮：一次手势切一张，不影响页面纵向滚动 */
+  var wAcc=0, wIdle=null, wLocked=false;
+  viewport.addEventListener('wheel',function(e){
+    var dx=e.deltaX, dy=e.deltaY;
+    if(e.shiftKey && Math.abs(dy)>Math.abs(dx)){dx=dy;dy=0;}
+    if(Math.abs(dx)<=Math.abs(dy)*1.1 || Math.abs(dx)<1.5) return;
+    if(e.deltaMode===1) dx*=16; else if(e.deltaMode===2) dx*=viewport.clientWidth;
+    if(e.cancelable) e.preventDefault();
+    clearTimeout(wIdle);
+    wIdle=setTimeout(function(){wAcc=0;wLocked=false;},200);
+    if(wLocked) return;
+    wAcc+=dx;
+    if(Math.abs(wAcc)<34) return;
+    var dir=wAcc>0?1:-1;
+    wAcc=0; wLocked=true;
+    go(idx+dir);
+  },{passive:false});
+
 
   /* ---------- controls ---------- */
   prev.addEventListener('click',function(){go(idx-1);});
