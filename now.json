@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-07-0444-74260b",
+    "date": "2026-11-07T04:44:46+08:00",
+    "type": "BUILD",
+    "content": "仓库瘦身 95%：全站 12 张图片重制，12.91MB → 0.64MB。TypeAll 与 Verity 的 favicon 从 2.5MB / 1.9MB 压到 7KB / 6KB，SolHub 的 favicon 从 237KB 压到 2.2KB（全站 40+ 页面共用），项目图标与微信二维码同步重采样；文件名零改动，不需要动任何页面引用，打开速度明显变快。",
+    "content_en": "Repo slimmed by 95%: 12 images rebuilt, 12.91MB down to 0.64MB. TypeAll and Verity favicons went from 2.5MB / 1.9MB to 7KB / 6KB, SolHub's favicon from 237KB to 2.2KB shared across 40+ pages, project icons and the WeChat QR resampled — same filenames, no markup changes, noticeably faster loads.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-06-1203-1bf7d1",
     "date": "2026-11-06T12:03:20+08:00",
     "type": "BUILD",
