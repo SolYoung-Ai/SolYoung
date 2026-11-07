@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-07-1352-d9286e",
+    "date": "2026-11-07T13:52:37+08:00",
+    "type": "BUILD",
+    "content": "项目卡片统一：标题字号 52px→40px 让「SolYoung Studio」单行显示，规则线间距 24px→18px；两张卡片高度锁定一致（1440/1280 下均为 435px），左侧网站预览零留白、零裁切。",
+    "content_en": "Unified the two project cards: title size lowered from 52px to 40px so \"SolYoung Studio\" fits one line, rule spacing tightened 24px→18px. Both cards now share the same height (435px at 1440/1280), with the site preview showing zero bottom gap and zero cropping.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-07-1340-e74c4c",
     "date": "2026-11-07T13:40:01+08:00",
     "type": "BUILD",
