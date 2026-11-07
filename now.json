@@ -1,5 +1,85 @@
 [
   {
+    "id": "major-2026-11-07-1429-7617d0",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 品牌与账号体系重构：首页换成品牌首页 + 三入口导航，新增工作台与「审美市场」（107 个站点多维索引、访问条件逐个实测）；账号改为强制登录，补齐个人资料、安全页与订阅页重排，头像入口移到右上角并带上中英/深浅色切换；深色模式下的分段控件、实底按钮与标签改用语义色，移动端断点与头像菜单被裁剪的问题一并修掉。",
+    "content_en": "LunaSol brand and account overhaul: a new brand homepage with three entry points, plus a workspace and Aesthetic Market (107 sites indexed across dimensions, access requirements verified one by one). Accounts now require sign-in, with profile, security and reordered subscription pages; the avatar menu moved to the top right with language and light/dark toggles. Dark-mode controls now use semantic solid tokens, and mobile breakpoints plus the clipped avatar menu are fixed.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-0d64dd",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 上线 AI 助手「Luna」：ChatGPT 风格的对话页，可直接对话、也能用 Seedream 生成图片（支持上传参考图，三档规格按积分计费）；模型可在 DeepSeek / Kimi / 豆包 / GLM 之间下拉切换并真正生效，另加 /help 帮助页说明积分与模型清单，手机端输入框与模型选择不再挤成一行。",
+    "content_en": "LunaSol ships Luna, its AI assistant: a ChatGPT-style chat page that also generates images with Seedream (reference-image upload, three size tiers billed in credits). You can switch between DeepSeek, Kimi, Doubao and GLM from a dropdown that actually takes effect, plus a /help page explaining credits and models. On mobile the input and model picker no longer collapse into one line.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-066cd1",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 积分与会员体系上线：积分制改版，新增充值包、兑换码（存 PostgreSQL，跨设备可用、只能用一次）和开发者管理页；每日签到按本地时间判定，凌晨跨天不再重复；会员改为 ¥29/月、签到积分双倍，生图按档位扣积分，日上限调到 10000。",
+    "content_en": "LunaSol credits and membership: a reworked credits system with top-up packs, redeem codes stored in PostgreSQL (cross-device, single use) and a developer admin page. Daily check-in now uses local time so it no longer double-counts across midnight; membership is ¥29/month with double check-in credits, image generation deducts by tier, and the daily cap is raised to 10,000.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-965e2d",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 设计向导重做：流程改成九步，主色提前到最前面、条码并入文案步骤，文案可自动整理，新增「我的工作台」与开始设计前的确认页；顺手修掉「参数都选好了却仍被拦住」的假死问题及 9 个连带缺陷，几何展开恢复正常。",
+    "content_en": "LunaSol's design wizard rebuilt as nine steps: primary colour moved up front, barcode merged into the copy step, auto-arranged copy, a new My Workspace and a confirmation screen before design starts. The \"everything is set but still blocked\" deadlock and nine related defects are fixed, and geometry unfolding works again.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-7cc7ec",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 首屏提速与安全加固：路由级代码分割 + 重库按需加载，首屏 JS 从 ~357KB 降到 ~90KB（gzip）；AI 代理令牌轮换、云函数补上登录态校验，网关加 Origin 校验与频率/日上限，修复老用户旧令牌导致的 401 与兑换码可重复核销的 RLS 漏洞。",
+    "content_en": "LunaSol faster first paint and hardening: route-level code splitting plus on-demand loading of heavy libraries cut first-screen JS from ~357KB to ~90KB gzip. The AI proxy token was rotated, Cloud Functions now verify sign-in state, the gateway checks Origin and enforces rate/daily limits, and both the 401 from stale tokens and a redeem-code RLS hole that allowed reuse are fixed.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-cd587e",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 首页视觉与移动端：首页重做成极简版，加入掉落工牌物理动效与设计流程说明，导航页脚精简；标题与 logo 字母加了 hover 弹动，logo 的「Sol」改橙色、字号加大，favicon 换成 LunaSol 标志（透明底 256×256），副标题改中文，手机端新增汉堡菜单导航。",
+    "content_en": "LunaSol homepage and mobile polish: a minimalist homepage with a falling-badge physics animation and a design-flow explainer, slimmer nav and footer. Headline and logo letters bounce on hover, the \"Sol\" in the logo turns orange at a larger size, the favicon is the new LunaSol mark (transparent 256x256), the subtitle is now Chinese, and mobile gets a hamburger menu.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-aa7276",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "主站：「作品」改名「项目」，页面改成两个数字产品的左右滑动卡片、以各自主页截图作封面，社交媒体卡片下线；轮播改用原生横向滚动，触控板横划跟手，不再误触 Chrome 的侧滑返回，封面铺满整卡。",
+    "content_en": "Main site: Works is now Projects, shown as two digital products in a swipeable card carousel using each product's homepage as cover art, with the social cards removed. The carousel uses native horizontal scrolling, so trackpad swipes track your finger and no longer trigger Chrome's back-swipe, and covers fill the whole card.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-c56e8a",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "主站：导航与页面里的「此刻 / NOW」统一更名为「构建 / BUILD」，入口文案与页面标题保持一致。",
+    "content_en": "Main site: Now / 此刻 is renamed Build / 构建 across the navigation and page titles, with entry labels and headings kept consistent.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-a699a1",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "ClipText：下载按钮改走 /api/v1/download，修掉点下载报 405 Method Not Allowed、拿不到视频的问题。",
+    "content_en": "ClipText: the download button now calls /api/v1/download, fixing the 405 Method Not Allowed error that blocked video downloads.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-07-1429-6fbfa0",
+    "date": "2026-11-07T14:29:30+08:00",
+    "type": "BUILD",
+    "content": "SolHub：首页 logo 从 900×900 / 198KB 压到 128×128 / 7KB，首屏少了一次大图请求。",
+    "content_en": "SolHub: the homepage logo shrank from 900x900 / 198KB to 128x128 / 7KB, removing one large image request from first paint.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-07-1352-d9286e",
     "date": "2026-11-07T13:52:37+08:00",
     "type": "BUILD",
