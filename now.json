@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-07-1340-e74c4c",
+    "date": "2026-11-07T13:40:01+08:00",
+    "type": "BUILD",
+    "content": "项目卡片预览改为完整不裁切：左侧网站截图按 1280×820 真实比例自适应，右侧边缘不再被切掉；左区占比 53%→60%，信息区右移，网站全貌一眼可见。",
+    "content_en": "Project card previews now show the full website: the screenshot scales to its true 1280×820 ratio with no right-edge cropping. The preview column widened from 53% to 60%, and the info panel shifted right.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-07-0444-74260b",
     "date": "2026-11-07T04:44:46+08:00",
     "type": "BUILD",
