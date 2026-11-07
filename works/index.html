@@ -168,12 +168,12 @@ html,body{overscroll-behavior-x:none}
 
 <main class="container">
   <header class="pj-head">
-    <div class="pj-kicker rv" data-i18n="kicker">SELECTED WORK · 02 PROJECTS</div>
+    <div class="pj-kicker rv" data-i18n="kicker">SELECTED WORK · 03 PROJECTS</div>
     <div class="pj-title-row">
       <h1 class="pj-title rv d1"><span data-i18n="t1">项目</span><em class="accent" data-i18n="t2">Projects</em></h1>
-      <div class="pj-ghost rv d2" aria-hidden="true">02</div>
+      <div class="pj-ghost rv d2" aria-hidden="true">03</div>
     </div>
-    <p class="pj-sub rv d2" data-i18n="sub">两个正在运行的数字产品。左右滑动，看看它们长什么样。</p>
+    <p class="pj-sub rv d2" data-i18n="sub">三个正在运行的数字产品。左右滑动，看看它们长什么样。</p>
   </header>
 
   <section class="pj-stage" aria-label="项目轮播">
@@ -188,7 +188,7 @@ html,body{overscroll-behavior-x:none}
       </div>
       <div class="pj-tabs" id="tabs"></div>
       <div class="pj-nav">
-        <span class="pj-count"><b id="cur">01</b> / <span id="total">02</span></span>
+        <span class="pj-count"><b id="cur">01</b> / <span id="total">03</span></span>
         <button class="pj-arrow" id="prev" aria-label="上一个项目">&#8592;</button>
         <button class="pj-arrow" id="next" aria-label="下一个项目">&#8594;</button>
       </div>
@@ -197,7 +197,7 @@ html,body{overscroll-behavior-x:none}
   </section>
 
   <div class="pj-cta">
-    <p data-i18n="cta-text">这两个都在持续更新。想看我最近在做什么，回主页继续逛。</p>
+    <p data-i18n="cta-text">这三个都在持续更新。想看我最近在做什么，回主页继续逛。</p>
     <a href="../index.html#works" data-i18n="cta-go">回到主页 ↗</a>
   </div>
 </main>
@@ -214,6 +214,13 @@ html,body{overscroll-behavior-x:none}
   root.setAttribute('data-theme',theme);
 
   var PROJECTS=[
+    {id:'luna',domain:'luna.solyoung.top',url:'https://luna.solyoung.top/',img:'../assets/project-luna.jpg',
+     zh:{name:'LunaSol',sub:'AI PACKAGING STUDIO',kind:'数字产品 · DIGITAL PRODUCT',
+         desc:'不需要设计经验，告诉 AI 你想做什么，从创意到印刷文件一站完成。一个把想法直接做成可印刷包装的 AI 设计平台。',
+         tags:['AI 设计','包装印刷','创意生成']},
+     en:{name:'LunaSol',sub:'AI PACKAGING STUDIO',kind:'DIGITAL PRODUCT',
+         desc:'No design experience required. Tell the AI what you want to make, and go from idea to print-ready artwork in one flow — an AI design platform that turns thoughts into printable packaging.',
+         tags:['AI Design','Packaging','Creative']}},
     {id:'solhub',domain:'solhub.solyoung.top',url:'https://solhub.solyoung.top/',img:'../assets/project-solhub.jpg',
      zh:{name:'SolHub',sub:'DIGITAL TOOL HUB',kind:'数字产品 · DIGITAL PRODUCT',
          desc:'收录自研的数字产品与免费在线工具，也欢迎其他独立开发者提交自己的产品。一个用来发现、展示与分享作品的地方。',
@@ -233,11 +240,11 @@ html,body{overscroll-behavior-x:none}
   var I18N={
     'nav-projects':{zh:'项目',en:'Projects'},'nav-now':{zh:'构建',en:'Build'},'nav-thoughts':{zh:'博客',en:'Blog'},
     'nav-about':{zh:'关于我',en:'About'},'nav-contact':{zh:'联系',en:'Contact'},
-    kicker:{zh:'SELECTED WORK · 02 PROJECTS',en:'SELECTED WORK · 02 PROJECTS'},
-    t1:{zh:'项目',en:'Projects'},t2:{zh:'Projects',en:'/ 02'},
-    sub:{zh:'两个正在运行的数字产品。左右滑动，看看它们长什么样。',en:'Two digital products, live and growing. Swipe to take a closer look.'},
+    kicker:{zh:'SELECTED WORK · 03 PROJECTS',en:'SELECTED WORK · 03 PROJECTS'},
+    t1:{zh:'项目',en:'Projects'},t2:{zh:'Projects',en:'/ 03'},
+    sub:{zh:'三个正在运行的数字产品。左右滑动，看看它们长什么样。',en:'Three digital products, live and growing. Swipe to take a closer look.'},
     visit:{zh:'访问网站',en:'VISIT SITE'},hint:{zh:'左右拖动 · 双指滑动',en:'DRAG · TWO-FINGER SWIPE'},
-    'cta-text':{zh:'这两个都在持续更新。想看我最近在做什么，回主页继续逛。',en:'Both are still growing. Head back home to see what I am building right now.'},
+    'cta-text':{zh:'这三个都在持续更新。想看我最近在做什么，回主页继续逛。',en:'All three are still growing. Head back home to see what I am building right now.'},
     'cta-go':{zh:'回到主页 ↗',en:'Back home ↗'},
     foot:{zh:'把人生，当成一场游戏来经营。',en:'Playing life as a management game.'}
   };
@@ -260,7 +267,7 @@ html,body{overscroll-behavior-x:none}
     var tags=d.tags.map(function(x){return '<span class="pj-tag">'+x+'</span>';}).join('');
     return '<article class="pj-slide" data-idx="'+i+'">'+
       '<div class="pj-card">'+
-        '<div class="pj-shot"><img loading="'+(i===0?'eager':'lazy')+'" draggable="false" src="'+p.img+'" alt="'+d.name+' — '+p.domain+'"></div>'+
+        '<div class="pj-shot"><img loading="eager" decoding="async" draggable="false" src="'+p.img+'" alt="'+d.name+' — '+p.domain+'"></div>'+
         '<div class="pj-info">'+
           '<div class="pj-meta"><span class="pj-no">'+no+'</span><span class="pj-kind">'+d.kind+'</span></div>'+
           '<h2 class="pj-name">'+d.name+'</h2>'+

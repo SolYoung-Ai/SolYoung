@@ -919,7 +919,7 @@ html,body{overscroll-behavior-x:none}
       <div class="hp-controls">
         <div class="hp-tabs" id="hpTabs"></div>
         <div class="hp-nav">
-          <span class="hp-count"><b id="hpCur">01</b> / 02</span>
+          <span class="hp-count"><b id="hpCur">01</b> / 03</span>
           <button class="hp-arrow" id="hpPrev" type="button" aria-label="上一个项目">&#8592;</button>
           <button class="hp-arrow" id="hpNext" type="button" aria-label="下一个项目">&#8594;</button>
         </div>
@@ -1895,6 +1895,13 @@ html,body{overscroll-behavior-x:none}
 (function(){
   'use strict';
   var P = [
+    {domain:'luna.solyoung.top', url:'https://luna.solyoung.top/', img:'assets/project-luna.jpg',
+     zh:{name:'LunaSol', sub:'AI PACKAGING STUDIO', kind:'数字产品 · DIGITAL PRODUCT',
+         desc:'不需要设计经验，告诉 AI 你想做什么，从创意到印刷文件一站完成。一个把想法直接做成可印刷包装的 AI 设计平台。',
+         tags:['AI 设计','包装印刷','创意生成']},
+     en:{name:'LunaSol', sub:'AI PACKAGING STUDIO', kind:'DIGITAL PRODUCT',
+         desc:'No design experience required. Tell the AI what you want to make, and go from idea to print-ready artwork in one flow — an AI design platform that turns thoughts into printable packaging.',
+         tags:['AI Design','Packaging','Creative']}},
     {domain:'solhub.solyoung.top', url:'https://solhub.solyoung.top/', img:'assets/project-solhub.jpg',
      zh:{name:'SolHub', sub:'DIGITAL TOOL HUB', kind:'数字产品 · DIGITAL PRODUCT',
          desc:'收录自研的数字产品与免费在线工具，也欢迎其他独立开发者提交自己的产品。一个用来发现、展示与分享作品的地方。',
@@ -1930,7 +1937,7 @@ html,body{overscroll-behavior-x:none}
     var tags=d.tags.map(function(x){return '<span class="hp-tag">'+x+'</span>';}).join('');
     return '<article class="hp-slide" data-idx="'+i+'">'+
       '<div class="hp-card">'+
-        '<div class="hp-shot"><img loading="'+(i===0?'eager':'lazy')+'" draggable="false" src="'+p.img+'" alt="'+d.name+' — '+p.domain+'"></div>'+
+        '<div class="hp-shot"><img loading="eager" decoding="async" draggable="false" src="'+p.img+'" alt="'+d.name+' — '+p.domain+'"></div>'+
         '<div class="hp-info">'+
           '<div class="hp-meta"><span class="hp-no">'+no+'</span><span class="hp-kind">'+d.kind+'</span></div>'+
           '<h2 class="hp-name">'+d.name+'</h2>'+

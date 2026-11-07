@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-07-1710-fa113c",
+    "date": "2026-11-07T17:10:22+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 上线：AI 智能包装设计平台加入项目轮播并置顶，SolHub 顺位第二、SolYoung Studio 第三。首页与作品页同步为三个项目，计数 02→03，预览图统一 1280×820 零裁切。",
+    "content_en": "LunaSol goes live: the AI packaging design platform now leads the project carousel, with SolHub second and SolYoung Studio third. Home and Works pages both updated to three projects (counter 02→03), preview images unified at 1280×820 with zero cropping.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-07-1429-7617d0",
     "date": "2026-11-07T14:29:30+08:00",
     "type": "BUILD",
