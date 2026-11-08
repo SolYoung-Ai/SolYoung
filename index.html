@@ -2497,15 +2497,21 @@ html,body{overscroll-behavior-x:none}
     ropesEl.style.maskImage = g;
   }
 
-  // 一根绳：绷紧时是直线，松了才下垂（下垂量按弦长与余量的关系估，像真绳子）
-  function ropeD(ax){
+  // 两根绳共用同一个下垂量（以更紧的那根为准）：
+  // 任一根绷直时两根都画直线，都松时对称下垂 —— 两绳永远成对，不会一弯一直显得错位
+  function ropeSag(){
+    var dL = Math.sqrt((px - AX0) * (px - AX0) + (py - AY) * (py - AY)) || 1e-6;
+    var dR = Math.sqrt((px - AX1) * (px - AX1) + (py - AY) * (py - AY)) || 1e-6;
+    var dmin = Math.min(dL, dR);
+    var slack = L0 - dmin;
+    if(slack < 1.5) return 0;
+    var sag = Math.sqrt(0.4 * dmin * slack);
+    var cap = dmin * 0.42; if(sag > cap) sag = cap;
+    return sag;
+  }
+  function ropeD(ax, sag){
     var ay = AY;
-    var dx = px - ax, dy = py - ay;
-    var d = Math.sqrt(dx * dx + dy * dy) || 1e-6;
-    var slack = L0 - d;
-    if(slack < 1.5) return 'M' + r1(ax) + ' ' + r1(ay) + 'L' + r1(px) + ' ' + r1(py);
-    var sag = Math.sqrt(0.4 * d * slack);
-    var cap = d * 0.42; if(sag > cap) sag = cap;
+    if(sag < 0.8) return 'M' + r1(ax) + ' ' + r1(ay) + 'L' + r1(px) + ' ' + r1(py);
     var mx = (ax + px) / 2, my = (ay + py) / 2;
     return 'M' + r1(ax) + ' ' + r1(ay) + 'Q' + r1(mx) + ' ' + r1(my + 2 * sag) + ' ' + r1(px) + ' ' + r1(py);
   }
@@ -2518,7 +2524,8 @@ html,body{overscroll-behavior-x:none}
     card.style.transform = 'translate3d(' + r1(ox - W / 2) + 'px,' + r1(oy - H / 2) + 'px,0) rotate(' + deg.toFixed(2) + 'deg)';
     cardMidX = stageOX + ox;
 
-    var dA = ropeD(AX0), dB = ropeD(AX1);
+    var sag = ropeSag();
+    var dA = ropeD(AX0, sag), dB = ropeD(AX1, sag);
     ropeL.setAttribute('d', dA);
     ropeR.setAttribute('d', dB);
     hiL.setAttribute('d', dA);
@@ -3097,15 +3104,20 @@ html,body{overscroll-behavior-x:none}
     }
   }
 
-  // 一根绳：绷紧时是直线，松了才下垂（下垂量按弦长与余量的关系估，像真绳子）
-  function ropeD(ax){
+  // 两根绳共用同一个下垂量（以更紧的那根为准），两绳永远成对，不会一弯一直错位
+  function ropeSag(){
+    var dL=Math.sqrt((px-AX0)*(px-AX0)+(py-APEX_Y)*(py-APEX_Y))||1e-6;
+    var dR=Math.sqrt((px-AX1)*(px-AX1)+(py-APEX_Y)*(py-APEX_Y))||1e-6;
+    var dmin=Math.min(dL,dR);
+    var slack=L0-dmin;
+    if(slack<1.5) return 0;
+    var sag=Math.sqrt(0.4*dmin*slack);
+    var cap=dmin*0.42; if(sag>cap) sag=cap;
+    return sag;
+  }
+  function ropeD(ax,sag){
     var ay=APEX_Y;
-    var dx=px-ax, dy=py-ay;
-    var d=Math.sqrt(dx*dx+dy*dy)||1e-6;
-    var slack=L0-d;
-    if(slack<1.5) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(px)+' '+r1(py);
-    var sag=Math.sqrt(0.4*d*slack);
-    var cap=d*0.42; if(sag>cap) sag=cap;
+    if(sag<0.8) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(px)+' '+r1(py);
     var mx=(ax+px)/2, my=(ay+py)/2;
     return 'M'+r1(ax)+' '+r1(ay)+'Q'+r1(mx)+' '+r1(my+2*sag)+' '+r1(px)+' '+r1(py);
   }
@@ -3117,7 +3129,8 @@ html,body{overscroll-behavior-x:none}
     var deg=Math.atan2(-ux,uy)*180/Math.PI;
     card.style.transform='translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0) rotate('+deg.toFixed(2)+'deg)';
     cardMidX=ox;
-    var dA=ropeD(AX0), dB=ropeD(AX1);
+    var sag=ropeSag();
+    var dA=ropeD(AX0,sag), dB=ropeD(AX1,sag);
     ropeL.setAttribute('d',dA); ropeR.setAttribute('d',dB);
     hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
     if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }

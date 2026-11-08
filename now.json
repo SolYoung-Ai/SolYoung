@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-08-2243-924110",
+    "date": "2026-11-08T22:43:00+08:00",
+    "type": "BUILD",
+    "content": "修复开屏与首页工牌两根挂绳在摆动时「一弯一直」的错位：改为两绳共用一个下垂量（以更紧那根为准），始终成对摆动。",
+    "content_en": "Fixed the two lanyard ropes on the splash and homepage badge going out of sync while swinging (one straight, one drooping): both ropes now share a single sag value so they always move as a matched pair.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-08-2232-24e48e",
     "date": "2026-11-08T22:32:00+08:00",
     "type": "BUILD",
