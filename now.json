@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-08-2232-24e48e",
+    "date": "2026-11-08T22:32:00+08:00",
+    "type": "BUILD",
+    "content": "修复二级页 soyoung.html 项目计数：仍是 02，实际已 3 个项目，改为 SELECTED PROJECTS · 03。",
+    "content_en": "Fixed the project count on soyoung.html: it still read 02 while there are 3 projects; updated the kicker to SELECTED PROJECTS · 03.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-08-1605-85b2b6",
     "date": "2026-11-08T16:05:00+08:00",
     "type": "BUILD",
