@@ -1,5 +1,61 @@
 [
   {
+    "id": "major-2026-11-08-1556-680b5a",
+    "date": "2026-11-08T15:56:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：设计工作台重构为专业编辑器——九步向导下线，全部收敛到一个三栏工作台（左对话、中画布、右属性）。补上撤销重做（50 步）、1.5 秒静默自动保存与刷新恢复、图层锁定/隐藏/排序、正面/背面/侧面/顶面多包装面切换、最多 20 个版本历史、2D/3D 预览切换、PDF/PNG/SVG/ZIP 完整交付包导出、空格或中键平移画布与旋转控制点（Shift 吸附）、多选对齐分布，以及可一键自动修复的印前检查报告。",
+    "content_en": "LunaSol: the design workspace is now a professional editor - the nine-step wizard is retired in favour of one three-column workspace (chat left, canvas centre, properties right). It gains 50-step undo/redo, 1.5s silent autosave with refresh recovery, layer lock/hide/reorder, multi-panel switching (front/back/side/top), up to 20 saved versions, 2D/3D preview, full PDF/PNG/SVG/ZIP delivery export, space-or-middle-drag canvas panning with rotation handles (Shift to snap), multi-select align/distribute, and a pre-press check report with one-click auto-fix.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-08-1556-dcf43d",
+    "date": "2026-11-08T15:56:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：AI 从「写代码改画布」改成「调工具」——新增 22 个结构化工具，配参数校验与规划器/执行器，AI 只调用工具、不再直接执行脚本，改稿更稳也更可控；同时上线独立素材库，支持上传与 AI 生成素材、分类收藏筛选、跨设备持久化，一键放上画布。",
+    "content_en": "LunaSol: the AI now calls tools instead of writing scripts - 22 structured tools with argument validation plus a planner/executor, so edits are more reliable and predictable. A standalone asset library also ships: upload or AI-generate assets, tag/favourite/filter them, keep them across devices, and drop any of them onto the canvas in one click.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-08-1556-9f6233",
+    "date": "2026-11-08T15:56:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：助手 Luna 换成 Grok 式设计师分身对话界面——去掉模型选择、固定 DeepSeek 推理模型（生图仍分 Flash / Lite / Pro 三档），会话可新建、看历史、重命名、删除并云端保存，换设备接着聊；思考过程可折叠展开。顺手堵住两处计费漏洞：以前只扣基础额度、奖励积分不扣，以及积分明细因缺少写入权限根本没落库。",
+    "content_en": "LunaSol: Luna is now a Grok-style designer-persona chat - model switching is gone, the reasoner is fixed (image generation still has Flash/Lite/Pro tiers), conversations can be created, listed, renamed and deleted with cloud persistence so they follow you across devices, and the reasoning trace expands/collapses. Two billing holes are closed: bonus credits were never charged, and credit logs were silently never written because of a missing insert policy.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-08-1556-003373",
+    "date": "2026-11-08T15:56:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：工作台加入批量管理——项目列表可复选、全选、批量删除，并按结构分类整理；修掉云端删除时 id 漏加 rowId 前缀、以及删除后一刷新又回来的问题。",
+    "content_en": "LunaSol: the workspace gains batch management - multi-select, select-all and bulk delete on the project list, organised by structure; it also fixes cloud deletes that missed the rowId prefix and deleted projects reappearing after a refresh.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-08-1556-9e43bc",
+    "date": "2026-11-08T15:56:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：视觉与导航换新——新波浪 logo 全套替换（透明底，favicon、导航、AI 头像同步），全站统一 iOS 风格圆角与缓动曲线，导航调整为「开始 / Luan / 工作台 / 审美市场」并把 Luan 置顶，手机端重新适配。",
+    "content_en": "LunaSol: a visual and navigation refresh - a new wave logo rolled out everywhere (transparent background, favicon, nav, AI avatar), iOS-style radii and easing curves unified site-wide, navigation reordered to Start / Luan / Workspace / Aesthetic Market with Luan on top, and mobile layouts retuned.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-08-1556-49244f",
+    "date": "2026-11-08T15:56:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：积分与账号体验——积分明细入口收进积分卡片右上角，签到、充值、消费逐笔可查，消费显示为负号；头像与生日改为云端同步，换设备自动带回；手机验证码登录改成「设置密码」，并修掉积分数字先显示 100 再跳变的老毛病。",
+    "content_en": "LunaSol: credits and account polish - the credit log now sits in the top-right of the credits card with per-entry sign-in, top-up and spend history (spending shown negative); avatar and birthday sync to the cloud and return on a new device; phone-code login now sets a password, and the credits counter no longer flashes 100 before settling.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-08-1556-e02f83",
+    "date": "2026-11-08T15:56:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：导航改版——侧边栏四项导航换成蓝/橙/青/紫彩色图标块，手机底栏选中色跟随栏目；侧栏顶部新增收起按钮，可缩成 76px 纯图标栏并记住状态，跳页不再先展开后收起地闪一下；同时全站默认切到深色（暖黑底配卡片层次），原生下拉框、滚动条与手机地址栏一并跟随。",
+    "content_en": "SolHub: a navigation refresh - the four sidebar items get colour-coded icon tiles (blue/orange/teal/purple) and the mobile tab bar picks up each section's colour; a new collapse control shrinks the sidebar to a 76px icon rail and remembers the state, so page transitions no longer flash expanded-then-collapsed. The site also defaults to dark mode (warm-black surfaces with card layering), with native selects, scrollbars and the mobile address bar following along.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-08-1336-4094a3",
     "date": "2026-11-08T13:36:00+08:00",
     "type": "BUILD",
