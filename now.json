@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-08-1605-85b2b6",
+    "date": "2026-11-08T16:05:00+08:00",
+    "type": "BUILD",
+    "content": "LunaSol 项目卡预览图同步为站点最新主页：换成黑底「开始设计」按钮、新版副标题的当前版本，卡片展示与实际站点一致。同时把首页项目区「SELECTED PROJECTS · 02」更正为 03，与三项目轮播对齐。",
+    "content_en": "The LunaSol project card preview now mirrors the live homepage: the current build with the solid black Start Designing button and the shortened tagline. The homepage project counter label also corrected from 02 to 03 to match the three-project carousel.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-08-1556-680b5a",
     "date": "2026-11-08T15:56:14+08:00",
     "type": "BUILD",
