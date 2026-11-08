@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-08-2259-f9064c",
+    "date": "2026-11-08T22:59:00+08:00",
+    "type": "BUILD",
+    "content": "工牌挂绳顶端钉死：顶部改成一段固定竖直的绳子，摆动时不再沿画面顶端左右滑；开屏进场的工牌改为从上方自由落下、被绳子接住后回弹摆动。",
+    "content_en": "Pinned the top of both lanyard straps with a fixed vertical segment so they no longer slide along the top edge while swinging, and made the splash badge drop in from above before being caught by the straps.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-08-2243-924110",
     "date": "2026-11-08T22:43:00+08:00",
     "type": "BUILD",

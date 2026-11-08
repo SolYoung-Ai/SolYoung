@@ -2497,23 +2497,18 @@ html,body{overscroll-behavior-x:none}
     ropesEl.style.maskImage = g;
   }
 
-  // 两根绳共用同一个下垂量（以更紧的那根为准）：
-  // 任一根绷直时两根都画直线，都松时对称下垂 —— 两绳永远成对，不会一弯一直显得错位
-  function ropeSag(){
-    var dL = Math.sqrt((px - AX0) * (px - AX0) + (py - AY) * (py - AY)) || 1e-6;
-    var dR = Math.sqrt((px - AX1) * (px - AX1) + (py - AY) * (py - AY)) || 1e-6;
-    var dmin = Math.min(dL, dR);
-    var slack = L0 - dmin;
-    if(slack < 1.5) return 0;
-    var sag = Math.sqrt(0.4 * dmin * slack);
-    var cap = dmin * 0.42; if(sag > cap) sag = cap;
-    return sag;
-  }
-  function ropeD(ax, sag){
-    var ay = AY;
-    if(sag < 0.8) return 'M' + r1(ax) + ' ' + r1(ay) + 'L' + r1(px) + ' ' + r1(py);
-    var mx = (ax + px) / 2, my = (ay + py) / 2;
-    return 'M' + r1(ax) + ' ' + r1(ay) + 'Q' + r1(mx) + ' ' + r1(my + 2 * sag) + ' ' + r1(px) + ' ' + r1(py);
+  // 绳子 = 顶部一段「竖直段」+ 下面一段二次曲线。
+  // 竖直段的 x 恒等于锚点 x：绳子穿过画面顶端那一截永远在同一条竖线上，摆动时一动不动，
+  // 于是顶端看着是钉死的（以前的画法是整根绳绕画面上方的虚拟吊点转，顶边那截会被左右拖，
+  // 两根绳还朝相反方向滑，观感就是"掉帧、错位"）。
+  function ropeD(ax){
+    var ay = AY, bx = px, by = py;
+    var dy = by - ay;
+    if(dy < 14) return 'M' + r1(ax) + ' ' + r1(ay) + 'L' + r1(bx) + ' ' + r1(by);
+    var cy = ay + Math.min(dy * 0.45, 150);          // 竖直段下端（这段完全不动）
+    var m = Math.max(0, by - cy) * 0.60;             // 曲线控制点：从竖直平滑过渡到扣子
+    return 'M' + r1(ax) + ' ' + r1(ay) + 'L' + r1(ax) + ' ' + r1(cy) +
+      'Q' + r1(ax) + ' ' + r1(cy + m) + ' ' + r1(bx) + ' ' + r1(by);
   }
 
   function render(){
@@ -2524,8 +2519,7 @@ html,body{overscroll-behavior-x:none}
     card.style.transform = 'translate3d(' + r1(ox - W / 2) + 'px,' + r1(oy - H / 2) + 'px,0) rotate(' + deg.toFixed(2) + 'deg)';
     cardMidX = stageOX + ox;
 
-    var sag = ropeSag();
-    var dA = ropeD(AX0, sag), dB = ropeD(AX1, sag);
+    var dA = ropeD(AX0), dB = ropeD(AX1);
     ropeL.setAttribute('d', dA);
     ropeR.setAttribute('d', dB);
     hiL.setAttribute('d', dA);
@@ -2883,7 +2877,7 @@ html,body{overscroll-behavior-x:none}
   var catchVX=0,catchVY=0,catchT=0;   // 接住那一刻残留的速度，给"接住"留一点滑行
   var pPX=0,pPY=0,pSpd=0,pSpdN=0;     // 指针速度（归一化），决定摆角弹簧的软硬
   var pointerX=null,pointerY=null,hover=false;
-  var ready=false,raf=0,lastT=0,firstBuild=true,cardMidX=0;
+  var ready=false,raf=0,lastT=0,falling=true,dropOn=false,cardMidX=0;  // falling：入场自由落体中；dropOn：这一轮已经起跳
 
   function r1(n){ return Math.round(n*10)/10; }
 
@@ -2916,6 +2910,9 @@ html,body{overscroll-behavior-x:none}
     if(!card) return;
     W=card.offsetWidth; H=card.offsetHeight;
     if(!W||!H) return;
+    // 还在下落途中：先记下当前状态，重算完几何再原样放回去（不打断下落）
+    var keepFall=null;
+    if(dropOn&&falling&&!reduce) keepFall={px:px,py:py,vx:vx,vy:vy,th:th,om:om,stretch:stretch};
 
     var vw=window.innerWidth, vh=window.innerHeight;
     var cx=Math.round(vw/2);
@@ -2951,13 +2948,16 @@ html,body{overscroll-behavior-x:none}
 
     vx=0; vy=0; th=0; om=0; stretch=1; wind=0;
 
-    // 入场：先偏一点再撒手，靠重力自己荡到位（而不是位移渐变）
-    if(firstBuild&&!reduce){
-      var room=Math.max(0,vw/2-W/2-18);
-      var kick=Math.min(44,room*0.26);
-      px=cx+kick; py=homeTop+HANG-12;
-      th=-0.04;
-      firstBuild=false;
+    // 入场：工牌从吊点正下方自由落体「掉」进画面，绳子绷住那一刻把它接住并回弹一下，
+    // 之后靠重力自己慢慢荡开（不是位移渐变）。下落途中重算尺寸（图片/字体到位）时沿用
+    // 当前下落状态，不回到起点，否则会看到一次跳位。
+    if(keepFall){
+      px=keepFall.px; py=keepFall.py; vx=keepFall.vx; vy=keepFall.vy;
+      th=keepFall.th; om=keepFall.om; stretch=keepFall.stretch;
+    } else if(falling&&!reduce&&!dropOn){
+      px=cx; py=APEX_Y+6;      // 吊点略下方：整张工牌还在画面上沿之外
+      vx=0; vy=0; th=-0.06; om=0.55;
+      dropOn=true;
     }
 
     ready=true;
@@ -3100,26 +3100,24 @@ html,body{overscroll-behavior-x:none}
       var nx=dx/d, ny=dy/d;
       px=HOME_X+nx*R; py=APEX_Y+ny*R;
       var vn=vx*nx+vy*ny;
-      if(vn>0){ vx-=(1+BOUNCE)*vn*nx; vy-=(1+BOUNCE)*vn*ny; }
+      if(vn>0){
+        vx-=(1+BOUNCE)*vn*nx; vy-=(1+BOUNCE)*vn*ny;
+        // 落地那一下：绳子被砸出一点弹性，随后按 REEL 收回去，像真绳子兜住之后又往上一带
+        if(falling){ falling=false; stretch=1+Math.min(0.18,vn/9000); }
+      }
     }
   }
 
-  // 两根绳共用同一个下垂量（以更紧的那根为准），两绳永远成对，不会一弯一直错位
-  function ropeSag(){
-    var dL=Math.sqrt((px-AX0)*(px-AX0)+(py-APEX_Y)*(py-APEX_Y))||1e-6;
-    var dR=Math.sqrt((px-AX1)*(px-AX1)+(py-APEX_Y)*(py-APEX_Y))||1e-6;
-    var dmin=Math.min(dL,dR);
-    var slack=L0-dmin;
-    if(slack<1.5) return 0;
-    var sag=Math.sqrt(0.4*dmin*slack);
-    var cap=dmin*0.42; if(sag>cap) sag=cap;
-    return sag;
-  }
-  function ropeD(ax,sag){
-    var ay=APEX_Y;
-    if(sag<0.8) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(px)+' '+r1(py);
-    var mx=(ax+px)/2, my=(ay+py)/2;
-    return 'M'+r1(ax)+' '+r1(ay)+'Q'+r1(mx)+' '+r1(my+2*sag)+' '+r1(px)+' '+r1(py);
+  // 同首页工牌：顶部一段竖直（穿过视口上沿的那截永远不动，等于把绳子钉死在顶部），
+  // 下面一段曲线弯进扣子。两根绳的顶点各自固定，摆动时不会再互相错开。
+  function ropeD(ax){
+    var ay=APEX_Y, bx=px, by=py;
+    var dy=by-ay;
+    if(dy<14) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
+    var cy=ay+Math.min(dy*0.45,150);
+    var m=Math.max(0,by-cy)*0.60;
+    return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(ax)+' '+r1(cy)+
+      'Q'+r1(ax)+' '+r1(cy+m)+' '+r1(bx)+' '+r1(by);
   }
 
   function render(){
@@ -3129,8 +3127,7 @@ html,body{overscroll-behavior-x:none}
     var deg=Math.atan2(-ux,uy)*180/Math.PI;
     card.style.transform='translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0) rotate('+deg.toFixed(2)+'deg)';
     cardMidX=ox;
-    var sag=ropeSag();
-    var dA=ropeD(AX0,sag), dB=ropeD(AX1,sag);
+    var dA=ropeD(AX0), dB=ropeD(AX1);
     ropeL.setAttribute('d',dA); ropeR.setAttribute('d',dB);
     hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
     if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }
