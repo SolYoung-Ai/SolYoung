@@ -2388,7 +2388,7 @@ html,body{overscroll-behavior-x:none}
   var RAMP=56;       // 拖出多少像素才到满倾角
 
   var W=0,H=0,ANCH=150,RISE=430,HANG=-46,D=0;
-  var R0=1,L0=1,AX0=0,AX1=0,AY=0,HOME_X=0,HOME_Y=0;
+  var R0=1,L0=1,AX0=0,AX1=0,AY=0,HOME_X=0,HOME_Y=0,VL=0,VR=0,VY=0;
   var w0sq=1,halfDiag=1,tiltMax=0.46,limX=100,limY=64;
   var px=0,py=0,vx=0,vy=0,th=0,om=0,stretch=1,wind=0,scrollW=0,inertY=0;
   var hoverE=0,hvPh=0;   // hoverE：悬停强度 0~1（缓入缓出）；hvPh：悬停微风相位
@@ -2460,6 +2460,18 @@ html,body{overscroll-behavior-x:none}
     AX1 = HOME_X + ANCH;
     R0 = HOME_Y - AY;                 // 摆臂长 = 锚点到扣子的距离
     L0 = Math.sqrt(ANCH * ANCH + R0 * R0);  // 单根绳的自然长度（画绳子用）
+    // 首页工牌静止时绳子大半在视口之上，真正露出来的顶端是「绳子穿过视口上沿」的那一点。
+    // 把锚点放在这个固定点上（x 由静止绳线求交得到，是常数），顶端就钉在画面边缘：
+    // 摆动时绳子只绕它转，不会再沿顶边左右蹭（以前那截在画外，顶边会被拖出一条横向位移）。
+    var stTop = stage.getBoundingClientRect().top;
+    VY = -stTop;
+    if(!(VY > AY + 40)) VY = AY + 40;   // 别让锚点跑到虚拟吊点上方（比如 stage 在很下面时）
+    var kk = (VY - AY) / R0;
+    if(kk < 0) kk = 0;
+    if(kk > 0.98) kk = 0.98;
+    var hw = ANCH * (1 - kk);           // 锚点到扣子静止位置的水平距离
+    VL = HOME_X - hw;
+    VR = HOME_X + hw;
 
     var I = (W * W + H * H) / 12;
     w0sq = G * D / (D * D + I);       // 卡片绕挂点的摆频
@@ -2497,20 +2509,28 @@ html,body{overscroll-behavior-x:none}
     ropesEl.style.maskImage = g;
   }
 
-  // 绳子 = 顶部一段「竖直段」+ 下面一段二次曲线。
-  // 竖直段的 x 恒等于锚点 x：绳子穿过画面顶端那一截永远在同一条竖线上，摆动时一动不动，
-  // 于是顶端看着是钉死的（以前的画法是整根绳绕画面上方的虚拟吊点转，顶边那截会被左右拖，
-  // 两根绳还朝相反方向滑，观感就是"掉帧、错位"）。
-  function ropeD(ax){
-    var ay = AY, bx = px, by = py;
-    var dy = by - ay;
-    if(dy < 14) return 'M' + r1(ax) + ' ' + r1(ay) + 'L' + r1(bx) + ' ' + r1(by);
-    var cy = ay + Math.min(dy * 0.45, 150);          // 竖直段下端（这段完全不动）
-    var m = Math.max(0, by - cy) * 0.60;             // 曲线控制点：从竖直平滑过渡到扣子
-    return 'M' + r1(ax) + ' ' + r1(ay) + 'L' + r1(ax) + ' ' + r1(cy) +
-      'Q' + r1(ax) + ' ' + r1(cy + m) + ' ' + r1(bx) + ' ' + r1(by);
+  // 下垂量 = 弦长的固定比例（封顶 28px）。用固定比例而不是「绳子余量」：
+  // 余量那套在工牌随风微摆时会让下垂量在 0~28 之间跳，绳子一会儿直一会儿弯，
+  // 反而更像掉帧；固定比例意味着它永远是一条垂着的带子，只是随摆角自然改变形状。
+  function ropeSag(d){
+    var s=d*0.075;
+    return s>28?28:s;
   }
-
+  // 绳子 = 固定锚点到扣子的一段「自然下坠」的弧：控制点落在弦中点正下方，
+  // 所以中间朝重力方向（+y）微微沉下去，两端平顺接上锚点和扣子。
+  // 顶端 x 恒为锚点 x，不会沿画面顶边左右滑（老画法就是在这里被拖出一条横向位移的）。
+  function ropeD(ax){
+    var ay=VY, bx=px, by=py;
+    var dy=by-ay;
+    if(dy<14) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
+    var d=Math.sqrt((bx-ax)*(bx-ax)+dy*dy)||1e-6;
+    // 控制点落在弦中点正下方 2*sag 处 → 曲线中点正好比弦低 sag，也就是朝重力方向微微沉下去。
+    // 顶端 x 恒为锚点 x，所以绳子在画面顶部不会左右滑。
+    var sag=ropeSag(d);
+    if(sag<0.8) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
+    var mx=(ax+bx)*0.5, my=(ay+by)*0.5;
+    return 'M'+r1(ax)+' '+r1(ay)+'Q'+r1(mx)+' '+r1(my+2*sag)+' '+r1(bx)+' '+r1(by);
+  }
   function render(){
     var ux = Math.sin(th), uy = Math.cos(th);
     var nkx = px - HANG * ux, nky = py - HANG * uy;   // 卡片上边中点
@@ -2866,7 +2886,7 @@ html,body{overscroll-behavior-x:none}
   var RAMP=56;      // 拖出多少像素才到满倾角
 
   var W=0,H=0,ANCH=120,RISE=200,HANG=-50,D=0;
-  var R0=1,APEX_Y=0,HOME_X=0,L0=1,AX0=0,AX1=0,w0sq=1,halfDiag=1,tiltMax=0.46;
+  var R0=1,APEX_Y=0,HOME_X=0,L0=1,AX0=0,AX1=0,w0sq=1,halfDiag=1,tiltMax=0.46,VL=0,VR=0,VY=0;
   var px=0,py=0,vx=0,vy=0,th=0,om=0,stretch=1,wind=0;
   var hoverE=0,hvPh=0;   // hoverE：悬停强度 0~1（缓入缓出）；hvPh：悬停微风相位
   var hoverOutT=0;       // 指针离开卡片的时刻：短暂离开不算离开，见 updateHover
@@ -2930,6 +2950,12 @@ html,body{overscroll-behavior-x:none}
     R0=Math.max(80, py-APEX_Y);       // 摆臂长 = 吊点到扣子的距离
     AX0=cx-ANCH; AX1=cx+ANCH;
     L0=Math.sqrt(ANCH*ANCH+R0*R0);    // 单根绳的自然长度（画绳子用）
+    // 开屏的吊点在视口上方（看不见），真正常驻画面里的是绳子穿过视口上沿(y=0)的那一点。
+    // 直接把这个点当锚点：x 由静止时的走向求交得到 → 常数，摆动时顶端一动不动。
+    var kv=1-RISE/R0;
+    VY=0;
+    VL=cx-ANCH*kv;
+    VR=cx+ANCH*kv;
 
     var I=(W*W+H*H)/12;
     w0sq=G*D/(D*D+I);                 // 卡片绕挂点的摆频
@@ -3108,16 +3134,25 @@ html,body{overscroll-behavior-x:none}
     }
   }
 
-  // 同首页工牌：顶部一段竖直（穿过视口上沿的那截永远不动，等于把绳子钉死在顶部），
-  // 下面一段曲线弯进扣子。两根绳的顶点各自固定，摆动时不会再互相错开。
+  // 下垂量 = 弦长的固定比例（封顶 28px）。用固定比例而不是「绳子余量」：
+  // 余量那套在工牌随风微摆时会让下垂量在 0~28 之间跳，绳子一会儿直一会儿弯，
+  // 反而更像掉帧；固定比例意味着它永远是一条垂着的带子，只是随摆角自然改变形状。
+  function ropeSag(d){
+    var s=d*0.075;
+    return s>28?28:s;
+  }
+  // 绳子 = 固定锚点到扣子的一段「自然下坠」的弧：控制点落在弦中点正下方，
+  // 所以中间朝重力方向（+y）微微沉下去，两端平顺接上锚点和扣子。
+  // 顶端 x 恒为锚点 x，不会沿画面顶边左右滑（老画法就是在这里被拖出一条横向位移的）。
   function ropeD(ax){
-    var ay=APEX_Y, bx=px, by=py;
+    var ay=VY, bx=px, by=py;
     var dy=by-ay;
     if(dy<14) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
-    var cy=ay+Math.min(dy*0.45,150);
-    var m=Math.max(0,by-cy)*0.60;
-    return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(ax)+' '+r1(cy)+
-      'Q'+r1(ax)+' '+r1(cy+m)+' '+r1(bx)+' '+r1(by);
+    var d=Math.sqrt((bx-ax)*(bx-ax)+dy*dy)||1e-6;
+    var sag=ropeSag(d);
+    if(sag<0.8) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
+    var mx=(ax+bx)*0.5, my=(ay+by)*0.5;
+    return 'M'+r1(ax)+' '+r1(ay)+'Q'+r1(mx)+' '+r1(my+2*sag)+' '+r1(bx)+' '+r1(by);
   }
 
   function render(){
@@ -3127,7 +3162,7 @@ html,body{overscroll-behavior-x:none}
     var deg=Math.atan2(-ux,uy)*180/Math.PI;
     card.style.transform='translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0) rotate('+deg.toFixed(2)+'deg)';
     cardMidX=ox;
-    var dA=ropeD(AX0), dB=ropeD(AX1);
+    var dA=ropeD(VL), dB=ropeD(VR);
     ropeL.setAttribute('d',dA); ropeR.setAttribute('d',dB);
     hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
     if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }

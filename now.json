@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-08-2319-ff60d4",
+    "date": "2026-11-08T23:19:00+08:00",
+    "type": "BUILD",
+    "content": "重做挂绳的弧线：去掉「顶部竖直再向外鼓出去」的钟形弧，改成从固定锚点垂向扣子的自然下坠弧（按重力方向微微下沉）；开屏绳子顶端钉在视口上沿、首页钉在画面顶部那个固定点，摆动时不再沿边缘左右滑。",
+    "content_en": "Reworked the lanyard straps: dropped the bell-shaped curve (vertical top hooking outward) for a natural gravity sag from a fixed anchor down to the clip, and pinned the strap tops (splash: viewport edge, homepage: the fixed point at the top of the view) so they no longer slide sideways while swinging.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-08-2259-f9064c",
     "date": "2026-11-08T22:59:00+08:00",
     "type": "BUILD",
