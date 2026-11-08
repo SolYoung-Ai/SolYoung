@@ -3276,6 +3276,33 @@ html,body{overscroll-behavior-x:none}
       if(!splash.classList.contains('hide')){ e.preventDefault(); enter(); }
     }
   });
+  // 向左滑动直接进入首页：等效点击「进入我的世界」，不加任何提示文案。
+  // 工牌所在的 .badge-card 是可拖拽的摆锤区，手势在那里不参与，避免和拖拽抢事件。
+  (function(){
+    var sp=document.getElementById('splash');
+    if(!sp) return;
+    var sx=0, sy=0, st=0, on=false;
+    function inCard(t){ return !!(t && t.closest && t.closest('.badge-card')); }
+    sp.addEventListener('touchstart', function(e){
+      if(sp.classList.contains('hide')||e.touches.length!==1||inCard(e.target)) return;
+      on=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
+    }, {passive:true});
+    sp.addEventListener('touchend', function(e){
+      if(!on) return; on=false;
+      if(sp.classList.contains('hide')) return;
+      var t=e.changedTouches[0]; if(!t) return;
+      var dx=t.clientX-sx, dy=t.clientY-sy;
+      if(Date.now()-st>700) return;
+      if(dx<=-70 && Math.abs(dx)>Math.abs(dy)*1.3) enter();
+    }, {passive:true});
+    sp.addEventListener('touchcancel', function(){ on=false; }, {passive:true});
+    // 触摸板横向双指滑动同样算「向左滑」，阈值略高避免误触
+    sp.addEventListener('wheel', function(e){
+      if(sp.classList.contains('hide')) return;
+      if(inCard(e.target)) return;
+      if(e.deltaX<=-60 && Math.abs(e.deltaX)>Math.abs(e.deltaY)*1.5) enter();
+    }, {passive:true});
+  })();
 })();
 
 // ---- 开屏「关于我」抽屉：关于我 ----

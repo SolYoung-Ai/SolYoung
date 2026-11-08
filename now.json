@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-08-1336-4094a3",
+    "date": "2026-11-08T13:36:00+08:00",
+    "type": "BUILD",
+    "content": "开屏支持向左滑动直接进入首页：手机上不必点右上角「进入我的世界」，向左一滑即可进入，过渡与点按钮完全一致。手势避开可拖拽的工牌区，不会和吊牌摆锤抢事件；开屏文字与提示一概未改，也没有新增任何提示。",
+    "content_en": "Splash now opens on a left swipe: on mobile you no longer need to tap the top-right enter button - swipe left and the same transition runs. The gesture skips the draggable badge card so it never fights the lanyard physics; no copy or hint was changed, and none was added.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-07-1710-fa113c",
     "date": "2026-11-07T17:10:22+08:00",
     "type": "BUILD",
