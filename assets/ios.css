@@ -372,17 +372,27 @@ html[data-theme="dark"] .ct-socials a:hover,html[data-theme="dark"] .ct-socials 
 body.ct-open{overflow:hidden !important}
 
 /* =============================================================
-   「关于我」抽屉：改成浮起来的玻璃面板
+   「关于我」抽屉：浮起来的玻璃面板
+   子页面没有面板的内联样式，这里给一套自洽的（首页会覆盖成同样的结果）
    ============================================================= */
 .ab-scrim{
+  position:fixed;inset:0;z-index:9999;
   background:rgba(40,26,12,.18) !important;
   backdrop-filter:blur(10px) saturate(115%) !important;
   -webkit-backdrop-filter:blur(10px) saturate(115%) !important;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .5s var(--ios-ease),visibility 0s linear .5s;
 }
+.ab-scrim.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .5s var(--ios-ease),visibility 0s}
+
 .ab-panel{
-  left:14px !important;top:14px !important;bottom:14px !important;
+  position:fixed;z-index:10000;
+  left:14px !important;top:14px !important;bottom:auto !important;
+  max-height:calc(100vh - 28px);
   width:min(452px,calc(100vw - 44px)) !important;
   max-width:calc(100vw - 44px) !important;
+  display:flex;flex-direction:column;
+  overflow:hidden;
   border:none !important;
   border-radius:34px !important;
   background:var(--glass-strong) !important;
@@ -390,32 +400,63 @@ body.ct-open{overflow:hidden !important}
   -webkit-backdrop-filter:var(--glass-blur);
   box-shadow:0 40px 100px -36px rgba(40,26,12,.5),var(--glass-inner) !important;
   transform:translateX(calc(-100% - 28px)) !important;
+  visibility:hidden;
+  transition:transform .62s var(--ios-ease),visibility 0s linear .62s;
 }
-.ab-panel.open{transform:none !important}
+.ab-panel.open{transform:none !important;visibility:visible;transition:transform .62s var(--ios-ease),visibility 0s}
 html[data-theme="dark"] .ab-panel{box-shadow:0 40px 100px -30px rgba(0,0,0,.85),var(--glass-inner) !important}
-.ab-panel .ab-tool{
-  border:none !important;
+
+.ab-scroll{
+  flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  padding:clamp(30px,3.4vw,44px) clamp(22px,2.6vw,34px) clamp(34px,4vw,46px);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26px);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 26px);
+}
+.ab-tools{position:absolute;right:clamp(12px,1.4vw,18px);top:clamp(12px,1.4vw,18px);z-index:3;display:flex;align-items:center;gap:8px}
+.ab-tool{
+  width:30px;height:30px;flex:0 0 auto;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  border:none !important;border-radius:50%;
   background:rgba(120,116,110,.11) !important;
   color:var(--ink-soft) !important;
+  line-height:1;cursor:pointer;text-decoration:none;
+  transition:transform .42s var(--ios-spring),background .3s,color .3s;
 }
-.ab-panel .ab-tool:hover{background:rgba(120,116,110,.2) !important}
-.ab-panel .ab-body p{color:var(--ink) !important}
-.ab-panel .ab-mail,.ab-panel .ab-sub{color:var(--ink) !important}
-.ab-panel .ab-sub{color:var(--ink-soft) !important}
-.ab-panel .ab-socials a,.ab-panel .ab-socials button{
+.ab-tool:hover{background:rgba(120,116,110,.2) !important;transform:rotate(90deg)}
+.ab-tool svg{width:11px;height:11px;display:block}
+
+.ab-eyebrow{font-size:9px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-faint)}
+.ab-body{margin-top:22px}
+.ab-body p{font-size:14.5px;line-height:1.85;color:var(--ink) !important;letter-spacing:.01em}
+.ab-body p+p{margin-top:15px}
+.ab-contact{margin-top:clamp(28px,3.6vw,38px);padding-top:clamp(22px,2.8vw,28px);border-top:1px solid var(--glass-line)}
+.ab-mail{
+  display:block;font-weight:700;letter-spacing:-.025em;
+  font-size:clamp(17px,1.9vw,21px);line-height:1.24;
+  color:var(--ink) !important;text-decoration:none;word-break:break-all;
+  transition:color .3s;
+}
+.ab-mail:hover{color:var(--accent) !important}
+.ab-sub{margin-top:9px;font-size:11.5px;line-height:1.8;color:var(--ink-soft) !important;letter-spacing:.02em}
+.ab-socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.ab-socials a,.ab-socials button{
+  display:inline-flex;align-items:center;gap:7px;
   border-radius:999px !important;
+  padding:8px 14px;
   background:rgba(255,255,255,.7) !important;
   border:1px solid var(--glass-edge) !important;
-  box-shadow:0 1px 2px rgba(28,20,12,.05) !important;
+  box-shadow:0 1px 2px rgba(28,20,12,.05);
   color:var(--ink-soft) !important;
-  transition:transform .42s var(--ios-spring),color .3s,background .3s !important;
+  cursor:pointer;text-decoration:none;
+  font-size:11px;font-weight:600;letter-spacing:.06em;
+  transition:transform .42s var(--ios-spring),color .3s,background .3s;
 }
-.ab-panel .ab-socials a:hover,.ab-panel .ab-socials button:hover{
-  transform:translateY(-2px);color:var(--ink) !important;background:#fff !important;
-}
-html[data-theme="dark"] .ab-panel .ab-socials a,html[data-theme="dark"] .ab-panel .ab-socials button{
+.ab-socials a:hover,.ab-socials button:hover{transform:translateY(-2px);color:var(--ink) !important;background:#fff !important}
+html[data-theme="dark"] .ab-socials a,html[data-theme="dark"] .ab-socials button{
   background:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.1) !important;
 }
+html[data-theme="dark"] .ab-panel .ab-body p{color:var(--ink) !important}
+body.ab-open{overflow:hidden !important}
 
 /* =============================================================
    卡片：液态玻璃 + 大圆角
@@ -607,7 +648,7 @@ html[data-theme="dark"] .hp-tab.on,html[data-theme="dark"] .pj-tab.on{background
   .hd .back::before,.top .back::before{content:"\2190";font-size:15px;line-height:1}
   .xlink{display:none !important}
   .dr-panel{top:9px;left:9px;max-height:calc(100vh - 18px);border-radius:30px;padding:16px 10px 10px}
-  .ab-panel{left:9px !important;top:9px !important;bottom:9px !important;width:calc(100vw - 30px) !important;border-radius:30px !important}
+  .ab-panel{left:9px !important;top:9px !important;bottom:auto !important;max-height:calc(100vh - 18px);width:calc(100vw - 30px) !important;border-radius:30px !important}
   .ct-modal{padding:20px 20px 22px;border-radius:28px}
   .hp-tabs,.pj-tabs{max-width:100%;overflow-x:auto;scrollbar-width:none}
   .hp-tabs::-webkit-scrollbar,.pj-tabs::-webkit-scrollbar{display:none}
