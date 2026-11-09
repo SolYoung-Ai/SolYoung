@@ -1600,7 +1600,7 @@ html,body{overscroll-behavior-x:none}
       console.log('%c🎮 欢迎来到 SolYoung 的世界。把人生，当成一场游戏来经营。','color:#E87028;font-size:14px;font-weight:bold');
       var badge=document.createElement('div');
       badge.textContent='PLAYER 1';
-      badge.style.cssText='position:fixed;bottom:24px;left:24px;z-index:300;font-family:-apple-system,'PingFang SC',sans-serif;font-size:10px;letter-spacing:.18em;font-weight:700;color:#E87028;border:1px solid #E87028;padding:6px 12px;border-radius:2px;background:rgba(250,247,240,.9);backdrop-filter:blur(6px);opacity:0;transition:opacity .4s,transform .4s;transform:translateY(8px)';
+      badge.style.cssText='position:fixed;bottom:24px;left:24px;z-index:300;font-family:system-ui,-apple-system,sans-serif;font-size:10px;letter-spacing:.18em;font-weight:700;color:#E87028;border:1px solid #E87028;padding:6px 12px;border-radius:2px;background:rgba(250,247,240,.9);backdrop-filter:blur(6px);opacity:0;transition:opacity .4s,transform .4s;transform:translateY(8px)';
       document.body.appendChild(badge);
       requestAnimationFrame(function(){badge.style.opacity='1';badge.style.transform='none';});
       setTimeout(function(){badge.style.opacity='0';badge.style.transform='translateY(8px)';setTimeout(function(){badge.remove();},500);},2600);
