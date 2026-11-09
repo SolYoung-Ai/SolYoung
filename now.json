@@ -1,5 +1,69 @@
 [
   {
+    "id": "major-2026-11-09-1203-1297ed",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：全新「AI 原生新建设计」流程上线——输入需求后由 AI 自动规划任务并逐步执行，节点画布可视化推进（可平移缩放、连线查看状态），StepBar 支持自由往返与保存草稿；生图提示词改为中文可直接修改，完成后自动组装进编辑器并联动素材库。",
+    "content_en": "LunaSol: brand-new AI-native design creation flow — AI plans and executes tasks step by step, with a visual node canvas (pan/zoom, live status), a StepBar you can freely revisit and save drafts; image prompts are now editable Chinese text, and results auto-assemble into the editor with asset library integration.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-09-1203-e32e63",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "SolHub：全新 Skill 库上线——收录 1000 条真实 SKILL.md 索引，带来源核验与快照日期；支持全站模糊搜索与使用教程弹窗，登录用户可管理并提交自己的 Skill（原工具提交入口同步改为提交 Skill）。",
+    "content_en": "SolHub: all-new Skill Library — 1,000 real SKILL.md entries with source verification and snapshot dates; site-wide fuzzy search and usage tutorials, signed-in users can manage and submit their own Skills.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-09-1203-6e6003",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "SOL AI：全新产品上线 ai.solyoung.top——BYOK（自带 Key）AI 创作工作平台，首个应用为 AI VIDEO STUDIO：可自配 AI Provider 与模型、Key 本地加密保管、真实连接测试、项目与分镜本地保存；当前为 Phase 1，纯浏览器本地工作台。",
+    "content_en": "SOL AI: brand-new product live at ai.solyoung.top — a BYOK AI creation workspace, first app AI VIDEO STUDIO: bring your own providers and models, locally encrypted key vault, real connection tests, local project/storyboard storage; Phase 1, pure in-browser workspace.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-09-1203-30c77d",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：Luna 对话模型开放可选（DeepSeek / Kimi / 豆包 / GLM），生图升级到 Seedream 5.0 并重构为 Flash / Pro 两档，档位下拉直接显示积分消耗。",
+    "content_en": "LunaSol: Luna chat models now selectable (DeepSeek / Kimi / Doubao / GLM); image generation upgraded to Seedream 5.0, restructured into Flash / Pro tiers with per-tier credit display.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-09-1203-f10225",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：界面玻璃拟态改版——侧栏保留液态玻璃竖条、对话页精简线条、思考过程默认折叠；移动端 Luna 改抽屉式侧栏，欢迎页改为「我是 Luna」极简样式；Pro 生图积分降至 10。",
+    "content_en": "LunaSol: glassmorphism redesign — liquid-glass sidebar rail, cleaner chat page, reasoning collapsed by default; mobile Luna switches to a drawer sidebar with a minimal \"I'm Luna\" welcome page; Pro image credits lowered to 10.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-09-1203-8fc63c",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "SolHub：界面换 iOS 白玻璃质感——桌面侧栏改半透明玻璃面板带淡橙光晕，手机端顶栏/底栏改悬浮胶囊标签栏，并补上深浅主题与中英切换。",
+    "content_en": "SolHub: iOS white-glass UI — translucent desktop sidebar with a faint orange glow, floating pill tab bar on mobile, plus theme and language toggles in the mobile top bar.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-09-1203-1d945c",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：账号安全加固——修改密码强制验证码验证身份，注册新增确认密码，绑定流程修正。",
+    "content_en": "LunaSol: account security hardening — password change now requires verification-code identity check, sign-up adds password confirmation, and the binding flow is fixed.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-09-1203-616858",
+    "date": "2026-11-09T12:03:33+08:00",
+    "type": "BUILD",
+    "content": "SolHub：社区精选收录 LunaSol（AI 包装设计平台），置顶精选第一位。",
+    "content_en": "SolHub: community picks now include LunaSol (AI packaging design platform), pinned first.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-08-2319-ff60d4",
     "date": "2026-11-08T23:19:00+08:00",
     "type": "BUILD",
