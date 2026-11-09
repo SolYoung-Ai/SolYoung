@@ -1069,67 +1069,9 @@ html,body{overscroll-behavior-x:none}
 
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
+<link rel="stylesheet" href="assets/ios.css">
 </head>
 <body>
-
-<!-- ===== 开屏 Splash ===== -->
-<div class="splash" id="splash" role="dialog" aria-label="SolYoung 开屏">
-  <div class="sp-corner sp-tl">
-    <button class="sp-about" id="spAbout" type="button" aria-haspopup="dialog" aria-controls="abPanel" aria-expanded="false"><i></i><span data-i18n="nav-about">关于我</span></button>
-  </div>
-  <button class="sp-corner sp-tr" id="spEnter" type="button">进入我的世界<span class="arr">&rarr;</span></button>
-
-  <div class="sp-stage">
-    <svg class="sp-ropes" id="spRopes" aria-hidden="true" focusable="false">
-      <path class="sp-rope-shadow" id="spShL" d=""/>
-      <path class="sp-rope-shadow" id="spShR" d=""/>
-      <path class="sp-rope" id="spRopeL" d=""/>
-      <path class="sp-rope" id="spRopeR" d=""/>
-      <path class="sp-rope-hi" id="spHiL" d=""/>
-      <path class="sp-rope-hi" id="spHiR" d=""/>
-    </svg>
-
-    <div class="badge-card" id="spBadge" role="img" aria-label="SolYoung 玩家档案工牌，可拖拽">
-        <svg class="badge-clip" viewBox="0 0 26 80" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="spMetal" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#787E86"/>
-              <stop offset=".2" stop-color="#EDF0F4"/>
-              <stop offset=".44" stop-color="#A6ACB4"/>
-              <stop offset=".63" stop-color="#F5F7FA"/>
-              <stop offset=".85" stop-color="#98A0A8"/>
-              <stop offset="1" stop-color="#6C727A"/>
-            </linearGradient>
-          </defs>
-          <rect x=".75" y="0" width="24.5" height="9.6" rx="4.4" fill="url(#spMetal)" stroke="rgba(22,18,12,.32)" stroke-width=".7"/>
-          <path d="M4.6 3.2h16.8" fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".9" stroke-linecap="round"/>
-          <path fill="url(#spMetal)" fill-rule="evenodd" stroke="rgba(22,18,12,.34)" stroke-width=".6" d="M13 9a11.6 10.2 0 1 1 0 20.4 11.6 10.2 0 1 1 0-20.4ZM13 13.2a6.6 6 0 1 0 0 12 6.6 6 0 1 0 0-12Z"/>
-          <rect x="11" y="28" width="4" height="4.6" fill="url(#spMetal)"/>
-          <rect x="6" y="32" width="14" height="27" rx="7" fill="url(#spMetal)" stroke="rgba(22,18,12,.34)" stroke-width=".7"/>
-          <rect x="9.9" y="36" width="2.4" height="13" rx="1.2" fill="rgba(22,18,12,.2)"/>
-          <path d="M8.6 54.5h8.8" fill="none" stroke="rgba(22,18,12,.2)" stroke-width=".7" stroke-linecap="round"/>
-          <path d="M13 58.6v7.6c0 6-3.2 9.7-6.9 9.4" fill="none" stroke="url(#spMetal)" stroke-width="2.8" stroke-linecap="round"/>
-        </svg>
-        <div class="badge-head">
-          <span class="badge-hole l"></span>
-          <span class="badge-slot"></span>
-          <span class="badge-hole r"></span>
-        </div>
-        <div class="badge-insert">
-          <div class="badge-id"><span>PLAYER ID</span><b data-i18n="badge-label">玩家档案</b><span class="badge-tagline" data-i18n="badge-tagline">内容创作｜Ai实践｜个人项目</span></div>
-          <div class="badge-photo">
-            <img src="assets/avatar-480.webp" alt="SolYoung" width="342" height="342" fetchpriority="high" draggable="false">
-          </div>
-          <div class="badge-foot">
-            <div class="badge-name">Sol<em>.</em>Young</div>
-            <div class="badge-status"><i></i><span>ONLINE</span></div>
-          </div>
-        </div>
-      </div>
-
-    <div class="sp-name" aria-hidden="true"><span class="sp-sol"><span class="sp-ltr">S</span><span class="sp-ltr">o</span><span class="sp-ltr">l</span></span><span class="sp-young"><span class="sp-ltr">Y</span><span class="sp-ltr">o</span><span class="sp-ltr">u</span><span class="sp-ltr">n</span><span class="sp-ltr">g</span></span></div>
-  </div>
-</div>
 
 <!-- ===== 左侧「关于我」抽屉（由开屏的「关于我」唤出） ===== -->
 <div class="ab-scrim" id="abScrim" aria-hidden="true"></div>
@@ -1175,6 +1117,68 @@ html,body{overscroll-behavior-x:none}
   </div>
 </aside>
 
+<!-- ===== 侧边导航（液态玻璃抽屉） ===== -->
+<div class="dr-scrim" id="drScrim" aria-hidden="true"></div>
+<aside class="dr-panel" id="drPanel" role="dialog" aria-modal="true" aria-label="导航菜单" aria-hidden="true">
+  <div class="dr-head">
+    <div class="dr-brand">Sol<i>.</i>Young</div>
+    <button class="dr-close" id="drClose" type="button" aria-label="关闭菜单">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.2 2.2 9.8 9.8M9.8 2.2 2.2 9.8"/></svg>
+    </button>
+  </div>
+  <nav class="dr-list">
+    <a class="dr-item" href="works/">
+      <span class="dr-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="2.6" width="6.2" height="6.2" rx="1.8"/><rect x="11.2" y="2.6" width="6.2" height="6.2" rx="1.8"/><rect x="2.6" y="11.2" width="6.2" height="6.2" rx="1.8"/><rect x="11.2" y="11.2" width="6.2" height="6.2" rx="1.8"/></svg></span>
+      <span class="dr-txt"><span class="dr-cn" data-i18n="nav-works">项目</span><span class="dr-en">Projects</span></span>
+      <span class="dr-arr">&#8250;</span>
+    </a>
+    <a class="dr-item" href="now/">
+      <span class="dr-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.4 2.6 4.8 11h4.2l-1.4 6.4L15.2 9H11z"/></svg></span>
+      <span class="dr-txt"><span class="dr-cn" data-i18n="nav-now">构建</span><span class="dr-en">Build</span></span>
+      <span class="dr-arr">&#8250;</span>
+    </a>
+    <a class="dr-item" href="blog/">
+      <span class="dr-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.4 2.8h8.1l3.2 3.2v11.2H4.4z"/><path d="M12.2 2.9v3.4h3.4M7.2 10.4h5.6M7.2 13.6h3.8"/></svg></span>
+      <span class="dr-txt"><span class="dr-cn" data-i18n="nav-thoughts">博客</span><span class="dr-en">Blog</span></span>
+      <span class="dr-arr">&#8250;</span>
+    </a>
+    <button class="dr-item" type="button" id="drAbout" aria-haspopup="dialog" aria-controls="abPanel" aria-expanded="false">
+      <span class="dr-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="6.9" r="3.3"/><path d="M3.9 17.1c.6-3.3 3.1-5.3 6.1-5.3s5.5 2 6.1 5.3"/></svg></span>
+      <span class="dr-txt"><span class="dr-cn" data-i18n="nav-about">关于我</span><span class="dr-en">About</span></span>
+      <span class="dr-arr">&#8250;</span>
+    </button>
+    <button class="dr-item" type="button" id="drContact" aria-haspopup="dialog" aria-controls="ctModal" aria-expanded="false">
+      <span class="dr-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="4.4" width="14.8" height="11.2" rx="2.6"/><path d="m3.4 6 6.6 4.6L16.6 6"/></svg></span>
+      <span class="dr-txt"><span class="dr-cn" data-i18n="nav-contact">联系</span><span class="dr-en">Contact</span></span>
+      <span class="dr-arr">&#8250;</span>
+    </button>
+  </nav>
+  <div class="dr-foot">
+    <span class="dr-note">PLAYER 1 · 2026</span>
+    <span class="dr-note" style="color:var(--accent)">ONLINE</span>
+  </div>
+</aside>
+
+<!-- ===== 联系（液态玻璃弹窗） ===== -->
+<div class="ct-scrim" id="ctScrim" aria-hidden="true"></div>
+<div class="ct-modal" id="ctModal" role="dialog" aria-modal="true" aria-label="联系" aria-hidden="true">
+  <div class="ct-head">
+    <span class="ct-eyebrow" data-i18n="nav-contact">联系</span>
+    <button class="dr-close" id="ctClose" type="button" aria-label="关闭">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.2 2.2 9.8 9.8M9.8 2.2 2.2 9.8"/></svg>
+    </button>
+  </div>
+  <a class="ct-mail" href="mailto:soyoang@outlook.com">soyoang@outlook.com</a>
+  <p class="ct-sub" data-i18n="contact-sub">有一个想法？想合作一个项目？或者只是打个招呼——都可以。</p>
+  <div class="ct-socials">
+    <a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener"><span data-i18n="social-douyin">抖音</span></a>
+    <a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener"><span data-i18n="social-xhs">小红书</span></a>
+    <a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener"><span>X</span></a>
+    <a href="https://www.youtube.com/@SolYoungA" target="_blank" rel="noopener"><span data-i18n="social-youtube">YouTube</span></a>
+    <a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener"><span>GitHub</span></a>
+  </div>
+</div>
+
 <div class="grain"></div>
 <div class="progress" id="progress"></div>
 
@@ -1194,6 +1198,7 @@ html,body{overscroll-behavior-x:none}
 <!-- ===== NAV ===== -->
 <nav class="nav" id="nav">
   <div class="container nav-inner">
+    <button class="burger" id="burger" aria-label="菜单"><span></span><span></span><span></span></button>
     <a href="#top" class="brand">Sol<span class="dot">.</span>Young</a>
     <div class="nav-links">
       <a href="#works" data-i18n="nav-works">项目</a>
@@ -1208,7 +1213,6 @@ html,body{overscroll-behavior-x:none}
         <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
       <button class="theme-btn lang-btn" id="langBtn" aria-label="切换语言"><span id="langTxt">EN</span></button>
-      <button class="burger" id="burger" aria-label="菜单"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -1978,8 +1982,7 @@ html,body{overscroll-behavior-x:none}
       var el = document.createElement('a');
       el.href = n.page; el.className = 'win note'; el.style.transitionDelay = (i*90) + 'ms';
       el.style.flex='0 0 320px';
-      el.innerHTML = '<div class="win-bar"><span class="win-dots"><i></i><i></i><i></i></span><span class="win-title">'+n.title+'</span><span class="win-open">READ →</span></div>' +
-        '<div class="win-body" style="padding:clamp(20px,3vw,28px)">' +
+      el.innerHTML = '<div class="win-body" style="padding:clamp(20px,3vw,28px)">' +
         '<span class="date" style="font-size:10px">'+n.date+'</span>' +
         '<h3 style="font-size:18px;margin-top:10px;line-height:1.4">'+n.title+'</h3>' +
         '<p style="font-size:13px;margin-top:10px;line-height:1.7">'+n.summary+'</p>' +
@@ -2846,516 +2849,11 @@ html,body{overscroll-behavior-x:none}
 
 // ---- SolYoung Studio / SolHub entries are static, URLs hardcoded in HTML ----
 
-// ---- 开屏 Splash 控制 + 悬挂工牌（解析单摆 + 程序化绳索曲线） ----
-// 上一版是「质点链绳索 + 四点刚体卡片 + 每帧几十次约束迭代」：拖拽时指针和求解器
-// 同时在推同一个点，两边互相较劲，于是出现高频抖动、绳子像果冻、往上提会卡住。
-// 这一版换掉模型，把抖动的来源直接去掉：
-//   · 状态只有三个——挂点位置 (px,py)、卡片摆角 th、绳长比 stretch，全部走解析方程；
-//   · 绳子不再模拟，每帧由「锚点 → 挂点」直接算成一条曲线（绷直 / 松弛下垂）；
-//   · 唯一约束是绳长：拉长到上限就绷住，松手按指数回收到自然长度（这就是弹回去的力）。
-// 没有粒子互相拉扯，拖拽就只是「把目标点平滑挪过去」，手感连续。
-(function(){
-  var splash=document.getElementById('splash');
-  if(!splash) return;
-  var html=document.documentElement;
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  html.classList.add('splashing');
-
-  var card=splash.querySelector('.badge-card');
-  var ropeL=document.getElementById('spRopeL'), ropeR=document.getElementById('spRopeR');
-  var hiL=document.getElementById('spHiL'), hiR=document.getElementById('spHiR');
-  var shL=document.getElementById('spShL'), shR=document.getElementById('spShR');
-  if(card){
-    var im=card.querySelector('img');
-    if(im) im.draggable=false;
-  }
-
-  var G=2400;       // 重力 px/s²
-  var AIR=0.82;     // 空气阻尼 1/s
-  var SWC=1.7;      // 摆角阻尼 1/s
-  var IDLE=62;      // 无交互时的微风
-  var HOVER=70;     // 指针悬停时朝指针方向的推力（很轻，只是让它对指针有点反应）
-  var HOVF=215;     // 悬停微风的推力幅值 px/s²（这才是"缓缓晃动"的主力气流）
-  var HOVW=1.05;    // 悬停微风的角频率 rad/s，≈6s 一个来回，慢到像呼吸
-  var HOVT=0.030;   // 悬停时卡片顺着气流多歪一点（弧度），比挂点慢半拍
-  var RMAX=1.5;     // 绳长最多拉伸到 1.5 倍
-  var REEL=3.6;     // 松手后绳长回收速率 1/s
-  var BOUNCE=0.14;  // 绳子绷紧瞬间的速度反弹
-  var FOLLOW=30;    // 拖拽跟随刚度 1/s
-  var VMAX=2200;    // 速度上限
-  var LAG=0.62;     // 拖拽时力矩造成的最大倾角（弧度 / 满力臂）
-  var RAMP=56;      // 拖出多少像素才到满倾角
-
-  var W=0,H=0,ANCH=120,RISE=200,HANG=-50,D=0;
-  var R0=1,APEX_Y=0,HOME_X=0,L0=1,AX0=0,AX1=0,w0sq=1,halfDiag=1,tiltMax=0.46,VL=0,VR=0,VY=0;
-  var px=0,py=0,vx=0,vy=0,th=0,om=0,stretch=1,wind=0;
-  var hoverE=0,hvPh=0;   // hoverE：悬停强度 0~1（缓入缓出）；hvPh：悬停微风相位
-  var hoverOutT=0;       // 指针离开卡片的时刻：短暂离开不算离开，见 updateHover
-  var dragging=false,grabX=0,grabY=0,dragSX=0,dragSY=0;
-  // 相对拖拽：按下那一刻的挂点。拖拽按指针位移走，而不是把挂点对齐到指针绝对位置，
-  // 这样按下去的一瞬间不会有任何跳动（卡片正摆到别处时尤其明显）
-  var dragPX=0,dragPY=0,grabOX=0,grabOY=0;
-  var catchVX=0,catchVY=0,catchT=0;   // 接住那一刻残留的速度，给"接住"留一点滑行
-  var pPX=0,pPY=0,pSpd=0,pSpdN=0;     // 指针速度（归一化），决定摆角弹簧的软硬
-  var pointerX=null,pointerY=null,hover=false;
-  var ready=false,raf=0,lastT=0,falling=true,dropOn=false,cardMidX=0;  // falling：入场自由落体中；dropOn：这一轮已经起跳
-
-  function r1(n){ return Math.round(n*10)/10; }
-
-  // 把金属扣挪到「挂钩尖端刚好插进卡槽」的位置，返回压线扣中心相对卡片顶边的 y。
-  // 吊绳就绑在这个压线扣上，所以扣子与绳子始终是同一个点，永远不会错开。
-  function placeClip(){
-    var PIVOT_R=4.8/80;     // 压线扣中心在 viewBox 里的位置
-    var TIP_R=75.6/80;      // 挂钩尖端
-    var clipEl=card.querySelector('.badge-clip');
-    if(!clipEl) return -50;
-    var ch=parseFloat(window.getComputedStyle(clipEl).height)||0;
-    if(!ch) return -50;
-    var bt=parseFloat(window.getComputedStyle(card).borderTopWidth)||0;
-    var top=-50, prev=card.style.transform;
-    // 先摘掉变换再量，否则读到的是旋转后的外框
-    card.style.transform='none';
-    var cr=card.getBoundingClientRect();
-    var slotEl=card.querySelector('.badge-slot');
-    if(slotEl){
-      var sr=slotEl.getBoundingClientRect();
-      top=sr.top+sr.height/2-cr.top-ch*TIP_R;
-    }
-    card.style.transform=prev;
-    if(!isFinite(top)) top=-50;
-    clipEl.style.top=Math.round((top-bt)*10)/10+'px';
-    return top+ch*PIVOT_R;
-  }
-
-  function build(){
-    if(!card) return;
-    W=card.offsetWidth; H=card.offsetHeight;
-    if(!W||!H) return;
-    // 还在下落途中：先记下当前状态，重算完几何再原样放回去（不打断下落）
-    var keepFall=null;
-    if(dropOn&&falling&&!reduce) keepFall={px:px,py:py,vx:vx,vy:vy,th:th,om:om,stretch:stretch};
-
-    var vw=window.innerWidth, vh=window.innerHeight;
-    var cx=Math.round(vw/2);
-    HOME_X=cx;
-    // 卡片静态位置：略低于画面中心，让巨型姓名在底部与之交叠
-    var homeTop=Math.max(78, Math.round(vh*(vw<600?0.52:0.48)-H/2));
-    // 挂点在视口上边界之外：锚点太高，两条绳在画面里会几乎并成一条，看不出 V
-    RISE=Math.max(112, Math.round(homeTop*0.42));
-    ANCH=Math.max(74, Math.min(152, Math.round(W*0.36), Math.round(vw*0.2)));
-    HANG=placeClip();
-    D=H/2-HANG;                       // 压线扣 → 卡片几何中心
-
-    APEX_Y=-RISE;                     // 虚拟吊点（两条绳的收束点）高度
-    px=cx; py=homeTop+HANG;           // 挂点静止位置
-    R0=Math.max(80, py-APEX_Y);       // 摆臂长 = 吊点到扣子的距离
-    AX0=cx-ANCH; AX1=cx+ANCH;
-    L0=Math.sqrt(ANCH*ANCH+R0*R0);    // 单根绳的自然长度（画绳子用）
-    // 开屏的吊点在视口上方（看不见），真正常驻画面里的是绳子穿过视口上沿(y=0)的那一点。
-    // 直接把这个点当锚点：x 由静止时的走向求交得到 → 常数，摆动时顶端一动不动。
-    var kv=1-RISE/R0;
-    VY=0;
-    VL=cx-ANCH*kv;
-    VR=cx+ANCH*kv;
-
-    var I=(W*W+H*H)/12;
-    w0sq=G*D/(D*D+I);                 // 卡片绕挂点的摆频
-    halfDiag=0.5*Math.sqrt(W*W+H*H);  // 重心到四个角的最大力臂
-
-    // 倾角上限：转起来以后卡片的横向外框不能比屏幕宽太多，否则边角会被裁掉
-    // （手机 390 宽、卡片 300 宽，转 26° 外框就有 445，必然出屏）。
-    // 允许每边出屏 6px，剩下的靠收角度保证。
-    tiltMax=0.46;
-    var maxHx=(vw+12)/2;
-    if(halfDiag>maxHx){
-      var t0=Math.atan2(H/2,W/2)-Math.acos(maxHx/halfDiag);
-      if(t0<0.14) t0=0.14;
-      if(t0<tiltMax) tiltMax=t0;
-    }
-
-    vx=0; vy=0; th=0; om=0; stretch=1; wind=0;
-
-    // 入场：工牌从吊点正下方自由落体「掉」进画面，绳子绷住那一刻把它接住并回弹一下，
-    // 之后靠重力自己慢慢荡开（不是位移渐变）。下落途中重算尺寸（图片/字体到位）时沿用
-    // 当前下落状态，不回到起点，否则会看到一次跳位。
-    if(keepFall){
-      px=keepFall.px; py=keepFall.py; vx=keepFall.vx; vy=keepFall.vy;
-      th=keepFall.th; om=keepFall.om; stretch=keepFall.stretch;
-    } else if(falling&&!reduce&&!dropOn){
-      px=cx; py=APEX_Y+6;      // 吊点略下方：整张工牌还在画面上沿之外
-      vx=0; vy=0; th=-0.06; om=0.55;
-      dropOn=true;
-    }
-
-    ready=true;
-    render();
-    card.classList.add('in');
-  }
-
-  // 悬停强度：进得快一点（约 0.6s），离开时收得慢一点，像气流慢慢散去。
-  // 有个 0.6s 的宽限：卡片自己在摆，指针可能被"甩出"卡片边缘，不留宽限的话
-  // 会在边缘反复触发 enter/leave，看起来像忽停忽动。
-  function updateHover(dt){
-    var t=hover?1:0;
-    if(!t&&!dragging&&hoverOutT&&performance.now()-hoverOutT<600) t=1;
-    if(dragging) t=0;
-    hoverE+=(t-hoverE)*(1-Math.exp(-dt*(t?1.6:1.1)));
-    if(!t&&hoverE<0.002) hoverE=0;
-    hvPh+=dt*HOVW;
-    if(hvPh>6.2831) hvPh-=6.2831;      // 相位归零，长时间挂着也不会掉精度
-  }
-
-  // 无交互时的微风 + 悬停时的一阵缓慢气流
-  function updateWind(dt,now){
-    var tgt=Math.sin(now*0.00075)*IDLE+Math.sin(now*0.0021+1.3)*IDLE*0.3;
-    // 悬停：很慢的一股气流来回推，挂点顺着它左右荡，两根绳子跟着摆
-    tgt+=Math.sin(hvPh)*HOVF*hoverE;
-    if(hover&&pointerX!==null&&!dragging){
-      var nd=(pointerX-cardMidX)/(W*0.65);
-      nd=nd<-1?-1:(nd>1?1:nd);
-      tgt+=nd*HOVER*hoverE;
-    }
-    wind+=(tgt-wind)*(1-Math.exp(-dt*3.2));
-  }
-
-  // 拖拽时把整块工牌挡在可视区内（按当前摆角算外接框）
-  function clampCard(){
-    var c=Math.cos(th), s=Math.sin(th);
-    var hx=(W/2)*Math.abs(c)+(H/2)*Math.abs(s);
-    var hy=(W/2)*Math.abs(s)+(H/2)*Math.abs(c);
-    var ccx=px+D*s, ccy=py+D*c;
-    var vw=window.innerWidth, vh=window.innerHeight, m=10;
-    var nx=ccx, ny=ccy;
-    if(hx*2>vw-m*2) nx=vw/2; else nx=Math.max(hx+m,Math.min(vw-hx-m,nx));
-    if(hy*2>vh-104-m) ny=vh/2; else ny=Math.max(hy+104,Math.min(vh-hy-m,ny));
-    if(nx!==ccx||ny!==ccy){ px+=nx-ccx; py+=ny-ccy; }
-  }
-
-  function stepOnce(h){
-    if(dragging&&pointerX!==null&&pointerY!==null){
-      // —— 拖拽 ——
-      var ox=px, oy=py;
-      // 目标 = 按下时的挂点 + 这一段指针位移（相对拖拽）。见主页同名注释：
-      // 用绝对位置对位会让"按下去"变成一次瞬移。
-      // 摆角变化时补偿抓点偏移，被捏住的那一点始终待在手底下（按下时补偿为 0，不跳）
-      var ux=Math.sin(th), uy=Math.cos(th), rx=uy, ry=-ux;
-      var gxw=grabX*rx+grabY*ux, gyw=grabX*ry+grabY*uy;
-      var tx=dragPX+(pointerX-dragSX)+(gxw-grabOX);
-      var ty=dragPY+(pointerY-dragSY)+(gyw-grabOY);
-      // 指数跟随而不是硬贴指针：硬贴等于每帧把速度归零，看起来就是"抖"
-      var k=1-Math.exp(-FOLLOW*h);
-      px+=(tx-px)*k;
-      py+=(ty-py)*k;
-
-      // 接住的那一下保留惯性，手抓住正在荡的东西不会当场钉死
-      catchT+=h;
-      if(catchT<0.32){
-        var keep=Math.exp(-catchT*13);
-        px+=catchVX*keep*h; py+=catchVY*keep*h;
-      } else { catchVX=0; catchVY=0; }
-      clampCard();
-
-      // 绳长跟着实际距离走，只允许拉长，到上限就绷住（所以不会再被无限拽下去）
-      var dx=px-HOME_X, dy=py-APEX_Y, d=Math.sqrt(dx*dx+dy*dy)||1e-6;
-      var need=d/R0;
-      if(need>RMAX){
-        px=HOME_X+dx/d*R0*RMAX;
-        py=APEX_Y+dy/d*R0*RMAX;
-        need=RMAX;
-      }
-      stretch=need<1?1:need;
-
-      // 松手时要交给摆的初速度：取这一子步的真实位移（先算出来，摆角也要用它）
-      vx=(px-ox)/h; vy=(py-oy)/h;
-      if(vx>VMAX) vx=VMAX; else if(vx<-VMAX) vx=-VMAX;
-      if(vy>VMAX) vy=VMAX; else if(vy<-VMAX) vy=-VMAX;
-
-      // 摆角：按「手作用在抓点上的力矩」算，而不是「抓点偏在哪一侧」。
-      // 力的作用点就是被捏住的那个角，力臂是「重心 → 抓点」，方向是这一段的拖拽位移，
-      // 于是四个角各自往不同的方向倒：
-      //   · 抓左下角往左拖 → 力臂左下、力向左 → 顺时针，左下角先过去
-      //   · 抓左上角往左拖 → 力臂左上、力向左 → 逆时针，左上角先过去
-      //   · 抓右下角往右拖 → 逆时针，右下角先过去
-      //   · 抓右上角往右拖 → 顺时针，右上角先过去
-      // （th 为正 = 卡片逆时针，所以取负号；叉积在 y 向下的坐标系里，正号本就是顺时针）
-      var ddx=pointerX-dragSX, ddy=pointerY-dragSY;
-      var dl=Math.sqrt(ddx*ddx+ddy*ddy);
-      var thT=0;
-      if(dl>1){
-        var rcx=grabX, rcy=grabY-D;                   // 重心 → 抓点
-        var cl=Math.sqrt(rcx*rcx+rcy*rcy);
-        var tq=(rcx*(ddy/dl)-rcy*(ddx/dl))/(cl||1);   // 单位力臂的力矩 ∈ [-1,1]
-        // 力臂越短（抓得越靠重心）越不该转；正中间仍留一点点，否则手感是死的
-        var cln=cl/halfDiag;
-        var wt=cln<0.14?0.22:(cln>0.40?1:0.22+0.78*(cln-0.14)/0.26);
-        // 拖得越远越到位：小幅移动只是轻轻偏一下
-        var rm=dl/RAMP; if(rm>1) rm=1;
-        thT=-tq*LAG*wt*rm;
-      }
-      // 再加一项"跟不上手"的后仰：拖得越快，牌子越往后甩
-      thT-=vx*0.00012;
-      if(thT>tiltMax) thT=tiltMax; else if(thT<-tiltMax) thT=-tiltMax;
-      // 手停住时弹簧放软，牌子顺着力矩慢慢回正；手快速拖动时放硬，四角转向才跟得上
-      var ra=34+300*pSpdN, rd=2*Math.sqrt(ra);
-      om+=(ra*(thT-th)-rd*om)*h;
-      th+=om*h;
-      return;
-    }
-
-    // —— 自由悬挂 ——
-    // 绳长指数回收到自然长度：这就是松手后"被拽回去"的那股力
-    if(stretch>1){
-      stretch=1+(stretch-1)*Math.exp(-REEL*h);
-      if(stretch<1.002) stretch=1;
-    }
-    // 卡片是一个绕挂点的物理摆：质心在挂点下方 D 处。
-    // 悬停时卡片比挂点慢半拍：挂点先被吹走，牌子过一会儿才跟过去再荡回来
-    var tilt=hoverE*HOVT*Math.sin(hvPh-0.55);
-    om+=(-w0sq*Math.sin(th-tilt)-SWC*om)*h;
-    th+=om*h;
-
-    // 挂点：重力 + 微风
-    vx+=wind*h; vy+=G*h;
-    var dm=1-AIR*h; if(dm<0) dm=0;
-    vx*=dm; vy*=dm;
-    px+=vx*h; py+=vy*h;
-
-    // 绳长约束：超出长度就投影回圆弧，并吃掉向外的速度分量（只减不增，绝不抖）
-    var R=R0*stretch;
-    var dx=px-HOME_X, dy=py-APEX_Y, d=Math.sqrt(dx*dx+dy*dy)||1e-6;
-    if(d>R){
-      var nx=dx/d, ny=dy/d;
-      px=HOME_X+nx*R; py=APEX_Y+ny*R;
-      var vn=vx*nx+vy*ny;
-      if(vn>0){
-        vx-=(1+BOUNCE)*vn*nx; vy-=(1+BOUNCE)*vn*ny;
-        // 落地那一下：绳子被砸出一点弹性，随后按 REEL 收回去，像真绳子兜住之后又往上一带
-        if(falling){ falling=false; stretch=1+Math.min(0.18,vn/9000); }
-      }
-    }
-  }
-
-  // 下垂量 = 弦长的固定比例（封顶 28px）。用固定比例而不是「绳子余量」：
-  // 余量那套在工牌随风微摆时会让下垂量在 0~28 之间跳，绳子一会儿直一会儿弯，
-  // 反而更像掉帧；固定比例意味着它永远是一条垂着的带子，只是随摆角自然改变形状。
-  function ropeSag(d){
-    var s=d*0.075;
-    return s>28?28:s;
-  }
-  // 绳子 = 固定锚点到扣子的一段「自然下坠」的弧：控制点落在弦中点正下方，
-  // 所以中间朝重力方向（+y）微微沉下去，两端平顺接上锚点和扣子。
-  // 顶端 x 恒为锚点 x，不会沿画面顶边左右滑（老画法就是在这里被拖出一条横向位移的）。
-  function ropeD(ax){
-    var ay=VY, bx=px, by=py;
-    var dy=by-ay;
-    if(dy<14) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
-    var d=Math.sqrt((bx-ax)*(bx-ax)+dy*dy)||1e-6;
-    var sag=ropeSag(d);
-    if(sag<0.8) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
-    var mx=(ax+bx)*0.5, my=(ay+by)*0.5;
-    return 'M'+r1(ax)+' '+r1(ay)+'Q'+r1(mx)+' '+r1(my+2*sag)+' '+r1(bx)+' '+r1(by);
-  }
-
-  function render(){
-    var ux=Math.sin(th), uy=Math.cos(th);
-    var nkx=px-HANG*ux, nky=py-HANG*uy;     // 卡片上边中点（HANG 为负 → 在扣子下方）
-    var ox=nkx+ux*H/2, oy=nky+uy*H/2;       // 卡片中心
-    var deg=Math.atan2(-ux,uy)*180/Math.PI;
-    card.style.transform='translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0) rotate('+deg.toFixed(2)+'deg)';
-    cardMidX=ox;
-    var dA=ropeD(VL), dB=ropeD(VR);
-    ropeL.setAttribute('d',dA); ropeR.setAttribute('d',dB);
-    hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
-    if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }
-  }
-
-  // 指针速度（平滑后归一化到 0~1）：拖拽时摆角弹簧的软硬就看它
-  function trackPointer(dt){
-    if(dragging&&pointerX!==null&&pointerY!==null){
-      var dx=pointerX-pPX, dy=pointerY-pPY;
-      var v=Math.sqrt(dx*dx+dy*dy)/(dt>0.004?dt:0.004);
-      pSpd+=(v-pSpd)*0.45;
-    } else {
-      pSpd=0;
-    }
-    pPX=pointerX===null?0:pointerX;
-    pPY=pointerY===null?0:pointerY;
-    pSpdN=pSpd/900;
-    if(pSpdN>1) pSpdN=1;
-  }
-
-  function frame(ts){
-    if(!splash.isConnected){ raf=0; return; }
-    raf=requestAnimationFrame(frame);
-    if(!ready) return;
-
-    var now=(ts||performance.now());
-    var dt=lastT?Math.min(0.04,(now-lastT)/1000):0.016;
-    lastT=now;
-    if(!(dt>0)) return;
-
-    updateHover(dt);
-    updateWind(dt,now);
-    trackPointer(dt);
-    // 固定小步长积分：任何掉帧都拆成 ≤5ms 的子步，物理不会因为帧率变化而抖
-    var n=Math.max(1,Math.ceil(dt/0.005)), h=dt/n;
-    for(var s=0;s<n;s++) stepOnce(h);
-    render();
-  }
-
-  if(card){
-    window.addEventListener('pointermove',function(e){
-      if(e.pointerType==='touch'||dragging) return;
-      pointerX=e.clientX; pointerY=e.clientY;
-    },{passive:true});
-    window.addEventListener('pointerleave',function(){ if(!dragging) pointerX=null; },{passive:true});
-
-    card.addEventListener('pointerenter',function(e){
-      hover=true;
-      if(e.clientX!==undefined) pointerX=e.clientX;
-    });
-    card.addEventListener('pointerleave',function(){ hover=false; hoverOutT=performance.now(); });
-
-    card.addEventListener('pointerdown',function(e){
-      if(reduce) return;
-      e.preventDefault();
-      dragging=true;
-      card.classList.add('is-drag');
-      pointerX=e.clientX; pointerY=e.clientY;
-      dragSX=e.clientX; dragSY=e.clientY;   // 拖拽起点，用来算这一段手势的方向
-      // 相对拖拽的基准：挂点原地不动，接住残留速度，指针速度从 0 起算
-      dragPX=px; dragPY=py;
-      catchVX=vx; catchVY=vy; catchT=0;
-      pPX=e.clientX; pPY=e.clientY; pSpd=0; pSpdN=0;
-      // 记下抓在卡片的哪个局部位置（相对挂点，沿卡片横轴 / 纵轴）
-      var ux=Math.sin(th), uy=Math.cos(th), rx=uy, ry=-ux;
-      var dx=e.clientX-px, dy=e.clientY-py;
-      grabX=dx*rx+dy*ry;
-      grabY=dx*ux+dy*uy;
-      // 钳到卡片外扩 22px 的范围。纵轴要以重心 D 为中心，否则下半张卡片
-      // 的抓点会被压到重心附近，力臂被吃掉，四个角就分不出手感了。
-      var hw=W/2+22, hh=H/2+22;
-      grabX=grabX<-hw?-hw:(grabX>hw?hw:grabX);
-      var gy0=D-hh, gy1=D+hh;
-      grabY=grabY<gy0?gy0:(grabY>gy1?gy1:grabY);
-      // 抓点相对挂点的世界偏移（按下这一刻），拖拽时用它补偿摆角变化
-      grabOX=grabX*uy+grabY*ux;
-      grabOY=grabX*-ux+grabY*uy;
-      lastT=performance.now();
-      try{ card.setPointerCapture(e.pointerId); }catch(_){}
-    });
-    card.addEventListener('pointermove',function(e){
-      if(!dragging) return;
-      pointerX=e.clientX; pointerY=e.clientY;
-    });
-    function endDrag(){
-      if(!dragging) return;
-      dragging=false;
-      card.classList.remove('is-drag');
-      // 削掉过大残留速度，剩下的交给物理：绳长回收 + 摆动
-      if(vx>1400) vx=1400; else if(vx<-1400) vx=-1400;
-      if(vy>1400) vy=1400; else if(vy<-1400) vy=-1400;
-      if(om>7) om=7; else if(om<-7) om=-7;
-    }
-    card.addEventListener('pointerup',endDrag);
-    card.addEventListener('pointercancel',endDrag);
-    card.addEventListener('lostpointercapture',endDrag);
-
-    var rt=0;
-    window.addEventListener('resize',function(){
-      clearTimeout(rt);
-      rt=setTimeout(function(){ build(); },160);
-    },{passive:true});
-
-    build();
-    // 头像没加载完时卡片高度是错的，据此量出来的绳长会差一截，所以图片就绪后重建；
-    // 卡片尺寸因字体/图片变化时也重建，保证绳长始终对得上
-    var ph=card.querySelector('img');
-    if(ph&&!ph.complete) ph.addEventListener('load',function(){ build(); },{once:true});
-    if(document.readyState!=='complete') window.addEventListener('load',function(){ build(); },{once:true});
-    if(window.ResizeObserver){
-      var lw=card.offsetWidth, lh=card.offsetHeight, rot=0;
-      new ResizeObserver(function(){
-        var w2=card.offsetWidth, h2=card.offsetHeight;
-        if(w2===lw&&h2===lh) return;
-        lw=w2; lh=h2;
-        clearTimeout(rot);
-        rot=setTimeout(function(){ build(); },40);
-      }).observe(card);
-    }
-    if(!reduce) raf=requestAnimationFrame(frame);
-  }
-
-  function enter(){
-    if(splash.classList.contains('hide')) return;
-    if(raf){ cancelAnimationFrame(raf); raf=0; }
-    splash.classList.add('hide');
-    html.classList.remove('splashing');
-    // 节点保留在 DOM（visibility:hidden、pointer-events:none），供导航栏品牌复原开屏；
-    // 物理循环此处已 cancel，frame() 靠 isConnected 判断，复原时重新 request 即可。
-  }
-
-  // 导航栏品牌「回到开场」：不刷新、不重建 DOM，把隐藏的开屏淡回来并重启物理摆动
-  window.__reopenSplash=function(){
-    if(!splash.classList.contains('hide')) return false;
-    // 抽屉层级在开屏之上，若仍开着先关掉，避免复原后被抽屉盖住
-    if(document.body.classList.contains('ab-open')){
-      var cb=document.getElementById('abClose');
-      if(cb) cb.click();
-    }
-    splash.classList.remove('hide');
-    html.classList.add('splashing');
-    try{ window.scrollTo(0,0); }catch(_){}
-    lastT=0;
-    build();                       // 重新量尺寸，并把挂点复位到画面中央
-    if(!reduce && !raf) raf=requestAnimationFrame(frame);
-    return true;
-  };
-  var btn=document.getElementById('spEnter');
-  if(btn) btn.addEventListener('click', function(e){ e.preventDefault(); enter(); });
-  document.addEventListener('keydown', function(e){
-    var t=e.target;
-    if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
-    // 抽屉打开时按键只归抽屉管（Esc 关抽屉），不能让「按任意键进入」抢走
-    if(document.body.classList.contains('ab-open')) return;
-    if(e.key==='Enter'||e.key===' '||e.key==='Escape'){
-      if(!splash.classList.contains('hide')){ e.preventDefault(); enter(); }
-    }
-  });
-  // 向左滑动直接进入首页：等效点击「进入我的世界」，不加任何提示文案。
-  // 工牌所在的 .badge-card 是可拖拽的摆锤区，手势在那里不参与，避免和拖拽抢事件。
-  (function(){
-    var sp=document.getElementById('splash');
-    if(!sp) return;
-    var sx=0, sy=0, st=0, on=false;
-    function inCard(t){ return !!(t && t.closest && t.closest('.badge-card')); }
-    sp.addEventListener('touchstart', function(e){
-      if(sp.classList.contains('hide')||e.touches.length!==1||inCard(e.target)) return;
-      on=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
-    }, {passive:true});
-    sp.addEventListener('touchend', function(e){
-      if(!on) return; on=false;
-      if(sp.classList.contains('hide')) return;
-      var t=e.changedTouches[0]; if(!t) return;
-      var dx=t.clientX-sx, dy=t.clientY-sy;
-      if(Date.now()-st>700) return;
-      if(dx<=-70 && Math.abs(dx)>Math.abs(dy)*1.3) enter();
-    }, {passive:true});
-    sp.addEventListener('touchcancel', function(){ on=false; }, {passive:true});
-    // 触摸板横向双指滑动同样算「向左滑」，阈值略高避免误触
-    sp.addEventListener('wheel', function(e){
-      if(sp.classList.contains('hide')) return;
-      if(inCard(e.target)) return;
-      if(e.deltaX<=-60 && Math.abs(e.deltaX)>Math.abs(e.deltaY)*1.5) enter();
-    }, {passive:true});
-  })();
-})();
-
 // ---- 开屏「关于我」抽屉：关于我 ----
 (function(){
   var panel=document.getElementById('abPanel');
   var scrim=document.getElementById('abScrim');
-  var openBtn=document.getElementById('spAbout');
+  var openBtn=document.getElementById('drAbout');
   var closeBtn=document.getElementById('abClose');
   if(!panel||!scrim||!openBtn||!closeBtn) return;
 
@@ -3364,6 +2862,12 @@ html,body{overscroll-behavior-x:none}
 
   function open(){
     if(isOpen) return;
+    // 侧栏还开着就先收起来，等它退出去再把抽屉滑进来，两层面板不要叠在一起
+    if(document.body.classList.contains('dr-open')&&typeof window.__closeDrawer==='function'){
+      window.__closeDrawer();
+      window.setTimeout(open,240);
+      return;
+    }
     isOpen=true; lastFocus=document.activeElement;
     panel.classList.add('open'); scrim.classList.add('open');
     panel.setAttribute('aria-hidden','false');
@@ -3387,6 +2891,10 @@ html,body{overscroll-behavior-x:none}
   }
 
   openBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); open(); });
+  window.__openAbout = open;
+  // 首页快捷导航里的「关于我」也走弹窗，不跳独立页
+  var qnAbout=document.querySelector('.quicknav a[href="about/"]');
+  if(qnAbout) qnAbout.addEventListener('click', function(e){ e.preventDefault(); open(); });
   closeBtn.addEventListener('click', close);
   scrim.addEventListener('click', close);
 
@@ -3412,40 +2920,92 @@ html,body{overscroll-behavior-x:none}
   });
 })();
 
-// ---- 开屏姓名：鼠标每次移过某个字母，都重播一次轻弹 ----
+
+// ---- 侧边导航（液态玻璃抽屉） ----
 (function(){
-  var nameEl=document.querySelector('.sp-name');
-  if(!nameEl) return;
-  var mm=window.matchMedia;
-  var reduce=mm && mm.call(window,'(prefers-reduced-motion: reduce)').matches;
-  var canHover=mm && mm.call(window,'(hover: hover)').matches;
-  if(reduce||!canHover) return;
-  var splash=document.getElementById('splash');
-  var letters=nameEl.querySelectorAll('.sp-ltr');
-  Array.prototype.forEach.call(letters,function(el){
-    el.addEventListener('pointerenter',function(){
-      if(splash&&splash.classList.contains('hide')) return;
-      el.classList.remove('pop');
-      void el.offsetWidth; // 强制重排：同一字母连续/快速再次移入也能重新播放
-      el.classList.add('pop');
-    });
-    el.addEventListener('animationend',function(e){
-      if(e.animationName==='spLetterPop') el.classList.remove('pop');
-    });
+  var panel=document.getElementById('drPanel');
+  var scrim=document.getElementById('drScrim');
+  var btn=document.getElementById('burger');
+  var closeBtn=document.getElementById('drClose');
+  if(!panel||!btn) return;
+
+  var isOpen=false, lastFocus=null;
+
+  function open(){
+    if(isOpen) return;
+    isOpen=true; lastFocus=document.activeElement;
+    panel.classList.add('open');
+    if(scrim) scrim.classList.add('open');
+    panel.setAttribute('aria-hidden','false');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    document.body.classList.add('dr-open');
+  }
+  function close(){
+    if(!isOpen) return;
+    isOpen=false;
+    panel.classList.remove('open');
+    if(scrim) scrim.classList.remove('open');
+    panel.setAttribute('aria-hidden','true');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    document.body.classList.remove('dr-open');
+    if(lastFocus&&lastFocus.focus){ try{ lastFocus.focus({preventScroll:true}); }catch(e){} }
+  }
+
+  btn.addEventListener('click', function(e){ e.preventDefault(); isOpen?close():open(); });
+  if(scrim) scrim.addEventListener('click', close);
+  if(closeBtn) closeBtn.addEventListener('click', close);
+  // 侧栏里点「项目/构建/博客」离开当前页，不用等动画
+  Array.prototype.forEach.call(panel.querySelectorAll('a.dr-item'), function(a){
+    a.addEventListener('click', function(){ close(); });
   });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'&&isOpen){ e.preventDefault(); close(); }
+  }, true);
+
+  window.__openDrawer=open;
+  window.__closeDrawer=close;
 })();
 
-// ---- 导航栏品牌：点击 Sol.Young 回到开场 ----
+// ---- 联系（液态玻璃弹窗） ----
 (function(){
-  var brand=document.querySelector('.brand');
-  if(!brand) return;
-  brand.addEventListener('click',function(e){
-    // 新标签 / 新窗口等修饰键交给浏览器默认行为
-    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
-    if(typeof window.__reopenSplash!=='function') return;
-    // 复原成功才拦截 #top 锚点；开屏本来就显示时保持原有的滚到顶部行为
-    if(window.__reopenSplash()) e.preventDefault();
-  });
+  var modal=document.getElementById('ctModal');
+  var scrim=document.getElementById('ctScrim');
+  var openBtn=document.getElementById('drContact');
+  var closeBtn=document.getElementById('ctClose');
+  if(!modal||!openBtn) return;
+
+  var isOpen=false;
+
+  function open(){
+    if(isOpen) return;
+    isOpen=true;
+    if(typeof window.__closeDrawer==='function') window.__closeDrawer();
+    window.setTimeout(function(){
+      modal.classList.add('open');
+      if(scrim) scrim.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      openBtn.setAttribute('aria-expanded','true');
+      document.body.classList.add('ct-open');
+    }, document.body.classList.contains('dr-open')?220:0);
+  }
+  function close(){
+    if(!isOpen) return;
+    isOpen=false;
+    modal.classList.remove('open');
+    if(scrim) scrim.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    openBtn.setAttribute('aria-expanded','false');
+    document.body.classList.remove('ct-open');
+  }
+
+  openBtn.addEventListener('click', function(e){ e.preventDefault(); open(); });
+  if(closeBtn) closeBtn.addEventListener('click', close);
+  if(scrim) scrim.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'&&isOpen){ e.preventDefault(); close(); }
+  }, true);
 })();
 
 </script>
