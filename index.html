@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="light" class="splashing">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1067,6 +1067,120 @@ html,body{overscroll-behavior-x:none}
   .hp-count{margin-right:4px}
 }
 
+
+/* ===== 开屏 Splash（悬挂工牌 + 巨型姓名，沿用站内设计语言） ===== */
+.splash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+  background:var(--bg);overflow:hidden;opacity:1;
+  transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease),visibility .8s}
+.splash.hide{opacity:0;transform:scale(1.05);filter:blur(8px);visibility:hidden;pointer-events:none}
+html.splashing,html.splashing body{overflow:hidden;height:100%}
+
+.sp-corner{position:fixed;top:clamp(22px,4vw,46px);z-index:5;font-family:var(--font-display);
+  font-size:clamp(10px,2.6vw,12px);letter-spacing:.24em;color:var(--ink-soft);white-space:nowrap;
+  --sp-corner-h:26px;opacity:0;animation:spFade .9s var(--ease) .5s forwards}
+.sp-tl{left:clamp(22px,4vw,54px)}
+.sp-tr{right:clamp(22px,4vw,54px);background:none;border:none;color:var(--ink);cursor:pointer;
+  display:inline-flex;align-items:center;height:var(--sp-corner-h);gap:9px;padding:0;
+  transition:color .3s var(--ease),gap .3s var(--ease)}
+.sp-tr .arr{color:var(--accent);font-size:1.3em;line-height:1;transition:transform .3s var(--ease)}
+.sp-tr:hover{color:var(--accent);gap:13px}
+.sp-tr:hover .arr{transform:translateX(5px)}
+.sp-tr::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:100%;
+  background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.sp-tr:hover::after{transform:scaleX(1);transform-origin:left}
+
+.sp-stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sp-name{position:absolute;left:50%;bottom:clamp(28px,7vh,84px);transform:translateX(-50%);z-index:1;
+  display:flex;gap:.12em;white-space:nowrap;font-family:var(--font-display);font-weight:800;
+  font-size:clamp(76px,24vw,236px);line-height:.8;letter-spacing:-.04em;pointer-events:none;user-select:none;
+  opacity:0;animation:spNameRise 1s var(--ease) .5s forwards}
+.sp-name .sp-sol{color:var(--ink)}
+.sp-name .sp-young{color:var(--accent)}
+/* 姓名按字母拆分：父层 pointer-events:none，字母单独恢复可命中，不影响工牌拖拽 */
+.sp-name .sp-ltr{display:inline-block;pointer-events:auto;transform-origin:50% 100%;
+  transition:transform .4s var(--ease),filter .4s var(--ease)}
+@media(hover:hover){
+  .sp-name .sp-ltr:hover{transform:translateY(-.06em) rotate(-3deg) scale(1.05);filter:brightness(1.1)}
+  /* 每次移入由 JS 重播这段弹跳，连着划过会形成一串错落的轻弹 */
+  .sp-name .sp-ltr.pop{animation:spLetterPop .54s var(--ease)}
+}
+@keyframes spLetterPop{
+  0%{transform:translateY(0) rotate(0) scale(1)}
+  38%{transform:translateY(-.16em) rotate(-7deg) scale(1.12)}
+  68%{transform:translateY(-.035em) rotate(-1.8deg) scale(1.02)}
+  100%{transform:translateY(-.06em) rotate(-3deg) scale(1.05)}
+}
+
+/* 绳索层：与视口同一坐标系（无 viewBox，1 用户单位 = 1px），端点由物理引擎逐帧写入 */
+.sp-ropes{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 64px);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 64px)}
+.sp-rope-shadow{fill:none;stroke:rgba(34,26,14,.13);stroke-width:13;stroke-linecap:round;stroke-linejoin:round;
+  transform:translate(5px,8px);filter:blur(5px)}
+.sp-rope{fill:none;stroke:var(--strap);stroke-width:14;stroke-linecap:round;stroke-linejoin:round}
+.sp-rope-hi{fill:none;stroke:var(--strap-hi);stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+/* 卡片位置由脚本按物理结果写入，先隐藏，首次渲染后再淡入 */
+#splash .badge-card{position:absolute;left:0;top:0;width:min(84vw,392px,39vh);z-index:3;
+  cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;
+  transform-origin:50% 50%;will-change:transform;animation:none;opacity:0}
+#splash .badge-card.in{animation:spFade .8s var(--ease) forwards}
+#splash .badge-card.is-drag{cursor:grabbing}
+
+@keyframes spDrop{from{opacity:0;transform:translateX(-50%) translateY(-26px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes spCardIn{from{opacity:0;transform:translateY(-22px)}to{opacity:1;transform:none}}
+@keyframes spNameRise{from{opacity:0;transform:translateX(-50%) translateY(48px)}to{opacity:.94;transform:translateX(-50%) translateY(0)}}
+@keyframes spFade{from{opacity:0}to{opacity:1}}
+
+/* ===== 开屏左上角：关于我（与右上角进入按钮等高持平） ===== */
+.sp-tl{display:flex;align-items:center;height:var(--sp-corner-h)}
+.sp-about{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);
+  border-radius:100px;padding:7px 15px 7px 13px;color:var(--ink-soft);font-family:var(--font-display);
+  font-size:9.5px;letter-spacing:.22em;line-height:1;cursor:pointer;
+  transition:color .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease),background .35s var(--ease)}
+.sp-about i{width:4px;height:4px;border-radius:50%;background:var(--accent);flex:0 0 auto;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-about:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-1px);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.sp-about:hover i{transform:scale(1.5);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+.sp-about:active{transform:translateY(0) scale(.98)}
+
+
+
+/* ===== 开屏响应式（旧版原样搬回） ===== */
+@media(prefers-reduced-motion:reduce){
+  /* 全局规则会禁用所有动画，淡入动画不生效，这里直接给出可见状态 */
+  .sp-corner,.sp-name,#splash .badge-card{animation:none;opacity:1}
+  .sp-name{opacity:.94}
+  .sp-name .sp-ltr,.sp-name .sp-ltr:hover,.sp-name .sp-ltr.pop{
+    animation:none!important;transition:none!important;transform:none!important;filter:none!important}
+  .splash.hide{transition:opacity .3s}
+}
+@media(max-width:960px){
+  .sp-rope{stroke-width:11}
+  .sp-rope-hi{stroke-width:1.6}
+  .sp-rope-shadow{stroke-width:10}
+  #splash .badge-card{width:min(80vw,320px,44vh)}
+}
+@media(max-width:560px){
+  .sp-name{font-size:clamp(38px,16vw,80px);letter-spacing:-.04em;bottom:clamp(26px,6vh,56px);gap:.04em}
+  .sp-corner{--sp-corner-h:23px}
+  #splash .badge-tagline{font-size:6px;letter-spacing:0}
+  .sp-about{font-size:9px;letter-spacing:.18em;padding:6px 13px 6px 11px;gap:7px}
+  .ab-panel{width:min(90vw,372px)}
+  .ab-body p{font-size:14px;line-height:1.8}
+  .sp-tr{letter-spacing:.12em;white-space:nowrap}
+  .sp-stage{width:100%}
+  #splash .badge-card{width:min(86vw,300px,42vh)}
+  .sp-ropes{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 52px);
+    mask-image:linear-gradient(to bottom,transparent 0,#000 52px)}
+}
+
+/* ===== 开屏即主页（2026-11-10 改回）：层级压到导航/抽屉之下 ===== */
+.splash{z-index:1 !important}
+.sp-tr{text-decoration:none}
+.sp-tr .arr{font-family:var(--font-display)}
+/* 顶栏只剩汉堡，右侧留给「进入我的世界」 */
+.nav .nav-right{display:none !important}
+
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/ios.css">
@@ -1154,8 +1268,14 @@ html,body{overscroll-behavior-x:none}
     </button>
   </nav>
   <div class="dr-foot">
-    <span class="dr-note">PLAYER 1 · 2026</span>
-    <span class="dr-note" style="color:var(--accent)">ONLINE</span>
+    <span class="dr-note">PLAYER 1 · <b style="color:var(--accent);font-weight:600">ONLINE</b></span>
+    <div class="dr-tools">
+      <button class="theme-btn" id="themeBtn" aria-label="切换主题">
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="theme-btn lang-btn" id="langBtn" aria-label="切换语言"><span id="langTxt">EN</span></button>
+    </div>
   </div>
 </aside>
 
@@ -1183,37 +1303,10 @@ html,body{overscroll-behavior-x:none}
 <div class="progress" id="progress"></div>
 
 <!-- ===== X PROMO BAR ===== -->
-<div class="xbar" id="xbar">
-  <div class="xbar-inner">
-    <a href="https://x.com/SolYoungA" target="_blank" rel="noopener" class="xbar-link">
-      <svg class="xbar-logo" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      <img class="xbar-avatar" src="assets/avatar.webp" alt="@SolYoungA" width="20" height="20">
-      <span class="xbar-text" data-i18n="xbar-msg">在 X 上关注 @SolYoungA，实时记录开发过程</span>
-      <span class="xbar-follow">关注 →</span>
-    </a>
-    <button class="xbar-close" id="xbarClose" aria-label="关闭">&times;</button>
-  </div>
-</div>
-
 <!-- ===== NAV ===== -->
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <button class="burger" id="burger" aria-label="菜单"><span></span><span></span><span></span></button>
-    <a href="#top" class="brand">Sol<span class="dot">.</span>Young</a>
-    <div class="nav-links">
-      <a href="#works" data-i18n="nav-works">项目</a>
-      <a href="#experiments" data-i18n="nav-now">构建</a>
-      <a href="#notes" data-i18n="nav-thoughts">博客</a>
-      <a href="#about" data-i18n="nav-about">关于我</a>
-      <a href="#contact" data-i18n="nav-contact">联系</a>
-    </div>
-    <div class="nav-right">
-      <button class="theme-btn" id="themeBtn" aria-label="切换主题">
-        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-      <button class="theme-btn lang-btn" id="langBtn" aria-label="切换语言"><span id="langTxt">EN</span></button>
-    </div>
   </div>
 </nav>
 
@@ -1227,24 +1320,24 @@ html,body{overscroll-behavior-x:none}
 </div>
 
 <!-- ===== HERO ===== -->
-<header class="hero" id="top">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="hero-index rv in" data-i18n="hero-index"><b>SOLYOUNG</b>&nbsp;&nbsp;·&nbsp;&nbsp;内容创作｜Ai实践｜模拟经营式创业</div>
-      <h1 class="display hero-title">
-        <span class="row"><span class="row-inner"><span class="ch">S</span><span class="ch">o</span><span class="ch">l</span></span></span>
-        <span class="row"><span class="row-inner accent"><span class="ch">Y</span><span class="ch">o</span><span class="ch">u</span><span class="ch">n</span><span class="ch">g</span></span></span>
-      </h1>
-      <div class="hero-tags rv in rv-d2">
-        <span data-i18n="hero-tag1">Ai</span><span data-i18n="hero-tag2">创作</span><span data-i18n="hero-tag3">项目</span><span data-i18n="hero-tag4">博客</span>
-      </div>
-      <p class="hero-slogan rv in rv-d3" data-i18n="hero-slogan">把人生，当成一场游戏来经营。</p>
-    </div>
-    <div class="hero-visual">
-      <div class="badge-stage" id="badgeStage">
-        <svg class="badge-ropes" id="badgeRopes" viewBox="-260 -760 920 1400" aria-hidden="true" focusable="false">
+<!-- ===== 开屏 Splash ===== -->
+<div class="splash" id="splash" role="dialog" aria-label="SolYoung 开屏">
+  <a class="sp-corner sp-tr" id="spEnter" href="works/">进入我的世界<span class="arr">&rarr;</span></a>
+
+  <div class="sp-stage">
+    <svg class="sp-ropes" id="spRopes" aria-hidden="true" focusable="false">
+      <path class="sp-rope-shadow" id="spShL" d=""/>
+      <path class="sp-rope-shadow" id="spShR" d=""/>
+      <path class="sp-rope" id="spRopeL" d=""/>
+      <path class="sp-rope" id="spRopeR" d=""/>
+      <path class="sp-rope-hi" id="spHiL" d=""/>
+      <path class="sp-rope-hi" id="spHiR" d=""/>
+    </svg>
+
+    <div class="badge-card" id="spBadge" role="img" aria-label="SolYoung 玩家档案工牌，可拖拽">
+        <svg class="badge-clip" viewBox="0 0 26 80" aria-hidden="true" focusable="false">
           <defs>
-            <linearGradient id="metalGrad" x1="0" y1="0" x2="1" y2="0">
+            <linearGradient id="spMetal" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0" stop-color="#787E86"/>
               <stop offset=".2" stop-color="#EDF0F4"/>
               <stop offset=".44" stop-color="#A6ACB4"/>
@@ -1253,207 +1346,36 @@ html,body{overscroll-behavior-x:none}
               <stop offset="1" stop-color="#6C727A"/>
             </linearGradient>
           </defs>
-          <path class="badge-rope-shadow" id="ropeShL" d=""></path>
-          <path class="badge-rope-shadow" id="ropeShR" d=""></path>
-          <path class="badge-rope" id="ropeL" d=""></path>
-          <path class="badge-rope" id="ropeR" d=""></path>
-          <path class="badge-rope-hi" id="ropeHiL" d=""></path>
-          <path class="badge-rope-hi" id="ropeHiR" d=""></path>
+          <rect x=".75" y="0" width="24.5" height="9.6" rx="4.4" fill="url(#spMetal)" stroke="rgba(22,18,12,.32)" stroke-width=".7"/>
+          <path d="M4.6 3.2h16.8" fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".9" stroke-linecap="round"/>
+          <path fill="url(#spMetal)" fill-rule="evenodd" stroke="rgba(22,18,12,.34)" stroke-width=".6" d="M13 9a11.6 10.2 0 1 1 0 20.4 11.6 10.2 0 1 1 0-20.4ZM13 13.2a6.6 6 0 1 0 0 12 6.6 6 0 1 0 0-12Z"/>
+          <rect x="11" y="28" width="4" height="4.6" fill="url(#spMetal)"/>
+          <rect x="6" y="32" width="14" height="27" rx="7" fill="url(#spMetal)" stroke="rgba(22,18,12,.34)" stroke-width=".7"/>
+          <rect x="9.9" y="36" width="2.4" height="13" rx="1.2" fill="rgba(22,18,12,.2)"/>
+          <path d="M8.6 54.5h8.8" fill="none" stroke="rgba(22,18,12,.2)" stroke-width=".7" stroke-linecap="round"/>
+          <path d="M13 58.6v7.6c0 6-3.2 9.7-6.9 9.4" fill="none" stroke="url(#spMetal)" stroke-width="2.8" stroke-linecap="round"/>
         </svg>
-        <div class="badge-card" id="badgeCard" role="img" aria-label="SolYoung 玩家档案工牌，可拖拽">
-          <svg class="badge-clip" viewBox="0 0 26 80" aria-hidden="true" focusable="false">
-            <!-- 压线扣：两条挂绳的端头被夹在这一段里，从外面看不到断口 -->
-            <rect x=".75" y="0" width="24.5" height="9.6" rx="4.4" fill="url(#metalGrad)"
-                  stroke="rgba(22,18,12,.32)" stroke-width=".7"/>
-            <path d="M4.6 3.2h16.8" fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".9" stroke-linecap="round"/>
-            <!-- D 形吊环：环形实体，中间的孔是空的 -->
-            <path fill="url(#metalGrad)" fill-rule="evenodd" stroke="rgba(22,18,12,.34)" stroke-width=".6"
-                  d="M13 9a11.6 10.2 0 1 1 0 20.4 11.6 10.2 0 1 1 0-20.4ZM13 13.2a6.6 6 0 1 0 0 12 6.6 6 0 1 0 0-12Z"/>
-            <!-- 转轴 -->
-            <rect x="11" y="28" width="4" height="4.6" fill="url(#metalGrad)"/>
-            <!-- 扣体 -->
-            <rect x="6" y="32" width="14" height="27" rx="7" fill="url(#metalGrad)"
-                  stroke="rgba(22,18,12,.34)" stroke-width=".7"/>
-            <rect x="9.9" y="36" width="2.4" height="13" rx="1.2" fill="rgba(22,18,12,.2)"/>
-            <path d="M8.6 54.5h8.8" fill="none" stroke="rgba(22,18,12,.2)" stroke-width=".7" stroke-linecap="round"/>
-            <!-- 挂钩：穿过卡套上的卡槽 -->
-            <path d="M13 58.6v7.6c0 6-3.2 9.7-6.9 9.4" fill="none" stroke="url(#metalGrad)"
-                  stroke-width="2.8" stroke-linecap="round"/>
-          </svg>
-          <div class="badge-head">
-            <span class="badge-hole l"></span>
-            <span class="badge-slot"></span>
-            <span class="badge-hole r"></span>
+        <div class="badge-head">
+          <span class="badge-hole l"></span>
+          <span class="badge-slot"></span>
+          <span class="badge-hole r"></span>
+        </div>
+        <div class="badge-insert">
+          <div class="badge-id"><span>PLAYER ID</span><b data-i18n="badge-label">玩家档案</b><span class="badge-tagline" data-i18n="badge-tagline">内容创作｜Ai实践｜个人项目</span></div>
+          <div class="badge-photo">
+            <img src="assets/avatar-480.webp" alt="SolYoung" width="342" height="342" fetchpriority="high" draggable="false">
           </div>
-          <div class="badge-insert">
-            <div class="badge-id"><span>PLAYER ID</span><b data-i18n="badge-label">玩家档案</b></div>
-            <div class="badge-photo">
-              <img src="assets/avatar-480.webp" alt="SolYoung" width="342" height="342" fetchpriority="high" draggable="false">
-            </div>
-            <div class="badge-foot">
-              <div class="badge-name">Sol<em>.</em>Young</div>
-              <div class="badge-status"><i></i><span>ONLINE</span></div>
-            </div>
+          <div class="badge-foot">
+            <div class="badge-name">Sol<em>.</em>Young</div>
+            <div class="badge-status"><i></i><span>ONLINE</span></div>
           </div>
         </div>
       </div>
-    </div>
+
+    <div class="sp-name" aria-hidden="true"><span class="sp-sol"><span class="sp-ltr">S</span><span class="sp-ltr">o</span><span class="sp-ltr">l</span></span><span class="sp-young"><span class="sp-ltr">Y</span><span class="sp-ltr">o</span><span class="sp-ltr">u</span><span class="sp-ltr">n</span><span class="sp-ltr">g</span></span></div>
   </div>
-  <div class="scroll-hint"><span>SCROLL TO EXPLORE</span><span class="line"></span><span class="arrow"><svg viewBox="0 0 12 16" width="12" height="16" fill="none" aria-hidden="true"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 8.2 L6 12.8 L10.5 8.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-</header>
+</div>
 
-<main>
-
-<!-- ===== QUICK NAV ===== -->
-<section class="quicknav-section">
-  <div class="container">
-    <nav class="quicknav" aria-label="快捷导航">
-      <a class="qn" href="#works">
-        <span class="qn-num">01</span>
-        <span class="qn-name" data-i18n="qn-works">项目<span class="qn-en">Projects</span></span>
-        <span class="qn-arr">→</span>
-      </a>
-      <a class="qn" href="now/">
-        <span class="qn-num">02</span>
-        <span class="qn-name" data-i18n="qn-now">构建<span class="qn-en">Build</span></span>
-        <span class="qn-arr">→</span>
-      </a>
-      <a class="qn" href="blog/">
-        <span class="qn-num">03</span>
-        <span class="qn-name" data-i18n="qn-thoughts">博客<span class="qn-en">Blog</span></span>
-        <span class="qn-arr">→</span>
-      </a>
-      <a class="qn" href="about/">
-        <span class="qn-num">04</span>
-        <span class="qn-name" data-i18n="qn-about">关于我<span class="qn-en">About</span></span>
-        <span class="qn-arr">→</span>
-      </a>
-    </nav>
-  </div>
-</section>
-
-<!-- ===== PROJECTS ===== -->
-<section class="section" id="works">
-  <div class="container">
-    <div class="sec-head rv">
-      <h2 class="display sec-title" data-i18n="sec-works">项目<span class="serif accent">Projects</span></h2>
-      <span class="sec-num">01</span>
-    </div>
-
-    <div class="hp-wrap" id="hpWrap">
-      <div class="hp-top">
-        <div class="hp-kicker">SELECTED PROJECTS · 03</div>
-        <div class="hp-hint"><svg viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5.5h18M5 1.5 1 5.5l4 4M15 1.5l4 4-4 4"/></svg><span id="hpHintText">左右拖动 · 双指滑动</span></div>
-      </div>
-      <div class="hp-viewport" id="hpViewport">
-        <div class="hp-track" id="hpTrack"></div>
-      </div>
-      <div class="hp-controls">
-        <div class="hp-tabs" id="hpTabs"></div>
-        <div class="hp-nav">
-          <span class="hp-count"><b id="hpCur">01</b> / 03</span>
-          <button class="hp-arrow" id="hpPrev" type="button" aria-label="上一个项目">&#8592;</button>
-          <button class="hp-arrow" id="hpNext" type="button" aria-label="下一个项目">&#8594;</button>
-        </div>
-      </div>
-      <div class="hp-progress"><span id="hpProg"></span></div>
-    </div>
-
-    <!-- Farm entry hidden for now, code kept for later
-    <a class="farm-entry rv" href="farm/" aria-label="进入我的农场">
-      <span class="farm-thumb" aria-hidden="true">
-        <img src="farm/assets/farm-bg.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
-      </span>
-      <span class="farm-mid">
-        <span class="farm-brand"><span class="farm-name" data-i18n="farm-name">我的农场</span><span class="farm-cn" data-i18n="farm-cn">项目地图</span></span>
-        <p class="farm-desc" data-i18n="farm-desc">一座把想法种出来的农场：每栋房子、每块菜地，都是我正在做的东西。点进去看看。</p>
-      </span>
-      <span class="farm-cta" data-i18n="farm-cta">进入农场 ↗</span>
-    </a>
-    -->
-
-    <a class="now-more rv" href="works/" aria-label="查看全部项目">VIEW ALL PROJECTS <span class="now-more-arr">→</span></a>
-
-  </div>
-</section>
-
-<!-- ===== EXPERIMENTS ===== -->
-<section class="section" id="experiments" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="container">
-    <div class="sec-head rv">
-      <h2 class="display sec-title"><a class="now-title-link" href="now/" aria-label="查看全部构建" data-i18n="sec-now">构建 <span class="serif accent">BUILD</span></a></h2>
-      <span class="sec-num">02</span>
-    </div>
-
-    <div class="now-feed" id="nowFeedHome"></div>
-
-    <a class="now-more rv" href="now/" aria-label="查看全部动态">VIEW ALL BUILD <span class="now-more-arr">→</span></a>
-  </div>
-</section>
-
-<!-- ===== NOTES ===== -->
-<section class="section" id="notes">
-  <div class="container">
-    <div class="sec-head rv">
-      <h2 class="display sec-title"><a class="now-title-link" href="blog/" aria-label="查看全部博客" data-i18n="sec-thoughts">博客 <span class="serif accent">Blog</span></a></h2>
-      <span class="sec-num">04</span>
-    </div>
-    <div class="notes" id="notesList"></div>
-    <a class="now-more rv" href="blog/" aria-label="查看全部博客">VIEW ALL POSTS <span class="now-more-arr">→</span></a>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section class="section" id="about" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="container">
-    <div class="sec-head rv">
-      <h2 class="display sec-title"><a class="now-title-link" href="about/" aria-label="查看全部关于我" data-i18n="sec-about">关于<span class="serif accent">我</span></a></h2>
-      <span class="sec-num">05</span>
-    </div>
-    <div class="about-grid">
-      <div class="about-quote rv" data-i18n="about-quote">
-        我是 <span class="hl">SolYoung</span>。<br>
-        把人生，当成一场游戏来经营。
-      </div>
-      <div class="about-body rv rv-d1">
-        <p data-i18n="about-p1">我是一位内容创作者，做拍摄，也做剪辑。这些年我一直在内容、摄影、视频、AI 和各种新的创作方式之间来回试探——不是想成为某个领域的专家，而是享受「把一件事亲手做成」的过程。</p>
-        <p data-i18n="about-p2">这个网站不是我的简历，也不是我的展示柜。它是一个持续更新的个人存档：记录我正在建造什么、暂时搁置了什么，又在这个过程中想通了什么。探索地图，收集灵感，建造作品，持续存档。</p>
-        <div class="about-roles">
-          <span data-i18n="role1">创作者</span><span data-i18n="role2">记录者</span><span data-i18n="role3">探索者</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section contact" id="contact">
-  <div class="container">
-    <div class="eyebrow rv" data-i18n="contact-eyebrow">一起做点什么</div>
-    <h2 class="big rv" style="margin-top:26px"><a href="mailto:soyoang@outlook.com">soyoang@outlook.com</a></h2>
-    <p class="sub rv rv-d1" data-i18n="contact-sub">有一个想法？想合作一个项目？或者只是打个招呼——都可以。</p>
-    <div class="socials rv rv-d2">
-      <a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener" aria-label="抖音"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg><span data-i18n="social-douyin">抖音</span></a>
-      <a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener" aria-label="小红书"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="1" y="1" width="22" height="22" rx="6" fill="#FF2442"/><text x="12" y="15.8" text-anchor="middle" font-family="PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-weight="700" font-size="6.5" letter-spacing="-0.4" fill="#FFFFFF">小红书</text></svg><span data-i18n="social-xhs">小红书</span></a>
-      <button type="button" id="wxBtn" aria-label="微信"><img src="assets/wechat-icon.webp" alt="微信" width="16" height="16" decoding="async"><span data-i18n="social-wx">微信</span></button>
-      <a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span data-i18n="social-x">X</span></a>
-      <a href="https://www.youtube.com/@SolYoungA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="1.2" y="4.6" width="21.6" height="14.8" rx="4.4" fill="#FF0000"/><path d="M10.2 8.6 15.9 12l-5.7 3.4z" fill="#fff"/></svg><span data-i18n="social-youtube">YouTube</span></a>
-      <a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span data-i18n="social-github">GitHub</span></a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="container foot-inner">
-    <div class="foot-slogan" data-i18n="foot-slogan">记录，是为了<span class="q">忘记。</span></div>
-    <div class="foot-countdown">
-      <div class="countdown-time" id="countdownTime" aria-label="100小时倒计时">100:00:00</div>
-      <div class="countdown-note" data-i18n="foot-countdown-note">每过100小时，这个网站以及我所创造的一切都在发生变化。新增或删减，但始终朝着更好的方向发展。</div>
-    </div>
-    <div class="foot-meta" data-i18n="foot-meta">© 2026 SolYoung · 以探索的方式搭建 · v1.0</div>
-  </div>
-</footer>
 
 <button class="backtop" id="backtop" aria-label="回到顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
@@ -1476,6 +1398,9 @@ html,body{overscroll-behavior-x:none}
 
 <!-- lightbox -->
 <div class="lb" id="lb" aria-hidden="true"><button class="lb-close" id="lbClose" aria-label="关闭">×</button><img id="lbImg" alt=""></div>
+
+<!-- 微信按钮的隐藏触发器（联系区已移除，保留给二维码弹层与关于我） -->
+<button type="button" id="wxBtn" aria-hidden="true" tabindex="-1" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none"></button>
 
 <!-- wechat qr modal -->
 <div class="qr-overlay" id="qrOverlay">
@@ -2354,47 +2279,49 @@ html,body{overscroll-behavior-x:none}
   }, true);
 })();
 
-// ---- Hero badge：悬挂工牌（解析单摆 + 程序化绳索曲线，与开屏同一套模型） ----
-// 旧版是 Verlet 质点链 + 每帧十几次约束迭代：拖拽时指针和求解器同时推同一批点，
-// 两边互相对抗，绳子会像果冻一样抖。现在换成和开屏完全一致的解析模型：
-//   · 状态只有三个——挂点位置 (px,py)、卡片摆角 th、绳长比 stretch；
-//   · 绳子每帧由「锚点 → 挂点」直接算成曲线（绷直 / 松弛下垂），不参与求解；
-//   · 拖拽按被抓那个角的力矩决定转向，四个角各有各的倒法。
-// 卡片的位置、尺寸、锚点距离全部沿用 CSS 变量，布局一行没动。
+// ---- 开屏 Splash 控制 + 悬挂工牌（解析单摆 + 程序化绳索曲线） ----
+// 上一版是「质点链绳索 + 四点刚体卡片 + 每帧几十次约束迭代」：拖拽时指针和求解器
+// 同时在推同一个点，两边互相较劲，于是出现高频抖动、绳子像果冻、往上提会卡住。
+// 这一版换掉模型，把抖动的来源直接去掉：
+//   · 状态只有三个——挂点位置 (px,py)、卡片摆角 th、绳长比 stretch，全部走解析方程；
+//   · 绳子不再模拟，每帧由「锚点 → 挂点」直接算成一条曲线（绷直 / 松弛下垂）；
+//   · 唯一约束是绳长：拉长到上限就绷住，松手按指数回收到自然长度（这就是弹回去的力）。
+// 没有粒子互相拉扯，拖拽就只是「把目标点平滑挪过去」，手感连续。
 (function(){
-  var stage = document.getElementById('badgeStage');
-  var card = document.getElementById('badgeCard');
-  if(!stage || !card) return;
-  var ropesEl = document.getElementById('badgeRopes');
-  var ropeL = document.getElementById('ropeL');
-  var ropeR = document.getElementById('ropeR');
-  var hiL = document.getElementById('ropeHiL');
-  var hiR = document.getElementById('ropeHiR');
-  var shL = document.getElementById('ropeShL');
-  var shR = document.getElementById('ropeShR');
+  var splash=document.getElementById('splash');
+  if(!splash) return;
+  var html=document.documentElement;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  html.classList.add('splashing');
 
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var card=splash.querySelector('.badge-card');
+  var ropeL=document.getElementById('spRopeL'), ropeR=document.getElementById('spRopeR');
+  var hiL=document.getElementById('spHiL'), hiR=document.getElementById('spHiR');
+  var shL=document.getElementById('spShL'), shR=document.getElementById('spShR');
+  if(card){
+    var im=card.querySelector('img');
+    if(im) im.draggable=false;
+  }
 
-  var G=2400;        // 重力 px/s²
-  var AIR=1.8;       // 空气阻尼 1/s（主页卡片大、摆得慢，阻尼比开屏重一点才停得住）
-  var SWC=2.3;       // 摆角阻尼 1/s
-  var IDLE=70;       // 无交互时的微风
-  var HOVER=70;      // 指针悬停时朝指针方向的推力（很轻，只是让它对指针有点反应）
-  var HOVF=210;      // 悬停微风的推力幅值 px/s²（这才是"缓缓晃动"的主力气流）
-  var HOVW=1.02;     // 悬停微风的角频率 rad/s，≈6.2s 一个来回，慢到像呼吸
-  var HOVT=0.026;    // 悬停时卡片顺着气流多歪一点（弧度），比挂点慢半拍
-  var REEL=5.2;      // 松手后绳长回收速率 1/s
-  var BOUNCE=0.14;   // 绳子绷紧瞬间的速度反弹
-  var FOLLOW=30;     // 拖拽跟随刚度 1/s
-  var VMAX=2200;     // 速度上限
-  var RMAX=1.22;     // 绳长最多拉伸到 1.22 倍（主页拉出的余地比开屏小）
-  var LAG=0.62;      // 拖拽时力矩造成的最大倾角（弧度 / 满力臂）
-  var RAMP=56;       // 拖出多少像素才到满倾角
+  var G=2400;       // 重力 px/s²
+  var AIR=0.82;     // 空气阻尼 1/s
+  var SWC=1.7;      // 摆角阻尼 1/s
+  var IDLE=62;      // 无交互时的微风
+  var HOVER=70;     // 指针悬停时朝指针方向的推力（很轻，只是让它对指针有点反应）
+  var HOVF=215;     // 悬停微风的推力幅值 px/s²（这才是"缓缓晃动"的主力气流）
+  var HOVW=1.05;    // 悬停微风的角频率 rad/s，≈6s 一个来回，慢到像呼吸
+  var HOVT=0.030;   // 悬停时卡片顺着气流多歪一点（弧度），比挂点慢半拍
+  var RMAX=1.5;     // 绳长最多拉伸到 1.5 倍
+  var REEL=3.6;     // 松手后绳长回收速率 1/s
+  var BOUNCE=0.14;  // 绳子绷紧瞬间的速度反弹
+  var FOLLOW=30;    // 拖拽跟随刚度 1/s
+  var VMAX=2200;    // 速度上限
+  var LAG=0.62;     // 拖拽时力矩造成的最大倾角（弧度 / 满力臂）
+  var RAMP=56;      // 拖出多少像素才到满倾角
 
-  var W=0,H=0,ANCH=150,RISE=430,HANG=-46,D=0;
-  var R0=1,L0=1,AX0=0,AX1=0,AY=0,HOME_X=0,HOME_Y=0,VL=0,VR=0,VY=0;
-  var w0sq=1,halfDiag=1,tiltMax=0.46,limX=100,limY=64;
-  var px=0,py=0,vx=0,vy=0,th=0,om=0,stretch=1,wind=0,scrollW=0,inertY=0;
+  var W=0,H=0,ANCH=120,RISE=200,HANG=-50,D=0;
+  var R0=1,APEX_Y=0,HOME_X=0,L0=1,AX0=0,AX1=0,w0sq=1,halfDiag=1,tiltMax=0.46,VL=0,VR=0,VY=0;
+  var px=0,py=0,vx=0,vy=0,th=0,om=0,stretch=1,wind=0;
   var hoverE=0,hvPh=0;   // hoverE：悬停强度 0~1（缓入缓出）；hvPh：悬停微风相位
   var hoverOutT=0;       // 指针离开卡片的时刻：短暂离开不算离开，见 updateHover
   var dragging=false,grabX=0,grabY=0,dragSX=0,dragSY=0;
@@ -2404,113 +2331,241 @@ html,body{overscroll-behavior-x:none}
   var catchVX=0,catchVY=0,catchT=0;   // 接住那一刻残留的速度，给"接住"留一点滑行
   var pPX=0,pPY=0,pSpd=0,pSpdN=0;     // 指针速度（归一化），决定摆角弹簧的软硬
   var pointerX=null,pointerY=null,hover=false;
-  var ready=false,raf=0,lastT=0,curH=0;
-  var stageOX=0,stageOY=0,cardMidX=0;
-  var scrollPrev=0,sv=0;
+  var ready=false,raf=0,lastT=0,falling=true,dropOn=false,cardMidX=0;  // falling：入场自由落体中；dropOn：这一轮已经起跳
 
   function r1(n){ return Math.round(n*10)/10; }
 
-  // 把金属扣摆到「挂钩尖端刚好插进卡套卡槽」的位置，返回压线扣中心相对卡片顶边的 y。
-  // 绳端就绑在这个压线扣上，所以扣子和绳子永远是同一点，不会互相错开。
+  // 把金属扣挪到「挂钩尖端刚好插进卡槽」的位置，返回压线扣中心相对卡片顶边的 y。
+  // 吊绳就绑在这个压线扣上，所以扣子与绳子始终是同一个点，永远不会错开。
   function placeClip(){
-    var PIVOT_R = 4.8 / 80;    // 压线扣中心在 viewBox 里的位置
-    var TIP_R   = 75.6 / 80;   // 挂钩尖端
-    var clipEl = card.querySelector('.badge-clip');
-    if(!clipEl) return -46;
-    // SVGElement 上没有 offsetHeight，必须读计算样式量高度
-    var ch = parseFloat(window.getComputedStyle(clipEl).height) || 0;
-    if(!ch) return -46;
-    var bt = parseFloat(window.getComputedStyle(card).borderTopWidth) || 0;
-    var top = -46;
-    var slotEl = card.querySelector('.badge-slot');
+    var PIVOT_R=4.8/80;     // 压线扣中心在 viewBox 里的位置
+    var TIP_R=75.6/80;      // 挂钩尖端
+    var clipEl=card.querySelector('.badge-clip');
+    if(!clipEl) return -50;
+    var ch=parseFloat(window.getComputedStyle(clipEl).height)||0;
+    if(!ch) return -50;
+    var bt=parseFloat(window.getComputedStyle(card).borderTopWidth)||0;
+    var top=-50, prev=card.style.transform;
+    // 先摘掉变换再量，否则读到的是旋转后的外框
+    card.style.transform='none';
+    var cr=card.getBoundingClientRect();
+    var slotEl=card.querySelector('.badge-slot');
     if(slotEl){
-      // 先把变换摘掉再量，否则读到的是旋转后的外框
-      var prev = card.style.transform;
-      card.style.transform = 'none';
-      var cr = card.getBoundingClientRect();
-      var sr = slotEl.getBoundingClientRect();
-      card.style.transform = prev;
-      top = sr.top + sr.height / 2 - cr.top - ch * TIP_R;
+      var sr=slotEl.getBoundingClientRect();
+      top=sr.top+sr.height/2-cr.top-ch*TIP_R;
     }
-    if(!isFinite(top)) top = -46;
-    clipEl.style.top = Math.round((top - bt) * 10) / 10 + 'px';
-    return top + ch * PIVOT_R;
-  }
-
-  function measure(){
-    var r = stage.getBoundingClientRect();
-    stageOX = r.left; stageOY = r.top;
+    card.style.transform=prev;
+    if(!isFinite(top)) top=-50;
+    clipEl.style.top=Math.round((top-bt)*10)/10+'px';
+    return top+ch*PIVOT_R;
   }
 
   function build(){
-    W = card.offsetWidth;
-    H = card.offsetHeight;
-    if(!W || !H) return;
+    if(!card) return;
+    W=card.offsetWidth; H=card.offsetHeight;
+    if(!W||!H) return;
+    // 还在下落途中：先记下当前状态，重算完几何再原样放回去（不打断下落）
+    var keepFall=null;
+    if(dropOn&&falling&&!reduce) keepFall={px:px,py:py,vx:vx,vy:vy,th:th,om:om,stretch:stretch};
 
-    // 锚点仍由 CSS 变量按断点控制（--rise 绳长、--anch 挂点半距），布局不动
-    var cs = window.getComputedStyle(stage);
-    var rv = parseFloat(cs.getPropertyValue('--rise'));
-    var av = parseFloat(cs.getPropertyValue('--anch'));
-    RISE = rv > 0 ? rv : 430;
-    ANCH = av > 0 ? av : 150;
+    var vw=window.innerWidth, vh=window.innerHeight;
+    var cx=Math.round(vw/2);
+    HOME_X=cx;
+    // 卡片静态位置：略低于画面中心，让巨型姓名在底部与之交叠
+    var homeTop=Math.max(78, Math.round(vh*(vw<600?0.52:0.48)-H/2));
+    // 挂点在视口上边界之外：锚点太高，两条绳在画面里会几乎并成一条，看不出 V
+    RISE=Math.max(112, Math.round(homeTop*0.42));
+    ANCH=Math.max(74, Math.min(152, Math.round(W*0.36), Math.round(vw*0.2)));
+    HANG=placeClip();
+    D=H/2-HANG;                       // 压线扣 → 卡片几何中心
 
-    HANG = placeClip();
-    D = H / 2 - HANG;                 // 压线扣 → 卡片几何中心
+    APEX_Y=-RISE;                     // 虚拟吊点（两条绳的收束点）高度
+    px=cx; py=homeTop+HANG;           // 挂点静止位置
+    R0=Math.max(80, py-APEX_Y);       // 摆臂长 = 吊点到扣子的距离
+    AX0=cx-ANCH; AX1=cx+ANCH;
+    L0=Math.sqrt(ANCH*ANCH+R0*R0);    // 单根绳的自然长度（画绳子用）
+    // 开屏的吊点在视口上方（看不见），真正常驻画面里的是绳子穿过视口上沿(y=0)的那一点。
+    // 直接把这个点当锚点：x 由静止时的走向求交得到 → 常数，摆动时顶端一动不动。
+    var kv=1-RISE/R0;
+    VY=0;
+    VL=cx-ANCH*kv;
+    VR=cx+ANCH*kv;
 
-    HOME_X = W / 2;                   // 挂点静止位置（相对 stage）
-    HOME_Y = HANG;
-    AY = -RISE;                       // 两条绳的锚点高度（在 stage 上方）
-    AX0 = HOME_X - ANCH;
-    AX1 = HOME_X + ANCH;
-    R0 = HOME_Y - AY;                 // 摆臂长 = 锚点到扣子的距离
-    L0 = Math.sqrt(ANCH * ANCH + R0 * R0);  // 单根绳的自然长度（画绳子用）
-    // 首页工牌静止时绳子大半在视口之上，真正露出来的顶端是「绳子穿过视口上沿」的那一点。
-    // 把锚点放在这个固定点上（x 由静止绳线求交得到，是常数），顶端就钉在画面边缘：
-    // 摆动时绳子只绕它转，不会再沿顶边左右蹭（以前那截在画外，顶边会被拖出一条横向位移）。
-    var stTop = stage.getBoundingClientRect().top;
-    VY = -stTop;
-    if(!(VY > AY + 40)) VY = AY + 40;   // 别让锚点跑到虚拟吊点上方（比如 stage 在很下面时）
-    var kk = (VY - AY) / R0;
-    if(kk < 0) kk = 0;
-    if(kk > 0.98) kk = 0.98;
-    var hw = ANCH * (1 - kk);           // 锚点到扣子静止位置的水平距离
-    VL = HOME_X - hw;
-    VR = HOME_X + hw;
+    var I=(W*W+H*H)/12;
+    w0sq=G*D/(D*D+I);                 // 卡片绕挂点的摆频
+    halfDiag=0.5*Math.sqrt(W*W+H*H);  // 重心到四个角的最大力臂
 
-    var I = (W * W + H * H) / 12;
-    w0sq = G * D / (D * D + I);       // 卡片绕挂点的摆频
-    halfDiag = 0.5 * Math.sqrt(W * W + H * H);
+    // 倾角上限：转起来以后卡片的横向外框不能比屏幕宽太多，否则边角会被裁掉
+    // （手机 390 宽、卡片 300 宽，转 26° 外框就有 445，必然出屏）。
+    // 允许每边出屏 6px，剩下的靠收角度保证。
+    tiltMax=0.46;
+    var maxHx=(vw+12)/2;
+    if(halfDiag>maxHx){
+      var t0=Math.atan2(H/2,W/2)-Math.acos(maxHx/halfDiag);
+      if(t0<0.14) t0=0.14;
+      if(t0<tiltMax) tiltMax=t0;
+    }
 
-    // 倾角上限：卡片宽度几乎等于 stage 宽度，转太多会压到左边的标题，
-    // 所以比开屏收着一点（开屏 26°，桌面 17°）。手机端卡片更窄、又贴右边，
-    // 再收一档到 11.5°，配合 clampX 的避让就不会顶出屏幕
-    tiltMax = W < 200 ? 0.20 : 0.30;
+    vx=0; vy=0; th=0; om=0; stretch=1; wind=0;
 
-    limX = Math.round(W * 0.28);
-    limY = Math.round(H * 0.13);
+    // 入场：工牌从吊点正下方自由落体「掉」进画面，绳子绷住那一刻把它接住并回弹一下，
+    // 之后靠重力自己慢慢荡开（不是位移渐变）。下落途中重算尺寸（图片/字体到位）时沿用
+    // 当前下落状态，不回到起点，否则会看到一次跳位。
+    if(keepFall){
+      px=keepFall.px; py=keepFall.py; vx=keepFall.vx; vy=keepFall.vy;
+      th=keepFall.th; om=keepFall.om; stretch=keepFall.stretch;
+    } else if(falling&&!reduce&&!dropOn){
+      px=cx; py=APEX_Y+6;      // 吊点略下方：整张工牌还在画面上沿之外
+      vx=0; vy=0; th=-0.06; om=0.55;
+      dropOn=true;
+    }
 
-    px = HOME_X; py = HOME_Y;
-    vx = 0; vy = 0; th = 0; om = 0; stretch = 1; wind = 0; scrollW = 0; inertY = 0;
-
-    curH = H;
-    stage.style.height = Math.round(H + (W < 220 ? 14 : 48)) + 'px';
-    fadeTop();
-    measure();
+    ready=true;
     render();
-    scrollPrev = window.scrollY; sv = 0;
-    ready = true;
+    card.classList.add('in');
   }
 
-  // 绳索顶端渐隐：让绳子看起来是从上方垂下来，而不是凭空断掉
-  // SVG 盒顶 = stage 顶部上移 760px，故局部坐标 y = 760 - 锚点高度
-  function fadeTop(){
-    if(!ropesEl) return;
-    var top = 760 - RISE;
-    var f0 = top + 4;
-    var f1 = f0 + Math.max(56, RISE * 0.45);
-    var g = 'linear-gradient(to bottom,transparent ' + Math.round(f0) + 'px,#000 ' + Math.round(f1) + 'px)';
-    ropesEl.style.webkitMaskImage = g;
-    ropesEl.style.maskImage = g;
+  // 悬停强度：进得快一点（约 0.6s），离开时收得慢一点，像气流慢慢散去。
+  // 有个 0.6s 的宽限：卡片自己在摆，指针可能被"甩出"卡片边缘，不留宽限的话
+  // 会在边缘反复触发 enter/leave，看起来像忽停忽动。
+  function updateHover(dt){
+    var t=hover?1:0;
+    if(!t&&!dragging&&hoverOutT&&performance.now()-hoverOutT<600) t=1;
+    if(dragging) t=0;
+    hoverE+=(t-hoverE)*(1-Math.exp(-dt*(t?1.6:1.1)));
+    if(!t&&hoverE<0.002) hoverE=0;
+    hvPh+=dt*HOVW;
+    if(hvPh>6.2831) hvPh-=6.2831;      // 相位归零，长时间挂着也不会掉精度
+  }
+
+  // 无交互时的微风 + 悬停时的一阵缓慢气流
+  function updateWind(dt,now){
+    var tgt=Math.sin(now*0.00075)*IDLE+Math.sin(now*0.0021+1.3)*IDLE*0.3;
+    // 悬停：很慢的一股气流来回推，挂点顺着它左右荡，两根绳子跟着摆
+    tgt+=Math.sin(hvPh)*HOVF*hoverE;
+    if(hover&&pointerX!==null&&!dragging){
+      var nd=(pointerX-cardMidX)/(W*0.65);
+      nd=nd<-1?-1:(nd>1?1:nd);
+      tgt+=nd*HOVER*hoverE;
+    }
+    wind+=(tgt-wind)*(1-Math.exp(-dt*3.2));
+  }
+
+  // 拖拽时把整块工牌挡在可视区内（按当前摆角算外接框）
+  function clampCard(){
+    var c=Math.cos(th), s=Math.sin(th);
+    var hx=(W/2)*Math.abs(c)+(H/2)*Math.abs(s);
+    var hy=(W/2)*Math.abs(s)+(H/2)*Math.abs(c);
+    var ccx=px+D*s, ccy=py+D*c;
+    var vw=window.innerWidth, vh=window.innerHeight, m=10;
+    var nx=ccx, ny=ccy;
+    if(hx*2>vw-m*2) nx=vw/2; else nx=Math.max(hx+m,Math.min(vw-hx-m,nx));
+    if(hy*2>vh-104-m) ny=vh/2; else ny=Math.max(hy+104,Math.min(vh-hy-m,ny));
+    if(nx!==ccx||ny!==ccy){ px+=nx-ccx; py+=ny-ccy; }
+  }
+
+  function stepOnce(h){
+    if(dragging&&pointerX!==null&&pointerY!==null){
+      // —— 拖拽 ——
+      var ox=px, oy=py;
+      // 目标 = 按下时的挂点 + 这一段指针位移（相对拖拽）。见主页同名注释：
+      // 用绝对位置对位会让"按下去"变成一次瞬移。
+      // 摆角变化时补偿抓点偏移，被捏住的那一点始终待在手底下（按下时补偿为 0，不跳）
+      var ux=Math.sin(th), uy=Math.cos(th), rx=uy, ry=-ux;
+      var gxw=grabX*rx+grabY*ux, gyw=grabX*ry+grabY*uy;
+      var tx=dragPX+(pointerX-dragSX)+(gxw-grabOX);
+      var ty=dragPY+(pointerY-dragSY)+(gyw-grabOY);
+      // 指数跟随而不是硬贴指针：硬贴等于每帧把速度归零，看起来就是"抖"
+      var k=1-Math.exp(-FOLLOW*h);
+      px+=(tx-px)*k;
+      py+=(ty-py)*k;
+
+      // 接住的那一下保留惯性，手抓住正在荡的东西不会当场钉死
+      catchT+=h;
+      if(catchT<0.32){
+        var keep=Math.exp(-catchT*13);
+        px+=catchVX*keep*h; py+=catchVY*keep*h;
+      } else { catchVX=0; catchVY=0; }
+      clampCard();
+
+      // 绳长跟着实际距离走，只允许拉长，到上限就绷住（所以不会再被无限拽下去）
+      var dx=px-HOME_X, dy=py-APEX_Y, d=Math.sqrt(dx*dx+dy*dy)||1e-6;
+      var need=d/R0;
+      if(need>RMAX){
+        px=HOME_X+dx/d*R0*RMAX;
+        py=APEX_Y+dy/d*R0*RMAX;
+        need=RMAX;
+      }
+      stretch=need<1?1:need;
+
+      // 松手时要交给摆的初速度：取这一子步的真实位移（先算出来，摆角也要用它）
+      vx=(px-ox)/h; vy=(py-oy)/h;
+      if(vx>VMAX) vx=VMAX; else if(vx<-VMAX) vx=-VMAX;
+      if(vy>VMAX) vy=VMAX; else if(vy<-VMAX) vy=-VMAX;
+
+      // 摆角：按「手作用在抓点上的力矩」算，而不是「抓点偏在哪一侧」。
+      // 力的作用点就是被捏住的那个角，力臂是「重心 → 抓点」，方向是这一段的拖拽位移，
+      // 于是四个角各自往不同的方向倒：
+      //   · 抓左下角往左拖 → 力臂左下、力向左 → 顺时针，左下角先过去
+      //   · 抓左上角往左拖 → 力臂左上、力向左 → 逆时针，左上角先过去
+      //   · 抓右下角往右拖 → 逆时针，右下角先过去
+      //   · 抓右上角往右拖 → 顺时针，右上角先过去
+      // （th 为正 = 卡片逆时针，所以取负号；叉积在 y 向下的坐标系里，正号本就是顺时针）
+      var ddx=pointerX-dragSX, ddy=pointerY-dragSY;
+      var dl=Math.sqrt(ddx*ddx+ddy*ddy);
+      var thT=0;
+      if(dl>1){
+        var rcx=grabX, rcy=grabY-D;                   // 重心 → 抓点
+        var cl=Math.sqrt(rcx*rcx+rcy*rcy);
+        var tq=(rcx*(ddy/dl)-rcy*(ddx/dl))/(cl||1);   // 单位力臂的力矩 ∈ [-1,1]
+        // 力臂越短（抓得越靠重心）越不该转；正中间仍留一点点，否则手感是死的
+        var cln=cl/halfDiag;
+        var wt=cln<0.14?0.22:(cln>0.40?1:0.22+0.78*(cln-0.14)/0.26);
+        // 拖得越远越到位：小幅移动只是轻轻偏一下
+        var rm=dl/RAMP; if(rm>1) rm=1;
+        thT=-tq*LAG*wt*rm;
+      }
+      // 再加一项"跟不上手"的后仰：拖得越快，牌子越往后甩
+      thT-=vx*0.00012;
+      if(thT>tiltMax) thT=tiltMax; else if(thT<-tiltMax) thT=-tiltMax;
+      // 手停住时弹簧放软，牌子顺着力矩慢慢回正；手快速拖动时放硬，四角转向才跟得上
+      var ra=34+300*pSpdN, rd=2*Math.sqrt(ra);
+      om+=(ra*(thT-th)-rd*om)*h;
+      th+=om*h;
+      return;
+    }
+
+    // —— 自由悬挂 ——
+    // 绳长指数回收到自然长度：这就是松手后"被拽回去"的那股力
+    if(stretch>1){
+      stretch=1+(stretch-1)*Math.exp(-REEL*h);
+      if(stretch<1.002) stretch=1;
+    }
+    // 卡片是一个绕挂点的物理摆：质心在挂点下方 D 处。
+    // 悬停时卡片比挂点慢半拍：挂点先被吹走，牌子过一会儿才跟过去再荡回来
+    var tilt=hoverE*HOVT*Math.sin(hvPh-0.55);
+    om+=(-w0sq*Math.sin(th-tilt)-SWC*om)*h;
+    th+=om*h;
+
+    // 挂点：重力 + 微风
+    vx+=wind*h; vy+=G*h;
+    var dm=1-AIR*h; if(dm<0) dm=0;
+    vx*=dm; vy*=dm;
+    px+=vx*h; py+=vy*h;
+
+    // 绳长约束：超出长度就投影回圆弧，并吃掉向外的速度分量（只减不增，绝不抖）
+    var R=R0*stretch;
+    var dx=px-HOME_X, dy=py-APEX_Y, d=Math.sqrt(dx*dx+dy*dy)||1e-6;
+    if(d>R){
+      var nx=dx/d, ny=dy/d;
+      px=HOME_X+nx*R; py=APEX_Y+ny*R;
+      var vn=vx*nx+vy*ny;
+      if(vn>0){
+        vx-=(1+BOUNCE)*vn*nx; vy-=(1+BOUNCE)*vn*ny;
+        // 落地那一下：绳子被砸出一点弹性，随后按 REEL 收回去，像真绳子兜住之后又往上一带
+        if(falling){ falling=false; stretch=1+Math.min(0.18,vn/9000); }
+      }
+    }
   }
 
   // 下垂量 = 弦长的固定比例（封顶 28px）。用固定比例而不是「绳子余量」：
@@ -2528,323 +2583,181 @@ html,body{overscroll-behavior-x:none}
     var dy=by-ay;
     if(dy<14) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
     var d=Math.sqrt((bx-ax)*(bx-ax)+dy*dy)||1e-6;
-    // 控制点落在弦中点正下方 2*sag 处 → 曲线中点正好比弦低 sag，也就是朝重力方向微微沉下去。
-    // 顶端 x 恒为锚点 x，所以绳子在画面顶部不会左右滑。
     var sag=ropeSag(d);
     if(sag<0.8) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
     var mx=(ax+bx)*0.5, my=(ay+by)*0.5;
     return 'M'+r1(ax)+' '+r1(ay)+'Q'+r1(mx)+' '+r1(my+2*sag)+' '+r1(bx)+' '+r1(by);
   }
+
   function render(){
-    var ux = Math.sin(th), uy = Math.cos(th);
-    var nkx = px - HANG * ux, nky = py - HANG * uy;   // 卡片上边中点
-    var ox = nkx + ux * H / 2, oy = nky + uy * H / 2; // 卡片中心
-    var deg = Math.atan2(-ux, uy) * 180 / Math.PI;
-    card.style.transform = 'translate3d(' + r1(ox - W / 2) + 'px,' + r1(oy - H / 2) + 'px,0) rotate(' + deg.toFixed(2) + 'deg)';
-    cardMidX = stageOX + ox;
-
-    var dA = ropeD(AX0), dB = ropeD(AX1);
-    ropeL.setAttribute('d', dA);
-    ropeR.setAttribute('d', dB);
-    hiL.setAttribute('d', dA);
-    hiR.setAttribute('d', dB);
-    if(shL){ shL.setAttribute('d', dA); shR.setAttribute('d', dB); }
-  }
-
-  // 卡片转起来以后横向外框会变宽，这里把它的中心夹在「stage ± 一段留白」之间，
-  // 免得歪到左边把标题盖住。hero 两侧本来就是留白，所以允许探出去一截，
-  // 不然卡片宽 ≈ 容器宽，一倾斜就只剩原地打转、横向根本拖不动。
-  function clampX(){
-    var c = Math.cos(th), s = Math.sin(th);
-    var hx = (W / 2) * Math.abs(c) + (H / 2) * Math.abs(s);
-    var ccx = px + D * s;
-    var vw = window.innerWidth;
-    // 按「卡片外框不许跑出视口」来夹。手机端卡片贴着右边，一转就顶到屏幕边缘，
-    // 这条约束会让它自己往中间让一点，而不是被裁掉一个角。
-    var lo = 8 + hx - stageOX, hi = vw - 8 - hx - stageOX;
-    var nx = ccx;
-    if(hi < lo) nx = (lo + hi) / 2;
-    else if(nx < lo) nx = lo; else if(nx > hi) nx = hi;
-    if(nx !== ccx) px += nx - ccx;
-  }
-
-  // 悬停强度：进得快一点（约 0.7s），离开时收得慢一点，像气流慢慢散去。
-  // 有个 0.6s 的宽限：卡片自己在摆，指针可能被"甩出"卡片边缘，不留宽限的话
-  // 会在边缘反复触发 enter/leave，看起来像忽停忽动。
-  function updateHover(dt){
-    var t = hover ? 1 : 0;
-    if(!t && !dragging && hoverOutT && performance.now() - hoverOutT < 600) t = 1;
-    if(dragging) t = 0;
-    hoverE += (t - hoverE) * (1 - Math.exp(-dt * (t ? 1.6 : 1.1)));
-    if(!t && hoverE < 0.002) hoverE = 0;
-    hvPh += dt * HOVW;
-    if(hvPh > 6.2831) hvPh -= 6.2831;   // 相位归零，长时间挂着也不会掉精度
-  }
-
-  function updateWind(dt, now){
-    var tgt = Math.sin(now * 0.00072) * IDLE + Math.sin(now * 0.0021 + 1.3) * IDLE * 0.3;
-    // 悬停：一阵很慢的气流来回推，挂点顺着它左右荡，绳子跟着摆
-    tgt += Math.sin(hvPh) * HOVF * hoverE;
-    if(hover && pointerX !== null && !dragging){
-      var nd = (pointerX - cardMidX) / (W * 0.55);
-      nd = nd < -1 ? -1 : (nd > 1 ? 1 : nd);
-      tgt += nd * HOVER * hoverE;
-    }
-    tgt += scrollW;
-    wind += (tgt - wind) * (1 - Math.exp(-dt * 3.2));
-  }
-
-  function stepOnce(h){
-    if(dragging && pointerX !== null && pointerY !== null){
-      // —— 拖拽 ——
-      var ox = px, oy = py;
-      // 目标 = 按下时的挂点 + 这一段指针位移（相对拖拽）。
-      // 不能用「指针绝对位置 − 抓点偏移」去对位：那等于每帧都把挂点重新对齐一次，
-      // 卡片正好摆到别处时一按下去就被拽回来，看起来就是瞬移。
-      // 摆角变化时补偿抓点偏移：被捏住的那一点始终待在手底下，手不动牌子就不会横滑。
-      // 按下这一刻 gxw 正好等于 grabOX，所以补偿量从 0 起算，依旧不会有跳变。
-      var ux = Math.sin(th), uy = Math.cos(th), rx = uy, ry = -ux;
-      var gxw = grabX * rx + grabY * ux, gyw = grabX * ry + grabY * uy;
-      var tx = dragPX + ((pointerX - stageOX) - dragSX) + (gxw - grabOX);
-      var ty = dragPY + ((pointerY - stageOY) - dragSY) + (gyw - grabOY);
-      // 指数跟随而不是硬贴指针：硬贴等于每帧把速度归零，看起来就是"抖"
-      var k = 1 - Math.exp(-FOLLOW * h);
-      px += (tx - px) * k;
-      py += (ty - py) * k;
-
-      // 接住的那一下保留惯性：手抓住一个正在荡的东西，它不会当场钉死，
-      // 而是带着手再滑一小段才停。这是"接住"和"瞬移"的区别。
-      catchT += h;
-      if(catchT < 0.32){
-        var keep = Math.exp(-catchT * 13);
-        px += catchVX * keep * h; py += catchVY * keep * h;
-      } else { catchVX = 0; catchVY = 0; }
-
-      // 软限位：别让卡片被拽出 hero 这一栏
-      var ddx0 = px - HOME_X, ddy0 = py - HOME_Y;
-      if(ddx0 > limX) px = HOME_X + limX; else if(ddx0 < -limX) px = HOME_X - limX;
-      if(ddy0 > limY) py = HOME_Y + limY; else if(ddy0 < -limY) py = HOME_Y - limY;
-      clampX();
-
-      // 绳长跟着实际距离走，只允许拉长，到上限就绷住
-      var dx = px - HOME_X, dy = py - AY, d = Math.sqrt(dx * dx + dy * dy) || 1e-6;
-      var need = d / R0;
-      if(need > RMAX){
-        px = HOME_X + dx / d * R0 * RMAX;
-        py = AY + dy / d * R0 * RMAX;
-        need = RMAX;
-      }
-      stretch = need < 1 ? 1 : need;
-
-      // 松手时要交给摆的初速度：取这一子步的真实位移
-      vx = (px - ox) / h; vy = (py - oy) / h;
-      if(vx > VMAX) vx = VMAX; else if(vx < -VMAX) vx = -VMAX;
-      if(vy > VMAX) vy = VMAX; else if(vy < -VMAX) vy = -VMAX;
-
-      // 摆角：按「手作用在抓点上的力矩」算，而不是「抓点偏在哪一侧」。
-      // 力的作用点就是被捏住的那个角，力臂是「重心 → 抓点」，方向是这一段拖拽位移：
-      //   抓左下角往左拖 → 顺时针，左下角先过去；抓左上角往左拖 → 逆时针，左上角先过去。
-      var ddx = (pointerX - stageOX) - dragSX, ddy = (pointerY - stageOY) - dragSY;
-      var dl = Math.sqrt(ddx * ddx + ddy * ddy);
-      var thT = 0;
-      if(dl > 1){
-        var rcx = grabX, rcy = grabY - D;                 // 重心 → 抓点
-        var cl = Math.sqrt(rcx * rcx + rcy * rcy);
-        var tq = (rcx * (ddy / dl) - rcy * (ddx / dl)) / (cl || 1);
-        // 力臂越短（抓得越靠重心）越不该转；正中间仍留一点点，否则手感是死的
-        var cln = cl / halfDiag;
-        var wt = cln < 0.14 ? 0.22 : (cln > 0.40 ? 1 : 0.22 + 0.78 * (cln - 0.14) / 0.26);
-        var rm = dl / RAMP; if(rm > 1) rm = 1;
-        thT = -tq * LAG * wt * rm;
-      }
-      // 再加一项"跟不上手"的后仰：拖得越快，牌子越往后甩
-      thT -= vx * 0.00012;
-      if(thT > tiltMax) thT = tiltMax; else if(thT < -tiltMax) thT = -tiltMax;
-      // 手停住时弹簧放软：牌子顺着力矩慢慢回正，像用手把它扶稳；
-      // 手快速拖动时弹簧放硬，四个角各自的转向才跟得上，不会被拖成一团糊
-      var ra = 34 + 300 * pSpdN, rd = 2 * Math.sqrt(ra);
-      om += (ra * (thT - th) - rd * om) * h;
-      th += om * h;
-      return;
-    }
-
-    // —— 自由悬挂 ——
-    // 绳长指数回收到自然长度：这就是松手后"被拽回去"的那股力
-    if(stretch > 1){
-      stretch = 1 + (stretch - 1) * Math.exp(-REEL * h);
-      if(stretch < 1.002) stretch = 1;
-    }
-    // 卡片是一个绕挂点的物理摆：质心在挂点下方 D 处。
-    // 滚动时把平衡点往惯性方向挪一点——页面被带着动时牌子会先歪一下再荡回来，
-    // 这是旧版就有的手感。直接改平衡点比加力距稳，不会和摆自身的阻尼顶牛。
-    var tilt = scrollW * 0.00055; if(tilt > 0.15) tilt = 0.15; else if(tilt < -0.15) tilt = -0.15;
-    // 悬停时卡片比挂点慢半拍：挂点先被吹走，牌子过一会儿才跟过去再荡回来
-    tilt += hoverE * HOVT * Math.sin(hvPh - 0.55);
-    om += (-w0sq * Math.sin(th - tilt) - SWC * om) * h;
-    th += om * h;
-
-    // 挂点：重力 + 风 + 滚动惯性
-    vx += wind * h; vy += (G + inertY) * h;
-    var dm = 1 - AIR * h; if(dm < 0) dm = 0;
-    vx *= dm; vy *= dm;
-    px += vx * h; py += vy * h;
-
-    // 绳长约束：超出长度就投影回圆弧，并吃掉向外的速度分量（只减不增，绝不抖）
-    var R = R0 * stretch;
-    var dx2 = px - HOME_X, dy2 = py - AY, d2 = Math.sqrt(dx2 * dx2 + dy2 * dy2) || 1e-6;
-    if(d2 > R){
-      var nx = dx2 / d2, ny = dy2 / d2;
-      px = HOME_X + nx * R; py = AY + ny * R;
-      var vn = vx * nx + vy * ny;
-      if(vn > 0){ vx -= (1 + BOUNCE) * vn * nx; vy -= (1 + BOUNCE) * vn * ny; }
-    }
-    clampX();
+    var ux=Math.sin(th), uy=Math.cos(th);
+    var nkx=px-HANG*ux, nky=py-HANG*uy;     // 卡片上边中点（HANG 为负 → 在扣子下方）
+    var ox=nkx+ux*H/2, oy=nky+uy*H/2;       // 卡片中心
+    var deg=Math.atan2(-ux,uy)*180/Math.PI;
+    card.style.transform='translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0) rotate('+deg.toFixed(2)+'deg)';
+    cardMidX=ox;
+    var dA=ropeD(VL), dB=ropeD(VR);
+    ropeL.setAttribute('d',dA); ropeR.setAttribute('d',dB);
+    hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
+    if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }
   }
 
   // 指针速度（平滑后归一化到 0~1）：拖拽时摆角弹簧的软硬就看它
   function trackPointer(dt){
-    if(dragging && pointerX !== null && pointerY !== null){
-      var dx = pointerX - pPX, dy = pointerY - pPY;
-      var v = Math.sqrt(dx * dx + dy * dy) / (dt > 0.004 ? dt : 0.004);
-      pSpd += (v - pSpd) * 0.45;
+    if(dragging&&pointerX!==null&&pointerY!==null){
+      var dx=pointerX-pPX, dy=pointerY-pPY;
+      var v=Math.sqrt(dx*dx+dy*dy)/(dt>0.004?dt:0.004);
+      pSpd+=(v-pSpd)*0.45;
     } else {
-      pSpd = 0;
+      pSpd=0;
     }
-    pPX = pointerX === null ? 0 : pointerX;
-    pPY = pointerY === null ? 0 : pointerY;
-    pSpdN = pSpd / 900;
-    if(pSpdN > 1) pSpdN = 1;
+    pPX=pointerX===null?0:pointerX;
+    pPY=pointerY===null?0:pointerY;
+    pSpdN=pSpd/900;
+    if(pSpdN>1) pSpdN=1;
   }
 
   function frame(ts){
-    if(!stage.isConnected){ raf = 0; return; }
-    raf = requestAnimationFrame(frame);
+    if(!splash.isConnected){ raf=0; return; }
+    raf=requestAnimationFrame(frame);
     if(!ready) return;
 
-    var now = ts || performance.now();
-    var dt = lastT ? Math.min(0.04, (now - lastT) / 1000) : 0.016;
-    lastT = now;
-    if(!(dt > 0)) return;
+    var now=(ts||performance.now());
+    var dt=lastT?Math.min(0.04,(now-lastT)/1000):0.016;
+    lastT=now;
+    if(!(dt>0)) return;
 
-    // 滚动惯性：绳子把卡片吊住了，纵向几乎动不了，所以把滚动速度的"突变"
-    // 换算成横向冲击——开始滚时甩出去，停下时回弹，匀速滚动时归零
-    var sy2 = window.scrollY;
-    var rawV = (sy2 - scrollPrev) * 60;      // px/s（按 60fps 估计）
-    scrollPrev = sy2;
-    var sAcc = (rawV - sv) * 60;             // px/s²：开始滚为正，停下为负
-    sv = rawV;
-    var swT = -sAcc * 0.024 - rawV * 0.26;
-    if(swT > 420) swT = 420; else if(swT < -420) swT = -420;
-    scrollW += (swT - scrollW) * 0.35;
-    var iT = -sAcc * 0.004;
-    if(iT > 320) iT = 320; else if(iT < -320) iT = -320;
-    inertY += (iT - inertY) * 0.3;
-
-    // 鼠标停在工牌上时那阵缓慢的气流（离开后慢慢散掉），先算它再算风
     updateHover(dt);
-    updateWind(dt, now);
-    // 指针速度：手快的时候摆角弹簧要硬（跟手），手停住的时候就该软下来慢慢扶正
+    updateWind(dt,now);
     trackPointer(dt);
     // 固定小步长积分：任何掉帧都拆成 ≤5ms 的子步，物理不会因为帧率变化而抖
-    var n = Math.max(1, Math.ceil(dt / 0.005)), h = dt / n;
-    for(var s = 0; s < n; s++) stepOnce(h);
+    var n=Math.max(1,Math.ceil(dt/0.005)), h=dt/n;
+    for(var s=0;s<n;s++) stepOnce(h);
     render();
   }
 
-  window.addEventListener('pointermove', function(e){
-    if(e.pointerType === 'touch') return;
-    pointerX = e.clientX; pointerY = e.clientY;
-  }, {passive:true});
+  if(card){
+    window.addEventListener('pointermove',function(e){
+      if(e.pointerType==='touch'||dragging) return;
+      pointerX=e.clientX; pointerY=e.clientY;
+    },{passive:true});
+    window.addEventListener('pointerleave',function(){ if(!dragging) pointerX=null; },{passive:true});
 
-  // 只有指针真的落在工牌上才进入"强交互"状态
-  card.addEventListener('pointerenter', function(e){
-    hover = true;
-    if(e.clientX !== undefined){ pointerX = e.clientX; pointerY = e.clientY; }
-  });
-  card.addEventListener('pointerleave', function(){ hover = false; hoverOutT = performance.now(); });
-  window.addEventListener('pointerleave', function(){ if(!dragging) pointerX = null; }, {passive:true});
+    card.addEventListener('pointerenter',function(e){
+      hover=true;
+      if(e.clientX!==undefined) pointerX=e.clientX;
+    });
+    card.addEventListener('pointerleave',function(){ hover=false; hoverOutT=performance.now(); });
 
-  card.addEventListener('pointerdown', function(e){
-    if(reduce) return;
-    dragging = true;
-    measure();
-    pointerX = e.clientX; pointerY = e.clientY;
-    dragSX = e.clientX - stageOX; dragSY = e.clientY - stageOY;
-    // 相对拖拽的基准：挂点原地不动，接住残留速度，指针速度从 0 起算
-    dragPX = px; dragPY = py;
-    catchVX = vx; catchVY = vy; catchT = 0;
-    pPX = e.clientX; pPY = e.clientY; pSpd = 0; pSpdN = 0;
-    // 记下抓在卡片的哪个局部位置（相对挂点，沿卡片横轴 / 纵轴）
-    var ux = Math.sin(th), uy = Math.cos(th), rx = uy, ry = -ux;
-    var dx = (e.clientX - stageOX) - px, dy = (e.clientY - stageOY) - py;
-    grabX = dx * rx + dy * ry;
-    grabY = dx * ux + dy * uy;
-    // 纵轴要以重心 D 为中心，否则下半张卡片的抓点会被压到重心附近，力臂被吃掉
-    var hw = W / 2 + 22, hh = H / 2 + 22;
-    grabX = grabX < -hw ? -hw : (grabX > hw ? hw : grabX);
-    var gy0 = D - hh, gy1 = D + hh;
-    grabY = grabY < gy0 ? gy0 : (grabY > gy1 ? gy1 : grabY);
-    // 抓点相对挂点的世界偏移（按下这一刻），拖拽时用它补偿摆角变化
-    grabOX = grabX * uy + grabY * ux;
-    grabOY = grabX * -ux + grabY * uy;
-    lastT = performance.now();
-    try{ card.setPointerCapture(e.pointerId); }catch(_){}
-  });
-
-  card.addEventListener('pointermove', function(e){
-    if(!dragging) return;
-    pointerX = e.clientX; pointerY = e.clientY;
-  });
-
-  function endDrag(){
-    if(!dragging) return;
-    dragging = false;
-    // 削掉过大残留速度，剩下的交给物理：绳长回收 + 摆动
-    if(vx > 1400) vx = 1400; else if(vx < -1400) vx = -1400;
-    if(vy > 1400) vy = 1400; else if(vy < -1400) vy = -1400;
-    if(om > 7) om = 7; else if(om < -7) om = -7;
-  }
-  card.addEventListener('pointerup', endDrag);
-  card.addEventListener('pointercancel', endDrag);
-  card.addEventListener('lostpointercapture', endDrag);
-
-  // 卡片可用键盘左右推动，保留可访问性
-  card.tabIndex = 0;
-  card.addEventListener('keydown', function(e){
-    if(reduce) return;
-    if(e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
+    card.addEventListener('pointerdown',function(e){
+      if(reduce) return;
       e.preventDefault();
-      vx += (e.key === 'ArrowLeft' ? -1 : 1) * 280;
+      dragging=true;
+      card.classList.add('is-drag');
+      pointerX=e.clientX; pointerY=e.clientY;
+      dragSX=e.clientX; dragSY=e.clientY;   // 拖拽起点，用来算这一段手势的方向
+      // 相对拖拽的基准：挂点原地不动，接住残留速度，指针速度从 0 起算
+      dragPX=px; dragPY=py;
+      catchVX=vx; catchVY=vy; catchT=0;
+      pPX=e.clientX; pPY=e.clientY; pSpd=0; pSpdN=0;
+      // 记下抓在卡片的哪个局部位置（相对挂点，沿卡片横轴 / 纵轴）
+      var ux=Math.sin(th), uy=Math.cos(th), rx=uy, ry=-ux;
+      var dx=e.clientX-px, dy=e.clientY-py;
+      grabX=dx*rx+dy*ry;
+      grabY=dx*ux+dy*uy;
+      // 钳到卡片外扩 22px 的范围。纵轴要以重心 D 为中心，否则下半张卡片
+      // 的抓点会被压到重心附近，力臂被吃掉，四个角就分不出手感了。
+      var hw=W/2+22, hh=H/2+22;
+      grabX=grabX<-hw?-hw:(grabX>hw?hw:grabX);
+      var gy0=D-hh, gy1=D+hh;
+      grabY=grabY<gy0?gy0:(grabY>gy1?gy1:grabY);
+      // 抓点相对挂点的世界偏移（按下这一刻），拖拽时用它补偿摆角变化
+      grabOX=grabX*uy+grabY*ux;
+      grabOY=grabX*-ux+grabY*uy;
+      lastT=performance.now();
+      try{ card.setPointerCapture(e.pointerId); }catch(_){}
+    });
+    card.addEventListener('pointermove',function(e){
+      if(!dragging) return;
+      pointerX=e.clientX; pointerY=e.clientY;
+    });
+    function endDrag(){
+      if(!dragging) return;
+      dragging=false;
+      card.classList.remove('is-drag');
+      // 削掉过大残留速度，剩下的交给物理：绳长回收 + 摆动
+      if(vx>1400) vx=1400; else if(vx<-1400) vx=-1400;
+      if(vy>1400) vy=1400; else if(vy<-1400) vy=-1400;
+      if(om>7) om=7; else if(om<-7) om=-7;
+    }
+    card.addEventListener('pointerup',endDrag);
+    card.addEventListener('pointercancel',endDrag);
+    card.addEventListener('lostpointercapture',endDrag);
+
+    var rt=0;
+    window.addEventListener('resize',function(){
+      clearTimeout(rt);
+      rt=setTimeout(function(){ build(); },160);
+    },{passive:true});
+
+    build();
+    // 头像没加载完时卡片高度是错的，据此量出来的绳长会差一截，所以图片就绪后重建；
+    // 卡片尺寸因字体/图片变化时也重建，保证绳长始终对得上
+    var ph=card.querySelector('img');
+    if(ph&&!ph.complete) ph.addEventListener('load',function(){ build(); },{once:true});
+    if(document.readyState!=='complete') window.addEventListener('load',function(){ build(); },{once:true});
+    if(window.ResizeObserver){
+      var lw=card.offsetWidth, lh=card.offsetHeight, rot=0;
+      new ResizeObserver(function(){
+        var w2=card.offsetWidth, h2=card.offsetHeight;
+        if(w2===lw&&h2===lh) return;
+        lw=w2; lh=h2;
+        clearTimeout(rot);
+        rot=setTimeout(function(){ build(); },40);
+      }).observe(card);
+    }
+    if(!reduce) raf=requestAnimationFrame(frame);
+  }
+
+  // 开屏即主页：不再有「进入」这一步，保留空函数让遗留手势不报错
+  function enter(){}
+
+  document.addEventListener('keydown', function(e){
+    var t=e.target;
+    if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
+    // 抽屉打开时按键只归抽屉管（Esc 关抽屉），不能让「按任意键进入」抢走
+    if(document.body.classList.contains('ab-open')) return;
+    if(e.key==='Enter'||e.key===' '||e.key==='Escape'){
+      if(!splash.classList.contains('hide')){ e.preventDefault(); enter(); }
     }
   });
-
-  var rt = 0;
-  window.addEventListener('resize', function(){
-    clearTimeout(rt);
-    rt = setTimeout(function(){ build(); }, 160);
-  }, {passive:true});
-
-  window.addEventListener('scroll', function(){ measure(); }, {passive:true});
-
-  window.addEventListener('load', function(){
-    if(ready && Math.abs(card.offsetHeight - curH) > 4) build();
-  });
-
-  build();
-  // 头像没加载完时卡片高度是错的，据此算出来的绳长也会差一截，所以图片就绪后重建
-  var ph = card.querySelector('img');
-  if(ph && !ph.complete) ph.addEventListener('load', function(){ build(); }, {once:true});
-  if(window.ResizeObserver){
-    var lw = card.offsetWidth, lh = card.offsetHeight, ro = 0;
-    new ResizeObserver(function(){
-      var w2 = card.offsetWidth, h2 = card.offsetHeight;
-      if(w2 === lw && h2 === lh) return;
-      lw = w2; lh = h2;
-      clearTimeout(ro);
-      ro = setTimeout(function(){ build(); }, 40);
-    }).observe(card);
-  }
-  if(!reduce) raf = requestAnimationFrame(frame);
+  // 向左滑动直接进入首页：等效点击「进入我的世界」，不加任何提示文案。
+  // 工牌所在的 .badge-card 是可拖拽的摆锤区，手势在那里不参与，避免和拖拽抢事件。
+  (function(){
+    var sp=document.getElementById('splash');
+    if(!sp) return;
+    var sx=0, sy=0, st=0, on=false;
+    function inCard(t){ return !!(t && t.closest && t.closest('.badge-card')); }
+    sp.addEventListener('touchstart', function(e){
+      if(sp.classList.contains('hide')||e.touches.length!==1||inCard(e.target)) return;
+      on=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
+    }, {passive:true});
+    sp.addEventListener('touchend', function(e){
+      if(!on) return; on=false;
+      if(sp.classList.contains('hide')) return;
+      var t=e.changedTouches[0]; if(!t) return;
+      var dx=t.clientX-sx, dy=t.clientY-sy;
+      if(Date.now()-st>700) return;
+      if(dx<=-70 && Math.abs(dx)>Math.abs(dy)*1.3) enter();
+    }, {passive:true});
+    sp.addEventListener('touchcancel', function(){ on=false; }, {passive:true});
+    // 触摸板横向双指滑动同样算「向左滑」，阈值略高避免误触
+    sp.addEventListener('wheel', function(e){
+      if(sp.classList.contains('hide')) return;
+      if(inCard(e.target)) return;
+      if(e.deltaX<=-60 && Math.abs(e.deltaX)>Math.abs(e.deltaY)*1.5) enter();
+    }, {passive:true});
+  })();
 })();
 
 // ---- SolYoung Studio / SolHub entries are static, URLs hardcoded in HTML ----

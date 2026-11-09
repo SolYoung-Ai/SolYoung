@@ -655,3 +655,13 @@ html[data-theme="dark"] .hp-tab.on,html[data-theme="dark"] .pj-tab.on{background
   .hp-tab,.pj-tab{padding:7px 13px !important;font-size:11.5px !important;white-space:nowrap}
   nav.nav + main,header.hd + main,header.top + main{padding-top:70px}
 }
+
+/* =============================================================
+   首页＝开屏：让橙白渐变透出来，抽屉页脚放主题/语言
+   ============================================================= */
+.splash{background:transparent !important}
+.dr-tools{display:flex;align-items:center;gap:8px}
+.dr-tools .theme-btn{width:34px !important;height:34px !important}
+.dr-tools .theme-btn svg{width:15px !important;height:15px !important}
+.dr-tools .lang-btn{min-width:38px !important;padding:0 10px !important;font-size:10px !important}
+.dr-foot{align-items:center}
