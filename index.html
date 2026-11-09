@@ -7,7 +7,7 @@
 <meta name="description" content="SolYoung，一个持续更新的个人世界。影像、AI、数字产品与内容创作，记录正在建造的东西，也记录尚未完成的想法。">
 <link rel="icon" type="image/png" href="assets/avatar-favicon.png">
 <link rel="apple-touch-icon" href="assets/avatar-favicon.png">
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap">
 <style>
 /* ============ Design Tokens ============ */
 :root{
@@ -26,9 +26,10 @@
   --shadow-rest:0 1px 2px rgba(20,15,5,.04),0 4px 12px -8px rgba(20,15,5,.12);
   --shadow-hover:0 6px 12px rgba(20,15,5,.08),0 32px 64px -20px rgba(232,112,40,.35),0 20px 48px -16px rgba(20,15,5,.32);
   --lift:translateY(-14px) scale(1.03);
-  --font-display:'Archivo','Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
-  --font-serif:'Noto Serif SC','Songti SC','STSong','SimSun','Noto Serif CJK SC','Source Han Serif SC',Georgia,serif;
-  --font-body:'Noto Sans SC',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  --font-ios:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue','Segoe UI',Roboto,'PingFang SC','Hiragino Sans GB','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif;
+  --font-display:var(--font-ios);
+  --font-serif:var(--font-ios);
+  --font-body:var(--font-ios);
 }
 :root[data-theme="dark"]{
   --bg:#121212;
@@ -933,7 +934,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 
 .ab-eyebrow{font-family:var(--font-display);font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:rgba(20,15,5,.5)}
 .ab-body{margin-top:24px}
-.ab-body p{font-family:var(--font-serif);font-size:14px;line-height:1.98;color:rgba(20,15,5,.85);letter-spacing:.01em}
+.ab-body p{font-family:var(--font-serif);font-size:14.5px;line-height:1.85;color:rgba(24,24,22,.87);letter-spacing:.01em}
 .ab-body p+p{margin-top:15px}
 
 .ab-contact{margin-top:clamp(28px,3.6vw,38px);padding-top:clamp(22px,2.8vw,28px);border-top:1px solid rgba(20,15,5,.1)}
@@ -990,7 +991,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   #splash .badge-tagline{font-size:6px;letter-spacing:0}
   .sp-about{font-size:9px;letter-spacing:.18em;padding:6px 13px 6px 11px;gap:7px}
   .ab-panel{width:min(90vw,372px)}
-  .ab-body p{font-size:13.5px;line-height:1.95}
+  .ab-body p{font-size:14px;line-height:1.8}
   .sp-tr{letter-spacing:.12em;white-space:nowrap}
   .sp-stage{width:100%}
   #splash .badge-card{width:min(86vw,300px,42vh)}
@@ -2045,7 +2046,7 @@ html,body{overscroll-behavior-x:none}
       console.log('%c🎮 欢迎来到 SolYoung 的世界。把人生，当成一场游戏来经营。','color:#E87028;font-size:14px;font-weight:bold');
       var badge=document.createElement('div');
       badge.textContent='PLAYER 1';
-      badge.style.cssText='position:fixed;bottom:24px;left:24px;z-index:300;font-family:Archivo,sans-serif;font-size:10px;letter-spacing:.18em;font-weight:700;color:#E87028;border:1px solid #E87028;padding:6px 12px;border-radius:2px;background:rgba(250,247,240,.9);backdrop-filter:blur(6px);opacity:0;transition:opacity .4s,transform .4s;transform:translateY(8px)';
+      badge.style.cssText='position:fixed;bottom:24px;left:24px;z-index:300;font-family:-apple-system,'PingFang SC',sans-serif;font-size:10px;letter-spacing:.18em;font-weight:700;color:#E87028;border:1px solid #E87028;padding:6px 12px;border-radius:2px;background:rgba(250,247,240,.9);backdrop-filter:blur(6px);opacity:0;transition:opacity .4s,transform .4s;transform:translateY(8px)';
       document.body.appendChild(badge);
       requestAnimationFrame(function(){badge.style.opacity='1';badge.style.transform='none';});
       setTimeout(function(){badge.style.opacity='0';badge.style.transform='translateY(8px)';setTimeout(function(){badge.remove();},500);},2600);
