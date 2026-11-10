@@ -1,5 +1,85 @@
 [
   {
+    "id": "major-2026-11-10-1203-e8fb4a",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "主站：全站改版为 iOS 液态玻璃风格，开场页直接就是主页——单屏不滚动、一眼看完，其余页面（项目/构建/关于/博客）统一从左侧抽屉进入，抽屉里补上首页入口，并去掉「进入我的世界」；字体换成 iOS 系统字体（SF Pro / 苹方），告别宋体。手机端关于我与抽屉面板改为上下贴边可滚动，联系弹窗补回彩色社交图标、撤下 YouTube。",
+    "content_en": "Main site: full redesign in an iOS liquid-glass style — the opening screen is now the homepage itself (single screen, no scrolling), every other page (works/builds/about/blog) is reached from a left drawer that now includes a home entry, and the \"enter my world\" link is gone; typography switches to the iOS system stack (SF Pro / PingFang) instead of serif. On mobile the about/drawer panels stick to the viewport edges and scroll, and the contact dialog regains colored social icons with YouTube removed.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-f81327",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：创作流程重做为「创作入口 → 确认需求 → 设计方案 → 编辑器」四步——确认需求时产品描述交给 AI 理解，委托商/生产商/地址/许可证/执行标准等生产信息单独成卡且不会被编造；方案页一次生成三张设计稿，可只重生成其中一张；步骤条可随时回看前几步，回看不重复扣积分，开始设计一律进入全新草稿、旧稿留在草稿箱。",
+    "content_en": "LunaSol: the creation flow is rebuilt into four steps — entry → confirm brief → design concepts → editor. Product copy goes to the AI while production info (client, manufacturer, address, license, standard) sits on its own card and is never invented; the concept page generates three designs at once with per-item regeneration; the step bar lets you revisit earlier steps without double-charging credits, and every new design starts from a fresh draft while old ones stay in the draft box.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-f34c1c",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：编辑器左栏三大基础功能落地——文字（5 个预设、9 种字体、字号字重对齐、行距字距、字色、双色渐变、弧形弯曲）、素材（自建 40+ 矢量形状/图标/纹样库，支持搜索、换色与「我的素材」）、上传（拖放或点选即自动转成 PNG 入素材库并上画布，尺寸不越界）；左栏随工具切换面板，六个工具按钮全部可用。",
+    "content_en": "LunaSol: the editor's left rail now ships its three core tools — Text (5 presets, 9 fonts, size/weight alignment, line and letter spacing, color, two-tone gradient, arc bending), Assets (a built-in library of 40+ vector shapes, icons and patterns with search, recoloring and My Assets), and Upload (drag or pick a file, auto-rasterized to PNG, added to the library and placed on canvas within bounds); the rail switches panels per tool and all six tool buttons now work.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-12dd63",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "SolHub：全站换成 iOS 液态玻璃视觉体系——卡片、输入框、按钮、徽章全部玻璃化，页面底层铺橙/蓝/粉/薄荷四色光场（深浅主题各一套），弹窗与搜索浮层用厚玻璃、登录页大卡片更透且带 iOS 分段控件；圆角统一到 iOS 档位，长列表改用斜向高光代替整片模糊，滚动不再掉帧。",
+    "content_en": "SolHub: site-wide switch to an iOS liquid-glass visual system — cards, inputs, buttons and badges all glassy, with an orange/blue/pink/mint color field behind every page (one set per theme), thick glass for dialogs and search overlays, a more transparent login card with iOS segmented controls, iOS-grade corner radii, and diagonal highlights instead of full blur on long lists so scrolling no longer stutters.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-b8d2d2",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：账户信息合并为唯一入口——账户页、头像菜单与 Luna 桌面侧栏统一为 iOS 液态玻璃，积分、帮助、审美市场同套皮肤；帮助内容按新的四步创作流程重写。",
+    "content_en": "LunaSol: account info is unified behind a single entry — account page, avatar menu and the Luna desktop sidebar all move to iOS liquid glass, along with credits, help and the aesthetic market; help content is rewritten around the new four-step creation flow.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-47b120",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "SolHub：Skill 库教程改为「把链接发给 Agent」——卡片新增一键复制 raw 直链，四步完成：挑一个 → 复制链接 → 粘给助手说「安装这个技能」→ 用时在对话里选中它；覆盖 WorkBuddy / 豆包 / ChatGPT / Claude / Codex / Cursor / 通义千问，原「下载文件再拖文件夹上传」的流程下线，另加豆包零基础路线与 MCP 常见误区。",
+    "content_en": "SolHub: the Skill library tutorial now teaches \"send the link to your agent\" — every card has a one-click copy of its raw SKILL.md link, and four steps get you there: pick one → copy link → tell your assistant to install it → select it in chat. Covers WorkBuddy / Doubao / ChatGPT / Claude / Codex / Cursor / Qwen, replaces the old download-and-upload-folder flow, and adds a zero-basics Doubao track plus common MCP pitfalls.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-c1615f",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "SolHub：支持把站点「装到桌面」——装完是独立窗口的应用，桌面或程序坞有自己的图标、不占浏览器标签、断网也能打开看过的页面，站内更新后自动生效；带同款玻璃风的离线页与 Skill 库 / 世界 / 提交三个快捷方式，深浅与语言按钮旁新增下载按钮，无法一键安装时按 Windows / macOS / iPhone 给分步引导。",
+    "content_en": "SolHub: the site can now be installed to your desktop — it opens in its own window with its own icon on the dock or desktop, no browser tab, offline access to pages you've visited, and automatic updates; it ships a matching glass offline page, shortcuts to Skill library / World / Submit, a download button next to the theme and language toggles, and per-platform install steps for Windows, macOS and iPhone.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-9f37be",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "SolHub：Skill 榜单改为按真实热度排序——0.75×仓库 Star（对数并按入榜区间归一）+ 0.25×推送新鲜度 + 官方来源加分，卡片显示名次徽标与火焰热度（悬停看算法），数据不足时软化降级不再直接空榜；候选改为按仓库轮流取样，避免单个聚合仓霸榜；顺带修掉下拉箭头被大圆角切掉的问题。",
+    "content_en": "SolHub: the Skill leaderboard now ranks by real heat — 0.75×repo stars (log-scale, normalized over the ranked set) + 0.25×push freshness + an official-source bonus, with rank badges and a flame score (hover for the formula) and graceful degradation instead of an empty board; candidates are sampled round-robin across repos so one aggregator can't dominate, and the clipped dropdown arrow is fixed.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-a2bad4",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：修掉整页白屏——旧草稿缺少新的主题色字段、以及导入旧版备份文件都不再崩溃；发版后旧缓存指向已删除的 JS 时加了内联启动兜底，不再纯白页；登录框也不再弹出 SDK 的英文原始报错。Luna：空白「新对话」不再堆满列表，首次发消息才真正创建会话，云端与本地同步时会自动清掉空壳，草稿里选的生图档位会带进新会话。",
+    "content_en": "LunaSol: whole-page white screens are fixed — old drafts missing the new theme-color field and imports of legacy backups no longer crash the app, an inline boot fallback prevents blank pages when stale caches point at deleted JS after a release, and the login dialog stops leaking raw English SDK errors. Luna: empty \"new chat\" sessions no longer pile up — a conversation is only created when you send the first message, shells are filtered out on local/cloud sync, and the image tier picked in a draft carries into the new chat.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-10-1203-3b22cf",
+    "date": "2026-11-10T12:03:32+08:00",
+    "type": "BUILD",
+    "content": "SolHub：新增赞助商招商页（含英文版）——头图 1200 / 列表 600 / 社区 300 三档权益价格公开，三种展示形态示例卡、四步合作流程、收录与不收录的审核标准、FAQ 与素材清单齐全；侧栏「创作者」之后与页脚「关于」菜单均已接入，数字只用可核验的 Skill 索引量、付费位数与人工审核比例。",
+    "content_en": "SolHub: a new sponsorship page (with an English version) — three public tiers at 1200 / 600 / 300, three display-format sample cards, a four-step process, clear accept/reject criteria, FAQ and an asset checklist; linked from the sidebar after Creators and from the footer About menu, quoting only verifiable numbers such as indexed Skills, paid slots and manual review ratio.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-09-1203-1297ed",
     "date": "2026-11-09T12:03:33+08:00",
     "type": "BUILD",
