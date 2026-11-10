@@ -37,12 +37,74 @@ html.xbar-closed .hd{top:0}
 .xlink{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);transition:color .3s;white-space:nowrap}
 .xlink .xlogo{color:#1d9bf0;display:inline-flex}
 .xlink:hover{color:var(--accent)}
-.hero{padding:88px 0 0}
+.hero{padding:52px 0 0}
+/* ---------- 产品轮播条 ---------- */
+.pv{margin:0}
+.pv-rail{
+  position:relative;
+  overflow-x:auto;overflow-y:hidden;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;-ms-overflow-style:none;
+  cursor:grab;
+  padding:10px 0 20px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 20px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 20px),transparent 100%);
+}
+.pv-rail::-webkit-scrollbar{display:none}
+.pv-rail.dragging{cursor:grabbing;scroll-behavior:auto}
+.pv-rail.dragging .pv-item{pointer-events:none}
+.pv-track{display:flex;align-items:stretch;gap:9px;width:max-content}
+.pv-item{
+  display:inline-flex;flex-direction:column;align-items:center;gap:7px;
+  flex:0 0 auto;
+  min-width:86px;
+  padding:11px 10px 9px;
+  border-radius:20px;
+  background:var(--glass-strong);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+  box-shadow:
+    inset 0 0 0 1px rgba(28,20,12,.055),
+    0 2px 5px -2px rgba(40,26,12,.10),
+    0 14px 28px -20px rgba(40,26,12,.4);
+  transition:transform .42s var(--ios-spring),box-shadow .42s var(--ios-ease),background .3s;
+}
+.pv-item:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 0 0 1px rgba(28,20,12,.075),
+    0 4px 10px -4px rgba(40,26,12,.14),
+    0 24px 44px -22px rgba(40,26,12,.46);
+}
+.pv-logo{
+  width:66px;height:46px;flex:0 0 46px;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .42s var(--ios-spring);
+}
+.pv-name{
+  display:flex;align-items:center;justify-content:center;
+  height:2.5em;overflow:hidden;
+  font-family:var(--font-display);
+  font-size:11.5px;font-weight:600;letter-spacing:-.005em;
+  line-height:1.25;text-align:center;
+  color:var(--ink-soft);
+  transition:color .3s;
+}
+.pv-item:hover .pv-logo{transform:scale(1.06)}
+.pv-logo img{
+  width:100%;height:100%;display:block;
+  object-fit:contain;
+  mix-blend-mode:multiply;      /* 白底 logo 的白边融进背景，图案撑满 */
+}
+html[data-theme="dark"] .pv-logo{border-radius:11px;background:#fff;overflow:hidden}
+html[data-theme="dark"] .pv-logo img{mix-blend-mode:normal;object-fit:cover;padding:0}
+.pv-item:hover .pv-name{color:var(--accent)}
 .kicker{font-family:var(--font-display);font-size:11px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase}
 h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(46px,9vw,82px);margin:14px 0 18px;letter-spacing:-.02em;line-height:.95}
 h1 .accent{color:var(--accent)}
 .sub{color:var(--ink-soft);font-size:15px;line-height:1.9;max-width:640px;margin:0}
-.tl{margin-top:54px}
+.tl{margin-top:26px}
 .tl-year{display:flex;align-items:center;gap:14px;margin:6px 0 4px}
 .tl-year-num{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.1em;color:var(--ink)}
 .tl-year-line{flex:1;height:1px;background:var(--line)}
@@ -86,7 +148,7 @@ h1 .accent{color:var(--accent)}
 html:not(.xbar-closed) .hd{top:36px}
 html.xbar-closed .xbar{display:none}
 @media(max-width:600px){.xbar-follow{display:none}.xbar-text{font-size:12px}.hd-r{gap:10px}.back,.xlink{font-size:10px}}
-@media(max-width:720px){.hero{padding:56px 0 0}.now-body{font-size:15px}}
+@media(max-width:720px){.hero{padding:30px 0 0}.now-body{font-size:15px}.pv-item{min-width:74px;padding:9px 7px 7px;border-radius:17px;gap:6px}.pv-logo{width:60px;height:38px;flex:0 0 38px}.pv-name{font-size:10.5px;max-width:78px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.now-item{opacity:1;transform:none}}
 </style>
 <link rel="stylesheet" href="../assets/ios.css">
@@ -132,7 +194,11 @@ html.xbar-closed .xbar{display:none}
 
 <main class="container">
   <section class="hero">
-    <h1>BUILD <span class="accent">·</span> 正在发生</h1>
+    <div class="pv">
+      <div class="pv-rail" id="prRail" role="region" aria-label="我的产品" tabindex="0">
+        <div class="pv-track" id="prTrack"></div>
+      </div>
+    </div>
   </section>
 
   <section class="tl" id="timeline" aria-live="polite"></section>
@@ -221,6 +287,130 @@ html.xbar-closed .xbar{display:none}
     });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') lb.classList.remove('open'); });
   }
+})();
+</script>
+
+<script>
+/* 产品轮播条：9 个产品 logo，无缝自动横移，可拖拽/滑动，悬停暂停 */
+(function(){
+  var rail = document.getElementById('prRail');
+  var track = document.getElementById('prTrack');
+  if(!rail || !track) return;
+
+  var P = [
+    {n:'LunaSol',         s:'lunasol',         f:'lunasol.png'},
+    {n:'My.OS',           s:'myos',            f:'myos.png'},
+    {n:'Verity',          s:'verity',          f:'verity.png'},
+    {n:'CamSim',          s:'camsim',          f:'camsim.png'},
+    {n:'SolClip',         s:'solclip',         f:'solclip.png'},
+    {n:'X Insight',       s:'xinsight',        f:'xinsight.png'},
+    {n:'OFX Atlas',       s:'ofx-atlas',       f:'ofx-atlas.png'},
+    {n:'SolYoung Studio', s:'solyoung-studio', f:'solyoung-studio.png'},
+    {n:'SolYoung',        s:'solyoung',        f:'solyoung.png'}
+  ];
+
+  var BASE = 'https://solhub.solyoung.top/products/';
+  var html = '';
+  for(var i=0;i<P.length;i++){
+    var p = P[i];
+    html += '<a class="pv-item" href="' + BASE + p.s + '/" target="_blank" rel="noopener">' +
+      '<span class="pv-logo"><img src="../assets/products/' + p.f + '" alt="' + p.n + '" width="42" height="42" decoding="async"></span>' +
+      '<span class="pv-name">' + p.n + '</span></a>';
+  }
+  track.innerHTML = html + html;          // 两份，用于无缝回绕
+
+  var half = 0;
+  function measure(){
+    var one = track.scrollWidth / 2;
+    // 一份内容不够宽时再补一份，保证能滚满一个周期
+    if(one < rail.clientWidth + 80){
+      track.innerHTML += html;
+      while(track.scrollWidth / 3 < rail.clientWidth + 80 && track.children.length < P.length * 4){
+        track.innerHTML += html;
+      }
+    }
+    var copies = Math.round(track.children.length / P.length) || 1;
+    half = track.scrollWidth / copies;
+  }
+  measure();
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SPEED = 34;              // px / 秒
+  var paused = false, dragging = false, last = 0, holdUntil = 0;
+  var sx = 0, sl = 0, pos = 0; // pos 是浮点累加器：scrollLeft 只会取整，靠它保住亚像素增量
+
+  function wrap(v){
+    if(half <= 0) return v;
+    while(v >= half) v -= half;
+    while(v < 0) v += half;
+    return v;
+  }
+
+  function frame(t){
+    if(!last) last = t;
+    var dt = Math.min(64, t - last);
+    last = t;
+    if(!reduce && !paused && !dragging && t > holdUntil && half > 0){
+      var cur = rail.scrollLeft;
+      if(Math.abs(cur - pos) > 3) pos = cur;   // 用户手动滚过，接上真实位置
+      pos = wrap(pos + SPEED * dt / 1000);
+      rail.scrollLeft = pos;
+    }else{
+      pos = rail.scrollLeft;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* 悬停暂停（鼠标） */
+  rail.addEventListener('pointerenter', function(e){
+    if(e.pointerType === 'mouse') paused = true;
+  });
+  rail.addEventListener('pointerleave', function(){
+    if(!dragging){ paused = false; last = 0; }
+  });
+
+  /* 拖拽（鼠标 / 触屏以外的指针）；触屏交给原生滚动 */
+  rail.addEventListener('pointerdown', function(e){
+    if(e.pointerType === 'touch'){
+      holdUntil = performance.now() + 2600;
+      paused = false;
+      return;
+    }
+    if(e.button !== 0) return;
+    dragging = true; paused = true;
+    sx = e.clientX; sl = rail.scrollLeft;
+    rail.classList.add('dragging');
+    try{ rail.setPointerCapture(e.pointerId); }catch(err){}
+  });
+  rail.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    var target = sl - (e.clientX - sx);
+    if(half > 0){
+      var max = track.scrollWidth - rail.clientWidth;
+      while(target < 0) target += half;
+      while(target > max) target -= half;
+    }
+    rail.scrollLeft = target;
+  });
+  function endDrag(){
+    if(!dragging) return;
+    dragging = false;
+    rail.classList.remove('dragging');
+    holdUntil = performance.now() + 900;
+  }
+  rail.addEventListener('pointerup', endDrag);
+  rail.addEventListener('pointercancel', endDrag);
+
+  /* 触屏原生滑动结束后，把位置归一到周期内，避免停在周期外卡住 */
+  rail.addEventListener('scroll', function(){
+    if(dragging || half <= 0) return;
+    var max = track.scrollWidth - rail.clientWidth;
+    if(rail.scrollLeft > max - 2 && rail.scrollLeft >= half) rail.scrollLeft -= half;
+  }, {passive:true});
 })();
 </script>
 </body>
