@@ -357,7 +357,7 @@ html[data-theme="dark"] .ct-scrim{background:rgba(0,0,0,.45)}
 .ct-sub{font-size:13px;line-height:1.7;color:var(--ink-soft);margin:2px 0 20px}
 .ct-socials{display:flex;flex-wrap:wrap;gap:8px}
 .ct-socials a,.ct-socials button{
-  display:inline-flex;align-items:center;
+  display:inline-flex;align-items:center;gap:7px;
   padding:9px 16px;border-radius:999px;
   font:inherit;font-size:12px;font-weight:600;letter-spacing:.02em;
   color:var(--ink-soft);
@@ -370,6 +370,7 @@ html[data-theme="dark"] .ct-scrim{background:rgba(0,0,0,.45)}
 html[data-theme="dark"] .ct-socials a,html[data-theme="dark"] .ct-socials button{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1)}
 .ct-socials a:hover,.ct-socials button:hover{transform:translateY(-2px);color:var(--ink);background:#fff;box-shadow:0 10px 22px -12px rgba(40,26,12,.32)}
 html[data-theme="dark"] .ct-socials a:hover,html[data-theme="dark"] .ct-socials button:hover{background:rgba(255,255,255,.14)}
+.ct-socials svg,.ct-socials img{width:14px;height:14px;flex:0 0 14px;display:block}
 body.ct-open{overflow:hidden !important}
 
 /* =============================================================
