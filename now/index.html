@@ -58,7 +58,7 @@ html.xbar-closed .hd{top:0}
 .pv-item{
   display:inline-flex;flex-direction:column;align-items:center;gap:7px;
   flex:0 0 auto;
-  min-width:86px;max-width:104px;
+  min-width:92px;max-width:112px;
   padding:11px 10px 9px;
   border-radius:20px;
   background:var(--glass-strong);
@@ -78,7 +78,7 @@ html.xbar-closed .hd{top:0}
     0 24px 44px -22px rgba(40,26,12,.46);
 }
 .pv-logo{
-  width:66px;height:46px;flex:0 0 46px;
+  width:72px;height:50px;flex:0 0 50px;
   display:flex;align-items:center;justify-content:center;
   transition:transform .42s var(--ios-spring);
 }
@@ -98,8 +98,8 @@ html.xbar-closed .hd{top:0}
   object-fit:contain;
   mix-blend-mode:multiply;      /* 白底 logo 的白边融进背景，图案撑满 */
 }
-html[data-theme="dark"] .pv-logo{border-radius:11px;background:#fff;overflow:hidden}
-html[data-theme="dark"] .pv-logo img{mix-blend-mode:normal;object-fit:cover;padding:0}
+html[data-theme="dark"] .pv-logo{border-radius:11px;background:#fff;overflow:hidden;padding:4px}
+html[data-theme="dark"] .pv-logo img{mix-blend-mode:normal;object-fit:contain}
 .pv-item:hover .pv-name{color:var(--accent)}
 .kicker{font-family:var(--font-display);font-size:11px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase}
 h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(46px,9vw,82px);margin:14px 0 18px;letter-spacing:-.02em;line-height:.95}
@@ -149,7 +149,7 @@ h1 .accent{color:var(--accent)}
 html:not(.xbar-closed) .hd{top:36px}
 html.xbar-closed .xbar{display:none}
 @media(max-width:600px){.xbar-follow{display:none}.xbar-text{font-size:12px}.hd-r{gap:10px}.back,.xlink{font-size:10px}}
-@media(max-width:720px){.hero{padding:30px 0 0}.now-body{font-size:15px}.pv-item{min-width:74px;padding:9px 7px 7px;border-radius:17px;gap:6px}.pv-logo{width:60px;height:38px;flex:0 0 38px}.pv-name{font-size:10.5px;max-width:78px}}
+@media(max-width:720px){.hero{padding:30px 0 0}.now-body{font-size:15px}.pv-item{min-width:78px;padding:9px 7px 7px;border-radius:17px;gap:6px}.pv-logo{width:64px;height:44px;flex:0 0 44px}.pv-name{font-size:10.5px;max-width:82px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.now-item{opacity:1;transform:none}}
 </style>
 <link rel="stylesheet" href="../assets/ios.css">
@@ -299,23 +299,20 @@ html.xbar-closed .xbar{display:none}
   if(!rail || !track) return;
 
   var P = [
-    {n:'LunaSol',         s:'lunasol',         f:'lunasol.png'},
-    {n:'My.OS',           s:'myos',            f:'myos.png'},
-    {n:'Verity',          s:'verity',          f:'verity.png'},
-    {n:'CamSim',          s:'camsim',          f:'camsim.png'},
-    {n:'SolClip',         s:'solclip',         f:'solclip.png'},
-    {n:'X Insight',       s:'xinsight',        f:'xinsight.png'},
-    {n:'OFX Atlas',       s:'ofx-atlas',       f:'ofx-atlas.png'},
-    {n:'SolYoung Studio', s:'solyoung-studio', f:'solyoung-studio.png'},
-    {n:'SolYoung',        s:'solyoung',        f:'solyoung.png'}
+    {n:'SolHub',          f:'solhub',          u:'https://solhub.solyoung.top/'},
+    {n:'My.OS',           f:'myos',            u:'https://myos.solyoung.top/'},
+    {n:'SolYoung Studio', f:'solyoung-studio', u:'https://studio.solyoung.top/'},
+    {n:'Verity',          f:'verity',          u:'https://verity.solyoung.top/'},
+    {n:'CamSim',          f:'camsim',          u:'https://camera.solyoung.top/'},
+    {n:'OFX Atlas',       f:'ofx-atlas',       u:'https://ofx.solyoung.top/'},
+    {n:'LunaSol',         f:'lunasol',         u:'https://luna.solyoung.top/'}
   ];
 
-  var BASE = 'https://solhub.solyoung.top/products/';
   var html = '';
   for(var i=0;i<P.length;i++){
     var p = P[i];
-    html += '<a class="pv-item" href="' + BASE + p.s + '/" target="_blank" rel="noopener">' +
-      '<span class="pv-logo"><img src="../assets/products/' + p.f + '" alt="' + p.n + '" width="42" height="42" decoding="async"></span>' +
+    html += '<a class="pv-item" href="' + p.u + '" target="_blank" rel="noopener">' +
+      '<span class="pv-logo"><img src="../assets/products/' + p.f + '.webp" alt="' + p.n + '" width="72" height="50" decoding="async"></span>' +
       '<span class="pv-name">' + p.n + '</span></a>';
   }
   track.innerHTML = html + html;          // 两份，用于无缝回绕
@@ -341,7 +338,7 @@ html.xbar-closed .xbar{display:none}
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SPEED = 34;              // px / 秒
   var paused = false, dragging = false, last = 0, holdUntil = 0;
-  var sx = 0, sl = 0, pos = 0; // pos 是浮点累加器：scrollLeft 只会取整，靠它保住亚像素增量
+  var sl = 0, pos = 0; // pos 是浮点累加器：scrollLeft 只会取整，靠它保住亚像素增量
 
   function wrap(v){
     if(half <= 0) return v;
@@ -374,7 +371,9 @@ html.xbar-closed .xbar{display:none}
     if(!dragging){ paused = false; last = 0; }
   });
 
-  /* 拖拽（鼠标 / 触屏以外的指针）；触屏交给原生滚动 */
+  /* 拖拽（鼠标）：位移超过 5px 才算拖，否则放行点击。
+     不用 setPointerCapture —— 它会把 click 抢到 rail 上，<a> 收不到，链接就点不动了 */
+  var pressX = 0, pressY = 0, pressing = false, suppressClick = 0;
   rail.addEventListener('pointerdown', function(e){
     if(e.pointerType === 'touch'){
       holdUntil = performance.now() + 2600;
@@ -382,14 +381,19 @@ html.xbar-closed .xbar{display:none}
       return;
     }
     if(e.button !== 0) return;
-    dragging = true; paused = true;
-    sx = e.clientX; sl = rail.scrollLeft;
-    rail.classList.add('dragging');
-    try{ rail.setPointerCapture(e.pointerId); }catch(err){}
+    pressing = true;
+    pressX = e.clientX; pressY = e.clientY;
+    sl = rail.scrollLeft;
+    paused = true;
   });
-  rail.addEventListener('pointermove', function(e){
-    if(!dragging) return;
-    var target = sl - (e.clientX - sx);
+  document.addEventListener('pointermove', function(e){
+    if(!pressing || e.pointerType === 'touch') return;
+    if(!dragging){
+      if(Math.abs(e.clientX - pressX) < 5 && Math.abs(e.clientY - pressY) < 5) return;
+      dragging = true;
+      rail.classList.add('dragging');
+    }
+    var target = sl - (e.clientX - pressX);
     if(half > 0){
       var max = track.scrollWidth - rail.clientWidth;
       while(target < 0) target += half;
@@ -398,13 +402,21 @@ html.xbar-closed .xbar{display:none}
     rail.scrollLeft = target;
   });
   function endDrag(){
-    if(!dragging) return;
-    dragging = false;
-    rail.classList.remove('dragging');
-    holdUntil = performance.now() + 900;
+    pressing = false;
+    if(dragging){
+      dragging = false;
+      rail.classList.remove('dragging');
+      holdUntil = performance.now() + 900;
+      suppressClick = performance.now() + 160;   // 拖完这一下别当点击
+    }
+    last = 0;
+    paused = rail.matches && rail.matches(':hover');
   }
-  rail.addEventListener('pointerup', endDrag);
-  rail.addEventListener('pointercancel', endDrag);
+  document.addEventListener('pointerup', endDrag);
+  document.addEventListener('pointercancel', endDrag);
+  rail.addEventListener('click', function(e){
+    if(performance.now() < suppressClick){ e.preventDefault(); e.stopPropagation(); }
+  }, true);
 
   /* 触屏原生滑动结束后，把位置归一到周期内，避免停在周期外卡住 */
   rail.addEventListener('scroll', function(){
