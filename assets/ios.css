@@ -445,6 +445,9 @@ html[data-theme="dark"] .qr-tab.active{background:rgba(255,255,255,.16);box-shad
   border:1px solid var(--glass-edge);
   background:#fff;
 }
+/* 子页面没有首页那段内联 CSS，这两个必须在这里给（否则两个码会同时显示） */
+.qr-pane{display:none}
+.qr-pane.active{display:block}
 .qr-card .qr-t{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin:13px 0 3px}
 .qr-card .qr-s{font-size:12.5px;color:var(--ink-soft)}
 
