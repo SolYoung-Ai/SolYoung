@@ -467,25 +467,31 @@ html[data-theme="dark"] .qr-tab.active{background:rgba(255,255,255,.16);box-shad
 
 .ab-panel{
   position:fixed;z-index:10000;
-  left:14px !important;top:14px !important;bottom:auto !important;
-  max-height:calc(100vh - 28px);
-  max-height:calc(100dvh - 28px);
-  width:min(452px,calc(100vw - 44px)) !important;
-  max-width:calc(100vw - 44px) !important;
+  left:50% !important;top:50% !important;bottom:auto !important;right:auto !important;
+  margin:0 !important;
+  width:min(560px,calc(100vw - 36px)) !important;
+  max-width:calc(100vw - 36px) !important;
+  max-height:min(82vh,760px);
+  max-height:min(82dvh,760px);
   display:flex;flex-direction:column;
   overflow:hidden;
-  border:none !important;
-  border-radius:34px !important;
+  border:1px solid var(--glass-edge) !important;
+  border-radius:32px !important;
   background:var(--glass-strong) !important;
   backdrop-filter:var(--glass-blur);
   -webkit-backdrop-filter:var(--glass-blur);
-  box-shadow:0 40px 100px -36px rgba(40,26,12,.5),var(--glass-inner) !important;
-  transform:translateX(calc(-100% - 28px)) !important;
+  box-shadow:0 50px 120px -46px rgba(40,26,12,.55),var(--glass-inner) !important;
+  transform:translate(-50%,-50%) scale(.94) !important;
+  opacity:0;
   visibility:hidden;
-  transition:transform .62s var(--ios-ease),visibility 0s linear .62s;
+  transition:transform .56s var(--ios-ease),opacity .34s var(--ios-ease),visibility 0s linear .56s;
 }
-.ab-panel.open{transform:none !important;visibility:visible;transition:transform .62s var(--ios-ease),visibility 0s}
-html[data-theme="dark"] .ab-panel{box-shadow:0 40px 100px -30px rgba(0,0,0,.85),var(--glass-inner) !important}
+.ab-panel.open{
+  transform:translate(-50%,-50%) scale(1) !important;
+  opacity:1;visibility:visible;
+  transition:transform .56s var(--ios-ease),opacity .3s var(--ios-ease),visibility 0s;
+}
+html[data-theme="dark"] .ab-panel{box-shadow:0 50px 120px -40px rgba(0,0,0,.9),var(--glass-inner) !important}
 
 .ab-scroll{
   flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
@@ -730,10 +736,10 @@ html[data-theme="dark"] .hp-tab.on,html[data-theme="dark"] .pj-tab.on{background
   .hd .back::before,.top .back::before{content:"\2190";font-size:15px;line-height:1}
   .xlink{display:none !important}
   .dr-panel{top:9px;left:9px;bottom:9px;max-height:none;border-radius:30px;padding:16px 10px 10px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  /* 手机上上下都贴边：高度由视口决定，地址栏伸缩也不会把滚动区顶到屏幕外 */
-  .ab-panel{left:9px !important;top:9px !important;bottom:9px !important;
-    max-height:none;height:auto;
-    width:calc(100vw - 30px) !important;border-radius:30px !important}
+  /* 关于我已改成居中弹窗（同联系弹窗），这里只收窄一点、别贴边 */
+  .ab-panel{left:50% !important;top:50% !important;bottom:auto !important;
+    width:calc(100vw - 28px) !important;max-width:calc(100vw - 28px) !important;
+    max-height:82dvh;border-radius:30px !important}
   .ct-modal{padding:20px 20px 22px;border-radius:28px}
   .hp-tabs,.pj-tabs{max-width:100%;overflow-x:auto;scrollbar-width:none}
   .hp-tabs::-webkit-scrollbar,.pj-tabs::-webkit-scrollbar{display:none}
@@ -749,4 +755,4 @@ html[data-theme="dark"] .hp-tab.on,html[data-theme="dark"] .pj-tab.on{background
 .dr-tools .theme-btn{width:34px !important;height:34px !important}
 .dr-tools .theme-btn svg{width:15px !important;height:15px !important}
 .dr-tools .lang-btn{min-width:38px !important;padding:0 10px !important;font-size:10px !important}
-.dr-foot{align-items:center}
+.dr-foot{align-items:center;justify-content:flex-end}

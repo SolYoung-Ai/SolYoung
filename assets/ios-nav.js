@@ -95,8 +95,7 @@
         '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.2 2.2 9.8 9.8M9.8 2.2 2.2 9.8"/></svg>' +
       '</button>' +
     '</div>' +
-    '<nav class="dr-list">' + listHTML + '</nav>' +
-    '<div class="dr-foot"><span class="dr-note">PLAYER 1 · 2026</span><span class="dr-note" style="color:var(--accent)">ONLINE</span></div>';
+    '<nav class="dr-list">' + listHTML + '</nav>';
 
   document.body.appendChild(scrim);
   document.body.appendChild(panel);
@@ -161,10 +160,6 @@
   if(qrBtn){
     qrBtn.addEventListener('click', function(e){ e.preventDefault(); openQr(); });
   }
-  var qrBtn2 = document.getElementById('abWx');
-  if(qrBtn2){
-    qrBtn2.addEventListener('click', function(e){ e.preventDefault(); openQr(); });
-  }
   document.getElementById('qrClose').addEventListener('click', closeQr);
   qr.addEventListener('click', function(e){ if(e.target === qr){ closeQr(); } });
   Array.prototype.forEach.call(qr.querySelectorAll('.qr-tab'), function(t){
@@ -205,17 +200,6 @@
           '<p>现在，我正在搭建属于自己的数字世界。这里有我的自媒体项目、AI 数字项目，以及关于我创造的一切。它们不一定都通向同一个目标，但共同组成了我正在经历的过程。</p>' +
           '<p>我想把人生，当成一场游戏来经营。不断探索新的领域，收集经验，解锁新的可能，也允许自己随时调整方向。这里记录的不只是我完成了什么，也包括我正在尝试什么。</p>' +
           '<p>欢迎来到我的世界。</p>' +
-        '</div>' +
-        '<div class="ab-contact">' +
-          '<a class="ab-mail" href="mailto:soyoang@outlook.com">soyoang@outlook.com</a>' +
-          '<p class="ab-sub">有一个想法？想合作一个项目？或者只是打个招呼——都可以。</p>' +
-          '<div class="ab-socials">' +
-            '<a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener">' + ICON.dy + '抖音</a>' +
-            '<a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener">' + ICON.xhs + '小红书</a>' +
-            '<button type="button" id="abWx" aria-label="微信">' + ICON.wx + '<span class="ab-wx-t">微信</span></button>' +
-            '<a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener">' + ICON.x + 'X</a>' +
-            '<a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener">' + ICON.gh + 'GitHub</a>' +
-          '</div>' +
         '</div>' +
       '</div>';
 
@@ -361,8 +345,6 @@
     if(sub) sub.textContent = en ? 'Got an idea? A project to build together? Or just want to say hi.' : '有一个想法？想合作一个项目？或者只是打个招呼——都可以。';
     var wt = ct.querySelector('.ct-wx-t');
     if(wt) wt.textContent = en ? 'WeChat' : '微信';
-    var aw = document.querySelector('.ab-wx-t');
-    if(aw) aw.textContent = en ? 'WeChat' : '微信';
     var tabs = qr.querySelectorAll('.qr-tab');
     if(tabs[0]) tabs[0].textContent = en ? 'Say hi' : '兴趣交流';
     if(tabs[1]) tabs[1].textContent = en ? 'Business' : '商务合作';
