@@ -31,7 +31,7 @@
 
   var ITEMS = [
     { id:'drGoHome',    href:HOME,       zh:'首页',   en:'Home',     icon:'<path d="M3.2 8.7 10 3.1l6.8 5.6v7.6a1.1 1.1 0 0 1-1.1 1.1H4.3a1.1 1.1 0 0 1-1.1-1.1z"/><path d="M8.1 17.4v-4.7h3.8v4.7"/>' },
-    { id:'drGoWorks',   href:P+'works/', zh:'项目',   en:'Projects', icon:'<rect x="2.6" y="2.6" width="6.2" height="6.2" rx="1.8"/><rect x="11.2" y="2.6" width="6.2" height="6.2" rx="1.8"/><rect x="2.6" y="11.2" width="6.2" height="6.2" rx="1.8"/><rect x="11.2" y="11.2" width="6.2" height="6.2" rx="1.8"/>' },
+    { id:'drGoWorks',   href:'https://solhub.solyoung.top/', ext:true, zh:'项目', en:'Projects', icon:'<rect x="2.6" y="2.6" width="6.2" height="6.2" rx="1.8"/><rect x="11.2" y="2.6" width="6.2" height="6.2" rx="1.8"/><rect x="2.6" y="11.2" width="6.2" height="6.2" rx="1.8"/><rect x="11.2" y="11.2" width="6.2" height="6.2" rx="1.8"/>' },
     { id:'drGoNow',     href:P+'now/',   zh:'构建',   en:'Build',    icon:'<path d="M11.4 2.6 4.8 11h4.2l-1.4 6.4L15.2 9H11z"/>' },
     { id:'drGoBlog',    href:P+'blog/',  zh:'博客',   en:'Blog',     icon:'<path d="M4.4 2.8h8.1l3.2 3.2v11.2H4.4z"/><path d="M12.2 2.9v3.4h3.4M7.2 10.4h5.6M7.2 13.6h3.8"/>' },
     { id:'drAbout',     href:'',         zh:'关于我', en:'About',    icon:'<circle cx="10" cy="6.9" r="3.3"/><path d="M3.9 17.1c.6-3.3 3.1-5.3 6.1-5.3s5.5 2 6.1 5.3"/>' },
@@ -78,7 +78,9 @@
 
   var listHTML = ITEMS.map(function(it){
     var tag = it.href ? 'a' : 'button';
-    var attrs = it.href ? ' href="' + it.href + '"' : ' type="button" aria-haspopup="dialog"';
+    var attrs = it.href
+      ? ' href="' + it.href + '"' + (it.ext ? ' target="_blank" rel="noopener"' : '')
+      : ' type="button" aria-haspopup="dialog"';
     return '<' + tag + ' class="dr-item" id="' + it.id + '"' + attrs + '>' +
       '<span class="dr-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + it.icon + '</svg></span>' +
       '<span class="dr-txt"><span class="dr-cn">' + (L === 'en' ? it.en : it.zh) + '</span><span class="dr-en">' + it.en + '</span></span>' +
