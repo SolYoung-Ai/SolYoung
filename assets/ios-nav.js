@@ -20,6 +20,7 @@
 
   /* ---------- 社交图标（彩色，任何时候都不会缩成 0） ---------- */
   var ICON = {
+    wx: '<img src="' + P + 'assets/wechat-icon.webp" width="14" height="14" alt="" decoding="async">',
     dy: '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect width="24" height="24" rx="6.5" fill="#0B0B0B"/><path transform="translate(3.4 3.2) scale(.72)" fill="#fff" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>',
     xhs: '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#FF2442"/><text x="12" y="15.8" text-anchor="middle" font-family="PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-weight="700" font-size="6.5" letter-spacing="-0.4" fill="#FFFFFF">小红书</text></svg>',
     x: '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect width="24" height="24" rx="6.5" fill="#0B0B0B"/><path transform="translate(3.6 3.6) scale(.7)" fill="#fff" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
@@ -122,12 +123,57 @@
     '<div class="ct-socials">' +
       '<a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener">' + ICON.dy + (L === 'en' ? 'Douyin' : '抖音') + '</a>' +
       '<a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener">' + ICON.xhs + (L === 'en' ? 'RED' : '小红书') + '</a>' +
+      '<button type="button" id="ctWx" aria-label="微信 / WeChat">' + ICON.wx + '<span class="ct-wx-t">' + (L === 'en' ? 'WeChat' : '微信') + '</span></button>' +
       '<a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener">' + ICON.x + 'X</a>' +
       '<a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener">' + ICON.gh + 'GitHub</a>' +
     '</div>';
 
   document.body.appendChild(ctScrim);
   document.body.appendChild(ct);
+
+  /* ---------- 微信二维码弹层（两个码：兴趣交流 / 商务合作） ---------- */
+  var qr = document.createElement('div');
+  qr.className = 'qr-overlay';
+  qr.id = 'qrOverlay';
+  qr.innerHTML =
+    '<div class="qr-card">' +
+      '<button class="qr-close" id="qrClose" type="button" aria-label="关闭">&times;</button>' +
+      '<div class="qr-tabs">' +
+        '<button type="button" class="qr-tab active" data-tab="learn">' + (L === 'en' ? 'Say hi' : '兴趣交流') + '</button>' +
+        '<button type="button" class="qr-tab" data-tab="biz">' + (L === 'en' ? 'Business' : '商务合作') + '</button>' +
+      '</div>' +
+      '<div class="qr-pane active" id="qrLearn">' +
+        '<img loading="lazy" src="' + P + 'assets/wechat-learn.webp" alt="WeChat QR">' +
+        '<div class="qr-t">' + (L === 'en' ? 'Say hi' : '兴趣交流') + '</div>' +
+        '<div class="qr-s">' + (L === 'en' ? 'Talk craft, share ideas' : '技术分享，探索创作') + '</div>' +
+      '</div>' +
+      '<div class="qr-pane" id="qrBiz">' +
+        '<img loading="lazy" src="' + P + 'assets/wechat-biz.webp" alt="WeChat QR">' +
+        '<div class="qr-t">' + (L === 'en' ? 'Business' : '商务合作') + '</div>' +
+        '<div class="qr-s">' + (L === 'en' ? 'Projects &amp; brands' : '项目合作、品牌沟通') + '</div>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(qr);
+
+  var qrBtn = document.getElementById('ctWx');
+  if(qrBtn){
+    qrBtn.addEventListener('click', function(e){ e.preventDefault(); openQr(); });
+  }
+  var qrBtn2 = document.getElementById('abWx');
+  if(qrBtn2){
+    qrBtn2.addEventListener('click', function(e){ e.preventDefault(); openQr(); });
+  }
+  document.getElementById('qrClose').addEventListener('click', closeQr);
+  qr.addEventListener('click', function(e){ if(e.target === qr){ closeQr(); } });
+  Array.prototype.forEach.call(qr.querySelectorAll('.qr-tab'), function(t){
+    t.addEventListener('click', function(){
+      Array.prototype.forEach.call(qr.querySelectorAll('.qr-tab'), function(x){ x.classList.remove('active'); });
+      t.classList.add('active');
+      Array.prototype.forEach.call(qr.querySelectorAll('.qr-pane'), function(pn){ pn.classList.remove('active'); });
+      var pane = document.getElementById(t.getAttribute('data-tab') === 'learn' ? 'qrLearn' : 'qrBiz');
+      if(pane) pane.classList.add('active');
+    });
+  });
 
   /* ---------- 关于我（首页有内联抽屉则跳过） ---------- */
   var hasAbout = !!document.getElementById('abPanel');
@@ -164,6 +210,7 @@
           '<div class="ab-socials">' +
             '<a href="https://v.douyin.com/NT7pNjGp9XM/" target="_blank" rel="noopener">' + ICON.dy + '抖音</a>' +
             '<a href="https://xhslink.cn/o/3jCpgD8H8EL" target="_blank" rel="noopener">' + ICON.xhs + '小红书</a>' +
+            '<button type="button" id="abWx" aria-label="微信">' + ICON.wx + '<span class="ab-wx-t">微信</span></button>' +
             '<a href="https://x.com/solyounga?s=11" target="_blank" rel="noopener">' + ICON.x + 'X</a>' +
             '<a href="https://github.com/SolYoung-Ai" target="_blank" rel="noopener">' + ICON.gh + 'GitHub</a>' +
           '</div>' +
@@ -210,6 +257,21 @@
     ct.classList.remove('open'); ctScrim.classList.remove('open');
     ct.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('ct-open');
+  }
+
+  var qrOpen = false;
+  function openQr(){
+    if(qrOpen) return;
+    qrOpen = true;
+    qr.classList.add('open');
+    document.body.style.overflow = 'hidden'; try{ document.body.classList.add('qr-open'); }catch(e){}
+  }
+  function closeQr(){
+    if(!qrOpen) return;
+    qrOpen = false;
+    qr.classList.remove('open');
+    document.body.style.overflow = document.body.classList.contains('dr-open') ? 'hidden' : '';
+    try{ document.body.classList.remove('qr-open'); }catch(e){}
   }
 
   function openAb(){
@@ -276,6 +338,7 @@
 
   document.addEventListener('keydown', function(e){
     if(e.key !== 'Escape') return;
+    if(qrOpen){ e.preventDefault(); closeQr(); return; }
     if(ctOpen){ e.preventDefault(); closeCt(); return; }
     if(abOpen){ e.preventDefault(); closeAb(); return; }
     if(drOpen){ e.preventDefault(); closeDr(); }
@@ -294,6 +357,19 @@
     if(eye) eye.textContent = en ? 'Contact' : '联系';
     var sub = ct.querySelector('.ct-sub');
     if(sub) sub.textContent = en ? 'Got an idea? A project to build together? Or just want to say hi.' : '有一个想法？想合作一个项目？或者只是打个招呼——都可以。';
+    var wt = ct.querySelector('.ct-wx-t');
+    if(wt) wt.textContent = en ? 'WeChat' : '微信';
+    var aw = document.querySelector('.ab-wx-t');
+    if(aw) aw.textContent = en ? 'WeChat' : '微信';
+    var tabs = qr.querySelectorAll('.qr-tab');
+    if(tabs[0]) tabs[0].textContent = en ? 'Say hi' : '兴趣交流';
+    if(tabs[1]) tabs[1].textContent = en ? 'Business' : '商务合作';
+    var lt = qr.querySelector('#qrLearn .qr-t'), ls = qr.querySelector('#qrLearn .qr-s');
+    var bt = qr.querySelector('#qrBiz .qr-t'), bs = qr.querySelector('#qrBiz .qr-s');
+    if(lt) lt.textContent = en ? 'Say hi' : '兴趣交流';
+    if(ls) ls.textContent = en ? 'Talk craft, share ideas' : '技术分享，探索创作';
+    if(bt) bt.textContent = en ? 'Business' : '商务合作';
+    if(bs) bs.textContent = en ? 'Projects & brands' : '项目合作、品牌沟通';
   });
   obs.observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
 

@@ -355,10 +355,10 @@ html[data-theme="dark"] .ct-scrim{background:rgba(0,0,0,.45)}
 }
 .ct-mail:hover{color:var(--accent)}
 .ct-sub{font-size:13px;line-height:1.7;color:var(--ink-soft);margin:2px 0 20px}
-.ct-socials{display:flex;flex-wrap:wrap;gap:8px}
+.ct-socials{display:flex;flex-wrap:wrap;gap:6px}
 .ct-socials a,.ct-socials button{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:9px 16px;border-radius:999px;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 11px;border-radius:999px;
   font:inherit;font-size:12px;font-weight:600;letter-spacing:.02em;
   color:var(--ink-soft);
   background:rgba(255,255,255,.66);
@@ -372,6 +372,81 @@ html[data-theme="dark"] .ct-socials a,html[data-theme="dark"] .ct-socials button
 html[data-theme="dark"] .ct-socials a:hover,html[data-theme="dark"] .ct-socials button:hover{background:rgba(255,255,255,.14)}
 .ct-socials svg,.ct-socials img{width:14px;height:14px;flex:0 0 14px;display:block}
 body.ct-open{overflow:hidden !important}
+
+/* =============================================================
+   微信二维码弹层（兴趣交流 / 商务合作）
+   首页有一份内联结构，子页面由 ios-nav.js 注入；这里统一成玻璃卡片，
+   首页那份内联样式被本文件后续规则覆盖（同选择器，后者胜）。
+   ============================================================= */
+.qr-overlay{
+  position:fixed;inset:0;z-index:10002;
+  display:grid;place-items:center;padding:16px;
+  background:rgba(24,17,10,.38);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .42s var(--ios-ease),visibility 0s linear .42s;
+}
+.qr-overlay.open{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transition:opacity .3s var(--ios-ease),visibility 0s;
+}
+html[data-theme="dark"] .qr-overlay{background:rgba(0,0,0,.55)}
+.qr-card{
+  position:relative;
+  width:min(330px,100%);
+  padding:16px 16px 20px;
+  border-radius:30px;
+  background:var(--glass-strong);
+  backdrop-filter:var(--glass-blur);
+  -webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-edge);
+  box-shadow:0 50px 120px -46px rgba(40,26,12,.55),var(--glass-inner);
+  transform:translateY(12px) scale(.95);
+  transition:transform .56s var(--ios-ease);
+  text-align:center;
+}
+.qr-overlay.open .qr-card{transform:none}
+.qr-close{
+  position:absolute;top:11px;right:11px;z-index:2;
+  width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid var(--glass-edge);
+  background:rgba(255,255,255,.72);
+  color:var(--ink-soft);font-size:17px;line-height:1;cursor:pointer;
+  transition:transform .42s var(--ios-spring),color .3s,background .3s;
+}
+.qr-close:hover{color:var(--accent);transform:scale(1.06)}
+html[data-theme="dark"] .qr-close{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.14)}
+.qr-tabs{
+  display:flex;gap:2px;width:max-content;
+  margin:2px auto 16px;padding:4px;
+  border-radius:999px;
+  background:rgba(120,116,110,.10);
+  border:1px solid var(--glass-edge);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+}
+.qr-tab{
+  border:none;border-radius:999px;
+  padding:7px 15px;background:transparent;
+  color:var(--ink-soft);font-family:inherit;font-size:12px;font-weight:600;
+  cursor:pointer;
+  transition:background .4s var(--ios-ease),color .3s,box-shadow .4s var(--ios-ease);
+}
+.qr-tab.active{
+  background:#fff;color:var(--ink);
+  box-shadow:0 1px 2px rgba(28,20,12,.09),0 4px 12px -6px rgba(28,20,12,.22);
+}
+html[data-theme="dark"] .qr-tabs{background:rgba(255,255,255,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+html[data-theme="dark"] .qr-tab.active{background:rgba(255,255,255,.16);box-shadow:0 1px 2px rgba(0,0,0,.4)}
+.qr-card img{
+  width:100%;display:block;
+  border-radius:18px;
+  border:1px solid var(--glass-edge);
+  background:#fff;
+}
+.qr-card .qr-t{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin:13px 0 3px}
+.qr-card .qr-s{font-size:12.5px;color:var(--ink-soft)}
 
 /* =============================================================
    「关于我」抽屉：浮起来的玻璃面板
@@ -441,12 +516,12 @@ html[data-theme="dark"] .ab-panel{box-shadow:0 40px 100px -30px rgba(0,0,0,.85),
 }
 .ab-mail:hover{color:var(--accent) !important}
 .ab-sub{margin-top:9px;font-size:11.5px;line-height:1.8;color:var(--ink-soft) !important;letter-spacing:.02em}
-.ab-socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.ab-socials{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
 .ab-socials svg,.ab-socials img{width:14px;height:14px;flex:0 0 14px;display:block}
 .ab-socials a,.ab-socials button{
-  display:inline-flex;align-items:center;gap:7px;
+  display:inline-flex;align-items:center;gap:6px;
   border-radius:999px !important;
-  padding:8px 14px;
+  padding:7px 11px;
   background:rgba(255,255,255,.7) !important;
   border:1px solid var(--glass-edge) !important;
   box-shadow:0 1px 2px rgba(28,20,12,.05);
