@@ -1278,6 +1278,18 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   #splash .badge-photo img,#splash .badge-photo{border-radius:7px}
 }
 @media(prefers-reduced-motion:reduce){#splash .badge-gloss{opacity:.32}}
+/* 衔接：卡槽改为可见的深色冲孔，挂钩尖端由 placeClip() 对准孔心 */
+#splash .badge-slot,:root[data-theme="dark"] #splash .badge-slot{
+  width:38px;height:8px;
+  background:linear-gradient(180deg,rgba(0,0,0,.88),rgba(0,0,0,.58));
+  box-shadow:inset 0 2px 3px rgba(0,0,0,.85),0 1px 0 rgba(255,255,255,.16);
+}
+@media(max-width:560px){#splash .badge-slot{width:30px;height:6px}}
+/* 金属扣整体加一点投影，让它从卡面上「浮」出来而不是贴片 */
+#splash .badge-clip{
+  z-index:7;
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.55)) drop-shadow(0 4px 6px rgba(0,0,0,.35));
+}
 
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
@@ -1403,15 +1415,6 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 
   <div class="sp-stage">
     <svg class="sp-ropes" id="spRopes" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="spKnotMetal" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#666C74"/>
-          <stop offset=".24" stop-color="#F2F5F8"/>
-          <stop offset=".54" stop-color="#98A0A9"/>
-          <stop offset=".8" stop-color="#E9EDF1"/>
-          <stop offset="1" stop-color="#626870"/>
-        </linearGradient>
-      </defs>
       <path class="sp-rope-shadow" id="spShL" d=""/>
       <path class="sp-rope-shadow" id="spShR" d=""/>
       <path class="sp-rope" id="spRopeL" d=""/>
@@ -1420,12 +1423,6 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
       <path class="sp-weave" id="spWvR" d=""/>
       <path class="sp-rope-hi" id="spHiL" d=""/>
       <path class="sp-rope-hi" id="spHiR" d=""/>
-      <g id="spKnot">
-        <rect x="-8" y="-4" width="16" height="17" rx="3.5" fill="#17171A" stroke="rgba(255,255,255,.16)" stroke-width=".8"/>
-        <path d="M-5.5 1.5h11" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-linecap="round"/>
-        <ellipse cx="0" cy="-5" rx="9" ry="6.5" fill="none" stroke="url(#spKnotMetal)" stroke-width="2.6"/>
-        <path d="M-6.5 -8.5 Q0 -12 6.5 -8.5" fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".9" stroke-linecap="round"/>
-      </g>
     </svg>
 
     <div class="badge-card" id="spBadge" role="img" aria-label="SolYoung 玩家档案工牌，可拖拽">
@@ -1439,15 +1436,21 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
               <stop offset=".85" stop-color="#98A0A8"/>
               <stop offset="1" stop-color="#6C727A"/>
             </linearGradient>
+            <linearGradient id="spMetalV" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FAFCFE"/>
+              <stop offset=".38" stop-color="#C9CFD6"/>
+              <stop offset=".72" stop-color="#9BA3AC"/>
+              <stop offset="1" stop-color="#5F666E"/>
+            </linearGradient>
           </defs>
-          <rect x=".75" y="0" width="24.5" height="9.6" rx="4.4" fill="url(#spMetal)" stroke="rgba(22,18,12,.32)" stroke-width=".7"/>
-          <path d="M4.6 3.2h16.8" fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".9" stroke-linecap="round"/>
-          <path fill="url(#spMetal)" fill-rule="evenodd" stroke="rgba(22,18,12,.34)" stroke-width=".6" d="M13 9a11.6 10.2 0 1 1 0 20.4 11.6 10.2 0 1 1 0-20.4ZM13 13.2a6.6 6 0 1 0 0 12 6.6 6 0 1 0 0-12Z"/>
-          <rect x="11" y="28" width="4" height="4.6" fill="url(#spMetal)"/>
-          <rect x="6" y="32" width="14" height="27" rx="7" fill="url(#spMetal)" stroke="rgba(22,18,12,.34)" stroke-width=".7"/>
-          <rect x="9.9" y="36" width="2.4" height="13" rx="1.2" fill="rgba(22,18,12,.2)"/>
-          <path d="M8.6 54.5h8.8" fill="none" stroke="rgba(22,18,12,.2)" stroke-width=".7" stroke-linecap="round"/>
-          <path d="M13 58.6v7.6c0 6-3.2 9.7-6.9 9.4" fill="none" stroke="url(#spMetal)" stroke-width="2.8" stroke-linecap="round"/>
+          <circle id="spRingPivot" cx="13" cy="19.2" r=".01" fill="none" stroke="none" opacity="0"/>
+          <!-- 织带穿过环心：环内空洞露出的是 SVG 层两根带子的汇合处 -->
+          <path fill="url(#spMetal)" fill-rule="evenodd" stroke="rgba(22,18,12,.32)" stroke-width=".6" d="M13 9a11.6 10.2 0 1 1 0 20.4 11.6 10.2 0 1 1 0-20.4ZM13 13.2a6.6 6 0 1 0 0 12 6.6 6 0 1 0 0-12Z"/>
+          <rect x="1.2" y="0" width="23.6" height="9" rx="4.2" fill="url(#spMetalV)" stroke="rgba(22,18,12,.3)" stroke-width=".6"/>
+          <rect x="10.6" y="28" width="4.8" height="5.2" rx="1.6" fill="url(#spMetal)"/>
+          <rect x="6" y="32" width="14" height="27" rx="7" fill="url(#spMetalV)" stroke="rgba(22,18,12,.3)" stroke-width=".6"/>
+          <rect x="9.3" y="36" width="2" height="15" rx="1" fill="rgba(255,255,255,.32)"/>
+          <path d="M13 58.6v7.6c0 6-3.2 9.7-6.9 9.4" fill="none" stroke="url(#spMetalV)" stroke-width="3" stroke-linecap="round"/>
         </svg>
         <div class="badge-head">
           <span class="badge-hole l"></span>
@@ -2396,7 +2399,6 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   var hiL=document.getElementById('spHiL'), hiR=document.getElementById('spHiR');
   var shL=document.getElementById('spShL'), shR=document.getElementById('spShR');
   var wvL=document.getElementById('spWvL'), wvR=document.getElementById('spWvR');
-  var knot=document.getElementById('spKnot');
   if(card){
     var im=card.querySelector('img');
     if(im) im.draggable=false;
@@ -2438,7 +2440,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   // 把金属扣挪到「挂钩尖端刚好插进卡槽」的位置，返回压线扣中心相对卡片顶边的 y。
   // 吊绳就绑在这个压线扣上，所以扣子与绳子始终是同一个点，永远不会错开。
   function placeClip(){
-    var PIVOT_R=4.8/80;     // 压线扣中心在 viewBox 里的位置
+    var PIVOT_R=19.2/80;    // 登山扣环心在 viewBox 里的位置；绳子终点与旋转原点都锁在这里
     var TIP_R=75.6/80;      // 挂钩尖端
     var clipEl=card.querySelector('.badge-clip');
     if(!clipEl) return -50;
@@ -2477,7 +2479,10 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     RISE=Math.max(112, Math.round(homeTop*0.42));
     ANCH=Math.max(74, Math.min(152, Math.round(W*0.36), Math.round(vw*0.2)));
     HANG=placeClip();
-    D=H/2-HANG;                       // 压线扣 → 卡片几何中心
+    // 旋转原点 = 扣环中心。perspective/rotateY/rotateX 都绕这一点转，
+    // 扣环屏幕坐标恒为 (px,py)，与绳子终点严格同点，摆动再大也不会错位。
+    card.style.transformOrigin='50% '+r1(HANG)+'px';
+    D=H/2-HANG;                       // 扣环 → 卡片几何中心
 
     APEX_Y=-RISE;                     // 虚拟吊点（两条绳的收束点）高度
     px=cx; py=homeTop+HANG;           // 挂点静止位置
@@ -2724,7 +2729,8 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     var ox=nkx+ux*H/2, oy=nky+uy*H/2;       // 卡片中心
     var deg=Math.atan2(-ux,uy)*180/Math.PI;
     var rY=ry*180/Math.PI, rX=rx*180/Math.PI;
-    card.style.transform='perspective(1100px) translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0)'+
+    // origin 已设为 (W/2,HANG)，故平移量 = 环心屏幕坐标 - origin 局部坐标
+    card.style.transform='perspective(1100px) translate3d('+r1(px-W/2)+'px,'+r1(py-HANG)+'px,0)'+
       ' rotateY('+rY.toFixed(2)+'deg) rotateX('+rX.toFixed(2)+'deg) rotate('+deg.toFixed(2)+'deg)';
     cardMidX=ox;
     // 反光带：翻转越多高光扫得越远，再叠一点极慢漂移，静止时也有微弱流光
@@ -2735,7 +2741,6 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
     if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }
     if(wvL){ wvL.setAttribute('d',dA); wvR.setAttribute('d',dB); }
-    if(knot) knot.setAttribute('transform','translate('+r1(px)+','+r1(py)+') rotate('+deg.toFixed(2)+')');
   }
 
   // 指针速度（平滑后归一化到 0~1）：拖拽时摆角弹簧的软硬就看它
