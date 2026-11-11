@@ -1241,14 +1241,42 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 }
 #splash .badge-card:hover .badge-photo img{filter:saturate(1.06) contrast(1.05) brightness(1)}
 
-/* clearcoat：光带位置由 JS 每帧写入 --gx，随 3D 翻转与摆动扫过卡面 */
+/* clearcoat 主光带：位置由 JS 每帧写 --gx，随 3D 翻转与摆动扫过卡面 */
 #splash .badge-gloss{
   position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;
   background:linear-gradient(102deg,transparent 23%,rgba(255,255,255,.04) 34%,
-             rgba(255,255,255,.22) 43%,rgba(255,255,255,.58) 48%,rgba(255,255,255,.14) 53%,
+             rgba(255,255,255,.20) 43%,rgba(255,255,255,.68) 48%,rgba(255,255,255,.12) 53%,
              transparent 65%);
   background-size:300% 100%;background-position:var(--gx,50%) 0;
   mix-blend-mode:screen;opacity:.88;
+}
+/* 环境光：对应参考里的多个 Lightformer —— 一条窄灯管反射 + 一块大面积柔光箱，
+   两者以不同速率随 rot.y 位移，才有「环境贴图被采样」而不是「一条渐变在平移」的感觉 */
+#splash .badge-env{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;
+  background:
+    linear-gradient(104deg,transparent 8%,rgba(226,238,255,.07) 15%,
+                    rgba(255,255,255,.26) 19%,rgba(255,255,255,.06) 24%,transparent 33%),
+    radial-gradient(ellipse 24% 42% at var(--ex2,50%) var(--ey2,24%),rgba(206,224,255,.13),transparent 74%);
+  background-size:280% 100%,100% 100%;
+  background-position:var(--gx2,50%) 0,0 0;
+  background-repeat:no-repeat;
+  mix-blend-mode:screen;opacity:var(--envO,.60);
+}
+/* 菲涅尔：metalness .5 的冷色环境反射，掠射角越大越亮；顺带一点各向异性拉丝 */
+#splash .badge-fresnel{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:6;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,var(--fr,.10)),
+             inset 14px 0 26px -20px rgba(186,214,255,.9),
+             inset -14px 0 26px -20px rgba(255,226,196,.7);
+  background:repeating-linear-gradient(118deg,rgba(255,255,255,.018) 0 1px,transparent 1px 6px);
+  opacity:var(--frO,.38);
+}
+/* 实体厚度：外阴影的横向偏移随 rotateY 变化，翻到侧面时露出一条暗边 + 一点投影，
+   模拟 GLB 卡片的侧壁。拖拽时投影放大，像是把卡片朝镜头拉近了 */
+#splash .badge-edge{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;
+  box-shadow:var(--edgeSh,0 3px 0 -1px rgba(0,0,0,.48));
 }
 #splash .badge-rim{
   position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:6;
@@ -1256,18 +1284,24 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.15),inset 0 1px 0 rgba(255,255,255,.30),
              inset 0 -1px 0 rgba(0,0,0,.6);
 }
-/* 织带：主带 + 偏左的边缘高光 + 细织纹 */
-#splash .sp-rope{stroke:#16161A;stroke-width:15}
+/* 织带：主带 + 中央隆起高光 + 左右明暗边 + 双层织纹（对应官方 tag_texture + RepeatWrapping） */
+#splash .sp-rope{stroke:#16161A;stroke-width:15;stroke-linecap:round}
 #splash .sp-rope-hi{stroke:rgba(255,255,255,.24);stroke-width:1.8;transform:translate(-4px,0)}
-#splash .sp-rope-shadow{stroke:rgba(0,0,0,.20);stroke-width:16}
-#splash .sp-weave{fill:none;stroke:rgba(255,255,255,.07);stroke-width:1;stroke-dasharray:1.5 5}
+#splash .sp-rope-shadow{stroke:rgba(0,0,0,.20);stroke-width:16;stroke-linecap:round}
+#splash .sp-rope-lo{fill:none;stroke:rgba(0,0,0,.42);stroke-width:2;transform:translate(5px,0)}
+#splash .sp-rope-core{fill:none;stroke:rgba(255,255,255,.10);stroke-width:3.4}
+#splash .sp-weave{fill:none;stroke:rgba(255,255,255,.09);stroke-width:1;stroke-dasharray:1 2 2 4}
+#splash .sp-weave2{fill:none;stroke:rgba(0,0,0,.22);stroke-width:1.6;stroke-dasharray:.8 3.2;transform:translate(0,1px)}
+#splash .sp-band-ten{fill:none;stroke:rgba(255,255,255,.42);stroke-width:1.4;opacity:0;transition:opacity .35s var(--ease)}
+#splash .sp-ropes.tense .sp-band-ten{opacity:1}
 :root[data-theme="dark"] #splash .sp-rope{stroke:#2C2C31;stroke-width:15}
 :root[data-theme="dark"] #splash .sp-rope-hi{stroke:rgba(255,255,255,.34)}
-:root[data-theme="dark"] #splash .sp-weave{stroke:rgba(255,255,255,.11)}
+:root[data-theme="dark"] #splash .sp-weave{stroke:rgba(255,255,255,.13)}
+:root[data-theme="dark"] #splash .sp-weave2{stroke:rgba(0,0,0,.30)}
 
 @media(max-width:960px){
   #splash .sp-rope{stroke-width:12}
-  #splash .sp-weave{display:none}
+  #splash .sp-weave,#splash .sp-weave2,#splash .sp-rope-core,#splash .sp-rope-lo{display:none}
   #splash .badge-card{border-radius:16px}
   #splash .badge-insert{border-radius:10px}
 }
@@ -1277,7 +1311,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   #splash .badge-insert{border-radius:8px}
   #splash .badge-photo img,#splash .badge-photo{border-radius:7px}
 }
-@media(prefers-reduced-motion:reduce){#splash .badge-gloss{opacity:.32}}
+@media(prefers-reduced-motion:reduce){#splash .badge-gloss{opacity:.32}#splash .badge-env{opacity:.4}#splash .badge-fresnel{opacity:.2}}
 /* 衔接：卡槽改为可见的深色冲孔，挂钩尖端由 placeClip() 对准孔心 */
 #splash .badge-slot,:root[data-theme="dark"] #splash .badge-slot{
   width:38px;height:8px;
@@ -1419,8 +1453,16 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
       <path class="sp-rope-shadow" id="spShR" d=""/>
       <path class="sp-rope" id="spRopeL" d=""/>
       <path class="sp-rope" id="spRopeR" d=""/>
+      <path class="sp-rope-lo" id="spLoL" d=""/>
+      <path class="sp-rope-lo" id="spLoR" d=""/>
+      <path class="sp-rope-core" id="spCrL" d=""/>
+      <path class="sp-rope-core" id="spCrR" d=""/>
       <path class="sp-weave" id="spWvL" d=""/>
       <path class="sp-weave" id="spWvR" d=""/>
+      <path class="sp-weave2" id="spW2L" d=""/>
+      <path class="sp-weave2" id="spW2R" d=""/>
+      <path class="sp-band-ten" id="spTnL" d=""/>
+      <path class="sp-band-ten" id="spTnR" d=""/>
       <path class="sp-rope-hi" id="spHiL" d=""/>
       <path class="sp-rope-hi" id="spHiR" d=""/>
     </svg>
@@ -1468,6 +1510,9 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
           </div>
         </div>
         <span class="badge-gloss" aria-hidden="true"></span>
+        <span class="badge-env" aria-hidden="true"></span>
+        <span class="badge-fresnel" aria-hidden="true"></span>
+        <span class="badge-edge" aria-hidden="true"></span>
         <span class="badge-rim" aria-hidden="true"></span>
       </div>
 
@@ -2399,6 +2444,11 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   var hiL=document.getElementById('spHiL'), hiR=document.getElementById('spHiR');
   var shL=document.getElementById('spShL'), shR=document.getElementById('spShR');
   var wvL=document.getElementById('spWvL'), wvR=document.getElementById('spWvR');
+  var loL=document.getElementById('spLoL'), loR=document.getElementById('spLoR');
+  var crL=document.getElementById('spCrL'), crR=document.getElementById('spCrR');
+  var w2L=document.getElementById('spW2L'), w2R=document.getElementById('spW2R');
+  var tnL=document.getElementById('spTnL'), tnR=document.getElementById('spTnR');
+  var ropesSvg=document.getElementById('spRopes');
   if(card){
     var im=card.querySelector('img');
     if(im) im.draggable=false;
@@ -2723,6 +2773,10 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     rx+=rxv*h;
   }
 
+  function setPair(a,b,dA,dB){
+    if(a) a.setAttribute('d',dA);
+    if(b) b.setAttribute('d',dB);
+  }
   function render(){
     var ux=Math.sin(th), uy=Math.cos(th);
     var nkx=px-HANG*ux, nky=py-HANG*uy;     // 卡片上边中点（HANG 为负 → 在扣子下方）
@@ -2733,14 +2787,48 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     card.style.transform='perspective(1100px) translate3d('+r1(px-W/2)+'px,'+r1(py-HANG)+'px,0)'+
       ' rotateY('+rY.toFixed(2)+'deg) rotateX('+rX.toFixed(2)+'deg) rotate('+deg.toFixed(2)+'deg)';
     cardMidX=ox;
-    // 反光带：翻转越多高光扫得越远，再叠一点极慢漂移，静止时也有微弱流光
-    var gx=50-ry*78-th*13+Math.sin(performance.now()*0.00042)*3.5;
+    var t=performance.now();
+    // 多光源环境反射：主 clearcoat 光带、灯管、柔光箱各按不同速率随翻转位移
+    var gx=50-ry*78-th*13+Math.sin(t*0.00042)*3.5;
+    var gx2=50-ry*126+th*7+Math.sin(t*0.00029+1.7)*2.4;
+    if(gx2<6) gx2=6; else if(gx2>94) gx2=94;
+    var ex2=50+ry*88;
+    if(ex2<8) ex2=8; else if(ex2>92) ex2=92;
+    var fr=0.10+Math.min(.30,Math.abs(ry)*.82)+(dragging?.09:0);
     card.style.setProperty('--gx',gx.toFixed(1)+'%');
+    card.style.setProperty('--gx2',gx2.toFixed(1)+'%');
+    card.style.setProperty('--ex2',ex2.toFixed(1)+'%');
+    var ey2=26+rx*90+Math.sin(t*0.00035+.8)*3;
+    if(ey2<6) ey2=6; else if(ey2>62) ey2=62;
+    card.style.setProperty('--ey2',ey2.toFixed(1)+'%');
+    card.style.setProperty('--fr',fr.toFixed(3));
+    card.style.setProperty('--frO',(0.36+Math.abs(ry)*.85).toFixed(2));
+    card.style.setProperty('--envO',(0.58+Math.abs(ry)*.28).toFixed(2));
+    // 厚度侧边：翻转越大斜向露出的暗边越宽；拖拽时投影加深，像被拉近镜头
+    var ew=rY*0.52; if(ew>9) ew=9; else if(ew<-9) ew=-9;
+    card.style.setProperty('--edgeSh',ew.toFixed(1)+'px 3px 0 -1px rgba(0,0,0,.55),'+
+      (ew*1.7).toFixed(1)+'px 10px 26px -12px rgba(0,0,0,'+(dragging?'.66':'.42')+')');
+    if(ropesSvg) ropesSvg.classList.toggle('tense',dragging);
+    // 织纹沿带流动（对应官方 texture.wrapS/T = RepeatWrapping + repeat），
+    // 速度里混入挂点速度，摆动越快纹理走得越快
+    var flow=t*0.011+(Math.abs(vx)+Math.abs(vy))*0.018;
+    if(wvL){
+      wvL.style.strokeDashoffset=(-flow).toFixed(1);
+      wvR.style.strokeDashoffset=(-flow).toFixed(1);
+    }
+    if(w2L){
+      w2L.style.strokeDashoffset=(flow*0.63+1.1).toFixed(1);
+      w2R.style.strokeDashoffset=(flow*0.63+1.1).toFixed(1);
+    }
     var dA=ropeD(VL), dB=ropeD(VR);
-    ropeL.setAttribute('d',dA); ropeR.setAttribute('d',dB);
-    hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
-    if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }
-    if(wvL){ wvL.setAttribute('d',dA); wvR.setAttribute('d',dB); }
+    setPair(ropeL,ropeR,dA,dB);
+    setPair(hiL,hiR,dA,dB);
+    setPair(shL,shR,dA,dB);
+    setPair(wvL,wvR,dA,dB);
+    setPair(loL,loR,dA,dB);
+    setPair(crL,crR,dA,dB);
+    setPair(w2L,w2R,dA,dB);
+    setPair(tnL,tnR,dA,dB);
   }
 
   // 指针速度（平滑后归一化到 0~1）：拖拽时摆角弹簧的软硬就看它
