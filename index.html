@@ -1182,6 +1182,103 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 /* 顶栏只剩汉堡，右侧留给「进入我的世界」 */
 .nav .nav-right{display:none !important}
 
+/* ===== 开屏工牌 v3：深色亚克力卡 / 3D 翻转 / clearcoat 反光 / 织带 ===== */
+#splash{background:radial-gradient(ellipse 78% 68% at 50% 40%,#FFFFFF 0%,var(--bg) 78%)}
+:root[data-theme="dark"] #splash{background:radial-gradient(ellipse 78% 68% at 50% 40%,#222224 0%,#0E0E10 80%)}
+
+#splash .badge-card{
+  background:linear-gradient(160deg,#242428 0%,#17171B 48%,#0C0C0F 100%);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;
+  box-shadow:0 1px 1px rgba(0,0,0,.55),0 3px 0 -1px rgba(0,0,0,.48),
+             0 26px 48px -22px rgba(0,0,0,.62),0 64px 110px -52px rgba(0,0,0,.55),
+             inset 0 1px 0 rgba(255,255,255,.20);
+}
+#splash .badge-card::after{display:none}
+#splash .badge-card:hover{
+  box-shadow:0 1px 1px rgba(0,0,0,.55),0 3px 0 -1px rgba(0,0,0,.48),
+             0 34px 60px -24px rgba(0,0,0,.66),0 80px 130px -54px rgba(0,0,0,.60),
+             inset 0 1px 0 rgba(255,255,255,.24);
+}
+:root[data-theme="dark"] #splash .badge-card{
+  box-shadow:0 0 0 1px rgba(255,255,255,.07),0 0 70px -14px rgba(255,255,255,.07),
+             0 26px 48px -22px rgba(0,0,0,.8),0 64px 110px -52px rgba(0,0,0,.8),
+             inset 0 1px 0 rgba(255,255,255,.22);
+}
+#splash .badge-insert{
+  background:repeating-linear-gradient(118deg,rgba(255,255,255,.038) 0 1px,transparent 1px 11px),
+             radial-gradient(ellipse 90% 70% at 50% 30%,rgba(255,255,255,.055),transparent 70%),
+             linear-gradient(168deg,#26262B 0%,#131316 62%,#0C0C0F 100%);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 34px rgba(0,0,0,.55);
+}
+#splash .badge-slot,#splash .badge-hole{
+  background:rgba(255,255,255,.13);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.75),0 1px 0 rgba(255,255,255,.05);
+}
+:root[data-theme="dark"] #splash .badge-slot,
+:root[data-theme="dark"] #splash .badge-hole{background:rgba(255,255,255,.11)}
+#splash .badge-id{color:rgba(255,255,255,.55)}
+#splash .badge-id b{color:var(--accent)}
+#splash .badge-tagline{color:rgba(255,255,255,.45)}
+#splash .badge-name{color:#F4F4F2}
+#splash .badge-name em{color:var(--accent)}
+#splash .badge-status{color:var(--accent)}
+#splash .badge-clip{filter:drop-shadow(0 3px 4px rgba(0,0,0,.6)) drop-shadow(0 0 1px rgba(255,255,255,.35))}
+
+#splash .badge-photo::after{display:none}
+#splash .badge-photo{border-radius:10px;overflow:hidden;isolation:isolate}
+#splash .badge-photo img{
+  border-radius:10px;border:1px solid rgba(255,255,255,.18);
+  filter:saturate(1.02) contrast(1.04) brightness(.97);
+  box-shadow:0 10px 26px -12px rgba(0,0,0,.8);
+}
+#splash .badge-photo::before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:10px;
+  background:linear-gradient(180deg,rgba(255,255,255,.10) 0%,transparent 22%,transparent 74%,rgba(0,0,0,.28) 100%);
+  mix-blend-mode:overlay;
+}
+#splash .badge-card:hover .badge-photo img{filter:saturate(1.06) contrast(1.05) brightness(1)}
+
+/* clearcoat：光带位置由 JS 每帧写入 --gx，随 3D 翻转与摆动扫过卡面 */
+#splash .badge-gloss{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;
+  background:linear-gradient(102deg,transparent 23%,rgba(255,255,255,.04) 34%,
+             rgba(255,255,255,.22) 43%,rgba(255,255,255,.58) 48%,rgba(255,255,255,.14) 53%,
+             transparent 65%);
+  background-size:300% 100%;background-position:var(--gx,50%) 0;
+  mix-blend-mode:screen;opacity:.88;
+}
+#splash .badge-rim{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:6;
+  background:linear-gradient(160deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,.02) 5%,transparent 12%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.15),inset 0 1px 0 rgba(255,255,255,.30),
+             inset 0 -1px 0 rgba(0,0,0,.6);
+}
+/* 织带：主带 + 偏左的边缘高光 + 细织纹 */
+#splash .sp-rope{stroke:#16161A;stroke-width:15}
+#splash .sp-rope-hi{stroke:rgba(255,255,255,.24);stroke-width:1.8;transform:translate(-4px,0)}
+#splash .sp-rope-shadow{stroke:rgba(0,0,0,.20);stroke-width:16}
+#splash .sp-weave{fill:none;stroke:rgba(255,255,255,.07);stroke-width:1;stroke-dasharray:1.5 5}
+:root[data-theme="dark"] #splash .sp-rope{stroke:#2C2C31;stroke-width:15}
+:root[data-theme="dark"] #splash .sp-rope-hi{stroke:rgba(255,255,255,.34)}
+:root[data-theme="dark"] #splash .sp-weave{stroke:rgba(255,255,255,.11)}
+
+@media(max-width:960px){
+  #splash .sp-rope{stroke-width:12}
+  #splash .sp-weave{display:none}
+  #splash .badge-card{border-radius:16px}
+  #splash .badge-insert{border-radius:10px}
+}
+@media(max-width:560px){
+  #splash .sp-rope{stroke-width:10}
+  #splash .badge-card{border-radius:13px}
+  #splash .badge-insert{border-radius:8px}
+  #splash .badge-photo img,#splash .badge-photo{border-radius:7px}
+}
+@media(prefers-reduced-motion:reduce){#splash .badge-gloss{opacity:.32}}
+
 </style>
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/ios.css">
@@ -1306,12 +1403,29 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 
   <div class="sp-stage">
     <svg class="sp-ropes" id="spRopes" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="spKnotMetal" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#666C74"/>
+          <stop offset=".24" stop-color="#F2F5F8"/>
+          <stop offset=".54" stop-color="#98A0A9"/>
+          <stop offset=".8" stop-color="#E9EDF1"/>
+          <stop offset="1" stop-color="#626870"/>
+        </linearGradient>
+      </defs>
       <path class="sp-rope-shadow" id="spShL" d=""/>
       <path class="sp-rope-shadow" id="spShR" d=""/>
       <path class="sp-rope" id="spRopeL" d=""/>
       <path class="sp-rope" id="spRopeR" d=""/>
+      <path class="sp-weave" id="spWvL" d=""/>
+      <path class="sp-weave" id="spWvR" d=""/>
       <path class="sp-rope-hi" id="spHiL" d=""/>
       <path class="sp-rope-hi" id="spHiR" d=""/>
+      <g id="spKnot">
+        <rect x="-8" y="-4" width="16" height="17" rx="3.5" fill="#17171A" stroke="rgba(255,255,255,.16)" stroke-width=".8"/>
+        <path d="M-5.5 1.5h11" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-linecap="round"/>
+        <ellipse cx="0" cy="-5" rx="9" ry="6.5" fill="none" stroke="url(#spKnotMetal)" stroke-width="2.6"/>
+        <path d="M-6.5 -8.5 Q0 -12 6.5 -8.5" fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".9" stroke-linecap="round"/>
+      </g>
     </svg>
 
     <div class="badge-card" id="spBadge" role="img" aria-label="SolYoung 玩家档案工牌，可拖拽">
@@ -1350,6 +1464,8 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
             <div class="badge-status"><i></i><span>ONLINE</span></div>
           </div>
         </div>
+        <span class="badge-gloss" aria-hidden="true"></span>
+        <span class="badge-rim" aria-hidden="true"></span>
       </div>
 
     <div class="sp-name" aria-hidden="true"><span class="sp-sol"><span class="sp-ltr">S</span><span class="sp-ltr">o</span><span class="sp-ltr">l</span></span><span class="sp-young"><span class="sp-ltr">Y</span><span class="sp-ltr">o</span><span class="sp-ltr">u</span><span class="sp-ltr">n</span><span class="sp-ltr">g</span></span></div>
@@ -2279,6 +2395,8 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   var ropeL=document.getElementById('spRopeL'), ropeR=document.getElementById('spRopeR');
   var hiL=document.getElementById('spHiL'), hiR=document.getElementById('spHiR');
   var shL=document.getElementById('spShL'), shR=document.getElementById('spShR');
+  var wvL=document.getElementById('spWvL'), wvR=document.getElementById('spWvR');
+  var knot=document.getElementById('spKnot');
   if(card){
     var im=card.querySelector('img');
     if(im) im.draggable=false;
@@ -2303,6 +2421,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   var W=0,H=0,ANCH=120,RISE=200,HANG=-50,D=0;
   var R0=1,APEX_Y=0,HOME_X=0,L0=1,AX0=0,AX1=0,w0sq=1,halfDiag=1,tiltMax=0.46,VL=0,VR=0,VY=0;
   var px=0,py=0,vx=0,vy=0,th=0,om=0,stretch=1,wind=0;
+  var ry=0,ryv=0,rx=0,rxv=0;   // 绕竖直轴 / 水平轴的 3D 翻转角与角速度（弧度）
   var hoverE=0,hvPh=0;   // hoverE：悬停强度 0~1（缓入缓出）；hvPh：悬停微风相位
   var hoverOutT=0;       // 指针离开卡片的时刻：短暂离开不算离开，见 updateHover
   var dragging=false,grabX=0,grabY=0,dragSX=0,dragSY=0;
@@ -2570,17 +2689,53 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     return 'M'+r1(ax)+' '+r1(ay)+'Q'+r1(mx)+' '+r1(my+2*sag)+' '+r1(bx)+' '+r1(by);
   }
 
+  // 3D 翻转 = 两个带阻尼的弹簧：由摆角、摆速、拖拽力矩与指针视差驱动，
+  // 松手后自己回正（对应参考实现里球铰对 rot.y 的回正力矩）。
+  function step3D(h){
+    if(reduce){ ry=0; ryv=0; rx=0; rxv=0; return; }
+    var w=W||1, hh=H||1;
+    var tgtY;
+    if(dragging){
+      // 抓在卡片左/右侧往同一方向拖，翻面方向相反（力矩感）
+      tgtY=-0.055+th*0.42+(grabX/w)*0.30+vx*0.000055;
+    }else{
+      tgtY=-0.055+th*0.50+om*0.020+Math.sin(hvPh*1.35)*0.016*hoverE;
+      if(hover&&pointerX!==null&&cardMidX){
+        var nd=(pointerX-cardMidX)/(w*0.55);
+        nd=nd<-1?-1:(nd>1?1:nd);
+        tgtY+=nd*0.11*hoverE;
+      }
+    }
+    if(tgtY>0.40) tgtY=0.40; else if(tgtY<-0.40) tgtY=-0.40;
+    var kY=28+26*pSpdN, dY=2*Math.sqrt(kY)*0.74;
+    ryv+=(kY*(tgtY-ry)-dY*ryv)*h;
+    ry+=ryv*h;
+
+    var tgtX=0.022+(dragging?(vy*0.000045-((grabY-D)/hh)*0.10):(om*0.012));
+    if(tgtX>0.16) tgtX=0.16; else if(tgtX<-0.16) tgtX=-0.16;
+    var kX=26, dX=2*Math.sqrt(kX)*0.80;
+    rxv+=(kX*(tgtX-rx)-dX*rxv)*h;
+    rx+=rxv*h;
+  }
+
   function render(){
     var ux=Math.sin(th), uy=Math.cos(th);
     var nkx=px-HANG*ux, nky=py-HANG*uy;     // 卡片上边中点（HANG 为负 → 在扣子下方）
     var ox=nkx+ux*H/2, oy=nky+uy*H/2;       // 卡片中心
     var deg=Math.atan2(-ux,uy)*180/Math.PI;
-    card.style.transform='translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0) rotate('+deg.toFixed(2)+'deg)';
+    var rY=ry*180/Math.PI, rX=rx*180/Math.PI;
+    card.style.transform='perspective(1100px) translate3d('+r1(ox-W/2)+'px,'+r1(oy-H/2)+'px,0)'+
+      ' rotateY('+rY.toFixed(2)+'deg) rotateX('+rX.toFixed(2)+'deg) rotate('+deg.toFixed(2)+'deg)';
     cardMidX=ox;
+    // 反光带：翻转越多高光扫得越远，再叠一点极慢漂移，静止时也有微弱流光
+    var gx=50-ry*78-th*13+Math.sin(performance.now()*0.00042)*3.5;
+    card.style.setProperty('--gx',gx.toFixed(1)+'%');
     var dA=ropeD(VL), dB=ropeD(VR);
     ropeL.setAttribute('d',dA); ropeR.setAttribute('d',dB);
     hiL.setAttribute('d',dA);   hiR.setAttribute('d',dB);
     if(shL){ shL.setAttribute('d',dA); shR.setAttribute('d',dB); }
+    if(wvL){ wvL.setAttribute('d',dA); wvR.setAttribute('d',dB); }
+    if(knot) knot.setAttribute('transform','translate('+r1(px)+','+r1(py)+') rotate('+deg.toFixed(2)+')');
   }
 
   // 指针速度（平滑后归一化到 0~1）：拖拽时摆角弹簧的软硬就看它
@@ -2613,7 +2768,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     trackPointer(dt);
     // 固定小步长积分：任何掉帧都拆成 ≤5ms 的子步，物理不会因为帧率变化而抖
     var n=Math.max(1,Math.ceil(dt/0.005)), h=dt/n;
-    for(var s=0;s<n;s++) stepOnce(h);
+    for(var s=0;s<n;s++){ stepOnce(h); step3D(h); }
     render();
   }
 
