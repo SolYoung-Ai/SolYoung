@@ -2926,10 +2926,13 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
       lastT=performance.now();
       try{ card.setPointerCapture(e.pointerId); }catch(_){}
     });
-    card.addEventListener('pointermove',function(e){
+    // 挂在 window 上而不是 card：pointer capture 在某些情况下会立刻丢失
+    // （合成的 pointerdown 尤甚），那时 card 收不到 move/up，拖拽会开局即死。
+    // window 级监听与 capture 无关，drop 掉 capture 也照样跟手。
+    window.addEventListener('pointermove',function(e){
       if(!dragging) return;
       pointerX=e.clientX; pointerY=e.clientY;
-    });
+    },{passive:true});
     function endDrag(){
       if(!dragging) return;
       dragging=false;
@@ -2939,9 +2942,8 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
       if(vy>1400) vy=1400; else if(vy<-1400) vy=-1400;
       if(om>7) om=7; else if(om<-7) om=-7;
     }
-    card.addEventListener('pointerup',endDrag);
-    card.addEventListener('pointercancel',endDrag);
-    card.addEventListener('lostpointercapture',endDrag);
+    window.addEventListener('pointerup',endDrag);
+    window.addEventListener('pointercancel',endDrag);
 
     var rt=0;
     window.addEventListener('resize',function(){
