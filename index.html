@@ -2648,26 +2648,30 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
     var s=d*0.075;
     return s>28?28:s;
   }
-  // 绳子 = 固定锚点到扣子的一段「自然下坠」的弧：控制点落在弦中点正下方，
-  // 所以中间朝重力方向（+y）微微沉下去，两端平顺接上锚点和扣子。
-  // 顶端 x 恒为锚点 x，不会沿画面顶边左右滑（老画法就是在这里被拖出一条横向位移的）。
+  // 绳子 = 锚点到扣环的一条平滑贝塞尔，没有额外直线段。
+  // 末端切线取「虚拟吊点 → 扣环」的摆臂方向，两根绳共用同一个末端控制点，
+  // 末端会自然并成一股穿进金属环；卡片摆到任何角度都是一条连续的柔带，不会直角/回勾。
   function ropeD(ax){
     var ay=VY, bx=px, by=py;
     var dy=by-ay;
     if(dy<14) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
-    var d=Math.sqrt((bx-ax)*(bx-ax)+dy*dy)||1e-6;
-    var sag=ropeSag(d);
-    if(sag<0.8) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
-    // 末端并股：两根带子在进金属环之前收成一段竖直的带子（参考图里绳扣就是这么穿的）。
-    // 收束点沿「卡片朝上」的方向回退 STUB，末端切线也指向这段竖直的连接，接缝没有折角。
-    // 两根绳画到同一个点，所以这段在视觉上就是「两条并成一条」。
-    var ux=Math.sin(th), uy=Math.cos(th);
-    var STUB=Math.min(17, d*0.14);
-    var ex=bx-ux*STUB, ey=by-uy*STUB;
-    var c1x=ax+(ex-ax)*0.42, c1y=ay+(ey-ay)*0.42+2*sag;
-    var c2x=ex-ux*STUB*0.8, c2y=ey-uy*STUB*0.8;
-    return 'M'+r1(ax)+' '+r1(ay)+'C'+r1(c1x)+' '+r1(c1y)+' '+r1(c2x)+' '+r1(c2y)+
-           ' '+r1(ex)+' '+r1(ey)+'L'+r1(bx)+' '+r1(by);
+    var chordX=bx-ax;
+    var d=Math.sqrt(chordX*chordX+dy*dy)||1e-6;
+    // 下垂量按绳子的倾斜度衰减（用平方根，别一刀切）：绳子越接近水平越不能凭空
+    // 鼓出一个大包，否则中段会被拉成水平硬带、末端再急拐 90°；但也不能衰减到 0，
+    // 拉到侧面时仍要留一道柔性弧，不然整条看起来像根直棍。
+    var sag=ropeSag(d)*Math.sqrt(Math.min(1,dy/d));
+    if(sag<0.4) return 'M'+r1(ax)+' '+r1(ay)+'L'+r1(bx)+' '+r1(by);
+    // 摆臂方向：吊点在画面上方，卡片摆到哪儿，绳子末端就顺着哪个方向垂下来
+    var dxp=bx-HOME_X, dyp=by-APEX_Y;
+    var pl=Math.sqrt(dxp*dxp+dyp*dyp)||1e-6;
+    var nx=dxp/pl, ny=dyp/pl;
+    // stub 与下垂量都随 dy 收窄：c2y ≥ 0.5dy > 0.49dy ≥ c1y 恒成立，
+    // 于是控制点沿绳子走向永远单调，卡片被拽到多高都不会回勾或压成水平硬带。
+    var stub=Math.min(20, d*0.15, dy*0.5);
+    var c2x=bx-nx*stub, c2y=by-ny*stub;
+    var c1x=ax+chordX*0.33, c1y=ay+dy*0.33+Math.min(sag*1.6, dy*0.16);
+    return 'M'+r1(ax)+' '+r1(ay)+'C'+r1(c1x)+' '+r1(c1y)+' '+r1(c2x)+' '+r1(c2y)+' '+r1(bx)+' '+r1(by);
   }
 
   // 3D 翻转 = 两个带阻尼的弹簧：由摆角、摆速、拖拽力矩与指针视差驱动，
