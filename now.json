@@ -1,5 +1,85 @@
 [
   {
+    "id": "major-2026-11-13-1201-d5bc2d",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：在线支付正式开通——会员订阅改 US$5/月、积分包扩成 1000 / 2100 / 3500 三档全部可在线买卡，账户页新增「订阅与账单」（当前方案与到期日、去续费、跳 Creem 门户查订单／下载发票／取消续费）；中国内地用户保留兑换码通道并列出人民币价目（会员 ¥28/月，¥95／¥195／¥295）。为过支付方审核，出图前接入内容审核（违规提示词直接拦下不出图），新增《使用规范》页与可公开访问的条款／隐私／价格静态页。",
+    "content_en": "LunaSol: online payment is live — membership is now US$5/month and credit packs come in three tiers (1000 / 2100 / 3500), all purchasable in-app. The account page gains a Subscriptions & Billing section (current plan, renewal date, Creem self-service portal for orders, invoices and cancellation). Users in mainland China keep the redemption-code route with RMB pricing (¥28/month; ¥95 / ¥195 / ¥295). To pass the payment provider's review, image generation now runs an upstream content check (blocked prompts never reach the model), plus a new Acceptable Use page and publicly reachable terms / privacy / pricing pages.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-3bba06",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：登录弹窗加入 Google 登录——主按钮下方用「或」分割线隔开一个白底描边的四色 G 按钮，中英文案跟随界面语言；微信入口的开关也已留好，未启用时按钮不出现。",
+    "content_en": "LunaSol: Google sign-in added to the login dialog — an outlined button with the four-colour G sits below the primary action behind an \"or\" divider, with copy following the interface language. A WeChat switch is wired up too and stays hidden until enabled.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-e59ad7",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：英文界面补齐到全站——创作流程四步、编辑器六个面板、印前报告全部结论、账户与订阅页、登录与云同步状态、启动兜底页都换成英文，空白工程的图层名与系统占位文案也跟着语言走。包装上的真实文案仍保持中文：界面语言只影响 UI，不动设计内容。标签页图标同时统一成新 logo（含 iOS 主屏图标）。",
+    "content_en": "LunaSol: the English UI is now complete across the whole site — the four-step creation flow, all six editor panels, every preflight report verdict, account and subscription pages, login and cloud-sync states, and the boot fallback page. Layer names and system placeholders in a blank project follow the language as well. Real packaging copy stays Chinese: the interface language only affects UI, never the design itself. Tab icons were unified to the new logo too, including the iOS home-screen icon.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-89f3f3",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：Luna 助手接入 7 款语言模型——默认 DeepSeek-V4.1-Flash 不限量，其余 6 款会员专属，每人每天有 ¥1 的会员模型额度，模型弹层里显示今日额度进度条和「约还能聊几轮」；未开通的档位点了会说明原因而不是死点击。生图模板从 4 项扩到 16 项，按包装／平面印刷／周边物料分组（礼盒、自立袋、瓶贴、快递箱、纸杯、海报、三折页、名片、吊牌、帆布袋、T 恤、展架等）。",
+    "content_en": "LunaSol: Luna now runs on seven language models — DeepSeek-V4.1-Flash by default with no cap, the other six reserved for members, each user getting ¥1 of member-model budget per day with a daily-quota bar and a \"roughly how many more turns\" hint in the model sheet. Locked tiers explain why instead of swallowing the click. Image templates grew from 4 to 16, grouped into packaging, print and merchandise (gift box, stand-up pouch, bottle label, shipping carton, paper cup, poster, tri-fold, business card, hang tag, tote bag, T-shirt, display stand).",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-faf3bb",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：工作台侧栏拆成「新建设计／项目／复制」三段，新增独立的复制页，侧栏折叠与页面切换都补了动效；项目列表不再挂筛选子项。删除草稿改为本地 + 云端 + 墓碑三方同步，删掉的设计不会在别的设备被本机旧副本推回云端。",
+    "content_en": "LunaSol: the workspace sidebar is now split into New design / Projects / Duplicate with a dedicated duplicate page, animated collapse and page transitions, and no more filter sub-items under projects. Deleting a draft now writes a tombstone locally and in the cloud, so a removed design can't be resurrected by an older local copy on another device.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-326bbe",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "主站：开屏工牌整套重做——深色亚克力与白色纸卡两版卡片、卡片厚度侧面、多光源环境反射、织物织纹流动和 3D 弹簧翻转；人像改成整张插画原图铺满并配摄影棚光。挂绳接口从塑料横条改成细长 D 环 + 薄刃转轴，两股织带进环前先并股再穿环；修掉拖拽一上手就断、以及把卡片拖到侧面时挂绳拉成直角硬折的问题。",
+    "content_en": "Homepage: the opening ID badge was rebuilt end to end — dark acrylic and white paper-card variants, visible card thickness, multi-light environment reflections, flowing fabric weave and a 3D spring flip, with the portrait filled by the full illustration under studio lighting. The lanyard mount went from a plastic bar to a slim D-ring with a blade-thin pivot, the two straps merging before threading the ring. Fixed the drag gesture dying the moment it started and the lanyard snapping into a hard right angle when the card is pulled to the side.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-aa0dfd",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "SolHub：新增「热点」页——聚合 34 家媒体（10 家中文源加 TechCrunch、The Verge、WIRED、WSJ、CNBC、Nature、Hacker News 等全球源），标题与导语在入库前统一译成中文、港台源自动繁转简，15 分钟一轮自动更新；新条目不插队，顶部浮出「N 条新热点」点了才并入，还可开启桌面通知。侧栏的「赞助商」位让给热点，赞助墙退到页脚「关于」下拉里。",
+    "content_en": "SolHub: a new Hot page aggregates 34 outlets (10 Chinese sources plus TechCrunch, The Verge, WIRED, WSJ, CNBC, Nature and Hacker News), with headlines and summaries translated into Chinese before storage, Traditional Chinese auto-converted, and a refresh every 15 minutes. New items don't jump the queue — a \"N new\" banner waits for a click — and desktop notifications can be enabled. The sidebar slot for sponsors gave way to Hot, with the sponsor wall moving under About in the footer.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-32bfef",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "SolHub：热点页顶部加了行情条——上证、深证、纳斯达克、标普 500、恒生、COMEX 黄金、比特币、美元指数八格，按需刷新（缓存 60 秒，过期后第一个访客触发回源），涨红跌绿，取不到就整条隐藏而不报错。热点库涨到 500 多条后补上搜索：按标题／导语／来源跨全部分类匹配，中英混搜、英文按词边界、多词同时命中，命中词高亮，250ms 防抖并暂停轮询避免结果被新条目污染。",
+    "content_en": "SolHub: the Hot page gained a market strip with eight tiles — Shanghai, Shenzhen, Nasdaq, S&P 500, Hang Seng, COMEX gold, Bitcoin and the dollar index — refreshed on demand (60-second cache, the first visitor after expiry triggers the fetch), red for up, green for down, and the whole strip hides quietly when data is unavailable. With 500+ hot items in the library it now has search across all categories by title, summary or source: mixed Chinese/English queries, word boundaries for English, AND semantics for multiple words, highlighted matches, 250 ms debounce and polling paused so incoming items don't pollute results.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-8ffa23",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "SolHub：首页换血——「全部产品」整块换成赞助墙（按出价排名、只留当期有效，空位写「这个位置还空着」并给投放入口），下面接 8 条热点摘录，滚到才加载；创作者主页从 672px 单栏改成两栏，左边身份卡滚动时吸附、右边作品改成带边框的方块并跟着栏宽自适应列数，手机端仍是身份在上、作品在下。",
+    "content_en": "SolHub: the homepage swapped its full product list for a sponsor wall (ranked by bid, only active slots, empty slots say so with a booking link), followed by eight hot-item excerpts that load on scroll. Creator profiles moved from a 672px single column to two columns: a sticky identity card on the left, product cards as bordered tiles on the right with column count following the panel's own width, and mobile keeping identity-above-projects order.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-13-1201-1aa1f5",
+    "date": "2026-11-13T12:01:45+08:00",
+    "type": "BUILD",
+    "content": "SolHub：下线 1000 条机器采集的全网 SKILL.md 索引，只留 34 条人工精选与「数据来源与核验」，站内搜索里对应的空结果一并清掉；搜不到时给出 skills.sh / FindSkills 出口。手机端补齐安全区与视口适配——刘海与 Home 指示条、地址栏展开高度、弹窗贴顶被压、320px 下长链接被裁切都修好。",
+    "content_en": "SolHub: the 1000-entry machine-scraped SKILL.md index is gone, leaving 34 hand-picked skills plus a data-sources section, and the corresponding empty search hits were removed; a failed search now points to skills.sh and FindSkills. Mobile safe-area and viewport handling was fixed too — notch and home indicator, address-bar height, dialogs pinned under the notch, and long links clipped at 320px.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-11-1203-9c5d47",
     "date": "2026-11-11T12:03:34+08:00",
     "type": "BUILD",
