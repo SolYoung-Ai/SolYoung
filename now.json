@@ -1,5 +1,45 @@
 [
   {
+    "id": "major-2026-11-14-1252-d06dd9",
+    "date": "2026-11-14T12:52:11+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：计费全面改为纯积分制——会员、订阅、续费、到期日这些概念整体下线，充值只买积分包，账户里能用的额度就是积分余额；对话模型从 7 款精简为「主档 + 兜底」两档，界面不再让你挑模型，主档失败自动切备用。存量会员订阅一次性折算成 350 积分，会员码与历史余额也并进积分，云同步、历史版本、印刷级导出、3D 预览对所有登录用户免费开放、不再扣积分。价格页、服务条款、隐私政策和帮助文档同步改成积分口径。",
+    "content_en": "LunaSol: billing is now pure credits. Membership, subscriptions, renewals and expiry dates are gone; top-ups only buy credit packs and your usable quota is simply your credit balance. The chat model picker is reduced to a primary model plus an automatic fallback. Existing subscriptions are converted into 350 credits, membership codes and old balances are merged in, and cloud sync, version history, print-grade export and 3D preview are now free for every signed-in user.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-14-1252-1d30ff",
+    "date": "2026-11-14T12:52:11+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：新增「复刻设计」，与包装设计平级——进去先选类型（主图／详情页／海报／视频封面／包装／周边），每种类型带自己的场景规则和默认比例；参考图与素材图各支持多张（合计 4 张），可补提示词、选模型选尺寸、拖动 20–100% 的复刻度，一次出三张，支持单张重来、改提示词换模型重来或整组重来。侧栏另开一页「复刻记录」做独立草稿箱：按全部／已出图／未出图筛选，可搜索排序，能继续做、复制、重命名或删除，出图结果自动写回那条记录。",
+    "content_en": "LunaSol: a new Replicate Design line, sitting alongside Packaging Design. Pick a type first (hero image, detail page, poster, video cover, packaging, merch), each with its own scene rules and default ratio; reference and material images can each be multiple (four in total) with optional prompt, model, size and a 20-100% similarity slider. Three images per run, with retry for one, a whole set, or with a new prompt/model. A separate Replicate Records page keeps its own drafts, filtered by all/generated/not generated, searchable and sortable, each record resumable, duplicable, renamable or deletable.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-14-1252-7ece1c",
+    "date": "2026-11-14T12:52:11+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：审美市场整体下线——原来那份上百个站点的灵感索引连同抓取脚本一起移除，导航、页脚、帮助页和手机抽屉里的入口全部摘掉；/market 及旧的灵感链接自动跳到包装设计工作台，不会再撞 404。",
+    "content_en": "LunaSol: the aesthetic market is retired. The curated inspiration index and its scrapers are removed, entries disappear from the nav, footer, help page and mobile drawer, and old /market and inspiration links now redirect to the packaging workspace instead of 404ing.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-14-1252-9b1fbf",
+    "date": "2026-11-14T12:52:11+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：导航与切页体验整理——「工作台」改名「包装设计」，「复制」改名「复刻设计」，两者平级、各自一套场景入口；切换 Luna 时不再整页上下跳动，桌面端 Luna 复用全站左栏只做 8px 轻浮入，移动端抽屉断点统一到 860px，修好窄屏汉堡按钮消失和深色抽屉白底浅字；工作台只列真实项目，空草稿不再占位。",
+    "content_en": "LunaSol: navigation and page transitions cleaned up. Workspace is renamed Packaging Design and Copy becomes Replicate Design, both at the same level with their own entries. Switching to Luna no longer jumps the whole page: on desktop Luna reuses the global sidebar with a subtle 8px fade-in, mobile drawer breakpoints are unified at 860px, the hamburger no longer disappears on narrow screens and the dark drawer no longer renders light text on white. The workspace lists only real projects, so blank drafts stop taking up slots.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-14-1252-7cbf66",
+    "date": "2026-11-14T12:52:11+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：上传与出图修复——解除 4MB 上传硬限制，大图不再被卡；GPT Image 2 档位按画面方向吸附到 1024／1536 三档，避免上游 400；网络类错误改成能看懂的中文提示，不再直接甩「Failed to fetch」；作品封面上的角标不再撑满整张卡片、遮住缩略图。",
+    "content_en": "LunaSol: upload and generation fixes. The hard 4MB upload cap is lifted, GPT Image 2 sizes snap to 1024/1536 by orientation to avoid upstream 400s, network errors show readable messages instead of raw \"Failed to fetch\", and cover badges no longer stretch over the whole card and hide the thumbnail.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-13-1201-d5bc2d",
     "date": "2026-11-13T12:01:45+08:00",
     "type": "BUILD",
