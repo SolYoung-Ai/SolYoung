@@ -206,23 +206,8 @@ footer a:hover{color:var(--accent)}
   });
 
   /* ---------- posts ----------
-     线上 thoughts.json 是主数据源（由自动化维护），EXTRA 补齐三篇
-     还没进 feed 的旧文章，避免它们在站里成为「孤儿」。            */
-  var EXTRA=[
-    {id:'why-i-record',date:'2026 / 09',tag:'notes',read:5,page:'../thoughts/why-i-record.html',
-     title:'为什么我开始记录',title_en:'Why I Started Recording',
-     summary:'不是为了证明给谁看。是发现我做完一件事情就忘了——忘掉当时的困惑，忘掉踩过的坑，忘掉为什么这么选。',
-     summary_en:'Not to prove anything to anyone. I realised I forget a piece of work the moment it is done — the confusion, the dead ends, the reasons behind every choice.'},
-    {id:'ai-does-not-decide',date:'2026 / 08',tag:'ai',read:4,page:'../thoughts/ai-does-not-decide.html',
-     title:'AI 不会替我做决定',title_en:'AI Does Not Decide For Me',
-     summary:'我曾经以为，AI 越来越强之后，创作者会越来越轻松。很多事情都可以交给 AI。',
-     summary_en:'I used to think that as AI got stronger, creating would get easier. So many things can now be handed over to it.'},
-    {id:'idea-to-work',date:'2026 / 07',tag:'creating',read:4,page:'../thoughts/idea-to-work.html',
-     title:'一个想法，变成一件作品',title_en:'From an Idea to a Piece of Work',
-     summary:'我以前经常有很多想法。看到一个东西，会突然想到一个视频。用到一个工具，会觉得：这个东西是不是可以做成一个项目？',
-     summary_en:'I used to have ideas all the time. One thing would spark a video; a tool would make me wonder whether it could become a project.'}
-  ];
-  var FEED_TAGS={'2026-10-4-94lm':'creating','2026-10-10-hsnc':'creating'};
+     唯一数据源：线上 thoughts.json（新文章直接在 feed 里加一条即可）。 */
+  var FEED_TAGS={'2026-10-4-94lm':'creating','2026-10-10-hsnc':'creating','2026-11-14-attention':'creating'};
   var POSTS=[];
   var list=document.getElementById('list');
   var listHead=document.getElementById('listHead');
@@ -256,7 +241,7 @@ footer a:hover{color:var(--accent)}
   }
   function merge(feed){
     var seen={},out=[];
-    EXTRA.concat(feed||[]).forEach(function(p){
+    (feed||[]).forEach(function(p){
       if(!p||p.published===false) return;
       var n=normalize(p);
       if(seen[n.href]) return;
