@@ -1,5 +1,61 @@
 [
   {
+    "id": "major-2026-11-15-1326-6d8645",
+    "type": "BUILD",
+    "content": "LunaSol：复刻设计大升级——模版库首批上线 20 套小红书封面模版，标题必填一键替换，复刻度改为连续滑杆精确可调，结果从预览改为直接下载图片；新建复刻页改点阵纸双卡布局，结果图可点开大图查看。",
+    "content_en": "LunaSol: Replicate gets a major upgrade — first batch of 20 Xiaohongshu cover templates, required title one-tap replacement, a continuous similarity slider, and results now download as images; the create page moves to a dotted-paper two-card layout with zoomable result previews.",
+    "date": "2026-11-15T13:26:00+08:00",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-15-1326-22d1e5",
+    "type": "BUILD",
+    "content": "LunaSol：工作台页头重构为 Canva 式——居中大搜索框加大号「新建」按钮，首屏直接展示最近的项目；「包装工作台 / 复刻工作台」命名统一，复刻侧栏与列表的「记录」统一改称「项目」。",
+    "content_en": "LunaSol: Workspace headers rebuilt Canva-style — a centered search bar, a big Create button, and recent projects right on the first screen; workspace naming unified and replicate records renamed to projects.",
+    "date": "2026-11-15T13:26:00+08:00",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-15-1326-2f320a",
+    "type": "BUILD",
+    "content": "LunaSol：充值与支付通道调整——在线支付新增支付宝（含 AlipayHK），微信充值改用收款码图片（扫码或长按识别）并明示到账时效；下线 US$1 体验档；修复「一直在确认积分到账」的卡死问题。",
+    "content_en": "LunaSol: Payment channels updated — Alipay (incl. AlipayHK) added, WeChat top-up switched to a QR payment image with stated processing time; the US$1 trial tier removed; fixed the stuck credit-confirmation issue.",
+    "date": "2026-11-15T13:26:00+08:00",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-15-1326-ef802e",
+    "type": "BUILD",
+    "content": "LunaSol：整站视觉收敛为中性白底——去掉橙色环境光，Luna 左栏与正文卡改实心白卡并固定高度卡内滚动；全站页脚撤下，站内与法务链接并入帮助页，帮助页新增搜索与分区索引。",
+    "content_en": "LunaSol: Site-wide visual cleanup — neutral white theme replaces the orange ambient glow with solid white cards; the global footer is gone, with site and legal links merged into a searchable help center.",
+    "date": "2026-11-15T13:26:00+08:00",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-15-1326-797dcd",
+    "type": "BUILD",
+    "content": "SolHub：热点新增「羊毛」分类——集中收录免费 API、开源替代、自托管方案等白嫖资源；Skill 库更新到 2026-11-14，补入 12 条新条目，星标与安装量全部重新核对。",
+    "content_en": "SolHub: Hot list adds a \"Deals\" category — free APIs, open-source alternatives and self-hosted picks; the Skill library refreshed to Nov 14 with 12 new entries and re-verified stars and installs.",
+    "date": "2026-11-15T13:26:00+08:00",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-15-1326-3259e9",
+    "type": "BUILD",
+    "content": "SolHub：赞助墙与招商入口整体下线，首页回归专心做内容推荐。",
+    "content_en": "SolHub: The sponsor wall and advertiser entry are removed; the homepage goes back to pure content curation.",
+    "date": "2026-11-15T13:26:00+08:00",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-15-1326-fe83c0",
+    "type": "BUILD",
+    "content": "主站：博客页改为极简单列时间线，去掉页头与横向轮播；下架 3 篇旧文，新增《抓住注意力，是当下回报率最高的一项技能》。",
+    "content_en": "Main site: The blog becomes a minimal single-column timeline without header or carousel; three old posts removed and a new essay on attention published.",
+    "date": "2026-11-15T13:26:00+08:00",
+    "published": true
+  },
+  {
     "id": "major-2026-11-14-1252-d06dd9",
     "date": "2026-11-14T12:52:11+08:00",
     "type": "BUILD",
