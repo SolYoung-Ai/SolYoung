@@ -756,3 +756,135 @@ html[data-theme="dark"] .hp-tab.on,html[data-theme="dark"] .pj-tab.on{background
 .dr-tools .theme-btn svg{width:15px !important;height:15px !important}
 .dr-tools .lang-btn{min-width:38px !important;padding:0 10px !important;font-size:10px !important}
 .dr-foot{align-items:center;justify-content:flex-end}
+
+/* =============================================================
+   SolHub 介绍弹窗（2026-11-15）
+   侧栏「项目」改成先弹说明，读者自己决定进不进 —— 直接跳走的话，
+   第一次来的人不知道那是个什么东西。
+   与联系弹窗同一套玻璃材质，只是更宽、带一张首页截图。
+   ============================================================= */
+.sh-scrim{
+  position:fixed;inset:0;z-index:1200;
+  background:rgba(40,26,12,.18);
+  backdrop-filter:blur(10px) saturate(115%);
+  -webkit-backdrop-filter:blur(10px) saturate(115%);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .44s var(--ios-ease),visibility 0s linear .44s;
+}
+.sh-scrim.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .44s var(--ios-ease),visibility 0s}
+html[data-theme="dark"] .sh-scrim{background:rgba(0,0,0,.5)}
+
+.sh-modal{
+  position:fixed;z-index:1201;left:50%;top:50%;
+  width:min(700px,calc(100vw - 32px));
+  max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);
+  overflow-y:auto;overscroll-behavior:contain;
+  padding:22px 24px 20px;
+  border-radius:32px;
+  background:var(--glass-strong);
+  backdrop-filter:var(--glass-blur);
+  -webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-edge);
+  box-shadow:0 50px 120px -46px rgba(40,26,12,.55),var(--glass-inner);
+  transform:translate(-50%,-50%) scale(.94);
+  opacity:0;visibility:hidden;
+  transition:transform .56s var(--ios-ease),opacity .34s var(--ios-ease),visibility 0s linear .56s;
+}
+.sh-modal.open{
+  transform:translate(-50%,-50%) scale(1);opacity:1;visibility:visible;
+  transition:transform .56s var(--ios-ease),opacity .3s var(--ios-ease),visibility 0s;
+}
+.sh-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.sh-eyebrow{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--accent)}
+.sh-title{
+  margin:0 0 6px;font-size:clamp(20px,2.6vw,26px);font-weight:700;
+  letter-spacing:-.025em;line-height:1.28;color:var(--ink);
+}
+.sh-lead{margin:0 0 14px;max-width:58ch;font-size:13px;line-height:1.75;color:var(--ink-soft)}
+
+.sh-shot{
+  position:relative;display:block;overflow:hidden;
+  border-radius:18px;border:1px solid var(--line);
+  background:var(--bg-soft);
+  box-shadow:0 20px 44px -30px rgba(40,26,12,.5);
+}
+.sh-shot img{
+  display:block;width:100%;height:auto;aspect-ratio:1920/1140;
+  /* 高度上限按视口收：矮屏（笔记本 1366×768、分屏）弹窗要能一屏放下，
+     否则按钮被推到折叠线以下，读者根本看不到「进入」。裁的是截图底部。 */
+  max-height:34vh;
+  object-fit:cover;object-position:left top;
+  transition:transform .7s var(--ios-ease);
+}
+.sh-shot:hover img{transform:scale(1.012)}
+.sh-shot-hint{
+  position:absolute;right:10px;bottom:10px;
+  padding:5px 11px;border-radius:999px;
+  font-size:11px;font-weight:700;letter-spacing:.02em;color:#fff;
+  background:rgba(28,20,12,.6);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  opacity:0;transform:translateY(4px);
+  transition:opacity .3s,transform .3s;
+}
+.sh-shot:hover .sh-shot-hint{opacity:1;transform:none}
+@media (hover:none){.sh-shot-hint{opacity:1;transform:none}}
+
+.sh-feats{
+  list-style:none;margin:14px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
+}
+.sh-feats li{
+  padding:10px 12px;border-radius:14px;
+  background:rgba(255,255,255,.62);
+  border:1px solid var(--glass-edge);
+  box-shadow:0 1px 2px rgba(28,20,12,.04);
+}
+html[data-theme="dark"] .sh-feats li{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.09)}
+.sh-feats b{display:block;margin-bottom:2px;font-size:12px;font-weight:700;color:var(--ink)}
+.sh-feats span{display:block;font-size:11.5px;line-height:1.6;color:var(--ink-soft)}
+
+.sh-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px}
+.sh-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 20px;border-radius:999px;
+  font-size:13px;font-weight:700;color:#fff;text-decoration:none;
+  background:linear-gradient(135deg,#F0873A,#E87028);
+  box-shadow:0 14px 28px -16px rgba(232,112,40,.9);
+  transition:transform .42s var(--ios-spring),box-shadow .3s;
+}
+.sh-cta:hover{transform:translateY(-2px);box-shadow:0 20px 34px -16px rgba(232,112,40,.95)}
+.sh-later{
+  padding:11px 16px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:transparent;
+  font:inherit;font-size:12.5px;font-weight:600;color:var(--ink-soft);
+  transition:color .3s,border-color .3s,background .3s;
+}
+.sh-later:hover{color:var(--ink);background:rgba(28,20,12,.045)}
+html[data-theme="dark"] .sh-later:hover{background:rgba(255,255,255,.07)}
+.sh-note{margin:10px 0 0;font-size:10.5px;letter-spacing:.02em;color:var(--ink-faint)}
+
+body.sh-open{overflow:hidden !important}
+
+@media (max-width:560px){
+  .sh-modal{
+    width:calc(100vw - 20px);
+    max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);
+    padding:18px 16px 16px;border-radius:26px;
+  }
+  .sh-feats{grid-template-columns:1fr;gap:6px}
+  .sh-feats li{padding:9px 11px}
+  .sh-actions{gap:8px}
+  .sh-actions .sh-cta{flex:1;justify-content:center}
+  .sh-later{flex:0 0 auto}
+}
+
+/* 矮屏（笔记本 768、分屏 640）：把截图与间距再收一档，
+   保证「进入 SolHub」在一屏内可见，不用滚动才找得到。 */
+@media (max-height:700px){
+  .sh-modal{padding:18px 22px 16px}
+  .sh-shot img{max-height:26vh}
+  .sh-lead{margin-bottom:10px;font-size:12.5px;line-height:1.62}
+  .sh-feats{margin-top:10px;gap:6px}
+  .sh-feats li{padding:8px 10px}
+  .sh-actions{margin-top:12px}
+}
