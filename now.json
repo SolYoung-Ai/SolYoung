@@ -1,5 +1,69 @@
 [
   {
+    "id": "major-2026-11-16-1203-73cb04",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：Skill 库上线「今日热门」榜单——每天自动从 GitHub 收集最热门的 agent skills，过滤凑数仓库、简介自动中译，精选列表上方直接展示当日趋势。",
+    "content_en": "SolHub: Skills hub adds a \"Trending today\" board — top agent skills on GitHub are auto-collected daily, filler repos filtered and descriptions auto-translated, shown above the curated list.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-16-1203-347f31",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：热点新增「时政」标签——世界新闻按中英文关键词自动归类；「羊毛」分类取消，条目按内容并入产品/科技分类，历史数据自动迁移。",
+    "content_en": "SolHub: The hot list adds a \"World news\" tab — geopolitics headlines are auto-classified by zh/en keywords; the \"freebies\" category is dissolved and its items re-classified by content.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-16-1203-aa72f4",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：世界新闻源扩容——探测 20 家媒体后接入可达的 France 24 与 Sky News，保留联合早报镜像，全站媒体源增至 42 家。",
+    "content_en": "SolHub: World news sources expand — France 24 and Sky News added after probing 20 candidates, the Zaobao mirror kept, bringing the total to 42 outlets.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-16-1203-4d4369",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：Skill 安装教程精简为三步——复制链接、一句话发给任意 Agent、新对话里选中即可用；删去开发者与 MCP 支线内容。",
+    "content_en": "SolHub: The skill install guide is simplified to 3 steps — copy the link, send it to any agent with one sentence, select it in a new chat.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-16-1203-99364d",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "主站：侧栏「项目」不再直接跳走——先弹出 SolHub 介绍卡，博客/此刻/关于等子页同样生效，由你自己决定进不进。",
+    "content_en": "Main site: The sidebar \"Projects\" entry now opens a SolHub intro card instead of jumping away — also applied to the blog/now/about subpages.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-16-1203-9a5757",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：积分页下线微信收款码购买入口，充值以支付宝通道为主。",
+    "content_en": "LunaSol: The WeChat QR payment block is removed from the credits page; Alipay remains the main payment channel.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-16-1203-8396bf",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "主站：修复工牌静止时仍歪斜的问题——删除姿态常驻偏置并在收尾时吸附归零。",
+    "content_en": "Main site: Fixed the badge tilt at rest — the persistent pose offset is removed and the animation settles back to zero.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-16-1203-4b9021",
+    "date": "2026-11-16T12:03:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：移除桌面壳波点背景，卡片背景统一纯色，视觉更清爽。",
+    "content_en": "LunaSol: Removed the dotted desktop backdrop; cards now use flat solid backgrounds.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-15-1326-6d8645",
     "type": "BUILD",
     "content": "LunaSol：复刻设计大升级——模版库首批上线 20 套小红书封面模版，标题必填一键替换，复刻度改为连续滑杆精确可调，结果从预览改为直接下载图片；新建复刻页改点阵纸双卡布局，结果图可点开大图查看。",
