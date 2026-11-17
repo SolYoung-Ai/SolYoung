@@ -1,5 +1,53 @@
 [
   {
+    "id": "major-2026-11-17-2155-6d37e4",
+    "date": "2026-11-17T21:55:48+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：Studio 工作台正式上线——启动弹窗可选「开始新设计 / 继续上次 / 我的设计」，接进九步包装需求向导：类别、产品信息、包装形式（按品类动态）、尺寸（AI 建议需你确认）、风格（1 主 + 最多 2 辅）、颜色、图案、Logo、补充要求。每步只问一件事、顶部进度可回跳，自动保存、刷新可恢复；53 个插画全部内联 SVG，需求单可导出结构化 JSON，并分开标注「你填写的 / 你选择的 / AI 建议的」。创意生成阶段标注开发中，不放任何假图。",
+    "content_en": "LunaSol: the Studio workspace is live. Its launch dialog offers Start a new design / Continue last / My designs, then walks you through a nine-step packaging brief: category, product info, pack format (driven by category), size (AI suggestions need your confirmation), style (one main plus up to two secondary), colour, pattern, logo and extra notes. One question per step with clickable progress, autosave and refresh recovery. All 53 illustrations are inline SVG, and the brief exports as structured JSON that separates what you typed, what you picked and what AI suggested. Generation is labelled as in development — no placeholder mock-ups.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-17-2155-40a6ce",
+    "date": "2026-11-17T21:55:48+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：全站升级到 2.0 视觉——纯白底加 iOS 液态玻璃的导航、按钮与卡片，首页收成一屏，只留大字「让设计不再复杂」和开始按钮；顶部导航改为字标贴最左、首页 / 产品 / 关于依次排开，产品变成下拉菜单（包装设计、复刻设计），左侧栏整体撤掉，积分 / 账户 / 帮助改为独立页面；logo 统一成「Luna 黑 + Sol 橙」字标，标签页图标与标题一起换新。顺带修掉冷启动时导航右侧空白、发版瞬间只剩头尾，以及导航跟着正文滚走的老问题。",
+    "content_en": "LunaSol: the whole site moved to the 2.0 look — pure white background with iOS-style liquid glass on nav, buttons and cards. The homepage collapses into a single screen with just the headline and a start button; the top bar puts the wordmark hard left with Home / Product / About beside it, Product became a dropdown (packaging design, replica design), the left sidebar is gone and credits, account and help became standalone pages. The logo is unified as a black Luna plus orange Sol wordmark, with a matching favicon and title. Also fixed: a blank nav on cold start, half-rendered pages during deploys, and a sticky nav that scrolled away with the content.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-17-2155-0db7c9",
+    "date": "2026-11-17T21:55:48+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：全新登录 / 注册页——左右分栏，左栏是白底橙色晨光与三件几何包装，循环播放品牌开场动画；邮箱验证码、密码、Google 登录全部可用，登录完自动回到刚才想去的页面。全站只保留这一个登录界面，弹窗式登录整体移除，未登录点任何入口都统一跳到这里。",
+    "content_en": "LunaSol: a brand-new sign-in and sign-up page — split layout, with a white-and-orange sunrise and three geometric packs looping the brand intro on the left. Email code, password and Google sign-in all work, and you land back on the page you originally wanted. This is now the only sign-in surface on the site: the old modal is gone and every gated entry point routes here.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-17-2155-f5b5fe",
+    "date": "2026-11-17T21:55:48+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：未登录也能先逛 Studio——访客打开工作台会先看到启动弹窗和欢迎界面，点「开始一个新设计」才去登录，登录回来自动接着建项目；「我的设计」在未登录时换成登录引导，不再是一张空列表，也不会一进门就被弹去登录页。",
+    "content_en": "LunaSol: visitors can browse Studio before signing in — opening the workspace shows the launch dialog and welcome screen first, and only pressing Start a new design sends you to sign in, after which the project picks up where you left off. My designs turns into a sign-in prompt for guests instead of an empty list, and nobody gets bounced out of the page on arrival.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-17-2155-3209f1",
+    "date": "2026-11-17T21:55:48+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：关于页重做成可搜索的帮助中心——介绍、制作流程、积分、导出、账户、隐私条款与使用规范摘要、常见问题、更新日志和联系方式集中在一页，顶部搜索支持关键词高亮与跳转，⌘K 直接唤出。",
+    "content_en": "LunaSol: the About page is now a searchable help centre — intro, workflow, credits, export, account, privacy and acceptable-use summaries, FAQ, changelog and contact all on one page, with a top search that highlights keywords and jumps to them (⌘K to open).",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-17-2155-0ab984",
+    "date": "2026-11-17T21:55:48+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：Luna 对话页桌面左栏改成浮起的液态玻璃卡片，可点 « 收起成窄轨（收起状态记在本机），手机端仍是左滑抽屉；输入区上方常驻「对话 / 图像生成」切换，图像生成直接列出 4 个模型档位并标明积分，促销档带划线原价。",
+    "content_en": "LunaSol: on desktop the Luna chat sidebar is now a floating liquid-glass card that collapses to a narrow rail (state remembered locally), while mobile keeps the slide-in drawer. A persistent Chat / Image generation switch sits above the input, and image generation lists four model tiers with credit costs up front, including struck-through original prices on promo tiers.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-16-1203-73cb04",
     "date": "2026-11-16T12:03:14+08:00",
     "type": "BUILD",
