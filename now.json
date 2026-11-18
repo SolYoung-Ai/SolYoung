@@ -1,5 +1,61 @@
 [
   {
+    "id": "major-2026-11-18-2001-cb8d40",
+    "date": "2026-11-18T20:01:22+08:00",
+    "type": "BUILD",
+    "content": "SolHub：现在能直接上传自己做的小工具——登录后在投稿页选「在线工具」，传一个自包含的 HTML 文件（1MB 以内）就会自动上线，在站内 /tools/ 页面用沙箱直接打开就能用，产品列表里带「站内运行」标记；「我的提交」新增小工具页签，可以查看、复制链接和删除。",
+    "content_en": "SolHub: you can now upload your own self-contained HTML tools. After signing in, pick \"Online tools\" on the submit page and upload a single HTML file (up to 1MB); it goes live automatically and runs sandboxed on the site at /tools/, with a \"runs here\" badge in listings. \"My submissions\" gains a tools tab to view, copy the link or delete.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-18-2001-35f22e",
+    "date": "2026-11-18T20:01:22+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：包装工作台重做成三栏编辑器——左侧是页面 / 图层 / 素材，中间是白纸画布（支持缩放、拖动元素位置），右侧是 Luna AI 顾问，能读到当前页和已填的结构化需求帮你改稿，对话跟着项目一起保存（免费、不扣积分）；九步问卷改成九个可随时跳转的页面，第 10 页是需求总结，确认后进入「待生成」。",
+    "content_en": "LunaSol: the packaging workspace is rebuilt as a three-column editor — pages/layers/assets on the left, a paper canvas in the middle (zoom, drag elements), and a Luna AI advisor on the right that reads the current page and your structured brief to help revise, with chats saved alongside the project (free, no credits). The nine-step questionnaire became nine freely jumpable pages, with the brief summary as page ten.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-18-2001-2a4c83",
+    "date": "2026-11-18T20:01:22+08:00",
+    "type": "BUILD",
+    "content": "SolHub：Skill 库整体下线——导航、全站搜索、投稿表单、「我的提交」里的 Skill 入口和每日「今日热门」榜单全部移除，站点收敛成「网站 + 在线工具」两个品类，只做收录与展示。",
+    "content_en": "SolHub: the Skill library is retired entirely — Skill entries in the nav, site search, submit form and \"My submissions\", plus the daily trending-skills list, are all gone. The site now focuses purely on websites and online tools.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-18-2001-6e70fd",
+    "date": "2026-11-18T20:01:22+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：「复刻设计」整条产品线下线，/replicate 老链接统一跳回工作台；导航「产品 → 包装设计」直接进 /studio，原来的产品介绍页和全部示意插画撤掉，类别 / 形式 / 风格卡改成纯文字版式；进入工作台后全站导航自动收起，只留一条返回栏。",
+    "content_en": "LunaSol: the whole \"replicate a design\" product line is retired and old /replicate links redirect to the workspace. \"Product → Packaging\" now goes straight to /studio; the intro page and every illustrated placeholder are gone in favour of text-only cards, and the site nav auto-collapses inside the workspace to just a back bar.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-18-2001-802318",
+    "date": "2026-11-18T20:01:22+08:00",
+    "type": "BUILD",
+    "content": "SolHub：产品列表新增「全部 / 网站 / 在线工具」分段筛选，自制小工具和收录的网站混在同一个列表里按热度排序。",
+    "content_en": "SolHub: product listings gain an All / Websites / Online tools segmented filter, with uploaded tools and listed sites sharing one heat-ranked list.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-18-2001-dfb93f",
+    "date": "2026-11-18T20:01:22+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：导航把包装工作台收进「产品」下拉；工作台首页去掉大段介绍文案，「新建」按钮挪到项目列表那一行；顺带修掉打开工作台先闪一屏错误页、未登录时一直卡在「正在打开」的问题。",
+    "content_en": "LunaSol: the packaging workspace moves under a \"Products\" dropdown; the workspace home drops its long intro copy and the New button slides onto the project list row. Also fixed the error flash when opening the workspace and the endless \"opening\" state for signed-out visitors.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-18-2001-5463e0",
+    "date": "2026-11-18T20:01:22+08:00",
+    "type": "BUILD",
+    "content": "SolHub：浅色主题换成中性纯白底（更接近 X / 小红书的观感），首页色场改中性灰。",
+    "content_en": "SolHub: the light theme switches to a neutral pure-white base (closer to the X / Xiaohongshu feel), with a neutral grey hero field on the home page.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-17-2155-6d37e4",
     "date": "2026-11-17T21:55:48+08:00",
     "type": "BUILD",
