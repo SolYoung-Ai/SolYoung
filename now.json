@@ -1,5 +1,13 @@
 [
   {
+    "id": "major-2026-11-19-2319-c68f35",
+    "date": "2026-11-19T23:19:51+08:00",
+    "type": "BUILD",
+    "content": "SolHub：在线工具详情页上线——每款小工具现在都有产品式的独立详情页（/tools/?id=），可以看介绍再进工具；顺带去掉了多余的「Runs on SolHub」徽章和详情页里重复的简介。",
+    "content_en": "SolHub: hosted tools now get a product-style detail page (/tools/?id=) where you can read about a tool before opening it; also removed the redundant \"Runs on SolHub\" badge and duplicated description.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-18-2001-cb8d40",
     "date": "2026-11-18T20:01:22+08:00",
     "type": "BUILD",
