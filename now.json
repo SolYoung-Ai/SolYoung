@@ -1,5 +1,77 @@
 [
   {
+    "id": "major-2026-11-20-1204-03d314",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：包装工作台重做：改为「面编辑 / 刀板 / 3D」三视图，接入真实刀模与印刷文件导出",
+    "content_en": "Packaging studio reworked into three views — face editing, dieline and 3D — wired to real die lines and print file export",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-426b89",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "SolHub：在线工具详情页可自动运行，并新增 /tools/play/ 全屏运行器；一次上架 9 款官方小工具",
+    "content_en": "Tool detail pages now auto-run, with a new full-screen runner at /tools/play/ and 9 new official tools",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-d3835c",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：3D 视图大修：相机按包围盒自动取景、标签按面宽/面高包裹瓶身、贴图 1024 重绘、地面贴底不穿模、阴影假四边形修复",
+    "content_en": "Major 3D fixes: auto-framing camera, labels wrapping bottle faces, 1024 texture redraw, ground no longer clips, shadow artifact fixed",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-6a0820",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上新页恢复「网站 / 工具」顶层筛选（网站=全部收录、工具=托管 HTML），列表一次全部渲染、取消分页",
+    "content_en": "Launches page restores top-level Websites/Tools filter, renders the full list without load-more paging",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-2b6d35",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：新增 /preview 首页重设计预览版：一屏纯排版、逐字动效",
+    "content_en": "New /preview homepage redesign preview: single screen, pure typography, per-letter animation",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-71bc13",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "SolHub：工具详情页体验打磨：官方认证说明、一句话简介、折叠态改「展开工具」、手机端返回按钮、收录时间本地化",
+    "content_en": "Tool detail polish: official verification copy, one-line summary, collapsed label, mobile back button, localized dates",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-69023a",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：工作台细节修复：字号直接显示毫米、刀板四周自动留白、修复画布高度为 0 导致版面缩成 28px 的问题",
+    "content_en": "Studio fixes: font size shown in mm, dieline margins, fixed a zero-height canvas bug that shrank layouts to 28px",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-e725ed",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "SolHub：托管的小工具现在计入创作者主页作品数，官方账号不再显示 0 作品",
+    "content_en": "Hosted tools now count toward creator profile works, so official accounts no longer show 0 works",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-20-1204-930d67",
+    "date": "2026-11-20T12:04:19+08:00",
+    "type": "BUILD",
+    "content": "主站：SolHub 介绍弹窗标题改为「SolHub — 独立创作者社区」，原 Skill 库入口换成「上传你的作品」",
+    "content_en": "SolHub modal renamed to \"SolHub — independent creator community\"; the old Skill library slot now invites you to upload your work",
+    "published": true
+  },
+  {
     "id": "major-2026-11-19-2319-c68f35",
     "date": "2026-11-19T23:19:51+08:00",
     "type": "BUILD",
