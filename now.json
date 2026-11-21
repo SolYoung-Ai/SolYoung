@@ -1,5 +1,37 @@
 [
   {
+    "id": "major-2026-11-21-1202-ffb7ce",
+    "date": "2026-11-21T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：包装工作台首页改版：左栏新增起点卡与三步流程（含真实计数），右栏项目网格支持搜索排序、草稿进度线与一键新建",
+    "content_en": "LunaSol: Workspace home redesign — a start card with a 3-step flow and live counts on the left, searchable/sortable project grid with draft progress lines and a quick-new slot on the right",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-21-1202-1e5908",
+    "date": "2026-11-21T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：品牌焕新：换上「橙圆压黑圆」新标志，开场动画改为双圆标志动画，登录默认邮箱+密码、验证码降为小字备选",
+    "content_en": "LunaSol: Brand refresh — new orange-over-black circle logo, dual-circle logo intro animation, and email+password as the default sign-in with the verification code as a fallback",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-21-1202-97189a",
+    "date": "2026-11-21T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：导航调整：「包装工作台」收进「产品」下拉卡；恢复 Luna AI 与关于入口；Luna AI 页导航自动收放（指针贴顶滑下、离开自动收回）",
+    "content_en": "LunaSol: Navigation updates — Packaging Workspace moved into a Products dropdown card, Luna AI and About entries restored, and the Luna AI page nav auto-hides on pointer leave",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-21-1202-129d7e",
+    "date": "2026-11-21T12:02:29+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：首页暖光与页脚打磨：光效改遮罩收口，指针靠近边缘不再出现硬切分界线；页脚去掉字标与分隔线",
+    "content_en": "LunaSol: Homepage glow and footer polish — the warm glow now fades via a mask with no hard edge lines near the pointer, and the footer drops the wordmark and divider",
+    "published": true
+  },
+  {
     "id": "major-2026-11-20-1204-03d314",
     "date": "2026-11-20T12:04:19+08:00",
     "type": "BUILD",
