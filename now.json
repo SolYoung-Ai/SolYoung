@@ -1,5 +1,21 @@
 [
   {
+    "id": "major-2026-11-22-1202-414db5",
+    "date": "2026-11-22T12:02:37+08:00",
+    "type": "BUILD",
+    "content": "SolHub：产品列表收敛：正式下架 SolYoung Studio 与 SolClip，已删除的产品不再残留在列表中，社区数据改为实时校准。",
+    "content_en": "SolHub: List cleanup — SolYoung Studio and SolClip are officially retired, removed products no longer linger in the product list, and community stats are now calibrated in real time.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-22-1202-75e636",
+    "date": "2026-11-22T12:02:37+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：Luna AI 页导航收放更顺滑：按导航底边与顶部热区判定，滚轮、失焦或离开页面即自动收起；同步升级 jsPDF 清理依赖漏洞，页脚版权与法务行居中。",
+    "content_en": "LunaSol: Smoother Luna AI nav auto-collapse (edge + hotspot detection, collapses on scroll/blur/leave), jsPDF upgraded to clear a dependency vulnerability, footer legal lines centered.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-21-1202-ffb7ce",
     "date": "2026-11-21T12:02:29+08:00",
     "type": "BUILD",
