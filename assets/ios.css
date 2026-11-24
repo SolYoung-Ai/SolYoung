@@ -50,14 +50,10 @@ html[data-theme="dark"]{
   --line-soft:rgba(255,255,255,.06);
 }
 
-/* ---------- 背景：橙 × 白，克制渐变 + 固定光晕 ---------- */
+/* ---------- 背景：纯白（2026-11-24 去掉橙白渐变） ---------- */
 html{
-  background-color:#FFFDFB;
-  background-image:
-    radial-gradient(54% 44% at 6% -8%,rgba(232,112,40,.17),rgba(232,112,40,0) 70%),
-    radial-gradient(44% 38% at 98% 0%,rgba(232,112,40,.10),rgba(232,112,40,0) 68%),
-    radial-gradient(66% 46% at 44% 106%,rgba(232,112,40,.075),rgba(232,112,40,0) 72%),
-    linear-gradient(178deg,#FFFCF9 0%,#FFFDFC 46%,#FFFFFF 100%);
+  background-color:#FFFFFF;
+  background-image:none;
   background-attachment:fixed;
   background-repeat:no-repeat;
   background-size:cover;
