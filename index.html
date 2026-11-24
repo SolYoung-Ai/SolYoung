@@ -864,7 +864,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   /* 每次移入由 JS 重播这段弹跳，连着划过会形成一串错落的轻弹 */
   .sp-name .sp-ltr.pop{animation:spLetterPop .54s var(--ease)}
 }
-.sp-name .sp-ltr.is-falling{transition:none}
+.sp-name .sp-ltr.is-falling{transition:none;will-change:transform}
 @keyframes spNameFade{from{opacity:0}to{opacity:.94}}
 @keyframes spLetterPop{
   0%{transform:translateY(0) rotate(0) scale(1)}
@@ -3387,6 +3387,7 @@ html[data-theme="light"]{background-color:#FFFFFF;background-image:none !importa
   var W=window.innerWidth||1280;
   var EXP=Math.max(9,Math.min(36,W*0.028));   /* 下坠时横向展开幅度：随视口缩放，小屏才不会被甩出画面 */
   var DD=W<620?0.13:0.07;                     /* 小屏靠时间错峰，避免相邻字母叠成一团 */
+  var SNAP0=0.20, SNAP1=0.38;                 /* 磁吸归位时长区间：位移越大给的时间略多，小位移干脆利落 */
   var items=ltrs.map(function(el,i){
     el.classList.add('is-falling');
     return {el:el,
@@ -3397,6 +3398,7 @@ html[data-theme="light"]{background-color:#FFFFFF;background-image:none !importa
       th:(Math.random()<0.5?-1:1)*(0.10+Math.random()*0.14),thv:0,
       om:(Math.random()<0.5?-1:1)*(0.5+Math.random()*0.65),
       sq:0,sqv:0,bounces:0,delay:i*DD,
+      st:0,x0:0,th0:0,
       settled:false,done:false};
   });
 
@@ -3405,8 +3407,15 @@ html[data-theme="light"]{background-color:#FFFFFF;background-image:none !importa
   }
   function finish(it){
     it.done=true;
-    it.el.style.transform='';
-    it.el.classList.remove('is-falling');
+    var el=it.el;
+    /* 吸附终点已经精确归零，这里锁一帧 transition，避免摘掉 .is-falling 后
+       浏览器把内联 transform 的回退再当成一次过渡（那正是原先"最后一下卡顿"的来源） */
+    el.style.transition='none';
+    el.style.transform='';
+    window.requestAnimationFrame(function(){
+      el.style.transition='';
+      el.classList.remove('is-falling');
+    });
   }
 
   items.forEach(apply);   /* 先把每个字母推到高空，避免延迟期间停在原位闪一下 */
@@ -3424,29 +3433,42 @@ html[data-theme="light"]{background-color:#FFFFFF;background-image:none !importa
 
       if(!it.settled){
         it.vy+=G*dt; it.y+=it.vy*dt; it.x+=it.vx*dt; it.th+=it.om*dt;
+        /* 自转随下落衰减并封顶在 ±29°：避免落地时出现 40°+ 的大角度，
+           那样回正时像"甩"而不是"吸" */
+        it.om*=1-1.2*dt;
+        if(it.th>0.50){it.th=0.50;it.om*=0.82;}
+        else if(it.th<-0.50){it.th=-0.50;it.om*=0.82;}
         if(it.y>=0){
           it.y=0;
           var impact=Math.abs(it.vy);
-          it.sq=Math.min(0.24,Math.max(0.06,impact/9000))*(0.85+Math.random()*0.3);
+          /* 冲击量叠加而非覆盖，避免二次落地时压扁量突然跳变 */
+          it.sq=Math.min(0.28,it.sq+Math.min(0.24,Math.max(0.06,impact/9000))*(0.85+Math.random()*0.3)*0.8);
           it.sqv=0;
           if(impact>VSTOP&&it.bounces<3){
             it.bounces++;
             it.vy=-impact*REST;
             it.om*=0.4; it.vx*=0.5;
           }else{
-            it.settled=true; it.vy=0; it.vx=0; it.thv=it.om; it.om=0;
+            it.settled=true; it.vy=0; it.vx=0; it.om=0;
+            it.x0=it.x; it.th0=it.th; it.st=0;   /* 以落地瞬间的姿态作为吸附起点 */
+            it.dur=Math.min(SNAP1,SNAP0+Math.abs(it.x0)/700);
           }
         }
       }else{
-        it.x-=it.x*Math.min(1,26*dt);
-        it.thv+=(-320*it.th-24*it.thv)*dt;
-        it.th+=it.thv*dt;
-        if(Math.abs(it.x)<0.3&&Math.abs(it.th)<0.004&&Math.abs(it.sq)<0.004&&Math.abs(it.sqv)<0.03){
+        /* 磁吸归位：一条进度轴同时驱动位移与旋转，easeOutCubic 起手即动、末端收力；
+           一旦进入亚像素范围立刻咬死归零，不留在最后几像素上磨 */
+        it.st=Math.min(1,it.st+dt/it.dur);
+        var q=1-it.st;
+        var e=1-q*q*q;
+        it.x=it.x0*(1-e);
+        it.th=it.th0*(1-e);
+        if(it.st>=1||e>0.9993){
+          it.x=0; it.th=0; it.sq=0;
           finish(it); continue;
         }
       }
-      /* 果冻回弹：欠阻尼弹簧，先压扁再轻微拉伸 */
-      it.sqv+=(-110*it.sq-12*it.sqv)*dt;
+      /* 压扁回弹：近临界阻尼，撞击后干脆收住，不再长时间轻微抖动 */
+      it.sqv+=(-190*it.sq-27*it.sqv)*dt;
       it.sq+=it.sqv*dt;
       apply(it);
     }
