@@ -3385,7 +3385,7 @@ html[data-theme="light"]{background-color:#FFFFFF;background-image:none !importa
 
   var G=3200, REST=0.26, VSTOP=280, H=window.innerHeight||800;
   var W=window.innerWidth||1280;
-  var EXP=Math.max(9,Math.min(45,W*0.035));   /* 下坠时横向展开幅度：随视口缩放，小屏才不会被甩出画面 */
+  var EXP=Math.max(9,Math.min(36,W*0.028));   /* 下坠时横向展开幅度：随视口缩放，小屏才不会被甩出画面 */
   var DD=W<620?0.13:0.07;                     /* 小屏靠时间错峰，避免相邻字母叠成一团 */
   var items=ltrs.map(function(el,i){
     el.classList.add('is-falling');
