@@ -1177,32 +1177,38 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 /* ===== 开屏即主页（2026-11-10 改回）：层级压到导航/抽屉之下 ===== */
 .splash{z-index:1 !important}
 
-/* ===== 首页背景：白 ↔ 品牌橙，持续流动（2026-11-24 新增）
+/* ===== 首页背景：纯白为主，极淡橙光缓慢流动（2026-11-24 新增）
    ⚠️ 渐变不能写在 .splash 上：assets/ios.css 有 `.splash{background:transparent!important}`
-   （为了让 html 那层渐变透出来），所以这里用两层伪元素承载，只做 transform 动画，不开重绘。 ===== */
+   （为了让 html 那层渐变透出来），所以用两层伪元素承载，只做 transform 动画，不触发重绘。 ===== */
 .splash::before,.splash::after{content:"";position:absolute;pointer-events:none;z-index:-1}
-/* 底色扫光层：五段黑白橙过渡，整层缓慢平移 + 微转，橙带从一边流到另一边 */
-.splash::before{inset:-30%;background-color:#FFFFFF;
-  background-image:linear-gradient(112deg,#FFFFFF 0%,#FFFFFF 16%,#FFF2E6 36%,#FFD2B3 52%,#FFEBDD 72%,#FFFFFF 90%,#FFFFFF 100%);
-  will-change:transform;animation:spSweep 30s ease-in-out infinite}
-/* 橙色调色斑层：更慢、反向漂移，和扫光层叠出"一直在流"的层次 */
-.splash::after{inset:-24%;opacity:.7;
-  background:
-    radial-gradient(34% 38% at 26% 30%,rgba(232,112,40,.34) 0%,rgba(232,112,40,0) 64%),
-    radial-gradient(32% 36% at 74% 66%,rgba(240,126,54,.26) 0%,rgba(240,126,54,0) 64%),
-    radial-gradient(26% 30% at 62% 14%,rgba(255,186,140,.40) 0%,rgba(255,186,140,0) 68%);
-  will-change:transform;animation:spDrift 42s ease-in-out infinite alternate}
-@keyframes spSweep{
-  0%{transform:translate3d(-8%,0,0) rotate(-4deg) scale(1.02)}
-  50%{transform:translate3d(0,2%,0) rotate(2deg) scale(1.08)}
-  100%{transform:translate3d(9%,-2%,0) rotate(7deg) scale(1.04)}}
+/* 纯白底 + 一道极淡的斜向暖光带，整层左右往返 → 光带缓慢扫过，流动感来自"带在移动" */
+.splash::before{inset:-45%;background-color:#FFFFFF;
+  background-image:linear-gradient(112deg,
+    rgba(255,255,255,0) 0%,rgba(255,255,255,0) 36%,
+    rgba(232,112,40,.07) 46%,rgba(232,112,40,.105) 50%,rgba(232,112,40,.07) 54%,
+    rgba(255,255,255,0) 64%,rgba(255,255,255,0) 100%);
+  will-change:transform;animation:spBand 10s ease-in-out infinite alternate}
+/* 第二道更淡、斜率不同的光带反向扫过，两道交错 → 流动一眼就看得出，橙量依旧极少 */
+.splash::after{inset:-40%;
+  background-image:
+    linear-gradient(68deg,
+      rgba(255,255,255,0) 0%,rgba(255,255,255,0) 40%,
+      rgba(240,126,54,.055) 47%,rgba(240,126,54,.075) 50%,rgba(240,126,54,.055) 53%,
+      rgba(255,255,255,0) 60%,rgba(255,255,255,0) 100%),
+    radial-gradient(26% 30% at 66% 30%,rgba(255,160,110,.035) 0%,rgba(255,160,110,0) 72%);
+  will-change:transform,opacity;animation:spDrift 15s ease-in-out infinite alternate}
+@keyframes spBand{
+  0%{transform:translate3d(-18%,-5%,0)}
+  100%{transform:translate3d(18%,5%,0)}}
 @keyframes spDrift{
-  0%{transform:translate3d(0,0,0) scale(1) rotate(0deg)}
-  50%{transform:translate3d(-6%,4%,0) scale(1.16) rotate(8deg)}
-  100%{transform:translate3d(5%,-5%,0) scale(1.06) rotate(-7deg)}}
+  0%{transform:translate3d(16%,9%,0) scale(1.06);opacity:.65}
+  100%{transform:translate3d(-16%,-9%,0) scale(1);opacity:1}}
 :root[data-theme="dark"] .splash::before{background-color:#0D0D0F;
-  background-image:linear-gradient(112deg,#0C0C0E 0%,#151210 24%,#2A1B12 50%,#141110 74%,#0C0C0E 100%)}
-:root[data-theme="dark"] .splash::after{opacity:.55}
+  background-image:linear-gradient(112deg,
+    rgba(13,13,15,0) 0%,rgba(13,13,15,0) 36%,
+    rgba(232,112,40,.10) 46%,rgba(232,112,40,.14) 50%,rgba(232,112,40,.10) 54%,
+    rgba(13,13,15,0) 64%,rgba(13,13,15,0) 100%)}
+:root[data-theme="dark"] .splash::after{opacity:.8}
 /* 右上角「进入我的世界」已关闭（导航改由左侧抽屉进入），元素保留但不再显示 */
 .sp-tr{display:none !important}
 .sp-tr .arr{font-family:var(--font-display)}
