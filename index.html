@@ -1176,6 +1176,8 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 
 /* ===== 开屏即主页（2026-11-10 改回）：层级压到导航/抽屉之下 ===== */
 .splash{z-index:1 !important}
+/* 纯白背景（2026-11-24）：不依赖 ios.css 的缓存版本，首页立即生效；深色主题不受影响 */
+html[data-theme="light"]{background-color:#FFFFFF;background-image:none !important}
 
 /* 右上角「进入我的世界」已关闭（导航改由左侧抽屉进入），元素保留但不再显示 */
 .sp-tr{display:none !important}
