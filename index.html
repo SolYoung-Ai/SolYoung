@@ -853,7 +853,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 .sp-name{position:absolute;left:50%;bottom:clamp(28px,7vh,84px);transform:translateX(-50%);z-index:1;
   display:flex;gap:.12em;white-space:nowrap;font-family:var(--font-display);font-weight:800;
   font-size:clamp(76px,24vw,236px);line-height:.8;letter-spacing:-.04em;pointer-events:none;user-select:none;
-  opacity:0;animation:spNameRise 1s var(--ease) .5s forwards}
+  opacity:0;animation:spNameFade .45s var(--ease) .1s forwards}
 .sp-name .sp-sol{color:var(--ink)}
 .sp-name .sp-young{color:var(--accent)}
 /* 姓名按字母拆分：父层 pointer-events:none，字母单独恢复可命中，不影响工牌拖拽 */
@@ -864,6 +864,8 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
   /* 每次移入由 JS 重播这段弹跳，连着划过会形成一串错落的轻弹 */
   .sp-name .sp-ltr.pop{animation:spLetterPop .54s var(--ease)}
 }
+.sp-name .sp-ltr.is-falling{transition:none}
+@keyframes spNameFade{from{opacity:0}to{opacity:.94}}
 @keyframes spLetterPop{
   0%{transform:translateY(0) rotate(0) scale(1)}
   38%{transform:translateY(-.16em) rotate(-7deg) scale(1.12)}
@@ -1093,7 +1095,7 @@ html.splashing,html.splashing body{overflow:hidden;height:100%}
 .sp-name{position:absolute;left:50%;bottom:clamp(28px,7vh,84px);transform:translateX(-50%);z-index:1;
   display:flex;gap:.12em;white-space:nowrap;font-family:var(--font-display);font-weight:800;
   font-size:clamp(76px,24vw,236px);line-height:.8;letter-spacing:-.04em;pointer-events:none;user-select:none;
-  opacity:0;animation:spNameRise 1s var(--ease) .5s forwards}
+  opacity:0;animation:spNameFade .45s var(--ease) .1s forwards}
 .sp-name .sp-sol{color:var(--ink)}
 .sp-name .sp-young{color:var(--accent)}
 /* 姓名按字母拆分：父层 pointer-events:none，字母单独恢复可命中，不影响工牌拖拽 */
@@ -3370,6 +3372,87 @@ html[data-theme="light"]{background-color:#FFFFFF;background-image:none !importa
   window.__hpRender=function(l){lang=l;render();requestAnimationFrame(function(){measure();apply();});};
   render();
   requestAnimationFrame(function(){measure();apply();});
+})();
+</script>
+<script>
+/* 开屏大字：逐字母自由落体 + 落地压扁回弹（rAF 物理积分；结束后清除内联样式，保留 hover 弹跳） */
+(function(){
+  var name=document.querySelector('.sp-name');
+  if(!name) return;
+  var ltrs=[].slice.call(name.querySelectorAll('.sp-ltr'));
+  if(!ltrs.length) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var G=3200, REST=0.26, VSTOP=280, H=window.innerHeight||800;
+  var W=window.innerWidth||1280;
+  var EXP=Math.max(9,Math.min(45,W*0.035));   /* 下坠时横向展开幅度：随视口缩放，小屏才不会被甩出画面 */
+  var DD=W<620?0.13:0.07;                     /* 小屏靠时间错峰，避免相邻字母叠成一团 */
+  var items=ltrs.map(function(el,i){
+    el.classList.add('is-falling');
+    return {el:el,
+      y:-(H*0.58+i*36+Math.random()*70),
+      vy:Math.random()*140,
+      x:(i-3.5)*EXP+(Math.random()*2-1)*12,
+      vx:(Math.random()*2-1)*16,
+      th:(Math.random()<0.5?-1:1)*(0.10+Math.random()*0.14),thv:0,
+      om:(Math.random()<0.5?-1:1)*(0.5+Math.random()*0.65),
+      sq:0,sqv:0,bounces:0,delay:i*DD,
+      settled:false,done:false};
+  });
+
+  function apply(it){
+    it.el.style.transform='translate3d('+it.x.toFixed(2)+'px,'+it.y.toFixed(2)+'px,0) rotate('+(it.th*57.29578).toFixed(2)+'deg) scale('+(1+it.sq*0.45).toFixed(4)+','+(1-it.sq).toFixed(4)+')';
+  }
+  function finish(it){
+    it.done=true;
+    it.el.style.transform='';
+    it.el.classList.remove('is-falling');
+  }
+
+  items.forEach(apply);   /* 先把每个字母推到高空，避免延迟期间停在原位闪一下 */
+
+  var last=0;
+  function tick(now){
+    if(!last) last=now;
+    var dt=Math.min(0.033,(now-last)/1000); last=now;
+    var active=false;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];
+      if(it.done) continue;
+      active=true;
+      if(it.delay>0){ it.delay-=dt; continue; }
+
+      if(!it.settled){
+        it.vy+=G*dt; it.y+=it.vy*dt; it.x+=it.vx*dt; it.th+=it.om*dt;
+        if(it.y>=0){
+          it.y=0;
+          var impact=Math.abs(it.vy);
+          it.sq=Math.min(0.24,Math.max(0.06,impact/9000))*(0.85+Math.random()*0.3);
+          it.sqv=0;
+          if(impact>VSTOP&&it.bounces<3){
+            it.bounces++;
+            it.vy=-impact*REST;
+            it.om*=0.4; it.vx*=0.5;
+          }else{
+            it.settled=true; it.vy=0; it.vx=0; it.thv=it.om; it.om=0;
+          }
+        }
+      }else{
+        it.x-=it.x*Math.min(1,26*dt);
+        it.thv+=(-320*it.th-24*it.thv)*dt;
+        it.th+=it.thv*dt;
+        if(Math.abs(it.x)<0.3&&Math.abs(it.th)<0.004&&Math.abs(it.sq)<0.004&&Math.abs(it.sqv)<0.03){
+          finish(it); continue;
+        }
+      }
+      /* 果冻回弹：欠阻尼弹簧，先压扁再轻微拉伸 */
+      it.sqv+=(-110*it.sq-12*it.sqv)*dt;
+      it.sq+=it.sqv*dt;
+      apply(it);
+    }
+    if(active) window.requestAnimationFrame(tick);
+  }
+  window.requestAnimationFrame(tick);
 })();
 </script>
 </body>
