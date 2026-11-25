@@ -1,5 +1,69 @@
 [
   {
+    "id": "major-2026-11-25-1203-916a70",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "SOL AI：整站重构为「Work Agent」形态——BYOK 接入自己的模型密钥，全新三窗格工作区界面，24 日上线新版。",
+    "content_en": "SOL AI: rebuilt as a BYOK Work Agent — bring your own model keys, with an all-new three-pane workspace UI.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-25-1203-c14ebe",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：包装工作台三栏编辑器正式发布（同步 feature 分支全部内容）；生图改为服务端扣费，退款需凭口令，计费更稳。",
+    "content_en": "LunaSol: three-pane editor officially ships in the packaging workbench; image billing moved server-side with refund passcodes.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-25-1203-852072",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "SolHub：全站改纯白极简主题——中性灰阶、液态玻璃侧栏、丝滑切换动效；手机端工具页真全屏并加浮动返回键。",
+    "content_en": "SolHub: site-wide pure-white minimal theme — neutral greys, glass sidebar, smooth transitions; true full-screen tool pages on mobile.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-25-1203-a3dfad",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "主站：开屏大字逐字母自由落体——每枚字母重力与初旋各不相同，落地压扁回弹后果冻式磁吸归位。",
+    "content_en": "Main site: intro title letters now fall freely one by one — unique gravity and spin, squash-and-bounce landing, jelly magnetic settle.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-25-1203-999fa1",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "SolHub：热点页下线行情条，并收紧抓取预算、拉长轮询间隔，页面更省流量也更省电。",
+    "content_en": "SolHub: removed the market ticker from the hot feed and tightened fetch budgets with longer polling intervals.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-25-1203-9d8e6f",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：Luna 页导航修复——产品下拉与账户菜单不再被裁切，指针移入卡片不再自动收起；本机对话按账户分槽，换号登录不再串到别人的对话。",
+    "content_en": "LunaSol: fixed Luna page nav clipping and auto-collapse; local chats are now slot-per-account, so switching accounts no longer mixes conversations.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-25-1203-4c6785",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "SolHub：一轮安全加固——堵 OAuth 登录 CSRF 与 SSRF 重定向绕过、封禁缺口，图标上传只认真图片，并下线 GitHub OAuth 遗留登录链路。",
+    "content_en": "SolHub: security hardening — fixed OAuth CSRF and SSRF redirect bypasses, strict icon upload validation, and retired the legacy GitHub OAuth flow.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-25-1203-cbe09d",
+    "date": "2026-11-25T12:03:10+08:00",
+    "type": "BUILD",
+    "content": "主站：首页背景定稿纯白（内联锁定不受缓存影响）；构建页下架 SolYoung Studio 与 OFX Atlas 入口。",
+    "content_en": "Main site: homepage background finalized to pure white; SolYoung Studio and OFX Atlas entries removed from the build page.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-24-1242-4ab1dd",
     "date": "2026-11-24T12:42:20+08:00",
     "type": "BUILD",
