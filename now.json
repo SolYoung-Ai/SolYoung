@@ -1,5 +1,85 @@
 [
   {
+    "id": "major-2026-11-26-1202-0f6346",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：上线「我的钱包」——银行卡式积分卡面，余额、明细、兑换入口都在一处；邀请奖励也就此打通：每人专属邀请码，好友注册自动 +100，双方各得 100 分，同一账号只算一次。",
+    "content_en": "SolHub: launched My Wallet — a bank-card style points card that gathers balance, history and redemption in one place; invites now pay out too: every account gets its own code, and a friend signing up with it grants 100 points to both sides, once per account.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-7ab6d3",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：积分兑换码开放——后台可批量生成 1000 / 3000 / 5000 三种面额并一键复制，用户输入口令即时到账，一次性使用并写进积分明细。",
+    "content_en": "SolHub: redeemable point codes are live — admins can batch-generate 1000 / 3000 / 5000 value codes and copy them in one click, while users redeem a code instantly, once each, with the entry recorded in their history.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-2f2d80",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：产品与工具都能收藏了，收藏夹收进「我的」页并支持搜索；产品页改按真实点击量排名，排序说明改为「核验优先 / 全球精选 / 按点击量排名」。",
+    "content_en": "SolHub: products and tools can now be favorited, with a searchable favorites tab on the My page; the products page ranks by real click volume and its copy now reads verified-first / globally curated / ranked by clicks.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-9f9a19",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：账号认证拆成两条轨——官方账号蓝 V、创作者黄 V，钱包卡面按真实认证显示，撤掉原来人人都有的「官方」胶囊；创作者页的「作品」改称「收录」。",
+    "content_en": "SolHub: verification now splits into two tracks — blue V for official accounts, yellow V for creators — the wallet card reflects the real badge, and the blanket “official” pill is gone; a creator’s “works” are now called “collections”.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-4da33f",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：云同步正式关闭，项目与对话只保存在本机浏览器里（登录与 AI 功能不受影响）；同时导航栏不再自动收起，Luna 页始终固定在顶部。",
+    "content_en": "LunaSol: cloud sync is switched off — projects and conversations now live only in the local browser (login and AI are unaffected); the nav no longer auto-collapses and stays fixed at the top on the Luna page.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-83c48b",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：发现、产品、热点、创作者四页的右栏加了常驻赞助位，独立滚动不再跟着页面跑；去掉「剩余位置」提示，主内容也不会再被挤成一条。",
+    "content_en": "SolHub: the discovery, products, hot and creators pages now carry a persistent sponsor rail in the right column that scrolls on its own; the remaining-slots hint is gone and the main content no longer gets squeezed into a single column.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-5b747b",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：/join 页改成注册落地页——四张能力卡讲清能做什么，邀请提示明确写出「注册成功你获得 100 积分」。",
+    "content_en": "SolHub: /join is now a proper sign-up landing page — four capability cards explain what the platform offers, and the invite hint states plainly that you get 100 points on sign-up.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-7296b3",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：编辑部新收录 16 个全球站点与趣味工具（Savee、Fonts In Use、Little Alchemy 2、Bongo Cat、Simular 的 box 等）；产品详情页开始区分开发者与收录方，不再拿提交账号冒充作者。",
+    "content_en": "SolHub: the editorial team added 16 global sites and playful tools (Savee, Fonts In Use, Little Alchemy 2, Bongo Cat, Simular’s box and more); product pages now distinguish the developer from whoever curated the entry instead of passing the submitter off as the author.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-0fe633",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：新增公开产品目录接口 /catalog，网站与小程序共用同一份收录数据，目录里同时补上开发者与收录方字段。",
+    "content_en": "SolHub: a public catalog endpoint, /catalog, now serves the same curated dataset to both the site and the mini program, and includes developer and curator fields.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-26-1202-1a906f",
+    "date": "2026-11-26T12:02:57+08:00",
+    "type": "BUILD",
+    "content": "SolHub：热点页修掉无时区新闻的 8 小时时间偏差；抓取改为 30 分钟一轮并收紧翻译预算，单轮耗时从 28 秒降到 18 秒。",
+    "content_en": "SolHub: fixed an 8-hour offset on news items without a timezone; the hot feed now crawls every 30 minutes with a tighter translation budget, cutting each round from 28s to 18s.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-25-1203-916a70",
     "date": "2026-11-25T12:03:10+08:00",
     "type": "BUILD",
