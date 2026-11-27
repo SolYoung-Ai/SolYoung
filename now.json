@@ -1,5 +1,53 @@
 [
   {
+    "id": "major-2026-11-27-1329-01b5fb",
+    "date": "2026-11-27T13:29:44+08:00",
+    "type": "BUILD",
+    "content": "SolHub：「活动」版块上线——官方发布与创作者投稿审核、报名名额与结果一目了然；报名表单可自由配置并强制邮箱验证，自己的活动随时编辑、发布、下架，报名名单直接带创作者资料与筛选，导航原「我」入口也换成了「活动」。",
+    "content_en": "SolHub: a new Events section is live — official and creator-submitted events with review, capacity and results at a glance; configurable sign-up forms with mandatory email verification, full edit/publish/unpublish control, and attendee lists with creator profiles. The nav entry \"Me\" is now \"Events\".",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-27-1329-867984",
+    "date": "2026-11-27T13:29:44+08:00",
+    "type": "BUILD",
+    "content": "SolHub：发起活动改为按时长付费（7 / 15 / 30 / 60 天四档），活动页头部与产品、热点页风格统一，右栏同样挂上赞助位。",
+    "content_en": "SolHub: hosting an event is now pay-per-duration (7 / 15 / 30 / 60 days); the Events page header matches Products and Highlights, with a sponsor slot in the right column.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-27-1329-7c96e7",
+    "date": "2026-11-27T13:29:44+08:00",
+    "type": "BUILD",
+    "content": "SolHub：「我的赞助」上线——菜单直达专属管理页，赞助位列表、状态、续费、改介绍、下架一站搞定；已下架或到期的位置不再提供改介绍入口，赞助位文案也改口为「全站赞助位同时展示」。",
+    "content_en": "SolHub: My Sponsorships is here — a dedicated management page for your ad slots covering list, status, renewal, intro editing and takedown; expired slots lose the edit-intro option, and the copy now reads \"site-wide sponsor slots shown together\".",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-27-1329-b6eb47",
+    "date": "2026-11-27T13:29:44+08:00",
+    "type": "BUILD",
+    "content": "SolHub：编辑部一口气收录 20 个全球网站与工具——90s TV、WindowSwap、Radio Garden、Neal.fun、Ancient Earth、Access Mars、Skribbl、Pet the Cat、NoSignups 等悉数上新。",
+    "content_en": "SolHub: the Editors' collection adds 20 global sites and tools in one go — 90s TV, WindowSwap, Radio Garden, Neal.fun, Ancient Earth, Access Mars, Skribbl, Pet the Cat, NoSignups and more.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-27-1329-46d75a",
+    "date": "2026-11-27T13:29:44+08:00",
+    "type": "BUILD",
+    "content": "SolHub：新增「帮助与反馈」页（附联系邮箱），页脚菜单同步重排为全球招募 / 安装到桌面 / 隐私说明 / 帮助与反馈；隐私说明也补齐了活动报名、积分钱包、赞助位与本地存储的条目。",
+    "content_en": "SolHub: a new Help & Feedback page (with contact email) joins a reorganized footer — Global Recruitment / Install to Desktop / Privacy / Help & Feedback — and the privacy policy now covers event sign-ups, credit wallet, sponsor slots and local storage.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-27-1329-a90aa4",
+    "date": "2026-11-27T13:29:44+08:00",
+    "type": "BUILD",
+    "content": "SolHub：产品页与热点页的筛选统一为活动页那套分段控件与橙描边分类胶囊，间距一并对齐；认证卡片把黄 V 条件写清楚了——完成邮箱验证并提交至少一个产品。",
+    "content_en": "SolHub: filter controls on Products and Highlights now match the Events page (segmented control with orange-outlined category pills), and the verification card spells out the yellow-V criteria — verified email plus at least one submitted product.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-26-1202-0f6346",
     "date": "2026-11-26T12:02:57+08:00",
     "type": "BUILD",
