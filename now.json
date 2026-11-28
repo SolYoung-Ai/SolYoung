@@ -1,5 +1,45 @@
 [
   {
+    "id": "major-2026-11-28-1338-fbc997",
+    "date": "2026-11-28T13:38:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：工作台免登录可用——改用本机身份，不注册不登录也能新建、编辑、删除包装设计项目，创作门槛降到零。",
+    "content_en": "LunaSol: the studio now works without an account — local identity lets you create, edit and delete packaging projects with no sign-in.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-28-1338-821f18",
+    "date": "2026-11-28T13:38:14+08:00",
+    "type": "BUILD",
+    "content": "LunaSol：全面切换本地模式——前端不再向后端发任何请求，项目数据存在你自己的浏览器里，打开即用、离线也更稳；AI 生图支持自带多厂商 Key（BYOK）浏览器直连，填了 Key 就不再绕云函数，响应更快。",
+    "content_en": "LunaSol: fully local mode — the frontend no longer calls any backend; your projects live in your own browser. AI image generation supports multi-vendor BYOK keys with direct browser connections for faster responses.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-28-1338-1ccd5d",
+    "date": "2026-11-28T13:38:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：热点服务后端迁回 Cloudflare Worker——热点抓取与 30 分钟定时更新全部在 Worker 上跑，登录与写操作仍走 CloudBase，热点页刷新更稳、更新更及时。",
+    "content_en": "SolHub: the hot-feed backend moves back to a Cloudflare Worker — fetching and 30-minute cron updates run on the edge, while sign-in and writes stay on CloudBase for a snappier, more reliable feed.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-28-1338-43b60d",
+    "date": "2026-11-28T13:38:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：编辑部新增「界面灵感库 / 动效与着色器 / AI 设计素材」三个收录分类，现有条目归类迁移，并收录 aileak.zip、stringers.io 等新站——找设计灵感更有方向。",
+    "content_en": "SolHub: the editorial desk adds three new collections — UI inspiration, motion & shaders, and AI design assets — plus new entries like aileak.zip and stringers.io.",
+    "published": true
+  },
+  {
+    "id": "major-2026-11-28-1338-c2fc48",
+    "date": "2026-11-28T13:38:14+08:00",
+    "type": "BUILD",
+    "content": "SolHub：注册页支持手动填写邀请码，好友邀请不再依赖专属链接，直接输码就能绑定奖励；钱包页冗余积分说明同步清理。",
+    "content_en": "SolHub: the sign-up page now accepts manually entered invite codes — bind referral rewards by code without a special link.",
+    "published": true
+  },
+  {
     "id": "major-2026-11-27-1329-01b5fb",
     "date": "2026-11-27T13:29:44+08:00",
     "type": "BUILD",
